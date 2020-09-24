@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Seeding.Dtos;
     using Newtonsoft.Json;
@@ -17,7 +18,7 @@
             if (!dbContext.Brands.Any())
             {
                 var brandsData = JsonConvert
-                    .DeserializeObject<List<BrandDto>>(File.ReadAllText(@"../../Data/BeautySalon.Data/Seeding/Data/Brands.json")).ToList();
+                    .DeserializeObject<List<BrandDto>>(File.ReadAllText(GlobalConstants.BrandSeederPath)).ToList();
 
                 List<Brand> brands = new List<Brand>();
 

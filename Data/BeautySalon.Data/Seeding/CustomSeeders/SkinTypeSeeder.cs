@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Seeding.Dtos;
     using Newtonsoft.Json;
@@ -17,7 +18,7 @@
             if (!dbContext.SkinTypes.Any())
             {
                 var skinTypesData = JsonConvert
-                    .DeserializeObject<List<SkinTypeDto>>(File.ReadAllText(@"../../Data/BeautySalon.Data/Seeding/Data/SkinTypes.json")).ToList();
+                    .DeserializeObject<List<SkinTypeDto>>(File.ReadAllText(GlobalConstants.SkinTypeSeederPath)).ToList();
 
                 List<SkinType> skinTypes = new List<SkinType>();
 

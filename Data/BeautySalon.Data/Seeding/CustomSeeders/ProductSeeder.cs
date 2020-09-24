@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Seeding.Dtos;
     using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@
             if (!dbContext.Products.Any())
             {
                 var productsData = JsonConvert
-                    .DeserializeObject<List<ProductDto>>(File.ReadAllText(@"../../Data/BeautySalon.Data/Seeding/Data/Products.json")).ToList();
+                    .DeserializeObject<List<ProductDto>>(File.ReadAllText(GlobalConstants.ProductSeederPath)).ToList();
 
                 List<Product> products = new List<Product>();
 

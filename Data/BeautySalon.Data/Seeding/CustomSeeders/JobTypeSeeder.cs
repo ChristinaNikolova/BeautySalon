@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Seeding.Dtos;
     using Newtonsoft.Json;
@@ -17,7 +18,7 @@
             if (!dbContext.JobTypes.Any())
             {
                 var jobTypesData = JsonConvert
-                    .DeserializeObject<List<JobTypeDto>>(File.ReadAllText(@"../../Data/BeautySalon.Data/Seeding/Data/JobTypes.json")).ToList();
+                    .DeserializeObject<List<JobTypeDto>>(File.ReadAllText(GlobalConstants.JobTypeSeederPath)).ToList();
 
                 List<JobType> jobTypes = new List<JobType>();
 

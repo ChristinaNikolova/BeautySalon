@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
@@ -23,7 +24,7 @@
             if (!dbContext.Users.Any())
             {
                 var stylistsData = JsonConvert
-                    .DeserializeObject<List<StylistDto>>(File.ReadAllText(@"../../Data/BeautySalon.Data/Seeding/Data/Stylists.json")).ToList();
+                    .DeserializeObject<List<StylistDto>>(File.ReadAllText(GlobalConstants.StylistSeederPath)).ToList();
 
                 List<ApplicationUser> stylists = new List<ApplicationUser>();
                 List<ProcedureStylist> procedureStylists = new List<ProcedureStylist>();

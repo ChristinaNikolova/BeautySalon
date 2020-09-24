@@ -12,7 +12,7 @@
         public Product()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.Quantuty = 0;
+            this.Quantity = 0;
             this.AverageRating = 0;
             this.ProcedureProducts = new HashSet<ProcedureProduct>();
             this.ProductReviews = new HashSet<ProductReview>();
@@ -30,7 +30,7 @@
 
         public decimal Price { get; set; }
 
-        public int Quantuty { get; set; }
+        public int Quantity { get; set; }
 
         [Required]
         public string Picture { get; set; }

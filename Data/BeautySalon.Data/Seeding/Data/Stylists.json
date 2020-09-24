@@ -1,0 +1,102 @@
+﻿[
+  {
+    "FirstName": "Maya",
+    "LastName": "Green",
+    "UserName": "Maya.Green",
+    "Email": "Maya.Green@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600494978/trainer-4_j15gco.jpg",
+    "Gender": "Female",
+    "Category": "Skin Care",
+    "JobType": "Top Medical Cosmetician"
+  },
+  {
+    "FirstName": "Kate",
+    "LastName": "Boss",
+    "UserName": "Kate.Boss",
+    "Email": "Kate.Boss@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600494974/trainer-3_jmawko.jpg",
+    "Gender": "Female",
+    "Category": "Skin Care",
+    "JobType": "Top Medical Cosmetician"
+  },
+  {
+    "FirstName": "Nicole",
+    "LastName": "Devis",
+    "UserName": "Nicole.Devis",
+    "Email": "Nicole.Devis@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600494970/trainer-2_gxc7iw.jpg",
+    "Gender": "Female",
+    "Category": "Skin Care",
+    "JobType": "Top Medical Cosmetician"
+  },
+  {
+    "FirstName": "Caroline",
+    "LastName": "Li",
+    "UserName": "Caroline.Li",
+    "Email": "Caroline.Li@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600494966/trainer-1_ycbdti.jpg",
+    "Gender": "Female",
+    "Category": "Skin Care",
+    "JobType": "Top Medical Cosmetician"
+  },
+  {
+    "FirstName": "Richard",
+    "LastName": "Brown",
+    "UserName": "Richard.Brown",
+    "Email": "Richard.Brown@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1585392717/Mihail%20Nikolov.jpg",
+    "Gender": "Male",
+    "Category": "Hair",
+    "JobType": "Top Coiffeur"
+  },
+  {
+    "FirstName": "Monika",
+    "LastName": "Schmidt",
+    "UserName": "Monika.Schmidt",
+    "Email": "Monika.Schmidt@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1585403217/Monika%20Todorova.jpg",
+    "Gender": "Female",
+    "Category": "Hair",
+    "JobType": "Coiffeur"
+  },
+  {
+    "FirstName": "Sofia",
+    "LastName": "Jonson",
+    "UserName": "Sofia.Jonson",
+    "Email": "Sofia.Jonson@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1585631134/Veronika%20Mueller.jpg",
+    "Gender": "Female",
+    "Category": "Makeup",
+    "JobType": "Top MakeUp Artist"
+  },
+  {
+    "FirstName": "Jennifer",
+    "LastName": "Lee",
+    "UserName": "Jennifer.Lee",
+    "Email": "Jennifer.Lee@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1585632277/Jennifer%20Lee.jpg",
+    "Gender": "Female",
+    "Category": "Makeup",
+    "JobType": "Top MakeUp Artist"
+  },
+  {
+    "FirstName": "Tanya",
+    "LastName": "Doe",
+    "UserName": "Tanya.Doe",
+    "Email": "Tanya.Doe@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1586404716/test%20test.jpg",
+    "Gender": "Female",
+    "Category": "Nails",
+    "JobType": "Top Nails Artist"
+  },
+  {
+    "FirstName": "John",
+    "LastName": "Lucas",
+    "UserName": "John.Lucas",
+    "Email": "John.Lucas@stylist.com",
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1585632086/Monika%20Nikolova.jpg",
+    "Gender": "Male",
+    "Category": "Nails",
+    "JobType": "Top Nails Artist"
+  }
+]

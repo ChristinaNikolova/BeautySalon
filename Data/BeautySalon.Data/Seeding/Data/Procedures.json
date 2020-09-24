@@ -1,0 +1,1397 @@
+﻿[
+  {
+    "Name": "Face cleaning for dry skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Peeling",
+      "Redness",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Face cleaning for dry and sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Peeling",
+      "Redness",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Absolute Hydratation with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Absolute Hydratation for Sensitice skin with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Strong Peeling with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Peeling",
+      "Tired skin",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Peeling Face Mask"
+    ]
+  },
+  {
+    "Name": "Light Face Peeling for Sensitive skin with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Peeling",
+      "Tired skin",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Hydratation and Anti-aging with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 150,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Hydratation and Anti-aging for sensitive skin with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 150,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Strong Anti-aging Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Wrinkles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Strong Anti-aging Therapy for Sensitive skin with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Wrinkles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy for Sensitive skin with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product Anti-aging",
+      "Dry Skin Face Mask",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Redness - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Redness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Redness for Sensitive skin - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Redness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation for Sensitive skin - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin for Sensitive skin - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Refresh - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Refresh for Sensitive skin - Therapy with Coconut oil",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "Dry",
+    "SkinProblems": [
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Dry Skin Face Product for Face Hydratation",
+      "Dry Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Face cleaning for oily skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Acne"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Face cleaning for oily and sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Acne"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Extraordinary purity",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Acne",
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Medical product for Oily Skin",
+      "Medical mask for Oily Skin"
+    ]
+  },
+  {
+    "Name": "Extraordinary purity for Sensitice skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Acne",
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores"
+    ],
+    "Products": [
+      "Medical product for Oily Skin",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product Anti-aging",
+      "Oily Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Aloe vera and Honey for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product Anti-aging",
+      "Oily Skin Face Mask",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation for Sensitive skin - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin for Sensitive skin - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pores",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Oily Skin Face Product - Acne and Blackheads",
+      "Oily Skin Face Mask - Acne and Blackheads"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pores for Sensitive skin - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Oily Skin Face Product - Acne and Blackheads",
+      "Oily Skin Face Mask - Acne and Blackheads",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Acne",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Acne",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Oily Skin Face Product - Acne and Blackheads",
+      "Oily Skin Face Mask - Acne and Blackheads"
+    ]
+  },
+  {
+    "Name": "Bye bye, Acne for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Acne",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Oily Skin Face Product - Acne and Blackheads",
+      "Oily Skin Face Mask - Acne and Blackheads",
+      "Oily Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Refresh - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product Refresh",
+      "Oily Skin Face Mask Refresh"
+    ]
+  },
+  {
+    "Name": "Refresh for Sensitive skin - Therapy with Aloe vera and Honey",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "oily",
+    "SkinProblems": [
+      "Oiliness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Oily Skin Face Product Refresh",
+      "Oily Skin Face Mask Refresh"
+    ]
+  },
+  {
+    "Name": "Face cleaning for combination skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Acne",
+      "Peeling",
+      "Redness"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Face cleaning for combination and sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Acne",
+      "Peeling",
+      "Redness"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Extraordinary hydratation and purity",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Acne",
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Face Hydratation",
+      "Combination Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Extraordinary hydratation and purity for Sensitice skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Acne",
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Face Hydratation",
+      "Combination Skin Face Mask for Face Hydratation",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Wrinkles",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product Anti-aging",
+      "Combination Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Jojoba and Hazelnut for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Wrinkles",
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product Anti-aging",
+      "Combination Skin Face Mask",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Light Peeling Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Dryness",
+      "Peeling",
+      "Oiliness",
+      "Clogged pores",
+      "Enlarged pores",
+      "Blackheads",
+      "Acne",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Peeling",
+      "Combination Skin Face Mask for Peeling"
+    ]
+  },
+  {
+    "Name": "Light Peeling Therapy with Jojoba and Hazelnut for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Dryness",
+      "Peeling",
+      "Oiliness",
+      "Clogged pores",
+      "Enlarged pores",
+      "Blackheads",
+      "Acne",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Peeling",
+      "Combination Skin Face Mask for Peeling",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation for Sensitive skin - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Unhealthy skin for Sensitive skin - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Unhealthy skin",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Redness - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Redness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Redness for Sensitive skin - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination ",
+    "SkinProblems": [
+      "Redness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Acne and Pores",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Acne",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Combination Skin Face Product - Acne and Blackheads",
+      "Combination Skin Face Mask - Acne and Blackheads"
+    ]
+  },
+  {
+    "Name": "Bye bye, Acne and Pores for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Acne",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Combination Skin Face Product - Acne and Blackheads",
+      "Combination Skin Face Mask - Acne and Blackheads",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Refresh - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Face Hydratation",
+      "Combination Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Refresh for Sensitive skin - Therapy with Jojoba and Hazelnut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "combination",
+    "SkinProblems": [
+      "Oiliness",
+      "Dryness",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Combination Skin Face Product for Face Hydratation",
+      "Combination Skin Face Mask for Face Hydratation",
+      "Combination Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Face cleaning for normal skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Peeling",
+      "Blackheads",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Normal Skin Face Product",
+      "Normal Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Face cleaning for normal and sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Peeling",
+      "Blackheads",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Normal Skin Face Product",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Light hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product for Face Hydratation",
+      "Normal Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Light hydratation for Sensitice skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Blackheads",
+      "Clogged pores",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product for Face Hydratation",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Light Peeling Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Peeling",
+      "Clogged pores",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Normal Skin Face Product Peeling",
+      "Normal Skin Face Mask Peeling"
+    ]
+  },
+  {
+    "Name": "Light Peeling Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Peeling",
+      "Clogged pores",
+      "Enlarged pores",
+      "Blackheads",
+      "Tired skin",
+      "Dark eye circles",
+      "Puffy eyes"
+    ],
+    "Products": [
+      "Normal Skin Face Product Peeling",
+      "Normal Skin Face Mask Peeling",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Strong Anti-aging Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Wrinkles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product Anti-aging",
+      "Normal Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Strong Anti-aging Therapy with Rose water for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Wrinkles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product Anti-aging",
+      "Normal Skin Face Mask",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product Anti-aging",
+      "Normal Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Anti-aging Therapy with Rose water for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 170,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Fine lines",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product Anti-aging",
+      "Normal Skin Face Mask",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation - Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product",
+      "Normal Skin Face Mask"
+    ]
+  },
+  {
+    "Name": "Bye bye, Pigmentation for Sensitive skin - Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Pigmentation",
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Bye bye, Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Normal Skin Face Blackheads",
+      "Normal Skin Face Mask Blackheads"
+    ]
+  },
+  {
+    "Name": "Bye bye, Blackheads for Sensitive skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Enlarged pores",
+      "Clogged pores",
+      "Blackheads"
+    ],
+    "Products": [
+      "Normal Skin Face Blackheads",
+      "Normal Skin Face Mask Blackheads",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Refresh - Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product for Face Hydratation",
+      "Normal Skin Face Mask for Face Hydratation"
+    ]
+  },
+  {
+    "Name": "Refresh for Sensitive skin - Therapy with Rose water",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Skin Care",
+    "SkinType": "normal",
+    "SkinProblems": [
+      "Dark eye circles",
+      "Puffy eyes",
+      "Tired skin"
+    ],
+    "Products": [
+      "Normal Skin Face Product for Face Hydratation",
+      "Normal Skin Face Mask for Face Hydratation",
+      "Normal Skin Face Mask for Sensitive Skin"
+    ]
+  },
+  {
+    "Name": "Manicure",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 40,
+    "Category": "Nails",
+    "Products": []
+  },
+  {
+    "Name": "Pedicure",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 35,
+    "Category": "Nails",
+    "Products": []
+  },
+  {
+    "Name": "Manicure - Gel",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 60,
+    "Category": "Nails",
+    "Products": []
+  },
+  {
+    "Name": "Pedicure - Gel",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 50,
+    "Category": "Nails",
+    "Products": []
+  },
+  {
+    "Name": "Everyday",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 50,
+    "Category": "Makeup",
+    "Products": []
+  },
+  {
+    "Name": "Evening",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 100,
+    "Category": "Makeup",
+    "Products": []
+  },
+  {
+    "Name": "Special Occasion",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Makeup",
+    "Products": []
+  },
+  {
+    "Name": "Bridal",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 150,
+    "Category": "Makeup",
+    "Products": []
+  },
+  {
+    "Name": "Art",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 180,
+    "Category": "Makeup",
+    "Products": []
+  },
+  {
+    "Name": "Haircut",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 35,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Color",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Blowout",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 15,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Haircut + Blowout",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 40,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Special occasion",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 100,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Bridal",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 150,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Hair extensions",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Highlights / lowlights",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 90,
+    "Category": "Hair",
+    "Products": []
+  },
+  {
+    "Name": "Braid",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 30,
+    "Category": "Hair",
+    "Products": []
+  }
+]

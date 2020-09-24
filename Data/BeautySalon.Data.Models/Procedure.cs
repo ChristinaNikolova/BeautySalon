@@ -37,7 +37,6 @@
 
         public virtual Category Category { get; set; }
 
-        [Required]
         public string SkinTypeId { get; set; }
 
         public virtual SkinType SkinType { get; set; }

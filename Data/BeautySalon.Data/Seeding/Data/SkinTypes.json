@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Name": "Normal",
+    "Description": "Normal skin displays a smooth texture and a rosy, clear surface, with fine pores. There are no visible blemishes, greasy patches or flaky areas. Sebum production, moisture content, keratinisation and desquamation are well-balanced. Normal skin is often found in young persons."
+  },
+  {
+    "Name": "Dry",
+    "Description": "Dry skin is characterised by a lack of moisture in its corneous layer, resulting in tightness and even flaking. The skin appears dull, especially on the cheeks and around the eyes. It may lack elasticity,with accentuated fine lines and wrinkles. In more severe cases, itching and burning may occur. Extremely dry skin shows signs of cracking and fissuring. Dry skin can be genetically determined or triggered by factors such as climate, cosmetics and medications. It can be a natural consequence of the ageing process, as sebum production slows down."
+  },
+  {
+    "Name": "Oily",
+    "Description": "Oily skin is characterised by an increased amount of lipids on the skin surface due to overactive sebaceous glands. It is shiny and thick, often with enlarged pores. Oily skin is prone to blackheads and other blemishes. It occurs more often in men than in women, and it predominantly affects adolescents and younger persons."
+  },
+  {
+    "Name": "Combination",
+    "Description": "Combination skin is rather dry in some parts of the body and oily in other localisations. Mixed facial skin tends toward dryness on the cheeks and around the eyes while being oily in the t-zone (nose, forehead, chin). The dry parts and the oily parts require different skin care regimens. This skin type is very common."
+  },
+  {
+    "Name": "Sensitive",
+    "Description": "Sensitive skin” is not a skin type, but rather a symptom caused by various factors. Patients tend to describe their skin as “sensitive” if it frequently reacts with redness, itching, burning or dryness to the topical application of skin care products. Causes for this condition may be an underlying skin disorder, allergies, contact to irritants in certain products, or the use of inadequate, not skin type-adjusted products. Most commonly, the facial skin is involved"
+  }
+]

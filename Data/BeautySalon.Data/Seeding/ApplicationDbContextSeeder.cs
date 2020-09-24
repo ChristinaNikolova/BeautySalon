@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using BeautySalon.Data.Seeding.CustomSeeders;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -28,6 +29,15 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new BrandSeeder(),
+                              new CategorySeeder(),
+                              new JobTypeSeeder(),
+                              new SkinTypeSeeder(),
+                              new SkinProblemSeeder(),
+                              new ProductSeeder(),
+                              new ProcedureSeeder(),
+                              new StylistSeeder(),
+                              new UsersSeeder(),
+                              new UsersToRolesSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -1,4 +1,4 @@
-﻿namespace BeautySalon.Data.Seeding
+﻿namespace BeautySalon.Data.Seeding.CustomSeeders
 {
     using System;
     using System.Collections.Generic;

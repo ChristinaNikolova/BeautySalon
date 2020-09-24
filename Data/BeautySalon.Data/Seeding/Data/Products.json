@@ -1,0 +1,344 @@
+﻿[
+  {
+    "Name": "Normal Skin Face Product",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 115.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780860/3324881_fpx_i1nusw.jpg",
+    "Brand": "CLINIQUE",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Mask",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 110.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780968/9504363_fpx_m58gj1.jpg",
+    "Brand": "CLINIQUE",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Product Anti-aging",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 74.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780860/3324881_fpx_i1nusw.jpg",
+    "Brand": "CLINIQUE",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Mask for Sensitive Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 85.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780968/9504363_fpx_m58gj1.jpg",
+    "Brand": "CLINIQUE",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Product",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 96.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780920/8785113_fpx_h68zza.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Mask",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780985/15423034_fpx_zwad59.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Product - Acne and Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 96.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780920/8785113_fpx_h68zza.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Mask - Acne and Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780985/15423034_fpx_zwad59.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Product Anti-aging",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 50.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780920/8785113_fpx_h68zza.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Mask for Sensitive Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600780985/15423034_fpx_zwad59.jpg",
+    "Brand": "LANCÔME",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Product",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 75.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781372/wchuc9icl0yar2f2rl1y.jpg",
+    "Brand": "CHANEL",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Mask",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 75.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781372/wchuc9icl0yar2f2rl1y.jpg",
+    "Brand": "CHANEL",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Product Anti-aging",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781392/cjr99nmiom8jo9ft1rac.jpg",
+    "Brand": "CHANEL",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Mask for Sensitive Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781392/cjr99nmiom8jo9ft1rac.jpg",
+    "Brand": "CHANEL",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Product",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 50.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781457/szq8r7zfsimoibbjvzl7.jpg",
+    "Brand": "SHISEIDO",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Mask",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781457/szq8r7zfsimoibbjvzl7.jpg",
+    "Brand": "SHISEIDO",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Product Anti-aging",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 50.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781573/images_w7a2rn.jpg",
+    "Brand": "SHISEIDO",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Mask for Sensitive Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781573/images_w7a2rn.jpg",
+    "Brand": "SHISEIDO",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Product for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 110.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600782116/Vitamin-C-Serum-C-E-Ferulic-635494263008-SkinCeuticals_l82ncj.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Mask for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600782116/Vitamin-C-Serum-C-E-Ferulic-635494263008-SkinCeuticals_l82ncj.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Product Peeling",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781731/51YmINhpXML._SL800__bbykab.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Mask Peeling",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 90.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781731/51YmINhpXML._SL800__bbykab.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781731/51YmINhpXML._SL800__bbykab.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Normal Skin Face Mask Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 90.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781731/51YmINhpXML._SL800__bbykab.jpg",
+    "Brand": "SKINCEUTICALS",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Medical product for Oily Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 95.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600782061/ipr5j8fdjhsjxuaeo3n1.jpg",
+    "Brand": "VERSED",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Medical mask for Oily Skin",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 95.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600782061/ipr5j8fdjhsjxuaeo3n1.jpg",
+    "Brand": "VERSED",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Product Refresh",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 90.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781956/images_fj9rij.jpg",
+    "Brand": "VERSED",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Oily Skin Face Mask Refresh",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 80.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781956/images_fj9rij.jpg",
+    "Brand": "VERSED",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Peeling Face Product",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 75.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781096/9219784_fpx_ffftzm.jpg",
+    "Brand": "DIOR",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Peeling Face Mask",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 100.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781096/9219784_fpx_ffftzm.jpg",
+    "Brand": "DIOR",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Product for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 130.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781096/9219784_fpx_ffftzm.jpg",
+    "Brand": "DIOR",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Dry Skin Face Mask for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 120.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781096/9219784_fpx_ffftzm.jpg",
+    "Brand": "DIOR",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Product for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 70.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781314/11394005_fpx_tkhf0w.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Mask for Face Hydratation",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 45.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781314/11394005_fpx_tkhf0w.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Product for Peeling",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 65.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781268/1416620_fpx_ney8qa.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Mask for Peeling",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 60.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781268/1416620_fpx_ney8qa.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Product - Acne and Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 65.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781268/1416620_fpx_ney8qa.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  },
+  {
+    "Name": "Combination Skin Face Mask - Acne and Blackheads",
+    "Description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+    "Price": 60.00,
+    "Quantity": 10,
+    "Picture": "https://res.cloudinary.com/dieu4mste/image/upload/v1600781268/1416620_fpx_ney8qa.jpg",
+    "Brand": "ESTĒE LAUDER",
+    "Category": "Skin Care"
+  }
+]

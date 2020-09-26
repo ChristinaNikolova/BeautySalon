@@ -8,9 +8,25 @@
         public const int AnswerContentMaxLenght = 500;
 
         // AppUser
+        public const int UserFirstNameMinLenght = 3;
+
         public const int UserFirstNameMaxLenght = 50;
 
+        public const int UserLastNameMinLenght = 3;
+
         public const int UserLastNameMaxLenght = 50;
+
+        public const int UsernameMinLenght = 3;
+
+        public const int UsernameMaxLenght = 50;
+
+        public const int PasswordMinLenght = 6;
+
+        public const int PasswordMaxLenght = 50;
+
+        public const int AddressMinLenght = 6;
+
+        public const int AddressMaxLenght = 50;
 
         // Appointment
         public const int AppointmentMaxLenght = 500;

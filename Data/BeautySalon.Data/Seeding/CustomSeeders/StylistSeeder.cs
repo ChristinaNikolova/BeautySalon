@@ -43,7 +43,7 @@
                         CategoryId = category.Id,
                         JobTypeId = jobType.Id,
                         UserName = currentStylistData.UserName,
-                        PasswordHash = GlobalConstants.SystemPassword,
+                        PasswordHash = GlobalConstants.SystemPasswordHashed,
                         Email = currentStylistData.Email,
                         EmailConfirmed = true,
                     };

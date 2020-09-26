@@ -16,7 +16,7 @@
 
         public const string StylistEmail = "@stylist.com";
 
-        public const string SystemPassword = "123456";
+        public const string SystemPasswordHashed = "AQAAAAEAACcQAAAAECrjCD23cQQ28Tyci+UMuaGrFMDUb/trG4E0RbJa4McRVfWFJ6c5UG4NpbXDB6K5rQ==";
 
         public const string BrandSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Brands.json";
 
@@ -33,5 +33,9 @@
         public const string SkinProblemSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/SkinProblems.json";
 
         public const string SkinTypeSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/SkinTypes.json";
+
+        public const string AdminArea = "Administration";
+
+        public const string DefaultUserProfilePicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1601044226/v263-peera-ning-39-beauty_2.jpg_gfenuo.jpg";
     }
 }

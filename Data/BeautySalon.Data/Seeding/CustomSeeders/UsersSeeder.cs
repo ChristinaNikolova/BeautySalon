@@ -31,7 +31,7 @@
                     UserName = firstName,
                     Email = userEmail,
                     EmailConfirmed = true,
-                    PasswordHash = GlobalConstants.SystemPassword,
+                    PasswordHash = GlobalConstants.SystemPasswordHashed,
                     Picture = GlobalConstants.AdminPicture,
                 };
 

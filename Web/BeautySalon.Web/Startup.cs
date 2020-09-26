@@ -8,6 +8,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Data.Seeding;
+    using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Data;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
@@ -64,6 +65,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
 
             // Add Cloudinary
             Cloudinary cloudinary = new Cloudinary(new Account()

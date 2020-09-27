@@ -4,6 +4,16 @@
     ViewData["Title"] = "Register";
 }
 
+@if (this.TempData["InfoMessage"] != null)
+{
+    <div id="emailConfirm" class="alert alert-info alert-dismissible fade show" role="alert">
+        @this.TempData["InfoMessage"]
+        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">OK</span>
+        </button>
+    </div>
+}
+
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
@@ -13,9 +23,9 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.UserName"></label>
-                <input asp-for="Input.UserName" class="form-control" />
-                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>

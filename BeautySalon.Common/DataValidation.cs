@@ -20,6 +20,8 @@
 
         public const int UsernameMaxLenght = 50;
 
+        public const string UsernameAllowedSymbols = @"^[a-zA-Z0-9]+$";
+
         public const int PasswordMinLenght = 6;
 
         public const int PasswordMaxLenght = 50;

@@ -13,6 +13,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Cloudinary;
+    using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -21,7 +22,10 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
+
+    using static BeautySalon.Web.Areas.Identity.Pages.Account.InputModels.RegisterInputModel;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
@@ -47,63 +51,11 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public RegisterInputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [StringLength(DataValidation.UsernameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UsernameMinLenght)]
-            [Display(Name = "Username")]
-            public string UserName { get; set; }
-
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
-
-            [Required]
-            [StringLength(DataValidation.PasswordMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.PasswordMinLenght)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = ErrorMessages.DifferentPasswords)]
-            public string ConfirmPassword { get; set; }
-
-            [Required]
-            [StringLength(DataValidation.UserFirstNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UserFirstNameMinLenght)]
-            [Display(Name = "First Name")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [StringLength(DataValidation.UserLastNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UserLastNameMinLenght)]
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
-
-            [Required]
-            [StringLength(DataValidation.AddressMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.AddressMinLenght)]
-            [Display(Name = "Address")]
-            public string Address { get; set; }
-
-            [Required]
-            [Phone]
-            [Display(Name = "Phone Number")]
-            public string PhoneNumber { get; set; }
-
-            [Required]
-            [Display(Name = "Gender")]
-            public string Gender { get; set; }
-
-            public string Birthday { get; set; }
-
-            public IFormFile Picture { get; set; }
-        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -117,21 +69,40 @@
 
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            string pictureAsString = await this.cloudinaryService.UploudAsync(this.Input.Picture, this.Input.UserName);
+            string pictureAsString = await this.cloudinaryService.UploudAsync(this.Input.Picture, this.Input.Username);
 
             if (this.ModelState.IsValid)
             {
+                var existingEmail = await this.userManager.Users
+                    .FirstOrDefaultAsync(u => u.Email == this.Input.Email);
+
+                var existingUsername = await this.userManager.Users
+                    .FirstOrDefaultAsync(u => u.UserName == this.Input.Username);
+
+                if (existingEmail != null && existingUsername != null)
+                {
+                    this.TempData["InfoMessage"] = ErrorMessages.UserExists;
+                    return this.RedirectToPage("Register");
+                }
+
+                if (existingEmail != null)
+                {
+                    this.TempData["InfoMessage"] = ErrorMessages.EmailExists;
+                    return this.RedirectToPage("Register");
+                }
+
                 var user = new ApplicationUser()
                 {
-                    UserName = this.Input.UserName,
+                    UserName = this.Input.Username,
                     Email = this.Input.Email,
                     FirstName = this.Input.FirstName,
                     LastName = this.Input.LastName,
                     Address = this.Input.Address,
                     PhoneNumber = this.Input.PhoneNumber,
                     Gender = Enum.Parse<Gender>(this.Input.Gender),
-                    Birthday = DateTime.ParseExact(this.Input.Birthday, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Birthday = this.Input.Birthday,
                     Picture = pictureAsString,
+                    EmailConfirmed = true,
                 };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);

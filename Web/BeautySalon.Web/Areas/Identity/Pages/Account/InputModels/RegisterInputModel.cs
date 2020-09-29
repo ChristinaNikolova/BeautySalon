@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
 
     using BeautySalon.Common;
+    using BeautySalon.Data.Models;
+    using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
 
     public class RegisterInputModel

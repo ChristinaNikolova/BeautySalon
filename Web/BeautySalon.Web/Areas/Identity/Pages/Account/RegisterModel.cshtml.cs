@@ -2,8 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Text.Encodings.Web;
@@ -13,10 +11,10 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Cloudinary;
+    using BeautySalon.Services.Mapping;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
@@ -24,8 +22,6 @@
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-
-    using static BeautySalon.Web.Areas.Identity.Pages.Account.InputModels.RegisterInputModel;
 
     [AllowAnonymous]
     public class RegisterModel : PageModel

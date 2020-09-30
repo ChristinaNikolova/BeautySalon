@@ -1,16 +1,22 @@
 ﻿namespace BeautySalon.Web.Areas.Identity.Pages.Account
 {
+    using System;
+    using System.Globalization;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
+    using BeautySalon.Data.Models.Enums;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
+    using Microsoft.AspNetCore.Authentication.Google;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
     [AllowAnonymous]
@@ -73,7 +79,6 @@
             var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                this.logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
                 return this.LocalRedirect(returnUrl);
             }
 
@@ -84,49 +89,16 @@
             else
             {
                 // If the user does not have an account, then ask the user to create an account.
-                ApplicationUser user;
-
-                if (info.LoginProvider == "Facebook")
-                {
-                    var firstName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ")[0];
-                    var lastName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ").Last();
-                    var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var picture = $"https://graph.facebook.com/{identifier}/picture?type=large";
-                    user = new ApplicationUser
-                    {
-                        UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Picture = picture,
-                        EmailConfirmed = true,
-                    };
-                }
-                else
-                {
-                    user = new ApplicationUser
-                    {
-                        UserName = this.Input.Email,
-                        Email = this.Input.Email,
-                    };
-                }
-
-                var loginResult = await this.userManager.CreateAsync(user);
-
-                if (loginResult.Succeeded)
-                {
-                    loginResult = await this.userManager.AddLoginAsync(user, info);
-                    await this.signInManager.SignInAsync(user, isPersistent: true);
-                    return this.LocalRedirect(returnUrl);
-                }
-
-                foreach (var error in loginResult.Errors)
-                {
-                    this.ModelState.AddModelError(string.Empty, error.Description);
-                }
-
-                this.LoginProvider = info.LoginProvider;
                 this.ReturnUrl = returnUrl;
+                this.LoginProvider = info.LoginProvider;
+                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                {
+                    this.Input = new ExternalLoginInputModel
+                    {
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    };
+                }
+
                 return this.Page();
             }
         }
@@ -135,7 +107,6 @@
         {
             returnUrl = returnUrl ?? this.Url.Content("~/");
 
-            // Get the information about the user from the external login provider
             var info = await this.signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
@@ -145,42 +116,67 @@
 
             if (this.ModelState.IsValid)
             {
+                var isUsernameUsed = await this.userManager.Users.AnyAsync(u => u.UserName == this.Input.Username);
+
+                var isEmailUsed = await this.userManager.Users.AnyAsync(u => u.Email == this.Input.Email);
+
+                if (isEmailUsed && isUsernameUsed)
+                {
+                    this.TempData["InfoMessage"] = ErrorMessages.UserExists;
+                    return this.RedirectToPage("Register");
+                }
+
+                if (isUsernameUsed)
+                {
+                    this.TempData["InfoMessage"] = ErrorMessages.UsernameExists;
+                    return this.RedirectToPage("Register");
+                }
+
+                if (isEmailUsed)
+                {
+                    this.TempData["InfoMessage"] = ErrorMessages.EmailExists;
+                    return this.RedirectToPage("Register");
+                }
+
                 ApplicationUser user;
+
+                var firstName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ")[0];
+                var lastName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ").Last();
+                var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
+                var phone = info.Principal.FindFirstValue(ClaimTypes.MobilePhone);
+                var picture = GlobalConstants.DefaultUserProfilePicture;
 
                 if (info.LoginProvider == "Facebook")
                 {
-                    var firstName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ")[0];
-                    var lastName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ").Last();
-                    var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
-                    var picture = $"https://graph.facebook.com/{identifier}/picture?type=large";
-
-                    user = new ApplicationUser
-                    {
-                        UserName = this.Input.Email,
-                        Email = this.Input.Email,
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Picture = picture,
-                        EmailConfirmed = true,
-                    };
+                    picture = $"https://graph.facebook.com/{identifier}/picture?type=large";
                 }
-                else
+                else if (info.LoginProvider == "Google")
                 {
-                    user = new ApplicationUser
-                    {
-                        UserName = this.Input.Email,
-                        Email = this.Input.Email,
-                    };
+                    picture = info.Principal.FindFirstValue("picture");
                 }
+
+                user = new ApplicationUser
+                {
+                    UserName = this.Input.Username,
+                    Email = this.Input.Email,
+                    Gender = Enum.Parse<Gender>(this.Input.Gender),
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Picture = picture,
+                    EmailConfirmed = true,
+                };
 
                 var result = await this.userManager.CreateAsync(user);
-
-                result = await this.userManager.AddLoginAsync(user, info);
                 if (result.Succeeded)
                 {
-                    await this.signInManager.SignInAsync(user, isPersistent: true);
+                    result = await this.userManager.AddLoginAsync(user, info);
 
-                    return this.LocalRedirect(returnUrl);
+                    if (result.Succeeded)
+                    {
+                        await this.signInManager.SignInAsync(user, isPersistent: true);
+
+                        return this.LocalRedirect(returnUrl);
+                    }
                 }
 
                 foreach (var error in result.Errors)

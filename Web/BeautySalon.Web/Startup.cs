@@ -14,6 +14,7 @@
     using BeautySalon.Services.Messaging;
     using BeautySalon.Web.ViewModels;
     using CloudinaryDotNet;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -41,14 +42,6 @@
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-            // Add Facebook auth
-            services.AddAuthentication()
-               .AddFacebook(option =>
-               {
-                   option.AppId = this.configuration["Facebook:AppId"];
-                   option.AppSecret = this.configuration["Facebook:AppSecret"];
-               });
-
             services.Configure<CookiePolicyOptions>(
                 options =>
                     {
@@ -74,6 +67,23 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+
+            // Add Facebook Authentication
+            services.AddAuthentication()
+               .AddFacebook(option =>
+               {
+                   option.AppId = this.configuration["Facebook:AppId"];
+                   option.AppSecret = this.configuration["Facebook:AppSecret"];
+               });
+
+            // Add Google Authentication
+            services.AddAuthentication()
+               .AddGoogle(option =>
+               {
+                   option.ClientId = this.configuration["Google:ClientId"];
+                   option.ClientSecret = this.configuration["Google:ClientSecret"];
+                   option.ClaimActions.MapJsonKey("picture", "picture");
+               });
 
             // Add Cloudinary
             Cloudinary cloudinary = new Cloudinary(new Account()

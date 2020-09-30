@@ -8,6 +8,8 @@
 
         public const string EmailExists = "User with this email already exists!";
 
+        public const string UsernameExists = "User with this username already exists!";
+
         public const string UserExists = "User with this email and username already exists!";
 
         public const string UsernameErrorRegex = "Username must containts only latin letters and/or digits!";

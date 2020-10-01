@@ -23,6 +23,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SendGrid;
 
     public class Startup
     {
@@ -64,7 +65,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender, SendGridEmailSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
 
@@ -74,6 +75,7 @@
                {
                    option.AppId = this.configuration["Facebook:AppId"];
                    option.AppSecret = this.configuration["Facebook:AppSecret"];
+                   option.AccessDeniedPath = "/AccessDeniedPathInfo";
                });
 
             // Add Google Authentication
@@ -86,7 +88,7 @@
                });
 
             // Add Cloudinary
-            Cloudinary cloudinary = new Cloudinary(new Account()
+            var cloudinary = new Cloudinary(new Account()
             {
                 Cloud = this.configuration["Cloudinary:AppName"],
                 ApiKey = this.configuration["Cloudinary:AppKey"],
@@ -94,6 +96,10 @@
             });
 
             services.AddSingleton(cloudinary);
+
+            // Add SendGrid
+            var sendGrid = new SendGridClient(this.configuration["SendGrid:ApiKey"]);
+            services.AddSingleton(sendGrid);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

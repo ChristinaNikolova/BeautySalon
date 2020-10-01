@@ -3,23 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Cloudinary;
-    using BeautySalon.Services.Mapping;
+    using BeautySalon.Services.Messaging;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
 
@@ -65,8 +61,6 @@
 
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            string pictureAsString = await this.cloudinaryService.UploudAsync(this.Input.Picture, this.Input.Username);
-
             if (this.ModelState.IsValid)
             {
                 var existingEmail = await this.userManager.Users
@@ -87,6 +81,8 @@
                     return this.RedirectToPage("Register");
                 }
 
+                string pictureAsString = await this.cloudinaryService.UploudAsync(this.Input.Picture, this.Input.Username);
+
                 var user = new ApplicationUser()
                 {
                     UserName = this.Input.Username,
@@ -98,27 +94,27 @@
                     Gender = Enum.Parse<Gender>(this.Input.Gender),
                     Birthday = this.Input.Birthday,
                     Picture = pictureAsString,
-                    EmailConfirmed = true,
                 };
 
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
+
                 if (result.Succeeded)
                 {
                     this.logger.LogInformation("User created a new account with password.");
 
-                    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = this.Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: this.Request.Scheme);
-
-                    await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
                     if (this.userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email, returnUrl = returnUrl });
+                        var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = this.Url.Action("ConfirmEmail", "Account", new { code = token, userId = user.Id }, this.Request.Scheme);
+
+                        await this.emailSender.SendEmailAsync(
+                            "softuni-beautysalon@abv.bg",
+                            "BeautySalon",
+                            user.Email,
+                            "Email Confirmation",
+                            $"<p>{user.UserName}, thank you for your registration at <strong>BeautySalon</strong>! Please, click <a href={confirmationLink}>here</a> to confirm your email.</p>");
+
+                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                     }
                     else
                     {

@@ -1,7 +1,6 @@
 ﻿namespace BeautySalon.Web.Areas.Identity.Pages.Account
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -10,7 +9,6 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
-    using Microsoft.AspNetCore.Authentication.Google;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
@@ -142,12 +140,11 @@
 
                 var firstName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ")[0];
                 var lastName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(" ").Last();
-                var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
-                var phone = info.Principal.FindFirstValue(ClaimTypes.MobilePhone);
                 var picture = GlobalConstants.DefaultUserProfilePicture;
 
                 if (info.LoginProvider == "Facebook")
                 {
+                    var identifier = info.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
                     picture = $"https://graph.facebook.com/{identifier}/picture?type=large";
                 }
                 else if (info.LoginProvider == "Google")
@@ -163,7 +160,6 @@
                     FirstName = firstName,
                     LastName = lastName,
                     Picture = picture,
-                    EmailConfirmed = true,
                 };
 
                 var result = await this.userManager.CreateAsync(user);

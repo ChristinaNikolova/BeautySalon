@@ -45,7 +45,7 @@
             this.Email = email;
 
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            //this.DisplayConfirmAccountLink = true;
+            // this.DisplayConfirmAccountLink = true;
             if (this.DisplayConfirmAccountLink)
             {
                 var userId = await this.userManager.GetUserIdAsync(user);

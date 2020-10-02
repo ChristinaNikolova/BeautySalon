@@ -12,7 +12,7 @@
 
         public const string AdminName = "Admin";
 
-        public const string AdminPicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1600920611/BeautySalonLogo_ulueqn.png";
+        public const string AdminPicture = @"https:/res.cloudinary.com/dieu4mste/image/upload/v1600920611/BeautySalonLogo_ulueqn.png";
 
         public const string StylistEmail = "@stylist.com";
 
@@ -36,6 +36,8 @@
 
         public const string AdminArea = "Administration";
 
-        public const string DefaultUserProfilePicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1601044226/v263-peera-ning-39-beauty_2.jpg_gfenuo.jpg";
+        public const string DefaultUserProfilePicture = @"https:/res.cloudinary.com/dieu4mste/image/upload/v1601044226/v263-peera-ning-39-beauty_2.jpg_gfenuo.jpg";
+
+        public const string BeautySalonEmail = "softuni-beautysalon@abv.bg";
     }
 }

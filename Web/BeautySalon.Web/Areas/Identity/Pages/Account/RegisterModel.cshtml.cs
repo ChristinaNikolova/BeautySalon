@@ -102,25 +102,17 @@
                 {
                     this.logger.LogInformation("User created a new account with password.");
 
-                    if (this.userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = this.Url.Action("ConfirmEmail", "Account", new { code = token, userId = user.Id }, this.Request.Scheme);
+                    var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var confirmationLink = this.Url.Action("ConfirmEmail", "Account", new { code = token, userId = user.Id }, this.Request.Scheme);
 
-                        await this.emailSender.SendEmailAsync(
-                            "softuni-beautysalon@abv.bg",
-                            "BeautySalon",
-                            user.Email,
-                            "Email Confirmation",
-                            $"<p>{user.UserName}, thank you for your registration at <strong>BeautySalon</strong>! Please, click <a href={confirmationLink}>here</a> to confirm your email.</p>");
+                    await this.emailSender.SendEmailAsync(
+                        GlobalConstants.BeautySalonEmail,
+                        GlobalConstants.SystemName,
+                        user.Email,
+                        "Registration Confirmation",
+                        $"<p>{user.UserName}, thank you for your registration at <strong>BeautySalon</strong>! Please, click <a href={confirmationLink}>here</a> to confirm your email.</p>");
 
-                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
-                    }
-                    else
-                    {
-                        await this.signInManager.SignInAsync(user, isPersistent: false);
-                        return this.LocalRedirect(returnUrl);
-                    }
+                    return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                 }
 
                 foreach (var error in result.Errors)

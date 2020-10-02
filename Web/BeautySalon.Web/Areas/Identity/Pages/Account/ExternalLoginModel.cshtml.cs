@@ -11,7 +11,6 @@
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.EntityFrameworkCore;
@@ -22,14 +21,14 @@
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IEmailSender emailSender;
+        private readonly Services.Messaging.IEmailSender emailSender;
         private readonly ILogger<ExternalLoginModel> logger;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            Services.Messaging.IEmailSender emailSender)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
@@ -75,6 +74,7 @@
 
             // Sign in the user with this external login provider if the user already has a login.
             var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
             if (result.Succeeded)
             {
                 return this.LocalRedirect(returnUrl);
@@ -167,12 +167,17 @@
                 {
                     result = await this.userManager.AddLoginAsync(user, info);
 
-                    if (result.Succeeded)
-                    {
-                        await this.signInManager.SignInAsync(user, isPersistent: true);
+                    var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var confirmationLink = this.Url.Action("ConfirmEmail", "Account", new { code = token, userId = user.Id }, this.Request.Scheme);
 
-                        return this.LocalRedirect(returnUrl);
-                    }
+                    await this.emailSender.SendEmailAsync(
+                        GlobalConstants.BeautySalonEmail,
+                        GlobalConstants.SystemName,
+                        user.Email,
+                        "Email Confirmation",
+                        $"<p>{user.UserName}, thank you for your registration at <strong>BeautySalon</strong>! Please, click <a href={confirmationLink}>here</a> to confirm your email.</p>");
+
+                    return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                 }
 
                 foreach (var error in result.Errors)

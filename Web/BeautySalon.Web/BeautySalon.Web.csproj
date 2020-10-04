@@ -28,6 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.ML" Version="1.5.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
@@ -48,5 +49,11 @@
     <ProjectReference Include="..\..\Services\BeautySalon.Services\BeautySalon.Services.csproj" />
     <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\BeautySalon.Web.ViewModels\BeautySalon.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MLModels\MLModel.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

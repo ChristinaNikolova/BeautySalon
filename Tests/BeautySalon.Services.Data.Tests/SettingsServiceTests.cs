@@ -8,7 +8,7 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
-
+    using BeautySalon.Services.Data.Settings;
     using Microsoft.EntityFrameworkCore;
 
     using Moq;

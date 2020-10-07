@@ -22,7 +22,7 @@
         {
             var input = new SkinTypeModelInput()
             {
-                Description = @"My skin is very shiny - it's like a diamond. Oily in some places dry in others. Clean in the T zone but dry on the cheeks. My pores are very small, but not visible Dull everywhere.",
+                Description = @"My pores almost invisible and small My skin feel tight and it is screaming for moisture. Like a desert! I need to put moisturizer. Clean in the T zone but dry on the cheeks. Oily in some places dry in others. Only nose and forehead are shining.",
             };
 
             var output = this.predictionEngine.Predict(input);

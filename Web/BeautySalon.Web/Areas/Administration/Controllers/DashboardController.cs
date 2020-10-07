@@ -1,6 +1,6 @@
 ﻿namespace BeautySalon.Web.Areas.Administration.Controllers
 {
-    using BeautySalon.Services.Data;
+    using BeautySalon.Services.Data.Settings;
     using BeautySalon.Web.ViewModels.Administration.Dashboard;
 
     using Microsoft.AspNetCore.Mvc;

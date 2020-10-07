@@ -9,7 +9,9 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Data.Seeding;
     using BeautySalon.Services.Cloudinary;
-    using BeautySalon.Services.Data;
+    using BeautySalon.Services.Data.Settings;
+    using BeautySalon.Services.Data.Stylists;
+    using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
     using BeautySalon.Web.Hubs;
@@ -71,6 +73,8 @@
             services.AddTransient<IEmailSender, SendGridEmailSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IStylistsService, StylistsService>();
 
             // Add Facebook Authentication
             services.AddAuthentication()
@@ -107,6 +111,7 @@
             // Add SignalR
             services.AddSignalR();
 
+            // Add ML
             services.AddPredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput>()
            .FromFile("MLModels/MLModel.zip");
         }

@@ -35,6 +35,9 @@ namespace BeautySalon.Data.Models
             this.StylistProcedures = new HashSet<ProcedureStylist>();
             this.StylistAppointments = new HashSet<Appointment>();
 
+            this.ReceivedMessages = new HashSet<ChatMessage>();
+            this.SendMessages = new HashSet<ChatMessage>();
+
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
@@ -55,8 +58,6 @@ namespace BeautySalon.Data.Models
 
         public Gender Gender { get; set; }
 
-        public DateTime? Birthday { get; set; }
-
         public string SkinTypeId { get; set; }
 
         public virtual SkinType SkinType { get; set; }
@@ -73,6 +74,8 @@ namespace BeautySalon.Data.Models
         public virtual JobType JobType { get; set; }
 
         public double AverageRating { get; set; }
+
+        public string Description { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
@@ -113,6 +116,11 @@ namespace BeautySalon.Data.Models
         public virtual ICollection<Appointment> StylistAppointments { get; set; }
 
         // All
+        public virtual ICollection<ChatMessage> ReceivedMessages { get; set; }
+
+        public virtual ICollection<ChatMessage> SendMessages { get; set; }
+
+        // Default
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }

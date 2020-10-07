@@ -92,7 +92,6 @@
                     Address = this.Input.Address,
                     PhoneNumber = this.Input.PhoneNumber,
                     Gender = Enum.Parse<Gender>(this.Input.Gender),
-                    Birthday = this.Input.Birthday,
                     Picture = pictureAsString,
                 };
 

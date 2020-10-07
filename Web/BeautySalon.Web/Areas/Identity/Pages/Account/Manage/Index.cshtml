@@ -1,0 +1,103 @@
+﻿@page
+@using BeautySalon.Common
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Address"></label>
+                <input asp-for="Input.Address" class="form-control" />
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <label asp-for="Input.Gender"></label><br />
+                <input asp-for="Input.Gender" type="radio" value="Male" /> Male<br />
+                <input asp-for="Input.Gender" type="radio" value="Female" /> Female<br />
+                <span asp-validation-for="Input.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <label asp-for="Input.SkinType"></label><br />
+                <input asp-for="Input.SkinType" type="radio" value="Normal" /> Normal<br />
+                <input asp-for="Input.SkinType" type="radio" value="Oily" /> Oily<br />
+                <input asp-for="Input.SkinType" type="radio" value="Dry" /> Dry<br />
+                <input asp-for="Input.SkinType" type="radio" value="Combination" /> Combination<br />
+                <span asp-validation-for="Input.SkinType" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <label asp-for="Input.IsSkinSensitive"></label><br />
+                <input asp-for="Input.IsSkinSensitive" type="radio" value="Yes" /> Yes<br />
+                <input asp-for="Input.IsSkinSensitive" type="radio" value="No" /> No<br />
+                <span asp-validation-for="Input.IsSkinSensitive" class="text-danger"></span>
+            </div>
+
+            @if (this.User.IsInRole(GlobalConstants.StylistRoleName))
+            {
+                <div class="form-check">
+                    <label asp-for="Input.Category"></label><br />
+                    <input asp-for="Input.Category" type="radio" value="Hair" /> Hair<br />
+                    <input asp-for="Input.Category" type="radio" value="Nails" /> Nails<br />
+                    <input asp-for="Input.Category" type="radio" value="Makeup" /> Makeup<br />
+                    <input asp-for="Input.Category" type="radio" value="Skin Care" /> Skin Care<br />
+                    <span asp-validation-for="Input.Category" class="text-danger"></span>
+                </div>
+                <div class="form-check">
+                    <label asp-for="Input.JobType"></label><br />
+                    <input asp-for="Input.JobType" type="radio" value="Top Nails Artist" /> Top Nails Artist<br />
+                    <input asp-for="Input.JobType" type="radio" value="Top MakeUp Artist" /> Top MakeUp Artist<br />
+                    <input asp-for="Input.JobType" type="radio" value="Assistent Medical Cosmetician" /> Assistent Medical Cosmetician<br />
+                    <input asp-for="Input.JobType" type="radio" value="Top Medical Cosmetician" /> Top Medical Cosmetician<br />
+                    <input asp-for="Input.JobType" type="radio" value="Coiffeur" /> Coiffeur<br />
+                    <input asp-for="Input.JobType" type="radio" value="Top Coiffeur" /> Top Coiffeur<br />
+                    <span asp-validation-for="Input.JobType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Description"></label>
+                    <textarea asp-for="Input.Description" class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
+                    <span asp-validation-for="Input.Description" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="Input.Picture">Profile Picture</label>
+                <input type="file" asp-for="Input.Picture" />
+                <span asp-validation-for="Input.Picture" class="text-danger"></span>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

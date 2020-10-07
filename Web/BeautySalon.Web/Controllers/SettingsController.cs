@@ -5,7 +5,7 @@
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
-    using BeautySalon.Services.Data;
+    using BeautySalon.Services.Data.Settings;
     using BeautySalon.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;

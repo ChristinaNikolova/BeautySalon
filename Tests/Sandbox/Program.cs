@@ -11,7 +11,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Data.Seeding;
-    using BeautySalon.Services.Data;
+    using BeautySalon.Services.Data.Settings;
     using BeautySalon.Services.Messaging;
 
     using CommandLine;

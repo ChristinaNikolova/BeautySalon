@@ -44,6 +44,16 @@
                 .HasForeignKey(a => a.StylistId);
 
             appUser
+                .HasMany(u => u.SendMessages)
+                .WithOne(m => m.Sender)
+                .HasForeignKey(m => m.SenderId);
+
+            appUser
+                .HasMany(u => u.ReceivedMessages)
+                .WithOne(m => m.Receiver)
+                .HasForeignKey(m => m.ReceiverId);
+
+            appUser
                 .HasMany(e => e.Claims)
                 .WithOne()
                 .HasForeignKey(e => e.UserId)

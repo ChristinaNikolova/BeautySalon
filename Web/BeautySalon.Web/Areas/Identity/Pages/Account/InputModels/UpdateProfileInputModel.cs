@@ -5,30 +5,8 @@
     using BeautySalon.Common;
     using Microsoft.AspNetCore.Http;
 
-    public class RegisterInputModel
+    public class UpdateProfileInputModel
     {
-        [Required]
-        [RegularExpression(DataValidation.UsernameAllowedSymbols, ErrorMessage = ErrorMessages.UsernameErrorRegex)]
-        [StringLength(DataValidation.UsernameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UsernameMinLenght)]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(DataValidation.PasswordMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.PasswordMinLenght)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = ErrorMessages.DifferentPasswords)]
-        public string ConfirmPassword { get; set; }
-
         [Required]
         [StringLength(DataValidation.UserFirstNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UserFirstNameMinLenght)]
         [Display(Name = "First Name")]
@@ -44,14 +22,28 @@
         public string Address { get; set; }
 
         [Phone]
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
         [Required]
         [Display(Name = "Gender")]
         public string Gender { get; set; }
 
-        [Display(Name = "Profile Picture")]
         public IFormFile Picture { get; set; }
+
+        [Display(Name = "Skin type")]
+        public string SkinType { get; set; }
+
+        [Display(Name = "Sensitive skin")]
+        public string IsSkinSensitive { get; set; }
+
+        [Display(Name = "Job Category")]
+        public string Category { get; set; }
+
+        [Display(Name = "Job Type")]
+        public string JobType { get; set; }
+
+        [Display(Name = "About me")]
+        public string Description { get; set; }
     }
 }

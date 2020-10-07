@@ -1,4 +1,4 @@
-﻿namespace BeautySalon.Services.Data
+﻿namespace BeautySalon.Services.Data.Settings
 {
     using System.Collections.Generic;
 

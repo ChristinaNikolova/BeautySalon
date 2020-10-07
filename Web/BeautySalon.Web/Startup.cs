@@ -16,6 +16,7 @@
     using BeautySalon.Services.Messaging;
     using BeautySalon.Web.Hubs;
     using BeautySalon.Web.MLModels;
+    using BeautySalon.Web.SecurityModels;
     using BeautySalon.Web.ViewModels;
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Authentication;
@@ -110,6 +111,9 @@
 
             // Add SignalR
             services.AddSignalR();
+
+            // Add reCAPTCHA
+            services.Configure<GoogleReCAPTCHA>(this.configuration.GetSection("GoogleReCAPTCHA"));
 
             // Add ML
             services.AddPredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput>()

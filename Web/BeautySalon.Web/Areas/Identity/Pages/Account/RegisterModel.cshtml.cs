@@ -108,8 +108,8 @@
                         GlobalConstants.BeautySalonEmail,
                         GlobalConstants.SystemName,
                         user.Email,
-                        "Registration Confirmation",
-                        $"<p>{user.UserName}, thank you for your registration at <strong>BeautySalon</strong>! Please, click <a href={confirmationLink}>here</a> to confirm your email.</p>");
+                        GlobalMessages.ConfirmProfileTitleMessage,
+                        string.Format(GlobalMessages.ConfirmProfileMessage, user.UserName, confirmationLink));
 
                     return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                 }

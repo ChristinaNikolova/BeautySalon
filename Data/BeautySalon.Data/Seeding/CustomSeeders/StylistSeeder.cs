@@ -46,6 +46,7 @@
                         PasswordHash = GlobalConstants.SystemPasswordHashed,
                         Email = currentStylistData.Email,
                         EmailConfirmed = true,
+                        Description = currentStylistData.Description,
                     };
 
                     var procedures = dbContext.Procedures.Where(p => p.Category.Name == currentStylistData.Category).ToList();

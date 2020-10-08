@@ -1,10 +1,32 @@
 ﻿@using BeautySalon.Common
-@{
-    this.ViewData["Title"] = "Home Page";
-}
+@{ this.ViewData["Title"] = "Home Page"; }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Go to the <a asp-controller="Home" asp-action="Chat">chat page</a>.</p>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@*<div class="text-center">
+        <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+        <p>Go to the <a asp-controller="Home" asp-action="Chat">chat page</a>.</p>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+<section class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-10 ftco-animate text-center">
+                <div class="icon">
+                    <span class="flaticon-lotus"></span>
+                </div>
+                <h1>Welcome to @GlobalConstants.SystemName!</h1>
+                <div class="row justify-content-center">
+                    <div class="col-md-7 mb-3">
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <p>Go to the <a asp-controller="Home" asp-action="Chat">chat page</a>.</p>
+                    </div>
+                </div>
+                <p>
+                    <a href="#" class="btn btn-primary p-3 px-5 py-4 mr-md-2">Get in Touch</a>
+                    <a href="#" class="btn btn-outline-primary p-3 px-5 py-4 ml-md-2">Contact</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

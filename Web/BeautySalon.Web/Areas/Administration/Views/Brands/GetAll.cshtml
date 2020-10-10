@@ -1,0 +1,48 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Brands.ViewModels
+
+@model GetAllViewModel
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1 align="center">All Brands</h1>
+<hr />
+
+<div id="top" align="center">
+    <a class="btn btn-outline-success btn-lg" href="/Administration/Brands/Create" role="button">Add new brand</a>
+    <a class="btn btn-outline-info btn-lg" href="/Administration/Dashboard" role="button">Back to Dashboard</a>
+</div>
+<hr />
+
+<hr />
+
+<div class="bg-blur container">
+    <div class="row">
+        @foreach (var brand in Model.Brands)
+        {
+            <div class="card" style="width: 15rem;">
+                <img style="height: 200px; width: 100%;" class="card-img-top" src="@brand.Logo" alt="" />
+                <div class="card-body">
+                    <h5 class="card-title">@brand.Name </h5>
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-outline-success" href="/Administration/Brands/Details?brandId=@brand.Id" role="button">Full Info</a>
+                </div>
+            </div>
+            <hr>
+        }
+    </div>
+</div>
+
+<div align="center">
+    <a class="btn btn-outline-success btn-lg" role="button" style="color: forestgreen" onclick="BackToTop()">Back To Top</a>
+    <a class="btn btn-outline-info btn-lg" href="/Administration/Dashboard" role="button">Back to Dashboard</a>
+</div>
+
+<script>
+    function BackToTop() {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#top").offset().top
+        }, 1000);
+    }
+</script>

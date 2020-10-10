@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Brands
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -17,7 +18,7 @@
 
         Task<Brand> GetByNameAsync(string name);
 
-        // Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync<T>();
 
         // Task<ExportDetailsBrand> GetBrandDetailsAsync(string brandId);
 

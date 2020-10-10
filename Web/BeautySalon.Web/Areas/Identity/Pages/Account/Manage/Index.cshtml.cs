@@ -4,6 +4,8 @@
 
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Data.Categories;
+    using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
@@ -18,17 +20,23 @@
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IUsersService usersService;
         private readonly IStylistsService stylistsService;
+        private readonly ICategoriesService categoriesService;
+        private readonly IJobTypesService jobTypesService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IUsersService usersService,
-            IStylistsService stylistsService)
+            IStylistsService stylistsService,
+            ICategoriesService categoriesService1,
+            IJobTypesService jobTypesService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.usersService = usersService;
             this.stylistsService = stylistsService;
+            this.categoriesService = categoriesService1;
+            this.jobTypesService = jobTypesService;
         }
 
         public string Username { get; set; }
@@ -123,8 +131,8 @@
 
             if (this.User.IsInRole(GlobalConstants.StylistRoleName))
             {
-                var category = await this.stylistsService.GetStylistCategoryByIdAsync(user.CategoryId);
-                var jobType = await this.stylistsService.GetStylistJobTypeByIdAsync(user.JobTypeId);
+                var category = await this.categoriesService.GetByIdAsync(user.CategoryId);
+                var jobType = await this.jobTypesService.GetByIdAsync(user.JobTypeId);
 
                 this.Input.Category = category.Name;
                 this.Input.JobType = jobType.Name;

@@ -8,14 +8,8 @@
     {
         Task<ApplicationUser> UpdateStylistProfileAsync(string id, string categoryName, string jobTypeName, string descripion);
 
-        Task<Category> GetStylistCategoryByNameAsync(string categoryName);
+        Task<ApplicationUser> GetByIdAsync(string id);
 
-        Task<Category> GetStylistCategoryByIdAsync(string categoryId);
-
-        Task<JobType> GetStylistJobTypeByNameAsync(string jobTypeName);
-
-        Task<JobType> GetStylistJobTypeByIdAsync(string jobTypeId);
-
-        Task<ApplicationUser> GetStylistByIdAsync(string id);
+        Task DeleteAsync(string id);
     }
 }

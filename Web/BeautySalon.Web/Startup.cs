@@ -9,7 +9,15 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Data.Seeding;
     using BeautySalon.Services.Cloudinary;
+    using BeautySalon.Services.Data.Brands;
+    using BeautySalon.Services.Data.Categories;
+    using BeautySalon.Services.Data.ChatMessages;
+    using BeautySalon.Services.Data.JobTypes;
+    using BeautySalon.Services.Data.Procedures;
+    using BeautySalon.Services.Data.Products;
     using BeautySalon.Services.Data.Settings;
+    using BeautySalon.Services.Data.SkinProblems;
+    using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.Mapping;
@@ -72,10 +80,19 @@
 
             // Application services
             services.AddTransient<IEmailSender, SendGridEmailSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IUsersService, UsersService>();
+
+            services.AddTransient<IBrandsService, BrandsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IChatMessagesService, ChatMessagesService>();
+            services.AddTransient<IJobTypesService, JobTypesService>();
+            services.AddTransient<IProceduresService, ProceduresService>();
+            services.AddTransient<IProductsService, ProductsService>();
+            services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ISkinProblemsService, SkinProblemsService>();
+            services.AddTransient<ISkinTypesService, SkinTypesService>();
             services.AddTransient<IStylistsService, StylistsService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             // Add Facebook Authentication
             services.AddAuthentication()

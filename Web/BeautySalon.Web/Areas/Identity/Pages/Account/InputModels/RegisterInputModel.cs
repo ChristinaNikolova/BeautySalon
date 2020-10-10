@@ -52,6 +52,7 @@
         public string Gender { get; set; }
 
         [Display(Name = "Profile Picture")]
+        [DataType(DataType.Upload)]
         public IFormFile Picture { get; set; }
     }
 }

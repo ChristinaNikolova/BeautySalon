@@ -164,6 +164,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\images\bg_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="MLModels\MLModel.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,0 +1,65 @@
+﻿[
+  {
+    "QuestionText": "Which is the best describes your pores?",
+    "Answers": [
+      "My pores are large and visible all over my face.",
+      "My pores are very small, but not visible.",
+      "My pores are only around my T-zone.",
+      "My pores almost invisible and small."
+    ]
+  },
+  {
+    "QuestionText": "How does you skin look and feel when you wake up?",
+    "Answers": [
+      "My skin feel tight and it is screaming for moisture.",
+      "My skin is oily and shiny all over.",
+      "My forehead is very oily, but my cheeks feel dry.",
+      "Fine with healthy glow!"
+    ]
+  },
+  {
+    "QuestionText": "How does you skin look and feel at the end of the day?",
+    "Answers": [
+      "Crazy oily and shining! My makeup is basically melting on my face.",
+      "Like a desert! I need to put moisturizer.",
+      "Oily only on my forehead, nose and chin.",
+      "My skin is calm."
+    ]
+  },
+  {
+    "QuestionText": "Which best describes your skins relationship with Pimples & Blackheads?",
+    "Answers": [
+      "Only on my nose and forehead, my cheeks are clear as day.",
+      "Pimples & Blackheads LOVE me! I break out all over my face!",
+      "I never break out!",
+      "My skin is clear and healthy!"
+    ]
+  },
+  {
+    "QuestionText": "How would you describe your skins shine?",
+    "Answers": [
+      "My skin is radiant.",
+      "My skin is very shiny - it's like a diamond!",
+      "Dull everywhere!",
+      "Only nose and forehead are shining."
+    ]
+  },
+  {
+    "QuestionText": "What do you feel when you touch your skin?",
+    "Answers": [
+      "Oily in some places dry in others!",
+      "Rough and scaly!",
+      "Healthy and smooth!",
+      "Slick and greasy!"
+    ]
+  },
+  {
+    "QuestionText": "How does your skin feel after you wash your face?",
+    "Answers": [
+      "Clean, but shiny, the oil soon returns soon!",
+      "Clean, but a bit tightness!",
+      "Clean, healthy, and even!",
+      "Clean in the T zone but dry on the cheeks!"
+    ]
+  }
+]

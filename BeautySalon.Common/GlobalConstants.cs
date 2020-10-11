@@ -39,5 +39,7 @@
         public const string SkinProblemSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/SkinProblems.json";
 
         public const string SkinTypeSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/SkinTypes.json";
+
+        public const string QuizQuestionAnswerSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Quiz.json";
     }
 }

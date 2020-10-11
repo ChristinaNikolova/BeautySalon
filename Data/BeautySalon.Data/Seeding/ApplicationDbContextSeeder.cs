@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Seeding.CustomSeeders;
+    using BeautySalon.Data.Seeding.Dtos;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -38,6 +39,7 @@
                               new StylistSeeder(),
                               new UsersSeeder(),
                               new UsersToRolesSeeder(),
+                              new QuizQuestionAnswerSeeder(),
                           };
 
             foreach (var seeder in seeders)

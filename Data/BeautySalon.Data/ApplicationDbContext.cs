@@ -64,6 +64,10 @@
 
         public DbSet<Question> Questions { get; set; }
 
+        public DbSet<QuizAnswer> QuizAnswers { get; set; }
+
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public DbSet<SkinProblem> SkinProblems { get; set; }

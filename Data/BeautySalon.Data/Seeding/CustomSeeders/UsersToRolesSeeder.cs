@@ -21,7 +21,9 @@
 
         private static async Task SeedRoleAsync(UserManager<ApplicationUser> userManager, string roleName, string userEmail)
         {
-            var users = userManager.Users.Where(u => u.Email.Contains(userEmail)).ToList();
+            var users = userManager.Users
+                .Where(u => u.Email.Contains(userEmail))
+                .ToList();
 
             foreach (var user in users)
             {

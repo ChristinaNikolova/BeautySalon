@@ -20,7 +20,8 @@
 
         private static async Task SeedUserAsync(UserManager<ApplicationUser> userManager, string userEmail, string firstName, string lastName)
         {
-            var user = await userManager.Users.FirstOrDefaultAsync(x => x.Email == userEmail);
+            var user = await userManager.Users
+                .FirstOrDefaultAsync(x => x.Email == userEmail);
 
             if (user == null)
             {

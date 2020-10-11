@@ -40,6 +40,7 @@
                               new UsersSeeder(),
                               new UsersToRolesSeeder(),
                               new QuizQuestionAnswerSeeder(),
+                              new ArticleSeeder(),
                           };
 
             foreach (var seeder in seeders)

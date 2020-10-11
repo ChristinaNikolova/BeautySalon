@@ -34,14 +34,16 @@
                         Price = currentProcedureData.Price,
                     };
 
-                    var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Name == currentProcedureData.Category);
+                    var category = await dbContext.Categories
+                        .FirstOrDefaultAsync(c => c.Name == currentProcedureData.Category);
 
                     if (category != null)
                     {
                         procedure.CategoryId = category.Id;
                     }
 
-                    var skinType = await dbContext.SkinTypes.FirstOrDefaultAsync(s => s.Name == currentProcedureData.SkinType);
+                    var skinType = await dbContext.SkinTypes
+                        .FirstOrDefaultAsync(s => s.Name == currentProcedureData.SkinType);
 
                     if (skinType != null)
                     {
@@ -52,7 +54,8 @@
                     {
                         foreach (var currentProblem in currentProcedureData.SkinProblems)
                         {
-                            var skinProblem = await dbContext.SkinProblems.FirstOrDefaultAsync(sp => sp.Name == currentProblem);
+                            var skinProblem = await dbContext.SkinProblems
+                                .FirstOrDefaultAsync(sp => sp.Name == currentProblem);
 
                             var skinProblemProcedure = new SkinProblemProcedure()
                             {
@@ -68,7 +71,8 @@
                     {
                         foreach (var currentProduct in currentProcedureData.Products)
                         {
-                            var product = await dbContext.Products.FirstOrDefaultAsync(sp => sp.Name == currentProduct);
+                            var product = await dbContext.Products
+                                .FirstOrDefaultAsync(sp => sp.Name == currentProduct);
 
                             var procedureProduct = new ProcedureProduct()
                             {

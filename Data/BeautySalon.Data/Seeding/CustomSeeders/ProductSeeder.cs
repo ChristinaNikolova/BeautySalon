@@ -25,8 +25,11 @@
 
                 foreach (var currentProductData in productsData)
                 {
-                    var brand = await dbContext.Brands.FirstOrDefaultAsync(b => b.Name == currentProductData.Brand);
-                    var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Name == currentProductData.Category);
+                    var brand = await dbContext.Brands
+                        .FirstOrDefaultAsync(b => b.Name == currentProductData.Brand);
+
+                    var category = await dbContext.Categories
+                        .FirstOrDefaultAsync(c => c.Name == currentProductData.Category);
 
                     var product = new Product()
                     {

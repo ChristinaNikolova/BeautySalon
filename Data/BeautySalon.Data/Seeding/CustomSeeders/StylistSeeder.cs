@@ -31,8 +31,11 @@
 
                 foreach (var currentStylistData in stylistsData)
                 {
-                    var category = await dbContext.Categories.FirstOrDefaultAsync(c => c.Name == currentStylistData.Category);
-                    var jobType = await dbContext.JobTypes.FirstOrDefaultAsync(jb => jb.Name == currentStylistData.JobType);
+                    var category = await dbContext.Categories
+                        .FirstOrDefaultAsync(c => c.Name == currentStylistData.Category);
+
+                    var jobType = await dbContext.JobTypes
+                        .FirstOrDefaultAsync(jb => jb.Name == currentStylistData.JobType);
 
                     var stylist = new ApplicationUser()
                     {
@@ -49,7 +52,9 @@
                         Description = currentStylistData.Description,
                     };
 
-                    var procedures = dbContext.Procedures.Where(p => p.Category.Name == currentStylistData.Category).ToList();
+                    var procedures = dbContext.Procedures
+                        .Where(p => p.Category.Name == currentStylistData.Category)
+                        .ToList();
 
                     foreach (var procedure in procedures)
                     {

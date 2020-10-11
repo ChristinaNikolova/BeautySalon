@@ -19,7 +19,8 @@
             if (!dbContext.Products.Any())
             {
                 var productsData = JsonConvert
-                    .DeserializeObject<List<ProductDto>>(File.ReadAllText(GlobalConstants.ProductSeederPath)).ToList();
+                    .DeserializeObject<List<ProductDto>>(File.ReadAllText(GlobalConstants.ProductSeederPath))
+                    .ToList();
 
                 List<Product> products = new List<Product>();
 

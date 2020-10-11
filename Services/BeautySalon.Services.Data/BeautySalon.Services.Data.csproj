@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BeautySalon.Data.Common\BeautySalon.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\BeautySalon.Web.ViewModels\BeautySalon.Web.ViewModels.csproj" />
     <ProjectReference Include="..\BeautySalon.Services.Mapping\BeautySalon.Services.Mapping.csproj" />
     <ProjectReference Include="..\BeautySalon.Services\BeautySalon.Services.csproj" />
   </ItemGroup>

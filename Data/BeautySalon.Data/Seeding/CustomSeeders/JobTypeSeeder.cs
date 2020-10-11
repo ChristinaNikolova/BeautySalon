@@ -18,7 +18,8 @@
             if (!dbContext.JobTypes.Any())
             {
                 var jobTypesData = JsonConvert
-                    .DeserializeObject<List<JobTypeDto>>(File.ReadAllText(GlobalConstants.JobTypeSeederPath)).ToList();
+                    .DeserializeObject<List<JobTypeDto>>(File.ReadAllText(GlobalConstants.JobTypeSeederPath))
+                    .ToList();
 
                 List<JobType> jobTypes = new List<JobType>();
 

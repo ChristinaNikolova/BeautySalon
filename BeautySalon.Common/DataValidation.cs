@@ -20,7 +20,7 @@
 
         public const int UsernameMaxLenght = 50;
 
-        public const string UsernameAllowedSymbols = @"^[a-zA-Z0-9]+$";
+        public const string UsernameAllowedSymbols = @"^[a-zA-Z0-9.]+$";
 
         public const int PasswordMinLenght = 6;
 
@@ -39,7 +39,11 @@
         public const int ArticleContentMaxLenght = 6000;
 
         // Brand
+        public const int BrandNameMinLenght = 2;
+
         public const int BrandNameMaxLenght = 50;
+
+        public const int BrandDescriptionMinLenght = 6;
 
         public const int BrandDescriptionMaxLenght = 1000;
 
@@ -90,5 +94,10 @@
 
         // StylistReview
         public const int StylistReviewContentMaxLenght = 1000;
+
+        // Verification Code
+        public const int VerificationCodeMinLenght = 6;
+
+        public const int VerificationCodeMaxLenght = 7;
     }
 }

@@ -18,7 +18,8 @@
             if (!dbContext.SkinProblems.Any())
             {
                 var skinProblemData = JsonConvert
-                    .DeserializeObject<List<SkinProblemDto>>(File.ReadAllText(GlobalConstants.SkinProblemSeederPath)).ToList();
+                    .DeserializeObject<List<SkinProblemDto>>(File.ReadAllText(GlobalConstants.SkinProblemSeederPath))
+                    .ToList();
 
                 List<SkinProblem> skinProblems = new List<SkinProblem>();
 

@@ -29,6 +29,7 @@
         [Display(Name = "Gender")]
         public string Gender { get; set; }
 
+        [DataType(DataType.Upload)]
         public IFormFile Picture { get; set; }
 
         [Display(Name = "Skin type")]

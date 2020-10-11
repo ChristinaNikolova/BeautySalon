@@ -19,7 +19,8 @@
             if (!dbContext.Procedures.Any())
             {
                 var proceduresData = JsonConvert
-                    .DeserializeObject<List<ProcedureDto>>(File.ReadAllText(GlobalConstants.ProcedureSeederPath)).ToList();
+                    .DeserializeObject<List<ProcedureDto>>(File.ReadAllText(GlobalConstants.ProcedureSeederPath))
+                    .ToList();
 
                 List<Procedure> procedures = new List<Procedure>();
                 List<ProcedureProduct> procedureProducts = new List<ProcedureProduct>();

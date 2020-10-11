@@ -57,3 +57,16 @@ body {
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
 }
+
+li {
+    list-style-type: none;
+}
+
+.quiz-answer {
+    list-style-type: lower-alpha;
+    margin: 10px
+}
+
+.hidden {
+    display: none;
+}

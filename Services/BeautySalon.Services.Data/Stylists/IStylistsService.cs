@@ -6,6 +6,8 @@
 
     public interface IStylistsService
     {
+        Task<string> AddRoleStylistAsync(string username, string email);
+
         Task<ApplicationUser> UpdateStylistProfileAsync(string id, string categoryName, string jobTypeName, string descripion);
 
         Task<ApplicationUser> GetByIdAsync(string id);

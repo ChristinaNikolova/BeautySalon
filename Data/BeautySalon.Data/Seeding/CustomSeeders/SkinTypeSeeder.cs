@@ -18,7 +18,8 @@
             if (!dbContext.SkinTypes.Any())
             {
                 var skinTypesData = JsonConvert
-                    .DeserializeObject<List<SkinTypeDto>>(File.ReadAllText(GlobalConstants.SkinTypeSeederPath)).ToList();
+                    .DeserializeObject<List<SkinTypeDto>>(File.ReadAllText(GlobalConstants.SkinTypeSeederPath))
+                    .ToList();
 
                 List<SkinType> skinTypes = new List<SkinType>();
 

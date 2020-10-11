@@ -19,7 +19,8 @@
             if (!dbContext.Articles.Any())
             {
                 var articlesData = JsonConvert
-                    .DeserializeObject<List<ArticleDto>>(File.ReadAllText(GlobalConstants.ArticleSeederPath)).ToList();
+                    .DeserializeObject<List<ArticleDto>>(File.ReadAllText(GlobalConstants.ArticleSeederPath))
+                    .ToList();
 
                 List<Article> articles = new List<Article>();
 

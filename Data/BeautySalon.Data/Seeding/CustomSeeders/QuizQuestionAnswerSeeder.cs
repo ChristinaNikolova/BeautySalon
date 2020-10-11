@@ -19,7 +19,8 @@
             if (!dbContext.QuizQuestions.Any())
             {
                 var quizQuestionData = JsonConvert
-                    .DeserializeObject<List<QuizQuestionAnswerDto>>(File.ReadAllText(GlobalConstants.QuizQuestionAnswerSeederPath)).ToList();
+                    .DeserializeObject<List<QuizQuestionAnswerDto>>(File.ReadAllText(GlobalConstants.QuizQuestionAnswerSeederPath))
+                    .ToList();
 
                 List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
                 List<QuizAnswer> quizAnswers = new List<QuizAnswer>();

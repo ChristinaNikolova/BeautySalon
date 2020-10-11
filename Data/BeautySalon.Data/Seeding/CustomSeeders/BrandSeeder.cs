@@ -18,7 +18,8 @@
             if (!dbContext.Brands.Any())
             {
                 var brandsData = JsonConvert
-                    .DeserializeObject<List<BrandDto>>(File.ReadAllText(GlobalConstants.BrandSeederPath)).ToList();
+                    .DeserializeObject<List<BrandDto>>(File.ReadAllText(GlobalConstants.BrandSeederPath))
+                    .ToList();
 
                 List<Brand> brands = new List<Brand>();
 

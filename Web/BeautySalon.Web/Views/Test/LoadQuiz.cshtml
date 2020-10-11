@@ -1,0 +1,84 @@
+﻿<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Skin Quiz</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form id="likes" method="post"></form>
+<div class="comment-form-wrap pt-5">
+    <h2 class="mb-5" align="center">Make the Quiz</h2>
+    <div class="bg-light p-4">
+        <section>
+            <div class="question">
+                <p class="question-wrap">
+                    <h2 align="center">Question #1: Which is the best describes your pores?</h2>
+                </p>
+            </div>
+            <ol>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My pores are large and visible all over my face</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My pores are very small, but not visible</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My pores are only around my T-zone</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My pores almost invisible and small</a>
+                    </div>
+                </li>
+            </ol>
+        </section>
+    </div>
+    @for (int i = 2; i <= 7; i++)
+    {
+        <section class="hidden">
+            <p class="question">
+                <div class="question-wrap">
+                    <h2 align="center">Question #@i: How does you skin look and feel when you wake up?</h2>
+                </div>
+            </p>
+            <ol>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My skin feel tight and it is screaming for moisture</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My skin is oily and shiny all over</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">My forehead is very oily, but my cheeks feel dry</a>
+                    </div>
+                </li>
+                <li class="quiz-answer">
+                    <div class="answer-wrap">
+                        <a class="btn btn-outline-primary">Fine with healthy glow!</a>
+                    </div>
+                </li>
+            </ol>
+        </section>
+    }
+</div>
+
+@section Scripts
+{
+    <script src="~/js/quiz.js" asp-append-version="true"></script>
+    <script>quiz();</script>
+}

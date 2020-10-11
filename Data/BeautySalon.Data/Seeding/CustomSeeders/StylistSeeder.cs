@@ -24,7 +24,8 @@
             if (!dbContext.Users.Any())
             {
                 var stylistsData = JsonConvert
-                    .DeserializeObject<List<StylistDto>>(File.ReadAllText(GlobalConstants.StylistSeederPath)).ToList();
+                    .DeserializeObject<List<StylistDto>>(File.ReadAllText(GlobalConstants.StylistSeederPath))
+                    .ToList();
 
                 List<ApplicationUser> stylists = new List<ApplicationUser>();
                 List<ProcedureStylist> procedureStylists = new List<ProcedureStylist>();

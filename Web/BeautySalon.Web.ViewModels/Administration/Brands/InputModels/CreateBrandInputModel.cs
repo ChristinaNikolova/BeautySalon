@@ -2,16 +2,17 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using BeautySalon.Common;
     using Microsoft.AspNetCore.Http;
 
     public class CreateBrandInputModel
     {
         [Required]
-        [StringLength(60, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+        [StringLength(DataValidation.BrandNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.BrandNameMinLenght)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(2000, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+        [StringLength(DataValidation.BrandDescriptionMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.BrandDescriptionMinLenght)]
         public string Description { get; set; }
 
         [Required]

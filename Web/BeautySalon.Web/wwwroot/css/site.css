@@ -70,3 +70,15 @@ li {
 .hidden {
     display: none;
 }
+
+.log {
+    margin-top: 10px;
+}
+
+.custom-margin-identity {
+    margin-top: 80px;
+}
+
+h1, h2, h4 {
+    color: #d9bf77;
+}

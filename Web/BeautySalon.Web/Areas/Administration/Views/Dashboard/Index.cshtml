@@ -1,7 +1,7 @@
 ﻿@model BeautySalon.Web.ViewModels.Administration.Dashboard.IndexViewModel
 @{ this.ViewData["Title"] = "Wellcome to Admin's dashboard!"; }
 
-<h1 class="text-center">@this.ViewData["Title"]</h1>
+<h1 class="text-center custom-margin-identity">@this.ViewData["Title"]</h1>
 <nav class="text-center">
     <a class="btn btn-outline-primary" asp-area="Administration" asp-controller="Stylists" asp-action="GetAll" role="button">Stylists</a>
     <a class="btn btn-outline-primary" asp-area="Administration" asp-controller="Procedures" asp-action="GetAll" role="button">Procedures</a>

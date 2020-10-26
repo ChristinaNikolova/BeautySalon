@@ -10,6 +10,12 @@
                     <span class="flaticon-lotus"></span>
                 </div>
                 <h1>Welcome to @GlobalConstants.SystemName!</h1>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">
+                        Administration Area
+                    </a>
+                }
                 <div class="row justify-content-center">
                     <div class="col-md-7 mb-3">
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>

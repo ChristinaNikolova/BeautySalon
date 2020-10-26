@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Services.Data.Stylists
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
@@ -7,6 +9,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.JobTypes;
+    using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
@@ -82,6 +85,25 @@
 
             this.stylistsRepository.Update(stylist);
             await this.stylistsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>()
+        {
+            var stylistRoleId = this.rolesRepository
+                .All()
+                .Where(r => r.Name == GlobalConstants.StylistRoleName)
+                .Select(r => r.Id)
+                .FirstOrDefault();
+
+            var stylists = await this.stylistsRepository
+                .All()
+                .Where(s => s.Roles.Any(r => r.RoleId == stylistRoleId))
+                .OrderBy(s => s.FirstName)
+                .ThenBy(s => s.LastName)
+                .To<T>()
+                .ToListAsync();
+
+            return stylists;
         }
     }
 }

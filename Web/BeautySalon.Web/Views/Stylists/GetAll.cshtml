@@ -23,7 +23,7 @@
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h3 class="subheading">Stylists</h3>
                 <h2 class="mb-1">Meet Our Stylists</h2>
-                
+
             </div>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@
                             <h3><a asp-area="" asp-controller="Stylists" asp-action="Details">@stylist.FirstName @stylist.LastName</a></h3>
                             <div class="subheading"><strong>Category:</strong> @stylist.CategoryName</div>
                             <div class="subheading"><strong>Speciality:</strong> @stylist.JobTypeName</div>
-                            <div class="subheading"><strong>Raiting:</strong> @stylist.AverageRating.ToString("F2")</div>
+                            <div class="subheading"><strong>Raiting:</strong> @stylist.FormattedRaiting</div>
                             <p>@stylist.ShortContent</p>
                             <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Stylists" asp-action="Details">Ask me a question!</a>
                             <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Stylists" asp-action="Details">More info</a>

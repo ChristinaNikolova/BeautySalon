@@ -1,9 +1,12 @@
 ﻿namespace BeautySalon.Services.Data.Categories
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class CategoriesService : ICategoriesService
@@ -46,6 +49,17 @@
 
             this.categoriesRepository.Update(category);
             await this.categoriesRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>()
+        {
+            var categories = await this.categoriesRepository
+                .All()
+                .OrderByDescending(c => c.Procedures.Count())
+                .To<T>()
+                .ToListAsync();
+
+            return categories;
         }
 
         public async Task<Category> GetByIdAsync(string id)

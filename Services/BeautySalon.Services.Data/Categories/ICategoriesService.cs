@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Categories
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -15,5 +16,7 @@
         Task<Category> GetByIdAsync(string id);
 
         Task<Category> GetByNameAsync(string name);
+
+        Task<IEnumerable<T>> GetAllAsync<T>();
     }
 }

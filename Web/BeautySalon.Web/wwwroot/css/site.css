@@ -82,3 +82,21 @@ li {
 h1, h2, h4 {
     color: black;
 }
+
+.heading-color {
+    color: #d9bf77;
+    font-weight: bold;
+}
+
+.show {
+    font-size: 16px;
+}
+
+.show-more-info:hover {
+    cursor: pointer;
+    color: #d9bf77;
+}
+
+p.show {
+    color: black;
+}

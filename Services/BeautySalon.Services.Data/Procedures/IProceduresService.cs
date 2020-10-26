@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Procedures
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -13,5 +14,9 @@
         Task DeleteAsync(string id);
 
         public Task<Procedure> GetByIdAsync(string id);
+
+        Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId);
+
+        Task<T> GetProcedureDetailsAsync<T>(string id);
     }
 }

@@ -1,11 +1,14 @@
 ﻿namespace BeautySalon.Services.Data.Procedures
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.SkinTypes;
+    using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class ProceduresService : IProceduresService
@@ -70,11 +73,34 @@
             await this.proceduresRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId)
+        {
+            var procedures = await this.proceduresRepository
+                 .All()
+                 .Where(p => p.CategoryId == categoryId)
+                 .OrderBy(p => p.Price)
+                 .To<T>()
+                 .ToListAsync();
+
+            return procedures;
+        }
+
         public async Task<Procedure> GetByIdAsync(string id)
         {
             return await this.proceduresRepository
                 .All()
                 .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<T> GetProcedureDetailsAsync<T>(string id)
+        {
+            var procedure = await this.proceduresRepository
+                .All()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return procedure;
         }
     }
 }

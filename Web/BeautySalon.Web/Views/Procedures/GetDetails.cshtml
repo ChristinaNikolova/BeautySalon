@@ -1,0 +1,60 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model DetailsProcedureViewModel;
+
+<section class="ftco-section ftco-intro" style="background-image: url(/images/bg_3.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate">
+                    <h3 class="mb-4">@Model.Name</h3>
+                </div>
+                <p class="ftco-animate"><strong>Description: </strong>@Model.Description</p>
+                <p class="ftco-animate"><strong>Category: </strong>@Model.CategoryName</p>
+                @if (Model.SkinTypeName != null)
+                {
+                    <div>
+                        <p class="ftco-animate show-more-info">
+                            <strong>Skin Type: </strong>@Model.SkinTypeToDisplay
+                        </p>
+                        <p class="show hidden">@Model.SkinTypeDescription</p>
+                    </div>
+                }
+                <p class="ftco-animate"><strong>Price: €</strong>@Model.Price</p>
+                <p class="ftco-animate"><strong>Raiting: </strong>@Model.FormattedRaiting</p>
+
+                @if (Model.SkinProblems.Any())
+                {
+                    <h4 class="ftco-animate">Perfect for Fighting:</h4>
+                    <ul class="mt-5 do-list">
+                        @foreach (var skinProblem in Model.SkinProblems)
+                        {
+                            <li class="ftco-animate">
+                                <p class="show-more-info"><span class="ion-ios-checkmark-circle mr-3"></span>@skinProblem.Name</p>
+                                <p class="show hidden">@skinProblem.Description</p>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let problems = [...document.getElementsByClassName("show-more-info")];
+
+    problems.forEach((problem) => {
+        problem.addEventListener("click", showInfo);
+    });
+
+    function showInfo(event) {
+        let parent = event.target.parentElement;
+
+        if (parent.children[1].style.display === "block") {
+            parent.children[1].style.display = "none";
+        }
+        else {
+            parent.children[1].style.display = "block";
+        }
+    }
+</script>

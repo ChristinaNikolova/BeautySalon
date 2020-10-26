@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Procedures\InputModels\" />
     <Folder Include="Stylists\InputModels\" />
   </ItemGroup>
 

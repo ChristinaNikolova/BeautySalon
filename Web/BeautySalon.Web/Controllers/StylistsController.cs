@@ -1,9 +1,10 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Web.ViewModels.Stylists.ViewModels;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class StylistsController : Controller
     {

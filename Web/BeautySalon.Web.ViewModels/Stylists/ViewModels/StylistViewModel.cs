@@ -19,6 +19,9 @@
 
         public double AverageRating { get; set; }
 
+        public string FormattedRaiting
+          => this.AverageRating.ToString("F2");
+
         public string Description { get; set; }
 
         public string ShortContent

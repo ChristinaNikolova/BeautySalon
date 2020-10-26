@@ -167,9 +167,6 @@
     <Content Update="wwwroot\favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\images\bg_1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\lib\qrcode\qrcode.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

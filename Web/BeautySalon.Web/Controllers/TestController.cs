@@ -16,7 +16,7 @@
         [HttpPost]
         public IActionResult LoadQuiz([FromBody] string[] names)
         {
-            string result = "";
+            string result = string.Empty;
 
             for (int i = 0; i < names.Length; i++)
             {
@@ -29,7 +29,7 @@
             };
 
             var output = this.predictionEngine.Predict(input);
-            ;
+
             return this.View(output);
         }
 

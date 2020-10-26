@@ -27,15 +27,18 @@
         {
             var user = await this.GetUserByIdAsync(id);
 
-            var newSkinType = await this.GetUserSkinTypeByNameAsync(skinTypeName);
-
             user.FirstName = firstName;
             user.LastName = lastName;
             user.Address = address;
             user.PhoneNumber = phoneNumber;
             user.Gender = Enum.Parse<Gender>(gender);
-            user.SkinTypeId = newSkinType.Id;
             user.IsSkinSensitive = isSkinSensitive == "Yes";
+
+            if (skinTypeName != null)
+            {
+                var newSkinType = await this.GetUserSkinTypeByNameAsync(skinTypeName);
+                user.SkinTypeId = newSkinType.Id;
+            }
 
             if (picture != null)
             {

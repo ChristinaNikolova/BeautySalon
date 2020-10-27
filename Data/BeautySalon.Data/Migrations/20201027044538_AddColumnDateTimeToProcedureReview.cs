@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BeautySalon.Data.Migrations
+﻿namespace BeautySalon.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddColumnDateTimeToProcedureReview : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

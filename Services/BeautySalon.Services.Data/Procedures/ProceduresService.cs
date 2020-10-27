@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
@@ -130,6 +131,7 @@
                 .All()
                 .Where(pr => pr.ProcedureId == id)
                 .OrderByDescending(pr => pr.Date)
+                .Take(GlobalConstants.DefaultProcedureReviewsToDisplay)
                 .To<T>()
                 .ToList();
 

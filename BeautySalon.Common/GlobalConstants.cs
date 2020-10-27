@@ -14,7 +14,7 @@
 
         public const string AdminName = "Admin";
 
-        public const string AdminPicture = @"https:/res.cloudinary.com/dieu4mste/image/upload/v1600920611/BeautySalonLogo_ulueqn.png";
+        public const string AdminPicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1600920611/BeautySalonLogo_ulueqn.png";
 
         public const string StylistEmail = "@stylist.com";
 
@@ -22,7 +22,7 @@
 
         public const string SystemPasswordHashed = "AQAAAAEAACcQAAAAECrjCD23cQQ28Tyci+UMuaGrFMDUb/trG4E0RbJa4McRVfWFJ6c5UG4NpbXDB6K5rQ==";
 
-        public const string DefaultUserProfilePicture = @"https:/res.cloudinary.com/dieu4mste/image/upload/v1601044226/v263-peera-ning-39-beauty_2.jpg_gfenuo.jpg";
+        public const string DefaultUserProfilePicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1601044226/v263-peera-ning-39-beauty_2.jpg_gfenuo.jpg";
 
         public const string BrandSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Brands.json";
 
@@ -43,5 +43,7 @@
         public const string QuizQuestionAnswerSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Quiz.json";
 
         public const string ArticleSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Articles.json";
+
+        public const int DefaultProcedureReviewsToDisplay = 12;
     }
 }

@@ -16,6 +16,8 @@
         public string FormattedRaiting
             => this.AverageRating.ToString("F2");
 
+        public string CategoryId { get; set; }
+
         public string CategoryName { get; set; }
 
         public string SkinTypeName { get; set; }

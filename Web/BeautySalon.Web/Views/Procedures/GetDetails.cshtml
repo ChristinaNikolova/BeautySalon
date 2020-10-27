@@ -21,7 +21,6 @@
                 }
                 <p class="ftco-animate"><strong>Price: €</strong>@Model.Price</p>
                 <p class="ftco-animate"><strong>Raiting: </strong>@Model.FormattedRaiting</p>
-
                 @if (Model.SkinProblems.Any())
                 {
                     <h4 class="ftco-animate">Perfect for Fighting:</h4>
@@ -39,6 +38,8 @@
         </div>
     </div>
 </section>
+
+<vc:procedure-reviews id="@Model.Id"></vc:procedure-reviews>
 
 <script>
     let problems = [...document.getElementsByClassName("show-more-info")];

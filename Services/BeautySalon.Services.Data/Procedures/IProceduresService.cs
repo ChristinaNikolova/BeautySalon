@@ -18,5 +18,7 @@
         Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId);
 
         Task<T> GetProcedureDetailsAsync<T>(string id);
+
+        IEnumerable<T> GetProcedureReviewsAsync<T>(string procedureId);
     }
 }

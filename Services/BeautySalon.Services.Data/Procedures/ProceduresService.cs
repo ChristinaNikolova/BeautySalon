@@ -17,12 +17,14 @@
 
         // TODO: add SkinProblems to procedure by create/edit
         private readonly IRepository<Procedure> proceduresRepository;
+        private readonly IRepository<ProcedureReview> procedureReviewsRepository;
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
 
-        public ProceduresService(IRepository<Procedure> proceduresRepository, ICategoriesService categoriesService, ISkinTypesService skinTypesService)
+        public ProceduresService(IRepository<Procedure> proceduresRepository, IRepository<ProcedureReview> procedureReviewsRepository, ICategoriesService categoriesService, ISkinTypesService skinTypesService)
         {
             this.proceduresRepository = proceduresRepository;
+            this.procedureReviewsRepository = procedureReviewsRepository;
             this.categoriesService = categoriesService;
             this.skinTypesService = skinTypesService;
         }
@@ -101,6 +103,18 @@
                 .FirstOrDefaultAsync();
 
             return procedure;
+        }
+
+        public IEnumerable<T> GetProcedureReviewsAsync<T>(string procedureId)
+        {
+            var reviews = this.procedureReviewsRepository
+                .All()
+                .Where(pr => pr.ProcedureId == procedureId)
+                .OrderByDescending(pr => pr.Date)
+                .To<T>()
+                .ToList();
+
+            return reviews;
         }
     }
 }

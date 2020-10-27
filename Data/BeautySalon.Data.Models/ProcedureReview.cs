@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     using BeautySalon.Common;
@@ -21,5 +22,7 @@
         public string Content { get; set; }
 
         public int? Points { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

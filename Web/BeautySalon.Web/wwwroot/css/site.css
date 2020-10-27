@@ -100,3 +100,12 @@ h1, h2, h4 {
 p.show {
     color: black;
 }
+
+.custom-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+div .small {
+    font-size: 14px;
+}

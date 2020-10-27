@@ -1,9 +1,9 @@
-﻿namespace BeautySalon.Web.ViewModels.ProcedureReviews.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.Procedures.ViewModels
 {
+    using System;
+
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using Microsoft.AspNetCore.Http;
-    using System;
 
     public class ProcedureReviewViewModel : IMapFrom<ProcedureReview>
     {
@@ -13,9 +13,9 @@
 
         public string ClientPicture { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
 
         public string FormattedDate
-            => this.DateTime.ToShortDateString();
+            => this.Date.ToShortDateString();
     }
 }

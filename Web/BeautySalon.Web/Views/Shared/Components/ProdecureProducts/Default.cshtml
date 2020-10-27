@@ -1,0 +1,44 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model AllProcedureProductsViewModel;
+
+@if (Model.Products.Count() != 0)
+{
+    <section class="ftco-gallery ftco-section custom-padding">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center">
+                    <h2 class="mb-1 heading-color">Products we use:</h2>
+                    <a class="btn btn-primary p-2 px-2 py-2 mr-md-2 get-products">Show products</a>
+                </div>
+            </div>
+            <div class="show-more-products hidden">
+                <div class="row">
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="col-md-3 ftco-animate">
+                            <a href="@product.ProductPicture" class="gallery image-popup img d-flex align-items-center" style="background-image: url(@product.ProductPicture);">
+                                <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                                    <span class="icon-instagram"></span>
+                                </div>
+                            </a>
+                            <div class="custom-color-identity small"><a asp-area="" asp-controller="" asp-action="" asp-route-id="@product.ProductId">@product.ProductName</a></div>
+                            <div>@product.ProductBrandName</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script>
+    let button = [...document.getElementsByClassName("get-products")];
+
+    button.forEach(button => {
+        button.addEventListener("click", showMore);
+    });
+
+    function showMore() {
+        $(".show-more-products").toggle();
+    }
+</script>

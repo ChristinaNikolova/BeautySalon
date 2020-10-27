@@ -39,6 +39,7 @@
     </div>
 </section>
 
+<vc:prodecure-products id="@Model.Id"></vc:prodecure-products>
 <vc:procedure-reviews id="@Model.Id"></vc:procedure-reviews>
 
 <script>
@@ -50,12 +51,13 @@
 
     function showInfo(event) {
         let parent = event.target.parentElement;
+        let infoMessage = parent.children[1];
 
-        if (parent.children[1].style.display === "block") {
-            parent.children[1].style.display = "none";
+        if (infoMessage.style.display === "block") {
+            infoMessage.style.display = "none";
         }
         else {
-            parent.children[1].style.display = "block";
+            infoMessage.style.display = "block";
         }
     }
 </script>

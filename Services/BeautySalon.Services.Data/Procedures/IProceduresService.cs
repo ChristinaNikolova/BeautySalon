@@ -19,6 +19,8 @@
 
         Task<T> GetProcedureDetailsAsync<T>(string id);
 
-        IEnumerable<T> GetProcedureReviewsAsync<T>(string procedureId);
+        IEnumerable<T> GetProcedureReviews<T>(string id);
+
+        IEnumerable<T> GetProcedureProducts<T>(string id);
     }
 }

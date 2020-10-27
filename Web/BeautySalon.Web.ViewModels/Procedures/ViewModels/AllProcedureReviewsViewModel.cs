@@ -1,8 +1,8 @@
-﻿namespace BeautySalon.Web.ViewModels.ProcedureReviews.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.Procedures.ViewModels
 {
     using System.Collections.Generic;
 
-    public class AllProcedureReviews
+    public class AllProcedureReviewsViewModel
     {
         public IEnumerable<ProcedureReviewViewModel> Reviews { get; set; }
     }

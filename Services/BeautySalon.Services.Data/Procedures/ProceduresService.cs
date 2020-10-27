@@ -18,13 +18,20 @@
         // TODO: add SkinProblems to procedure by create/edit
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
+        private readonly IRepository<ProcedureProduct> procedureProductsRepository;
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
 
-        public ProceduresService(IRepository<Procedure> proceduresRepository, IRepository<ProcedureReview> procedureReviewsRepository, ICategoriesService categoriesService, ISkinTypesService skinTypesService)
+        public ProceduresService(
+            IRepository<Procedure> proceduresRepository,
+            IRepository<ProcedureReview> procedureReviewsRepository,
+            IRepository<ProcedureProduct> procedureProductsRepository,
+            ICategoriesService categoriesService,
+            ISkinTypesService skinTypesService)
         {
             this.proceduresRepository = proceduresRepository;
             this.procedureReviewsRepository = procedureReviewsRepository;
+            this.procedureProductsRepository = procedureProductsRepository;
             this.categoriesService = categoriesService;
             this.skinTypesService = skinTypesService;
         }
@@ -105,11 +112,23 @@
             return procedure;
         }
 
-        public IEnumerable<T> GetProcedureReviewsAsync<T>(string procedureId)
+        public IEnumerable<T> GetProcedureProducts<T>(string id)
+        {
+            var products = this.procedureProductsRepository
+                .All()
+                .Where(pp => pp.ProcedureId == id)
+                .OrderBy(pp => pp.Product.Name)
+                .To<T>()
+                .ToList();
+
+            return products;
+        }
+
+        public IEnumerable<T> GetProcedureReviews<T>(string id)
         {
             var reviews = this.procedureReviewsRepository
                 .All()
-                .Where(pr => pr.ProcedureId == procedureId)
+                .Where(pr => pr.ProcedureId == id)
                 .OrderByDescending(pr => pr.Date)
                 .To<T>()
                 .ToList();

@@ -5,21 +5,21 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ViewComponent]
-    public class ProcedureReviewsViewComponent : ViewComponent
+    public class ProdecureProductsViewComponent : ViewComponent
     {
         private readonly IProceduresService proceduresService;
 
-        public ProcedureReviewsViewComponent(IProceduresService proceduresService)
+        public ProdecureProductsViewComponent(IProceduresService proceduresService)
         {
             this.proceduresService = proceduresService;
         }
 
         public IViewComponentResult Invoke(string id)
         {
-            var model = new AllProcedureReviewsViewModel()
+            var model = new AllProcedureProductsViewModel()
             {
-                Reviews = this.proceduresService
-                .GetProcedureReviews<ProcedureReviewViewModel>(id),
+                Products = this.proceduresService
+                .GetProcedureProducts<ProcedureProductViewModel>(id),
             };
 
             return this.View(model);

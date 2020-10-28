@@ -22,5 +22,7 @@
         IEnumerable<T> GetProcedureReviews<T>(string id);
 
         IEnumerable<T> GetProcedureProducts<T>(string id);
+
+        Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria);
     }
 }

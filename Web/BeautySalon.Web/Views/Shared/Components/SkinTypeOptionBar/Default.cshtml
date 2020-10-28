@@ -1,0 +1,73 @@
+﻿@using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;
+@model AllSkinTypesViewModel;
+
+<form class="search-bar" method="post">
+    <div class="search-bar-options-skin">
+        <span class="small theme-color-gold search-bar">Search by skin type: </span>
+        @foreach (var skinType in Model.SkinTypes)
+        {
+            <div class="form-check form-check-inline small">
+                <input class="form-check-input skin-type" type="radio" name="skinType" id="@skinType.Id" value="@skinType.Id">
+                <label class="form-check-label skin-type" for="skinType">@skinType.Name</label>
+            </div>
+        }
+    </div>
+    <div class="search-bar-options-criteria">
+        <span class="small theme-color-gold search-bar">Order by: </span>
+
+        <div class="form-check form-check-inline small">
+            <input class="form-check-input criteria" type="radio" name="criteria" id="price" value="Price">
+            <label class="form-check-label criteria" for="criteria">Price</label>
+        </div>
+        <div class="form-check form-check-inline small">
+            <input class="form-check-input criteria" type="radio" name="criteria" id="raiting" value="Raiting">
+            <label class="form-check-label criteria" for="criteria">Raiting</label>
+        </div>
+    </div>
+
+    <a id="searchBy" class="btn btn-primary d-inline px-2 py-2">Details</a>
+</form>
+
+
+<script>
+    let button = document.getElementById("searchBy");
+    button.addEventListener("click", SearchBy);
+
+    function SearchBy(event) {
+        let parentElementSkinType = Array.from(event.target.parentElement.children[0].children);
+
+        parentElementSkinType.shift();
+        let skinTypeId = "";
+
+        parentElementSkinType.forEach(option => {
+
+            if (option.children[0].checked === true) {
+                skinTypeId = option.children[0].value;
+            }
+        });
+
+        let parentElementCriteria = Array.from(event.target.parentElement.children[1].children);
+
+        parentElementCriteria.shift();
+        var criteria = "";
+
+        parentElementCriteria.forEach(option => {
+            if (option.children[0].checked === true) {
+                criteria = option.children[0].value;
+            }
+        });
+
+        var token = $(".search-bar input[name=__RequestVerificationToken]").val();
+        console.log(skinTypeId);
+        console.log(criteria);
+
+        $.ajax({
+            url: "/Procedures/SearchBy/",
+            type: "POST",
+            data: JSON.stringify({ skinTypeId, criteria }),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json"
+        });
+    }
+</script>

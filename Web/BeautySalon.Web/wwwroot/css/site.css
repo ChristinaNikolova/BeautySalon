@@ -101,11 +101,19 @@ p.show {
     color: black;
 }
 
-.custom-padding {
+.custom-padding-section {
     padding-top: 0;
     padding-bottom: 0;
 }
 
 div .small {
     font-size: 14px;
+}
+
+.search-bar {
+    margin-right: 10px;
+}
+
+.theme-color-gold {
+    color: #d9bf77;
 }

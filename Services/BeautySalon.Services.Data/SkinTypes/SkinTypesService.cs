@@ -1,9 +1,12 @@
 ﻿namespace BeautySalon.Services.Data.SkinTypes
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class SkinTypesService : ISkinTypesService
@@ -48,6 +51,18 @@
 
             this.skinTypesRepository.Update(skinType);
             await this.skinTypesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            var skinTypes = this.skinTypesRepository
+                .All()
+                .Where(st => st.Name.ToLower() != "sensitive")
+                .OrderBy(st => st.Name)
+                .To<T>()
+                .ToList();
+
+            return skinTypes;
         }
 
         public async Task<SkinType> GetByIdAsync(string id)

@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.SkinTypes
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -15,5 +16,7 @@
         Task<SkinType> GetByIdAsync(string id);
 
         Task<SkinType> GetByNameAsync(string name);
+
+        IEnumerable<T> GetAll<T>();
     }
 }

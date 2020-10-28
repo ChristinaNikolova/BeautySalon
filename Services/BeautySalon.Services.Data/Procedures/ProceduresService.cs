@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Procedures
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -20,6 +21,7 @@
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;
+
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
 
@@ -136,6 +138,91 @@
                 .ToList();
 
             return reviews;
+        }
+
+        public async Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria)
+        {
+            var skinCategory = await this.categoriesService
+                .GetByNameAsync("Skin Care");
+
+            if (string.IsNullOrWhiteSpace(criteria))
+            {
+                return await this.FilterByCriteriaAsync<T>(skinTypeId, skinCategory.Id);
+            }
+
+            var criteriaToLower = criteria.ToLower();
+
+            if (string.IsNullOrWhiteSpace(skinTypeId))
+            {
+                if (criteriaToLower == "price")
+                {
+                    return await this.OrderByPriceAsync<T>(skinCategory.Id);
+                }
+                else
+                {
+                    return await this.OrderByRaitingAsync<T>(skinCategory.Id);
+                }
+            }
+
+            if (criteriaToLower == "price")
+            {
+                return await this.FilterAndOrderByPriceAsync<T>(skinTypeId, skinCategory.Id);
+            }
+            else
+            {
+                return await this.FilterAndOrderByRaitingAsync<T>(skinTypeId, skinCategory.Id);
+            }
+        }
+
+        private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)
+        {
+            return
+            await this.proceduresRepository
+            .All()
+            .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
+            .OrderBy(p => p.Price)
+            .To<T>()
+            .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> FilterAndOrderByPriceAsync<T>(string skinTypeId, string categoryId)
+        {
+            return
+                await this.proceduresRepository
+                .All()
+                .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
+                .OrderBy(p => p.Price)
+                .To<T>()
+                .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> OrderByRaitingAsync<T>(string categoryId)
+        {
+            return await this.proceduresRepository
+            .All()
+            .Where(p => p.CategoryId == categoryId)
+            .OrderByDescending(p => p.AverageRating)
+            .To<T>()
+            .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> OrderByPriceAsync<T>(string categoryId)
+        {
+            return await this.proceduresRepository
+             .All()
+              .Where(p => p.CategoryId == categoryId)
+             .OrderBy(p => p.Price)
+             .To<T>()
+             .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> FilterByCriteriaAsync<T>(string skinTypeId, string categoryId)
+        {
+            return await this.proceduresRepository
+                 .All()
+                 .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
+                 .To<T>()
+                 .ToListAsync();
         }
     }
 }

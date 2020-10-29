@@ -60,7 +60,7 @@
         var categoryName = document.getElementsByClassName("category-name")[0].innerHTML;
 
         var token = $(".search-bar input[name=__RequestVerificationToken]").val();
-        debugger;
+
         $.ajax({
             url: "/Procedures/SearchBy/",
             type: "POST",

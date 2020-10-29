@@ -15,6 +15,7 @@
     using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Products;
+    using BeautySalon.Services.Data.Questions;
     using BeautySalon.Services.Data.Settings;
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
@@ -93,6 +94,7 @@
             services.AddTransient<ISkinTypesService, SkinTypesService>();
             services.AddTransient<IStylistsService, StylistsService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IQuestionsService, QuestionsService>();
 
             services.AddAntiforgery(options =>
             {

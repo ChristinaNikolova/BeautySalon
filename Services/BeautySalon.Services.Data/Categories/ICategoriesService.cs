@@ -18,5 +18,7 @@
         Task<Category> GetByNameAsync(string name);
 
         Task<IEnumerable<T>> GetAllAsync<T>();
+
+        IEnumerable<T> GetAll<T>();
     }
 }

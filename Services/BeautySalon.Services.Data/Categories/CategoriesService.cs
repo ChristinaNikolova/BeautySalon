@@ -51,6 +51,16 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
+        public IEnumerable<T> GetAll<T>()
+        {
+            var categories = this.categoriesRepository
+                .All()
+                .To<T>()
+                .ToList();
+
+            return categories;
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
             var categories = await this.categoriesRepository

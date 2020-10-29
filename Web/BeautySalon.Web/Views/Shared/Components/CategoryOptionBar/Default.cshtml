@@ -1,0 +1,31 @@
+﻿@using BeautySalon.Web.ViewModels.Categories.ViewModels;
+@model AllCategoriesViewModel;
+
+<form class="search-bar" method="post">
+    <div class="search-bar-options-skin">
+        <span class="small theme-color-gold search-bar">Search by category: </span>
+        @foreach (var category in Model.Categories)
+        {
+            <div class="form-check form-check-inline small">
+                <input class="form-check-input skin-type" type="radio" name="category" id="@category.Id" value="@category.Id">
+                <label class="form-check-label skin-type" for="category">@category.Name</label>
+            </div>
+        }
+    </div>
+    <div class="search-bar-options-criteria">
+        <span class="small theme-color-gold search-bar">Order by: </span>
+
+        <div class="form-check form-check-inline small">
+            <input class="form-check-input criteria" type="radio" name="criteria" id="name" value="Name">
+            <label class="form-check-label criteria" for="criteria">Name</label>
+        </div>
+        <div class="form-check form-check-inline small">
+            <input class="form-check-input criteria" type="radio" name="criteria" id="raiting" value="Raiting">
+            <label class="form-check-label criteria" for="criteria">Raiting</label>
+        </div>
+    </div>
+
+    <a id="searchBy" class="btn btn-primary d-inline px-2 py-2">Search</a>
+    <a id="clearSearch" class="btn btn-primary d-inline px-2 py-2">Clear</a>
+</form>
+

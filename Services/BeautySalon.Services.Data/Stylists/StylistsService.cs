@@ -89,11 +89,7 @@
 
         public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
-            var stylistRoleId = this.rolesRepository
-                .All()
-                .Where(r => r.Name == GlobalConstants.StylistRoleName)
-                .Select(r => r.Id)
-                .FirstOrDefault();
+            string stylistRoleId = this.GetStylistRoleId();
 
             var stylists = await this.stylistsRepository
                 .All()
@@ -115,6 +111,101 @@
                  .FirstOrDefaultAsync();
 
             return stylists;
+        }
+
+        public async Task<IEnumerable<T>> SearchByAsync<T>(string categoryId, string criteria)
+        {
+            string stylistRoleId = this.GetStylistRoleId();
+
+            if (string.IsNullOrWhiteSpace(criteria))
+            {
+                return await this.FilterSylistsAsync<T>(categoryId, stylistRoleId);
+            }
+
+            var criteriaToLower = criteria.ToLower();
+
+            if (string.IsNullOrWhiteSpace(categoryId))
+            {
+                if (criteriaToLower == "name")
+                {
+                    return await this.OrderByNameAsync<T>(stylistRoleId);
+                }
+                else
+                {
+                    return await this.OrderByRaitingAsync<T>(stylistRoleId);
+                }
+            }
+
+            if (criteriaToLower == "name")
+            {
+                return await this.FilterAndOrderByNameAsync<T>(categoryId, stylistRoleId);
+            }
+            else
+            {
+                return await this.FilterAndOrderByRaitingAsync<T>(categoryId, stylistRoleId);
+            }
+        }
+
+        private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)
+        {
+            return
+            await this.stylistsRepository
+            .All()
+            .Where(s => s.CategoryId == categoryId && s.Roles.Any(r => r.RoleId == stylistRoleId))
+            .OrderByDescending(p => p.AverageRating)
+            .To<T>()
+            .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> FilterAndOrderByNameAsync<T>(string categoryId, string stylistRoleId)
+        {
+            return
+                await this.stylistsRepository
+                .All()
+                .Where(s => s.CategoryId == categoryId && s.Roles.Any(r => r.RoleId == stylistRoleId))
+                .OrderBy(s => s.FirstName)
+                .ThenBy(s => s.LastName)
+                .To<T>()
+                .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> OrderByRaitingAsync<T>(string stylistRoleId)
+        {
+            return await this.stylistsRepository
+            .All()
+            .Where(s => s.Roles.Any(r => r.RoleId == stylistRoleId))
+            .OrderByDescending(p => p.AverageRating)
+            .To<T>()
+            .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> OrderByNameAsync<T>(string stylistRoleId)
+        {
+            return await this.stylistsRepository
+             .All()
+             .Where(s => s.Roles.Any(r => r.RoleId == stylistRoleId))
+             .OrderBy(s => s.FirstName)
+             .ThenBy(s => s.LastName)
+             .To<T>()
+             .ToListAsync();
+        }
+
+        private async Task<IEnumerable<T>> FilterSylistsAsync<T>(string categoryId, string stylistRoleId)
+        {
+            return await this.stylistsRepository
+                 .All()
+                 .Where(s => s.CategoryId == categoryId && s.Roles.Any(r => r.RoleId == stylistRoleId))
+                 .To<T>()
+                 .ToListAsync();
+        }
+
+        private string GetStylistRoleId()
+        {
+            return this.rolesRepository
+                .All()
+                .Where(r => r.Name == GlobalConstants.StylistRoleName)
+                .Select(r => r.Id)
+                .FirstOrDefault();
         }
     }
 }

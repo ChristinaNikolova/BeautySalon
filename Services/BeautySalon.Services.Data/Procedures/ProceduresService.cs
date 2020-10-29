@@ -14,6 +14,8 @@
 
     public class ProceduresService : IProceduresService
     {
+        private const string PriceCriteria = "price";
+
         // TODO: add products to procedure by create/edit
 
         // TODO: add SkinProblems to procedure by create/edit
@@ -142,7 +144,7 @@
         public async Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria)
         {
             var skinCategory = await this.categoriesService
-                .GetByNameAsync("Skin Care");
+                .GetByNameAsync(GlobalConstants.CategorySkinName);
 
             if (string.IsNullOrWhiteSpace(criteria))
             {
@@ -153,7 +155,7 @@
 
             if (string.IsNullOrWhiteSpace(skinTypeId))
             {
-                if (criteriaToLower == "price")
+                if (criteriaToLower == PriceCriteria)
                 {
                     return await this.OrderByPriceAsync<T>(skinCategory.Id);
                 }
@@ -163,7 +165,7 @@
                 }
             }
 
-            if (criteriaToLower == "price")
+            if (criteriaToLower == PriceCriteria)
             {
                 return await this.FilterAndOrderByPriceAsync<T>(skinTypeId, skinCategory.Id);
             }

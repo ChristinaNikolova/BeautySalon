@@ -45,5 +45,7 @@
         public const string ArticleSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Articles.json";
 
         public const int DefaultProcedureReviewsToDisplay = 12;
+
+        public const string CategorySkinName = "Skin Care";
     }
 }

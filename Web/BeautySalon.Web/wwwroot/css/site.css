@@ -117,3 +117,7 @@ div .small {
 .theme-color-gold {
     color: #d9bf77;
 }
+
+.btn:not(:disabled):not(.disabled) {
+    color: white;
+}

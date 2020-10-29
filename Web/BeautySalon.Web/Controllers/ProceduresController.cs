@@ -59,14 +59,17 @@
         [HttpPost]
         public async Task<ActionResult<tTestMe>> SearchBy([FromBody] SearchProcedureCriteriaInputModel input)
         {
+            var category = await this.categoriesService.GetByNameAsync(input.CategoryName);
+            var categoryId = category.Id;
+
             if (string.IsNullOrWhiteSpace(input.SkinTypeId) && string.IsNullOrWhiteSpace(input.Criteria))
             {
-                return this.RedirectToAction("GetProceduresByCategory", new { id = input.CategoryId });
+                return this.RedirectToAction("GetProceduresByCategory", new { id = categoryId });
             }
 
             var procedures = await this.proceduresService.SearchByAsync<ProcedureViewModel>(input.SkinTypeId, input.Criteria);
 
-            return new tTestMe { CategoryId = input.CategoryId, Procedures = procedures };
+            return new tTestMe { CategoryId = categoryId, Procedures = procedures };
         }
     }
 

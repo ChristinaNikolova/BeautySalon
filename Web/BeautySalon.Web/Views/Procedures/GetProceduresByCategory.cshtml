@@ -6,41 +6,20 @@
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <a class="subheading" asp-area="" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a>
-                <h2 class="mb-1">@Model.CategoryName</h2>
+                <h2 class="mb-1 category-name">@Model.CategoryName</h2>
                 <vc:skin-type-option-bar></vc:skin-type-option-bar>
             </div>
         </div>
-        <div id="testMe">
+        <div id="showByCategories">
             <div class="row">
-                @*<partial name="_CurrentProcedurePartial" model="@Model.Procedures" />*@
-                @foreach (var procedure in @Model.Procedures)
-                {
-                    <div class="col-md-4 ftco-animate">
-                        <div class="block-7">
-                            <div class="text-center">
-                                <h3 class="heading-2 my-4 heading-color">@procedure.Name</h3>
-                                <span class="price ">€@procedure.Price</span>
-                                <ul class="pricing-text mb-5">
-                                    <li><strong>Category:</strong> @procedure.CategoryName</li>
-                                    @if (procedure.SkinTypeName != null)
-                                    {
-                                        <li><strong>Skin Type:</strong> @procedure.SkinTypeToDisplay</li>
-                                    }
-                                    <li><strong>Raiting: </strong>@procedure.FormattedRaiting</li>
-                                </ul>
-
-                                <a class="btn btn-primary d-block px-2 py-4" asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@procedure.Id">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                }
+                <partial name="_CurrentProcedurePartial" model="@Model.Procedures" />
             </div>
         </div>
     </div>
 </section>
 
-<script type="text/javascript">
-    //window.location.reload();
+<script>
+    
     let button = document.getElementById("searchBy");
     button.addEventListener("click", SearchBy);
 
@@ -67,15 +46,15 @@
                 criteria = option.children[0].value;
             }
         });
-        //var categoryId = document.getElementById("categoryId").value;
-        //console.log(document.getElementById("categoryId").value)
+
+        var categoryName = document.getElementsByClassName("category-name")[0].innerHTML;
 
         var token = $(".search-bar input[name=__RequestVerificationToken]").val();
-
+        debugger;
         $.ajax({
             url: "/Procedures/SearchBy/",
             type: "POST",
-            data: JSON.stringify({ skinTypeId, criteria }),
+            data: JSON.stringify({ skinTypeId, criteria, categoryName }),
             contentType: "application/json; charset=utf-8",
             headers: { 'X-CSRF-TOKEN': token },
             dataType: "json",
@@ -84,9 +63,10 @@
                 data.procedures.forEach(procedure => {
                     result += '<div class="col-md-4">' + '<div class="block-7">' + '<div class="text-center">' + `<h3 class="heading-2 my-4 heading-color">${procedure.name}</h3>` + `<span class="price ">€${procedure.price}</span>` + '<ul class="pricing-text mb-5">' + `<li><strong>Category:</strong> ${procedure.categoryName}</li>` + ` <li><strong>Skin Type:</strong> ${procedure.skinTypeToDisplay}</li>` + `<li><strong>Raiting: </strong>${procedure.formattedRaiting}</li>` + '</ul>' + `<a class="btn btn-primary d-block px-2 py-4 custom-hover" asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="${procedure.id}">Details</a>` + '</div>' + '</div>' + '</div>';
                 });
+                
                 result += '</div>'
 
-                $('#testMe').replaceWith(result);
+                $('#showByCategories').html(result);
             }
         });
     }

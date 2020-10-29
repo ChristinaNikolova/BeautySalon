@@ -24,5 +24,12 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> GetDetails(string id)
+        {
+            var model = await this.stylistsService.GetStylistDetailsAsync<DetailsStylistViewModel>(id);
+
+            return this.View(model);
+        }
     }
 }

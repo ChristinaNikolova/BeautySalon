@@ -105,5 +105,16 @@
 
             return stylists;
         }
+
+        public async Task<T> GetStylistDetailsAsync<T>(string id)
+        {
+            var stylists = await this.stylistsRepository
+                 .All()
+                 .Where(s => s.Id == id)
+                 .To<T>()
+                 .FirstOrDefaultAsync();
+
+            return stylists;
+        }
     }
 }

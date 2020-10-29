@@ -16,5 +16,7 @@
         Task DeleteAsync(string id);
 
         Task<IEnumerable<T>> GetAllAsync<T>();
+
+        Task<T> GetStylistDetailsAsync<T>(string id);
     }
 }

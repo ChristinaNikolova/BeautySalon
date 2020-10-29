@@ -38,7 +38,7 @@
                             <div class="subheading"><strong>Speciality:</strong> @stylist.JobTypeName</div>
                             <div class="subheading"><strong>Raiting:</strong> @stylist.FormattedRaiting</div>
                             <p>@stylist.ShortContent</p>
-                            <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Stylists" asp-action="Details">Ask me a question!</a>
+                            <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Question" asp-action="AskQuestion">Ask question</a>
                             <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">More info</a>
                             <p></p>
                         </div>

@@ -92,6 +92,10 @@ h1, h2, h4 {
     font-size: 16px;
 }
 
+.about-me {
+    font-size: 14px;
+}
+
 .show-more-info:hover {
     cursor: pointer;
     color: #d9bf77;
@@ -120,4 +124,20 @@ div .small {
 
 .btn:not(:disabled):not(.disabled) {
     color: white;
+}
+
+.stylist-name {
+    margin-left: 20px;
+}
+
+.stylist-pic {
+    margin-left: 5px;
+}
+
+.stylist-info {
+    margin-left: 20px;
+}
+
+.stylist {
+    margin-bottom: 15px;
 }

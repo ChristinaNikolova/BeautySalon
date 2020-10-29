@@ -1,31 +1,36 @@
 ﻿@using BeautySalon.Web.ViewModels.Stylists.ViewModels;
 @model DetailsStylistViewModel;
 
-<section class="ftco-section ftco-intro custom-margin-identity" style="background-image: url(/images/bg_3.jpg);">
-    <h1>@Model.FirstName @Model.LastName</h1>
-    <div class="row align-items-stretch">
-        <div class="col-md-6 ftco-animate">
+<section class="ftco-section ftco-intro custom-margin-identity stylist-section" style="background-image: url(/images/bg_3.jpg);">
+    <div class="text-center stylist">
+        <h1 class="heading-color stylist-name">@Model.FirstName @Model.LastName</h1>
+        <a class="btn btn-primary p-1 px-2 py-2 mr-md-2 log" asp-area="" asp-controller="Question" asp-action="AskQuestion">Ask question</a>
+    </div>
+    <div class="row align-items-stretch stylist-info">
+        <div class="col-md-5 ftco-animate stylist-pic">
             <div class="block-7">
                 <div class="coach align-items-stretch">
-                    <div class="img" style="background-image: url(@Model.Picture);"></div>
+                    <div class="img" style="background-image: url(@Model.Picture);">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 ftco-animate">
             <div class="block-7">
                 <div class="coach align-items-stretch">
-                    <div class="subheading"><strong>Category:</strong> @Model.CategoryName</div>
-                    <div class="subheading"><strong>Speciality:</strong> @Model.JobTypeName</div>
-                    <div class="subheading"><strong>Raiting:</strong> @Model.FormattedRaiting</div>
-                    <div class="subheading"><strong>About me:</strong>@Model.Description</div>
-                    <div class="subheading"><strong>Last Articles:</strong></div>
-                    @foreach (var article in Model.Articles)
-                    {
-                        <div>@article.ArticleTitle</div>
-                    }
+                    <div class="subheading show"><strong>Category:</strong> @Model.CategoryName</div>
+                    <div class="subheading show"><strong>Speciality:</strong> @Model.JobTypeName</div>
+                    <div class="subheading show"><strong>Raiting:</strong> @Model.FormattedRaiting</div>
+                    <div class="subheading about-me"><strong class="show">About me:</strong>@Model.Description</div>
+                    <strong>Last Articles:</strong>
+                    <ul class="subheading show">
+                        @foreach (var article in Model.Articles)
+                        {
+                            <li class="ftco-animate theme-color-gold flaticon-lotus"><a asp-area="" asp-controller="Articles" asp-action="GetDetailsArticle" asp-route-id="@article.ArticleId"> @article.ArticleTitle</a></li>
+                        }
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
 </section>

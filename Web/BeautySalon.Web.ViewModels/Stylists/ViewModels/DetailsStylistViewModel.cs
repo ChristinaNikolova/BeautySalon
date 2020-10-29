@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using AutoMapper;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;

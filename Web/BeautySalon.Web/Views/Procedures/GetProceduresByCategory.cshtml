@@ -20,8 +20,15 @@
 
 <script>
     
-    let button = document.getElementById("searchBy");
-    button.addEventListener("click", SearchBy);
+    let searchButton = document.getElementById("searchBy");
+    searchButton.addEventListener("click", SearchBy);
+
+    let clearButton = document.getElementById("clearSearch");
+    clearButton.addEventListener("click", ClearSearch);
+
+    function ClearSearch() {
+        window.location.reload();
+    }
 
     function SearchBy(event) {
         let parentElementSkinType = Array.from(event.target.parentElement.children[0].children);

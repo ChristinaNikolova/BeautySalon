@@ -180,7 +180,7 @@
             await this.proceduresRepository
             .All()
             .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
-            .OrderBy(p => p.Price)
+            .OrderByDescending(p => p.AverageRating)
             .To<T>()
             .ToListAsync();
         }
@@ -210,7 +210,7 @@
         {
             return await this.proceduresRepository
              .All()
-              .Where(p => p.CategoryId == categoryId)
+             .Where(p => p.CategoryId == categoryId)
              .OrderBy(p => p.Price)
              .To<T>()
              .ToListAsync();

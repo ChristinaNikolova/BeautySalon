@@ -1,9 +1,9 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Stylists;
+    using BeautySalon.Web.ViewModels.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Stylists.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +34,7 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<SearchStylistCriteriaViewModelModel>> SearchBy([FromBody] SearchStylistCriteriaInputModel input)
+        public async Task<ActionResult<AllStylistsViewModel>> SearchBy([FromBody] SearchStylistCriteriaInputModel input)
         {
             if (string.IsNullOrWhiteSpace(input.CategoryId) && string.IsNullOrWhiteSpace(input.Criteria))
             {
@@ -43,19 +43,7 @@
 
             var stylists = await this.stylistsService.SearchByAsync<StylistViewModel>(input.CategoryId, input.Criteria);
 
-            return new SearchStylistCriteriaViewModelModel { Stylists = stylists };
+            return new AllStylistsViewModel { Stylists = stylists };
         }
-    }
-
-    public class SearchStylistCriteriaInputModel
-    {
-        public string CategoryId { get; set; }
-
-        public string Criteria { get; set; }
-    }
-
-    public class SearchStylistCriteriaViewModelModel
-    {
-        public IEnumerable<StylistViewModel> Stylists { get; set; }
     }
 }

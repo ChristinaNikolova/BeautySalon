@@ -6,6 +6,7 @@
     public class QuestionsService : IQuestionsService
     {
         private readonly IRepository<Question> questionsRepository;
+
         public QuestionsService(IRepository<Question> questionsRepository)
         {
             this.questionsRepository = questionsRepository;

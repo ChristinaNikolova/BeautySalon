@@ -6,7 +6,6 @@
     using AutoMapper;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using BeautySalon.Web.ViewModels.SkinProblemProcedures.ViewModels;
 
     public class DetailsProcedureViewModel : ProcedureViewModel, IMapFrom<Procedure>, IHaveCustomMappings
     {

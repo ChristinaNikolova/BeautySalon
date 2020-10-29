@@ -1,4 +1,4 @@
-﻿namespace BeautySalon.Web.ViewModels.SkinProblemProcedures.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.Procedures.ViewModels
 {
     public class SkinProblemProcedureViewModel
     {

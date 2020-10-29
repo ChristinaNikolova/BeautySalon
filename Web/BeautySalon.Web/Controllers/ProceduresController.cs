@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Categories;
@@ -32,11 +31,6 @@
 
         public async Task<IActionResult> GetProceduresByCategory(string id)
         {
-            if (!this.TempData.ContainsKey("categoryId") && this.TempData["categoryId"] == null)
-            {
-                this.TempData.Add("categoryId", id);
-            }
-
             var caregory = await this.categoriesService.GetByIdAsync(id);
 
             var model = new AllProceduresByCategoryViewModel()
@@ -57,25 +51,18 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<tTestMe>> SearchBy([FromBody] SearchProcedureCriteriaInputModel input)
+        public async Task<ActionResult<SearchProcedureCriteriaViewModelModel>> SearchBy([FromBody] SearchProcedureCriteriaInputModel input)
         {
             var category = await this.categoriesService.GetByNameAsync(input.CategoryName);
-            var categoryId = category.Id;
 
             if (string.IsNullOrWhiteSpace(input.SkinTypeId) && string.IsNullOrWhiteSpace(input.Criteria))
             {
-                return this.RedirectToAction("GetProceduresByCategory", new { id = categoryId });
+                return this.RedirectToAction("GetProceduresByCategory", new { id = category.Id });
             }
 
             var procedures = await this.proceduresService.SearchByAsync<ProcedureViewModel>(input.SkinTypeId, input.Criteria);
 
-            return new tTestMe { CategoryId = categoryId, Procedures = procedures };
+            return new SearchProcedureCriteriaViewModelModel { CategoryId = category.Id, Procedures = procedures };
         }
-    }
-
-    public class tTestMe
-    {
-        public string CategoryId { get; set; }
-        public IEnumerable<ProcedureViewModel> Procedures { get; set; }
     }
 }

@@ -12,6 +12,12 @@
     {
         public IEnumerable<ArticleStylistViewModel> Articles { get; set; }
 
+        public IEnumerable<ArticleStylistViewModel> LastArticles
+            => this.Articles
+            .OrderByDescending(a => a.ArticleCreatedOn)
+            .Take(5)
+            .ToList();
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<ApplicationUser, DetailsStylistViewModel>().ForMember(
@@ -20,6 +26,7 @@
                {
                    ArticleId = y.Id,
                    ArticleTitle = y.Title,
+                   ArticleCreatedOn = y.CreatedOn,
                })));
         }
     }

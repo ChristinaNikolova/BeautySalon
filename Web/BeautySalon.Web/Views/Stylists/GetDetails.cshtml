@@ -39,9 +39,9 @@
                     <div class="subheading show"><strong>Speciality:</strong> @Model.JobTypeName</div>
                     <div class="subheading show"><strong>Raiting:</strong> @Model.FormattedRaiting</div>
                     <div class="subheading about-me"><strong class="show">About me:</strong>@Model.Description</div>
-                    <strong>Last Articles:</strong>
+                    <strong>Last Five Articles:</strong>
                     <ul class="subheading show">
-                        @foreach (var article in Model.Articles)
+                        @foreach (var article in Model.LastArticles)
                         {
                             <li class="ftco-animate theme-color-gold flaticon-lotus"><a asp-area="" asp-controller="Articles" asp-action="GetDetailsArticle" asp-route-id="@article.ArticleId"> @article.ArticleTitle</a></li>
                         }

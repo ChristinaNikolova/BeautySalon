@@ -2,13 +2,13 @@
 @model AllCategoriesViewModel;
 
 <form class="search-bar" method="post">
-    <div class="search-bar-options-skin">
+    <div class="search-bar-options-category">
         <span class="small theme-color-gold search-bar">Search by category: </span>
         @foreach (var category in Model.Categories)
         {
             <div class="form-check form-check-inline small">
-                <input class="form-check-input skin-type" type="radio" name="category" id="@category.Id" value="@category.Id">
-                <label class="form-check-label skin-type" for="category">@category.Name</label>
+                <input class="form-check-input category" type="radio" name="category" id="@category.Id" value="@category.Id">
+                <label class="form-check-label category" for="category">@category.Name</label>
             </div>
         }
     </div>

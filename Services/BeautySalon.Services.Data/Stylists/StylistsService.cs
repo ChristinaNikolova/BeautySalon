@@ -126,7 +126,7 @@
 
             if (string.IsNullOrWhiteSpace(categoryId))
             {
-                if (criteriaToLower == "name")
+                if (criteriaToLower == GlobalConstants.NameCriteria)
                 {
                     return await this.OrderByNameAsync<T>(stylistRoleId);
                 }
@@ -136,7 +136,7 @@
                 }
             }
 
-            if (criteriaToLower == "name")
+            if (criteriaToLower == GlobalConstants.NameCriteria)
             {
                 return await this.FilterAndOrderByNameAsync<T>(categoryId, stylistRoleId);
             }

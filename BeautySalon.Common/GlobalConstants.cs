@@ -47,5 +47,9 @@
         public const int DefaultProcedureReviewsToDisplay = 12;
 
         public const string CategorySkinName = "Skin Care";
+
+        public const string NameCriteria = "name";
+
+        public const string PriceCriteria = "price";
     }
 }

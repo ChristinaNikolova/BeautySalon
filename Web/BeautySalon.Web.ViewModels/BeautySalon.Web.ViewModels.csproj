@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\Services\BeautySalon.Services.Mapping\BeautySalon.Services.Mapping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Stylists\InputModels\" />
-  </ItemGroup>
-
 </Project>

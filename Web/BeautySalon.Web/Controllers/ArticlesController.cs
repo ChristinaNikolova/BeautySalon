@@ -38,5 +38,18 @@
 
             return this.View(model);
         }
+
+        [HttpPost]
+        public void Like([FromBody] string articleId)
+        {
+            ;
+            var userId = this.userManager.GetUserId(this.User);
+
+            //await this.articlesService.LikeArticleAsync(articleId, userId);
+
+            //var likes = this.blogService.GetVotesCount(id);
+
+            //return new LikesResponseModel { LikesCount = likes };
+        }
     }
 }

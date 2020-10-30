@@ -166,3 +166,7 @@ div .small {
 .thin-heart {
     margin-right: 0;
 }
+
+#unlikeArticle, #likeArticle:hover {
+    cursor: pointer;
+}

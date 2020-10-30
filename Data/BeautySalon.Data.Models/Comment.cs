@@ -24,10 +24,6 @@
         public virtual ApplicationUser Client { get; set; }
 
         [Required]
-        [MaxLength(DataValidation.CommentTitleMaxLenght)]
-        public string Title { get; set; }
-
-        [Required]
         [MaxLength(DataValidation.CommentContentMaxLenght)]
         public string Content { get; set; }
     }

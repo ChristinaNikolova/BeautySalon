@@ -51,8 +51,6 @@
         public const int CategoryNameMaxLenght = 50;
 
         // Comment
-        public const int CommentTitleMaxLenght = 50;
-
         public const int CommentContentMaxLenght = 1000;
 
         // JobType

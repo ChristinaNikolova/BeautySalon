@@ -41,7 +41,6 @@
                opt => opt.MapFrom(x => x.Comments.Select(y => new CommentViewModel()
                {
                    Id = y.Id,
-                   Title = y.Title,
                    Content = y.Content,
                    ApplicationUserUsername = y.Client.UserName,
                    ApplicationUserPicture = y.Client.Picture,

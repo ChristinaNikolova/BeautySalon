@@ -50,11 +50,4 @@
             return new LikeArticleViewModel { IsAdded = isAdded, LikesCount = likesCount };
         }
     }
-
-    public class LikeArticleViewModel
-    {
-        public bool IsAdded { get; set; }
-
-        public int LikesCount { get; set; }
-    }
 }

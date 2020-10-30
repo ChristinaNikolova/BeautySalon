@@ -170,3 +170,17 @@ div .small {
 #unlikeArticle, #likeArticle:hover {
     cursor: pointer;
 }
+
+.comment-list li .vcard img {
+    border-radius: 0%;
+    max-height: 60px;
+}
+
+#comment-button {
+    margin-top: 20px;
+}
+
+.comment-form-container {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+}

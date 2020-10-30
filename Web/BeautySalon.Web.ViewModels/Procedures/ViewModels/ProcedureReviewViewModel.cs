@@ -16,6 +16,6 @@
         public DateTime Date { get; set; }
 
         public string FormattedDate
-            => this.Date.ToShortDateString();
+            => this.Date.ToString("dd.MM.yyyy hh:mm:ss");
     }
 }

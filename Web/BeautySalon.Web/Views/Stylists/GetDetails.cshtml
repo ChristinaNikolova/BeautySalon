@@ -43,7 +43,7 @@
                     <ul class="subheading show">
                         @foreach (var article in Model.LastArticles)
                         {
-                            <li class="ftco-animate theme-color-gold flaticon-lotus"><a asp-area="" asp-controller="Articles" asp-action="GetDetailsArticle" asp-route-id="@article.ArticleId"> @article.ArticleTitle</a></li>
+                            <li class="ftco-animate theme-color-gold flaticon-lotus"><a asp-area="" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.ArticleId"> @article.ArticleTitle</a></li>
                         }
                     </ul>
                 </div>

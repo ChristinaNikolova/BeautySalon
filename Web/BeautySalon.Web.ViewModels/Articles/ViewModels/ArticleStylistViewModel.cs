@@ -1,4 +1,4 @@
-﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModel
+﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModels
 {
     using System;
 

@@ -6,5 +6,9 @@
     public interface IArticlesService
     {
         Task<IEnumerable<T>> GetAllAsync<T>();
+
+        Task<T> GetArticleDetailsAsync<T>(string id);
+
+        Task<bool> CheckFavouriteArticlesAsync(string id, string userId);
     }
 }

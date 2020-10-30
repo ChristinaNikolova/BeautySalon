@@ -151,3 +151,18 @@ div .small {
     padding-left: 0px;
     margin-bottom: 0px
 }
+
+.author-pic {
+    max-width: 150px;
+    margin-top: 15px;
+}
+
+.thin {
+    font-weight: 100;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.thin-heart {
+    margin-right: 0;
+}

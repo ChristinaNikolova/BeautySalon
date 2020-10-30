@@ -1,8 +1,9 @@
 ﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModels
 {
+    using System;
+
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using System;
 
     public class ArticleViewModel : IMapFrom<Article>
     {

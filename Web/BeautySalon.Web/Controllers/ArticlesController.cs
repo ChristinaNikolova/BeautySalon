@@ -2,17 +2,21 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class ArticlesController : Controller
     {
         private readonly IArticlesService articlesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ArticlesController(IArticlesService articlesService)
+        public ArticlesController(IArticlesService articlesService, UserManager<ApplicationUser> userManager)
         {
             this.articlesService = articlesService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> GetAll()
@@ -27,12 +31,12 @@
 
         public async Task<IActionResult> GetDetails(string id)
         {
-            //var model = new AllArticlesViewModel()
-            //{
-            //    Articles = await this.articlesService.GetAllAsync<ArticleViewModel>(),
-            //};
+            var userId = this.userManager.GetUserId(this.User);
 
-            return this.View();
+            var model = await this.articlesService.GetArticleDetailsAsync<DetailsArticleViewModel>(id);
+            model.IsFavourite = await this.articlesService.CheckFavouriteArticlesAsync(id, userId);
+
+            return this.View(model);
         }
     }
 }

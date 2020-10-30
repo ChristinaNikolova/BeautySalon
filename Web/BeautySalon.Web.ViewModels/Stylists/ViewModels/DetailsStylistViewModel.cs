@@ -6,7 +6,7 @@
     using AutoMapper;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using BeautySalon.Web.ViewModels.Articles.ViewModel;
+    using BeautySalon.Web.ViewModels.Articles.ViewModels;
 
     public class DetailsStylistViewModel : StylistViewModel, IMapFrom<ApplicationUser>, IHaveCustomMappings
     {

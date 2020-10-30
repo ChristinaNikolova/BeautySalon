@@ -40,16 +40,21 @@
         }
 
         [HttpPost]
-        public void Like([FromBody] string articleId)
+        public async Task<ActionResult<LikeArticleViewModel>> Like([FromBody] string articleId)
         {
-            ;
             var userId = this.userManager.GetUserId(this.User);
 
-            //await this.articlesService.LikeArticleAsync(articleId, userId);
+            var isAdded = await this.articlesService.LikeArticleAsync(articleId, userId);
+            var likesCount = await this.articlesService.GetLikesCountAsync(articleId);
 
-            //var likes = this.blogService.GetVotesCount(id);
-
-            //return new LikesResponseModel { LikesCount = likes };
+            return new LikeArticleViewModel { IsAdded = isAdded, LikesCount = likesCount };
         }
+    }
+
+    public class LikeArticleViewModel
+    {
+        public bool IsAdded { get; set; }
+
+        public int LikesCount { get; set; }
     }
 }

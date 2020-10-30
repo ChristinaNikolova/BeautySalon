@@ -246,9 +246,17 @@
             dataType: "json",
             headers: { 'X-CSRF-TOKEN': token },
             success: function (data) {
-                //$("#likesCount").html(data.likesCount);
+                let result = "";
+
+                if (data.isAdded) {
+                    result = '<a><i class="fa fa-heart"></i>';
+                } else {
+                    result = '<a><i class="far fa-heart"></i>';
+                }
+
+                $("#likeArticle").html(result);
+                $("#likesCount").html(data.likesCount);
             }
         });
-        debugger
     }
 </script>

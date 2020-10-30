@@ -50,5 +50,45 @@
 
             return article;
         }
+
+        public async Task<int> GetLikesCountAsync(string articleId)
+        {
+            var count = await this.clientArticleLikesRepository
+                .All()
+                .Where(ac => ac.ArticleId == articleId)
+                .CountAsync();
+
+            return count;
+        }
+
+        public async Task<bool> LikeArticleAsync(string articleId, string userId)
+        {
+            var isFavourite = await this.CheckFavouriteArticlesAsync(articleId, userId);
+            var isAdded = true;
+
+            if (!isFavourite)
+            {
+                var clientArticleLike = new ClientArticleLike()
+                {
+                    ClientId = userId,
+                    ArticleId = articleId,
+                };
+
+                await this.clientArticleLikesRepository.AddAsync(clientArticleLike);
+            }
+            else
+            {
+                var clientArticleLike = await this.clientArticleLikesRepository
+                    .All()
+                    .FirstOrDefaultAsync(ca => ca.ArticleId == articleId && ca.ClientId == userId);
+
+                this.clientArticleLikesRepository.Delete(clientArticleLike);
+                isAdded = false;
+            }
+
+            await this.clientArticleLikesRepository.SaveChangesAsync();
+
+            return isAdded;
+        }
     }
 }

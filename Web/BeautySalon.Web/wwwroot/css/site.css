@@ -146,3 +146,8 @@ div .small {
     margin-top: 15px;
     margin-left: 393px;
 }
+
+.article-category {
+    padding-left: 0px;
+    margin-bottom: 0px
+}

@@ -20,20 +20,26 @@
             {
                 <div class="col-md-4 d-flex ftco-animate">
                     <div class="blog-entry justify-content-end">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('@article.Picture');">
+                        <a class="block-20" style="background-image: url('@article.Picture');">
                         </a>
                         <div class="text p-4 float-right d-block">
                             <div class="d-flex align-items-center pt-2 mb-4">
                                 <div class="one">
-                                    <span class="day">25</span>
+                                    <span class="day">@article.Day</span>
                                 </div>
                                 <div class="two">
-                                    <span class="yr">2019</span>
-                                    <span class="mos">September</span>
+                                    <span class="yr">@article.Year</span>
+                                    <span class="mos">@article.Month</span>
                                 </div>
                             </div>
-                            <h3 class="heading mt-2"><a asp-area="" asp-controller="Articles" asp-action="GetDetailsArticle" asp-route-id="@article.Id">@article.Title</a></h3>
-                            <p>@article.ShortContent</p>
+                            <h3 class="heading mt-2"><a asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.Id">@article.Title</a></h3>
+                            <p class="small">@article.ShortContent</p>
+                            <ul class="subheading article-category d-inline">
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Category: </strong>@article.CategoryName</li>
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Author: </strong><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@article.StylistId">@article.StylistFullName</a></li>
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Likes: </strong>@article.LikesCount</li>
+                            </ul>
+                            <a class="btn btn-primary d-inline p-1 px-1 py-1 mr-md-1 log" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.Id">Read more</a>
                         </div>
                     </div>
                 </div>

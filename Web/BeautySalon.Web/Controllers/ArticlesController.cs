@@ -24,5 +24,15 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> GetDetails(string id)
+        {
+            //var model = new AllArticlesViewModel()
+            //{
+            //    Articles = await this.articlesService.GetAllAsync<ArticleViewModel>(),
+            //};
+
+            return this.View();
+        }
     }
 }

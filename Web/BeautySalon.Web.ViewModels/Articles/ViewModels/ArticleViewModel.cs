@@ -2,6 +2,7 @@
 {
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using System;
 
     public class ArticleViewModel : IMapFrom<Article>
     {
@@ -15,15 +16,28 @@
         {
             get
             {
-                return this.Content.Length > 300
-                        ? this.Content.Substring(0, 300) + "..."
+                return this.Content.Length > 200
+                        ? this.Content.Substring(0, 200) + "..."
                         : this.Content;
             }
         }
 
         public string Picture { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
+        public int Day
+            => this.CreatedOn.Day;
+
+        public string Month
+           => this.CreatedOn.ToString("MMMM");
+
+        public int Year
+           => this.CreatedOn.Year;
+
         public string CategoryName { get; set; }
+
+        public string StylistId { get; set; }
 
         public string StylistFirstName { get; set; }
 

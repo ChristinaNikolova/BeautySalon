@@ -11,7 +11,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Our Team Specialists</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></span>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span>
             </div>
         </div>
     </div>
@@ -33,12 +33,12 @@
                     <div class="coach align-items-stretch">
                         <div class="img" style="background-image: url(@stylist.Picture);"></div>
                         <div class="text bg-white p-4 ftco-animate">
-                            <h3><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">@stylist.FirstName @stylist.LastName</a></h3>
+                            <h3><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">@stylist.FirstName @stylist.LastName</a></h3>
                             <div class="subheading"><strong>Category:</strong> @stylist.CategoryName</div>
                             <div class="subheading"><strong>Speciality:</strong> @stylist.JobTypeName</div>
                             <div class="subheading"><strong>Raiting:</strong> @stylist.FormattedRaiting</div>
                             <strong>About me</strong><p class="about-me">@stylist.ShortContent</p>
-                            <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">More info</a>
+                            <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">More info</a>
                             <p></p>
                         </div>
                     </div>

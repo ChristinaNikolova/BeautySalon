@@ -38,6 +38,7 @@
             var comments = await this.commentsRepository
                 .All()
                 .Where(c => c.ArticleId == articleId)
+                .OrderByDescending(c => c.CreatedOn)
                 .To<T>()
                 .ToListAsync();
 

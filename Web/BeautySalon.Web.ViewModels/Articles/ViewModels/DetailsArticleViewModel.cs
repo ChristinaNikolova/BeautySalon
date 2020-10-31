@@ -31,6 +31,11 @@
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
+        public IEnumerable<CommentViewModel> OrderedComments
+            => this.Comments
+            .OrderByDescending(c => c.CreatedOn)
+            .ToList();
+
         public int CommentsCount
             => this.Comments.Count();
 

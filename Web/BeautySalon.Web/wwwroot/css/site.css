@@ -184,3 +184,7 @@ div .small {
     margin-top: 10px !important;
     padding-top: 10px !important;
 }
+
+#content-error {
+    color: red;
+}

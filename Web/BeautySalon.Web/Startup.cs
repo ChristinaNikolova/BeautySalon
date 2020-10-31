@@ -13,6 +13,7 @@
     using BeautySalon.Services.Data.Brands;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.ChatMessages;
+    using BeautySalon.Services.Data.Comments;
     using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Products;
@@ -97,6 +98,7 @@
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IQuestionsService, QuestionsService>();
             services.AddTransient<IArticlesService, ArticlesService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
             services.AddAntiforgery(options =>
             {

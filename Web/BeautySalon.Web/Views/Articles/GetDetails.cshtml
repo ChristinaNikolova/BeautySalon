@@ -66,23 +66,9 @@
 
             <div class="col-lg-4 sidebar ftco-animate">
                 <div class="sidebar-box ftco-animate">
-                    <div class="categories">
-                        <h3 class="heading-2">Categories</h3>
-                        <ul>
-                            <li><a href="#">Workout <span>(12)</span></a></li>
-                            <li><a href="#">Gym <span>(22)</span></a></li>
-                            <li><a href="#">Crossfit <span>(37)</span></a></li>
-                            <li><a href="#">Body Fit <span>(42)</span></a></li>
-                            <li><a href="#">Fitness <span>(14)</span></a></li>
-                            <li><a href="#">Yoga <span>(140)</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="sidebar-box ftco-animate">
                     <h3 class="heading-2">Recent Blog</h3>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url(/images/image_1.jpg);"></a>
                         <div class="text">
                             <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                             <div class="meta">
@@ -93,7 +79,7 @@
                         </div>
                     </div>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url(/images/image_2.jpg);"></a>
                         <div class="text">
                             <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                             <div class="meta">
@@ -104,7 +90,7 @@
                         </div>
                     </div>
                     <div class="block-21 mb-4 d-flex">
-                        <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
+                        <a class="blog-img mr-4" style="background-image: url(/images/image_3.jpg);"></a>
                         <div class="text">
                             <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
                             <div class="meta">
@@ -146,6 +132,59 @@
 
                 $("#likeArticle").html(result);
                 $("#likesCount").html(data.likesCount);
+            }
+        });
+    }
+
+    let button = document.getElementById("comment-button")
+    button.addEventListener("click", showCommentForm);
+
+    function showCommentForm() {
+        let commentForm = document.getElementById("comment-form");
+
+        if (commentForm.style.display == "block") {
+            commentForm.style.display = "none";
+        } else {
+            commentForm.style.display = "block";
+        }
+    }
+
+    let postComment = document.getElementById("post-comment");
+    postComment.addEventListener("click", comment);
+
+    function comment(event) {
+        console.log(event);
+        event.preventDefault();
+        let content = document.getElementById("content").value;
+        let articleId = document.getElementById("articleId").innerText;
+
+        var token = $("#form input[name=__RequestVerificationToken]").val();
+
+        $.ajax({
+            url: "/Comments/Create/",
+            type: "POST",
+            data: JSON.stringify({ articleId, content }),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                let errorMessage = document.getElementById("content-error");
+
+                if (data.comments === null) {
+                    errorMessage.style.display = "block";
+                    return;
+                }
+
+                let result = '<ul class="comment-list">';
+
+                data.comments.forEach(comment => {
+                    result += '<li class="comment">' + '<div class="vcard bio">' + `<img src="${comment.applicationUserPicture}" alt="user-picture">` + '</div>' + '<div class="comment-body">' + `<h3>${comment.applicationUserUsername}</h3>` + `<div class="meta">${comment.formattedDate}</div>` + `<p class="small">${comment.content}</p>` + '</div>' + '</li>';
+                })
+
+                result += '</ul>'
+
+                $('#result-new-commend').html(result);
+                window.location.reload();
             }
         });
     }

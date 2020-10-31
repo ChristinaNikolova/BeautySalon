@@ -7,16 +7,26 @@
 
 <a id="comment-button" class="btn btn-primary p-2 px-3 py-3 ml-md-2"><i class="fa fa-plus"></i> Comment</a>
 
+<script src="~/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "image paste table link code media"
+        ]
+    });
+</script>
+
 <div class="pt-5 mt-5 comment-form-container">
     <div id="comment-form" class="comment-form-wrap pt-5 hidden">
         <h3 class="mb-5">Leave a comment</h3>
-        <form action="#" class="bg-light p-4">
+        <form id="form" method="post" class="bg-light p-4">
             <div class="form-group">
-                <label for="message">Message</label>
-                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                <label for="content">Content</label>
+                <textarea name="content" id="content" cols="30" rows="40" class="form-control"></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                <input id="post-comment" value="Post Comment" class="btn py-3 px-4 btn-primary">
             </div>
         </form>
     </div>
@@ -58,5 +68,26 @@
         } else {
             commentForm.style.display = "block";
         }
+    }
+
+    let postComment = document.getElementById("post-comment");
+    postComment.addEventListener("click", comment);
+
+    function comment() {
+        let content = document.getElementById("content").value;
+
+        var token = $("#form input[name=__RequestVerificationToken]").val();
+
+        $.ajax({
+            url: "/Comment/Create/",
+            type: "POST",
+            data: JSON.stringify({ content }),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                //$('#showByCategories').html(result);
+            }
+        });
     }
 </script>

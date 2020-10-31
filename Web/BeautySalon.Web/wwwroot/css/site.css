@@ -142,9 +142,9 @@ div .small {
     margin-bottom: 15px;
 }
 
-#showQuestionForm {
+.question-form {
     margin-top: 15px;
-    margin-left: 393px;
+    margin-left: 300px;
 }
 
 .article-category {
@@ -188,3 +188,4 @@ div .small {
 #content-error {
     color: red;
 }
+

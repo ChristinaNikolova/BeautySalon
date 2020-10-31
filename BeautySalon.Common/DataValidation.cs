@@ -78,8 +78,10 @@
         public const int ProductReviewContentMaxLenght = 1000;
 
         // Question
+        public const int QuestionTitleMinLenght = 3;
         public const int QuestionTitleMaxLenght = 50;
 
+        public const int QuestionContentMinLenght = 5;
         public const int QuestionContentMaxLenght = 1000;
 
         // SkinProblem

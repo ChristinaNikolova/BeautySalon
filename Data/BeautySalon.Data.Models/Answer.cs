@@ -27,6 +27,11 @@
         public virtual ApplicationUser Stylist { get; set; }
 
         [Required]
+        public string ClientId { get; set; }
+
+        public virtual ApplicationUser Client { get; set; }
+
+        [Required]
         public string QuestionId { get; set; }
 
         public virtual Question Question { get; set; }

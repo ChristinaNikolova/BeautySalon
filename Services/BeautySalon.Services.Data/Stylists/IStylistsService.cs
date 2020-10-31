@@ -20,5 +20,7 @@
         Task<T> GetStylistDetailsAsync<T>(string id);
 
         Task<IEnumerable<T>> SearchByAsync<T>(string categoryId, string criteria);
+
+        Task<T> GetStylistNamesAsync<T>(string id);
     }
 }

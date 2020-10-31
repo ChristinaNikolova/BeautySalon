@@ -12,8 +12,8 @@
 
         Task DeleteAsync(string id);
 
-        public Task<JobType> GetByIdAsync(string id);
+        Task<JobType> GetByIdAsync(string id);
 
-        public Task<JobType> GetByNameAsync(string name);
+        Task<JobType> GetByNameAsync(string name);
     }
 }

@@ -1,5 +1,7 @@
 ﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
+@using Microsoft.Extensions.Options
 @model DetailsArticleViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -106,86 +108,99 @@
     </div>
 </section>
 
-<script>
-    let likeButton = document.getElementById("likeArticle");
-    likeButton.addEventListener("click", likeArticle);
 
-    function likeArticle() {
-        let articleId = document.getElementById("articleId").innerHTML;
-        var token = $("#likes input[name=__RequestVerificationToken]").val();
+@section Scripts {
+    <script>
+        let likeButton = document.getElementById("likeArticle");
+        likeButton.addEventListener("click", likeArticle);
 
-        $.ajax({
-            url: "/Articles/Like/",
-            type: "POST",
-            data: JSON.stringify(articleId),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            headers: { 'X-CSRF-TOKEN': token },
-            success: function (data) {
-                let result = "";
+        function likeArticle() {
+            let articleId = document.getElementById("articleId").innerHTML;
+            var token = $("#likes input[name=__RequestVerificationToken]").val();
 
-                if (data.isAdded) {
-                    result = '<a><i class="fa fa-heart"></i>';
-                } else {
-                    result = '<a><i class="far fa-heart"></i>';
+            $.ajax({
+                url: "/Articles/Like/",
+                type: "POST",
+                data: JSON.stringify(articleId),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSRF-TOKEN': token },
+                success: function (data) {
+                    let result = "";
+
+                    if (data.isAdded) {
+                        result = '<a><i class="fa fa-heart"></i>';
+                    } else {
+                        result = '<a><i class="far fa-heart"></i>';
+                    }
+
+                    $("#likeArticle").html(result);
+                    $("#likesCount").html(data.likesCount);
                 }
-
-                $("#likeArticle").html(result);
-                $("#likesCount").html(data.likesCount);
-            }
-        });
-    }
-
-    let button = document.getElementById("comment-button")
-    button.addEventListener("click", showCommentForm);
-
-    function showCommentForm() {
-        let commentForm = document.getElementById("comment-form");
-
-        if (commentForm.style.display == "block") {
-            commentForm.style.display = "none";
-        } else {
-            commentForm.style.display = "block";
+            });
         }
-    }
+    </script>
+    <script>
+        let postComment = document.getElementById("post-comment");
+        postComment.addEventListener("click", comment);
 
-    let postComment = document.getElementById("post-comment");
-    postComment.addEventListener("click", comment);
+        function comment(event) {
+            console.log(event);
+            event.preventDefault();
+            let content = document.getElementById("content").value;
+            let articleId = document.getElementById("articleId").innerText;
 
-    function comment(event) {
-        console.log(event);
-        event.preventDefault();
-        let content = document.getElementById("content").value;
-        let articleId = document.getElementById("articleId").innerText;
+            var token = $("#form input[name=__RequestVerificationToken]").val();
 
-        var token = $("#form input[name=__RequestVerificationToken]").val();
+            $.ajax({
+                url: "/Comments/Create/",
+                type: "POST",
+                data: JSON.stringify({ articleId, content }),
+                contentType: "application/json; charset=utf-8",
+                headers: { 'X-CSRF-TOKEN': token },
+                dataType: "json",
+                success: function (data) {
+                    let errorMessage = document.getElementById("content-error");
 
-        $.ajax({
-            url: "/Comments/Create/",
-            type: "POST",
-            data: JSON.stringify({ articleId, content }),
-            contentType: "application/json; charset=utf-8",
-            headers: { 'X-CSRF-TOKEN': token },
-            dataType: "json",
-            success: function (data) {
-                let errorMessage = document.getElementById("content-error");
+                    if (data.comments === null) {
+                        errorMessage.style.display = "block";
+                        return;
+                    }
 
-                if (data.comments === null) {
-                    errorMessage.style.display = "block";
-                    return;
+                    let result = '<ul class="comment-list">';
+
+                    data.comments.forEach(comment => {
+                        result += '<li class="comment">' + '<div class="vcard bio">' + `<img src="${comment.applicationUserPicture}" alt="user-picture">` + '</div>' + '<div class="comment-body">' + `<h3>${comment.applicationUserUsername}</h3>` + `<div class="meta">${comment.formattedDate}</div>` + `<p class="small">${comment.content}</p>` + '</div>' + '</li>';
+                    })
+
+                    result += '</ul>'
+
+                    $('#result-new-commend').html(result);
+                    window.location.reload();
                 }
+            });
+        }
+    </script>
+    <script>
+        let button = document.getElementById("comment-button")
+        button.addEventListener("click", showCommentForm);
 
-                let result = '<ul class="comment-list">';
+        function showCommentForm() {
+            let commentForm = document.getElementById("comment-form");
 
-                data.comments.forEach(comment => {
-                    result += '<li class="comment">' + '<div class="vcard bio">' + `<img src="${comment.applicationUserPicture}" alt="user-picture">` + '</div>' + '<div class="comment-body">' + `<h3>${comment.applicationUserUsername}</h3>` + `<div class="meta">${comment.formattedDate}</div>` + `<p class="small">${comment.content}</p>` + '</div>' + '</li>';
-                })
-
-                result += '</ul>'
-
-                $('#result-new-commend').html(result);
-                window.location.reload();
+            if (commentForm.style.display == "block") {
+                commentForm.style.display = "none";
+            } else {
+                commentForm.style.display = "block";
             }
+        }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+
+            });
         });
-    }
-</script>
+    </script>
+}

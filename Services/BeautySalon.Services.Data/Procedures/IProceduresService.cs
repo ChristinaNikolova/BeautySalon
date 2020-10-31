@@ -13,7 +13,7 @@
 
         Task DeleteAsync(string id);
 
-        public Task<Procedure> GetByIdAsync(string id);
+        Task<Procedure> GetByIdAsync(string id);
 
         Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId);
 

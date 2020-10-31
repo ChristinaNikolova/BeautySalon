@@ -4,24 +4,7 @@
 <section class="ftco-section ftco-intro custom-margin-identity stylist-section" style="background-image: url(/images/bg_3.jpg);">
     <div class="text-center stylist">
         <h1 class="heading-color stylist-name">@Model.FirstName @Model.LastName</h1>
-        <a id="askQuestion" class="btn btn-primary p-1 px-2 py-2 mr-md-2 log">Ask question</a>
-        <div id="showQuestionForm" class="col-md-8 ftco-animate" style="display:none">
-            <div class="col-md-6 ftco-animate">
-                <form asp-controller="Questions" asp-action="AskQuestion" method="post" class="contact-form">
-                    <div class="row">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Title">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Content"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-                    </div>
-                </form>
-            </div>
-        </div>
+        <a class="btn btn-primary p-1 px-2 py-2 mr-md-2 log" asp-controller="Questions" asp-action="Create" asp-route-id="@Model.Id">Ask question</a>
     </div>
     <div class="row align-items-stretch stylist-info">
         <div class="col-md-5 ftco-animate stylist-pic">
@@ -51,19 +34,3 @@
         </div>
     </div>
 </section>
-
-<script>
-    let button = document.getElementById("askQuestion");
-    button.addEventListener("click", showQuestionForm);
-
-    let form = document.getElementById("showQuestionForm");
-
-    function showQuestionForm() {
-
-        if (form.style.display === "block") {
-            form.style.display = "none";
-        } else {
-            form.style.display = "block";
-        }
-    }
-</script>

@@ -1,12 +1,14 @@
 ﻿namespace BeautySalon.Services.Data.Users
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Cloudinary;
+    using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
 
@@ -74,6 +76,17 @@
             return await this.usersRepository
                             .All()
                             .FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<T> GetUserDataAsync<T>(string userId)
+        {
+            var userData = await this.usersRepository
+                .All()
+                .Where(u => u.Id == userId)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return userData;
         }
     }
 }

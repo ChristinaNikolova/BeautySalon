@@ -43,14 +43,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Stylists" asp-action="GetAll">Stylists</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a></li>
+                        <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Stylists" asp-action="GetAll">Stylists</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item"><a href="blog.html" class="nav-link">Appointments</a></li>
+                            <li class="nav-item"><a asp-controller="Appointments" asp-action="Book" class="nav-link">Appointments</a></li>
                             <li class="nav-item"><a href="blog.html" class="nav-link">Online Shop</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Articles" asp-action="GetAll">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Articles" asp-action="GetAll">Blog</a></li>
                         }
                         <partial name="_LoginPartial" />
                     </ul>

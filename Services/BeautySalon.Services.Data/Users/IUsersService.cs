@@ -14,5 +14,7 @@
         Task<SkinType> GetUserSkinTypeByNameAsync(string skinTypeName);
 
         Task<ApplicationUser> GetUserByIdAsync(string id);
+
+        Task<T> GetUserDataAsync<T>(string userId);
     }
 }

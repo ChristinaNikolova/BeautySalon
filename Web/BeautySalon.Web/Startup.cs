@@ -9,6 +9,7 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Data.Seeding;
     using BeautySalon.Services.Cloudinary;
+    using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Services.Data.Brands;
     using BeautySalon.Services.Data.Categories;
@@ -99,6 +100,7 @@
             services.AddTransient<IQuestionsService, QuestionsService>();
             services.AddTransient<IArticlesService, ArticlesService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IAppointmentsService, AppointmentsService>();
 
             services.AddAntiforgery(options =>
             {

@@ -43,22 +43,24 @@
 <vc:prodecure-products id="@Model.Id"></vc:prodecure-products>
 <vc:procedure-reviews id="@Model.Id"></vc:procedure-reviews>
 
-<script>
-    let problems = [...document.getElementsByClassName("show-more-info")];
+@section Scripts{
+    <script>
+        let problems = [...document.getElementsByClassName("show-more-info")];
 
-    problems.forEach((problem) => {
-        problem.addEventListener("click", showInfo);
-    });
+        problems.forEach((problem) => {
+            problem.addEventListener("click", showInfo);
+        });
 
-    function showInfo(event) {
-        let parent = event.target.parentElement;
-        let infoMessage = parent.children[1];
+        function showInfo(event) {
+            let parent = event.target.parentElement;
+            let infoMessage = parent.children[1];
 
-        if (infoMessage.style.display === "block") {
-            infoMessage.style.display = "none";
+            if (infoMessage.style.display === "block") {
+                infoMessage.style.display = "none";
+            }
+            else {
+                infoMessage.style.display = "block";
+            }
         }
-        else {
-            infoMessage.style.display = "block";
-        }
-    }
-</script>
+    </script>
+}

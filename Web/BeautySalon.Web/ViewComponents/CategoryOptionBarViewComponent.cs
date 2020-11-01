@@ -14,12 +14,13 @@
             this.categoriesService = categoriesService;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(bool hasToAddSecondCriteria)
         {
             var model = new AllCategoriesViewModel()
             {
                 Categories = this.categoriesService
                 .GetAll<CategoryViewModel>(),
+                HasToAddSecondCriteria = hasToAddSecondCriteria,
             };
 
             return this.View(model);

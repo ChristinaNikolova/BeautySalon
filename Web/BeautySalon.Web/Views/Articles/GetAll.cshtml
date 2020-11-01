@@ -7,13 +7,19 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Blog</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></span> <span>Blog</span></p>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span> <span>Blog</span></p>
             </div>
         </div>
     </div>
 </section>
 
 <section class="ftco-section bg-light">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row d-flex">
             @foreach (var article in Model.Articles)

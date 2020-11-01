@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -10,6 +11,8 @@
 
     public class ArticlesController : Controller
     {
+        private const int ArticlesPerPage = 9;
+
         private readonly IArticlesService articlesService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -19,11 +22,25 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page = 1)
         {
+            var articlesCount = await this.articlesService.GetTotalCountArticlesAsync();
+
+            var pageCount = (int)Math.Ceiling((double)articlesCount / ArticlesPerPage);
+
+            if (pageCount == 0)
+            {
+                pageCount = 1;
+            }
+
+            var articles = await this.articlesService
+               .GetAllAsync<ArticleViewModel>(ArticlesPerPage, (page - 1) * ArticlesPerPage);
+
             var model = new AllArticlesViewModel()
             {
-                Articles = await this.articlesService.GetAllAsync<ArticleViewModel>(),
+                Articles = articles,
+                CurrentPage = page,
+                PagesCount = pageCount,
             };
 
             return this.View(model);

@@ -5,7 +5,7 @@
 
     public interface IArticlesService
     {
-        Task<IEnumerable<T>> GetAllAsync<T>();
+        Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip);
 
         Task<T> GetArticleDetailsAsync<T>(string id);
 
@@ -14,5 +14,7 @@
         Task<bool> LikeArticleAsync(string articleId, string userId);
 
         Task<int> GetLikesCountAsync(string articleId);
+
+        Task<int> GetTotalCountArticlesAsync();
     }
 }

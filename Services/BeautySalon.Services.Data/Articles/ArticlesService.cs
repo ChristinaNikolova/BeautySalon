@@ -29,11 +29,14 @@
             return isFavourite;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync<T>()
+        public async Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip)
         {
             var articles = await this.articlesRepository
                 .All()
                 .OrderByDescending(a => a.CreatedOn)
+                .ThenBy(a => a.Title)
+                .Skip(skip)
+                .Take(take)
                 .To<T>()
                 .ToListAsync();
 
@@ -59,6 +62,15 @@
                 .CountAsync();
 
             return count;
+        }
+
+        public async Task<int> GetTotalCountArticlesAsync()
+        {
+            var articlesCount = await this.articlesRepository
+                .All()
+                .CountAsync();
+
+            return articlesCount;
         }
 
         public async Task<bool> LikeArticleAsync(string articleId, string userId)

@@ -102,5 +102,18 @@
 
             return isAdded;
         }
+
+        public async Task<IEnumerable<T>> SearchByAsync<T>(string categoryId)
+        {
+            var categories = await this.articlesRepository
+                .All()
+                .Where(a => a.CategoryId == categoryId)
+                .OrderByDescending(a => a.CreatedOn)
+                .ThenBy(a => a.Title)
+                .To<T>()
+                .ToListAsync();
+
+            return categories;
+        }
     }
 }

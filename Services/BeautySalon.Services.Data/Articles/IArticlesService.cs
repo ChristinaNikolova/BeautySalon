@@ -16,5 +16,7 @@
         Task<int> GetLikesCountAsync(string articleId);
 
         Task<int> GetTotalCountArticlesAsync();
+
+        Task<IEnumerable<T>> SearchByAsync<T>(string categoryId);
     }
 }

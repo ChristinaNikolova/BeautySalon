@@ -6,6 +6,7 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Articles;
+    using BeautySalon.Web.ViewModels.Articles.InputModels;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -59,6 +60,19 @@
             var likesCount = await this.articlesService.GetLikesCountAsync(articleId);
 
             return new LikeArticleViewModel { IsAdded = isAdded, LikesCount = likesCount };
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<AllArticlesViewModel>> SearchBy([FromBody] SearchArticleCriteriaInputModel input)
+        {
+            if (string.IsNullOrWhiteSpace(input.CategoryId))
+            {
+                return this.RedirectToAction("GetAll");
+            }
+
+            var articles = await this.articlesService.SearchByAsync<ArticleViewModel>(input.CategoryId);
+
+            return new AllArticlesViewModel { Articles = articles };
         }
     }
 }

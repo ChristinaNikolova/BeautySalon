@@ -1,5 +1,5 @@
 ﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
-@using BeautySalon.Common 
+@using BeautySalon.Common
 @model AllProceduresByCategoryViewModel;
 
 <section class="ftco-section bg-light">
@@ -22,62 +22,69 @@
     </div>
 </section>
 
-<script>
-    let searchButton = document.getElementById("searchBy");
-    searchButton.addEventListener("click", SearchBy);
+<partial name="_ProceduresPaginationPartial" model="@Model" />
 
-    let clearButton = document.getElementById("clearSearch");
-    clearButton.addEventListener("click", ClearSearch);
+@section Scripts{
+    <script>
+        let searchButton = document.getElementById("searchBy");
+        searchButton.addEventListener("click", SearchBy);
 
-    function ClearSearch() {
-        window.location.reload();
-    }
+        let clearButton = document.getElementById("clearSearch");
+        clearButton.addEventListener("click", ClearSearch);
 
-    function SearchBy(event) {
-        let parentElementSkinType = Array.from(event.target.parentElement.children[0].children);
+        function ClearSearch() {
+            window.location.reload();
+        }
 
-        parentElementSkinType.shift();
-        let skinTypeId = "";
+        function SearchBy(event) {
+            let pagination = document.getElementById("procedure-pagination");
+            pagination.style.display = "none";
 
-        parentElementSkinType.forEach(option => {
+            let parentElementSkinType = Array.from(event.target.parentElement.children[0].children);
 
-            if (option.children[0].checked === true) {
-                skinTypeId = option.children[0].value;
-            }
-        });
+            parentElementSkinType.shift();
+            let skinTypeId = "";
 
-        let parentElementCriteria = Array.from(event.target.parentElement.children[1].children);
+            parentElementSkinType.forEach(option => {
 
-        parentElementCriteria.shift();
-        var criteria = "";
+                if (option.children[0].checked === true) {
+                    skinTypeId = option.children[0].value;
+                }
+            });
 
-        parentElementCriteria.forEach(option => {
-            if (option.children[0].checked === true) {
-                criteria = option.children[0].value;
-            }
-        });
+            let parentElementCriteria = Array.from(event.target.parentElement.children[1].children);
 
-        var categoryName = document.getElementsByClassName("category-name")[0].innerHTML;
+            parentElementCriteria.shift();
+            var criteria = "";
 
-        var token = $(".search-bar input[name=__RequestVerificationToken]").val();
+            parentElementCriteria.forEach(option => {
+                if (option.children[0].checked === true) {
+                    criteria = option.children[0].value;
+                }
+            });
 
-        $.ajax({
-            url: "/Procedures/SearchBy/",
-            type: "POST",
-            data: JSON.stringify({ skinTypeId, criteria, categoryName }),
-            contentType: "application/json; charset=utf-8",
-            headers: { 'X-CSRF-TOKEN': token },
-            dataType: "json",
-            success: function (data) {
-                let result = '<div class="row">';
-                data.procedures.forEach(procedure => {
-                    result += '<div class="col-md-4">' + '<div class="block-7">' + '<div class="text-center">' + `<h3 class="heading-2 my-4 heading-color">${procedure.name}</h3>` + `<span class="price ">€${procedure.price}</span>` + '<ul class="pricing-text mb-5">' + `<li><strong>Category:</strong> ${procedure.categoryName}</li>` + ` <li><strong>Skin Type:</strong> ${procedure.skinTypeToDisplay}</li>` + `<li><strong>Raiting: </strong>${procedure.formattedRaiting}</li>` + '</ul>' + `<a class="btn btn-primary d-block px-2 py-4 custom-hover" href="/Procedures/GetDetails/${procedure.id}"">Details</a>` + '</div>' + '</div>' + '</div>';
-                });
+            var categoryName = document.getElementsByClassName("category-name")[0].innerHTML;
 
-                result += '</div>'
+            var token = $(".search-bar input[name=__RequestVerificationToken]").val();
 
-                $('#showByCategories').html(result);
-            }
-        });
-    }
-</script>
+            $.ajax({
+                url: "/Procedures/SearchBy/",
+                type: "POST",
+                data: JSON.stringify({ skinTypeId, criteria, categoryName }),
+                contentType: "application/json; charset=utf-8",
+                headers: { 'X-CSRF-TOKEN': token },
+                dataType: "json",
+                success: function (data) {
+                    let result = '<div class="row">';
+                    data.procedures.forEach(procedure => {
+                        result += '<div class="col-md-4">' + '<div class="block-7">' + '<div class="text-center">' + `<h3 class="heading-2 my-4 heading-color">${procedure.name}</h3>` + `<span class="price ">€${procedure.formattedPrice}</span>` + '<ul class="pricing-text mb-5">' + `<li><strong>Category:</strong> ${procedure.categoryName}</li>` + ` <li><strong>Skin Type:</strong> ${procedure.skinTypeToDisplay}</li>` + `<li><strong>Raiting: </strong>${procedure.formattedRaiting}</li>` + '</ul>' + `<a class="btn btn-primary d-block px-2 py-4 custom-hover" href="/Procedures/GetDetails/${procedure.id}"">Details</a>` + '</div>' + '</div>' + '</div>';
+                    });
+
+                    result += '</div>'
+
+                    $('#showByCategories').html(result);
+                }
+            });
+        }
+    </script>
+}

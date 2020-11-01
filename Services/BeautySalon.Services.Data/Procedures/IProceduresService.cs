@@ -15,7 +15,7 @@
 
         Task<Procedure> GetByIdAsync(string id);
 
-        Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId);
+        Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId, int take, int skip);
 
         Task<T> GetProcedureDetailsAsync<T>(string id);
 
@@ -24,5 +24,7 @@
         IEnumerable<T> GetProcedureProducts<T>(string id);
 
         Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria);
+
+        Task<int> GetTotalCountProceduresByCategoryAsync(string categoryId);
     }
 }

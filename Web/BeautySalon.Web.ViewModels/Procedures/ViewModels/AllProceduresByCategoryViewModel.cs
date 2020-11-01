@@ -9,5 +9,9 @@
         public string CategoryName { get; set; }
 
         public IEnumerable<ProcedureViewModel> Procedures { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int PagesCount { get; set; }
     }
 }

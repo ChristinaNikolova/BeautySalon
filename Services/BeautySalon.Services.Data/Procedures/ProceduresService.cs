@@ -84,12 +84,14 @@
             await this.proceduresRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId)
+        public async Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId, int take, int skip)
         {
             var procedures = await this.proceduresRepository
                  .All()
                  .Where(p => p.CategoryId == categoryId)
                  .OrderBy(p => p.Price)
+                 .Skip(skip)
+                 .Take(take)
                  .To<T>()
                  .ToListAsync();
 
@@ -171,6 +173,16 @@
             {
                 return await this.FilterAndOrderByRaitingAsync<T>(skinTypeId, skinCategory.Id);
             }
+        }
+
+        public async Task<int> GetTotalCountProceduresByCategoryAsync(string categoryId)
+        {
+            var proceduresCount = await this.proceduresRepository
+                .All()
+                .Where(p => p.CategoryId == categoryId)
+                .CountAsync();
+
+            return proceduresCount;
         }
 
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)

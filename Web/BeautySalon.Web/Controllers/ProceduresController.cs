@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Categories;
@@ -10,6 +11,8 @@
 
     public class ProceduresController : Controller
     {
+        private const int ProceduresPerPage = 12;
+
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;
 
@@ -29,15 +32,24 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> GetProceduresByCategory(string id)
+        public async Task<IActionResult> GetProceduresByCategory(string id, int currentPage = 1)
         {
+            var proceduresCount = await this.proceduresService.GetTotalCountProceduresByCategoryAsync(id);
+
+            var pageCount = (int)Math.Ceiling((double)proceduresCount / ProceduresPerPage);
+
+            var procedures = await this.proceduresService
+                .GetAllByCategoryAsync<ProcedureViewModel>(id, ProceduresPerPage, (currentPage - 1) * ProceduresPerPage);
+
             var caregory = await this.categoriesService.GetByIdAsync(id);
 
             var model = new AllProceduresByCategoryViewModel()
             {
                 CategoryId = id,
                 CategoryName = caregory.Name,
-                Procedures = await this.proceduresService.GetAllByCategoryAsync<ProcedureViewModel>(id),
+                Procedures = procedures,
+                CurrentPage = currentPage,
+                PagesCount = pageCount,
             };
 
             return this.View(model);

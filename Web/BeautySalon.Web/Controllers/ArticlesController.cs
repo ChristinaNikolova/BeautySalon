@@ -22,24 +22,19 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> GetAll(int page = 1)
+        public async Task<IActionResult> GetAll(int currentPage = 1)
         {
             var articlesCount = await this.articlesService.GetTotalCountArticlesAsync();
 
             var pageCount = (int)Math.Ceiling((double)articlesCount / ArticlesPerPage);
 
-            if (pageCount == 0)
-            {
-                pageCount = 1;
-            }
-
             var articles = await this.articlesService
-               .GetAllAsync<ArticleViewModel>(ArticlesPerPage, (page - 1) * ArticlesPerPage);
+               .GetAllAsync<ArticleViewModel>(ArticlesPerPage, (currentPage - 1) * ArticlesPerPage);
 
             var model = new AllArticlesViewModel()
             {
                 Articles = articles,
-                CurrentPage = page,
+                CurrentPage = currentPage,
                 PagesCount = pageCount,
             };
 

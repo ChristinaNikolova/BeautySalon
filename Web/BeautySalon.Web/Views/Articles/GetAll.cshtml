@@ -49,13 +49,40 @@
             <div class="col text-center">
                 <div class="block-27">
                     <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&gt;</a></li>
+                        @if (this.Model.CurrentPage == 1)
+                        {
+                            <li class="disabled">
+                                <a>&lt;</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Articles" asp-action="GetAll"
+                                   asp-route-currentPage="@(this.Model.CurrentPage - 1)">&lt;</a>
+                            </li>
+                        }
+
+
+                        @for (int i = 1; i <= Model.PagesCount; i++)
+                        {
+                            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+                            <li class="@active">
+                                <a asp-controller="Articles" asp-action="GetAll" asp-route-currentPage="@i">@i</a>
+                            </li>
+                        }
+
+                        @if (this.Model.CurrentPage == this.Model.PagesCount)
+                        {
+                            <li class="disabled"><a>&gt;</a></li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Articles" asp-action="GetAll"
+                                   asp-route-currentPage="@(this.Model.CurrentPage + 1)">&gt;</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

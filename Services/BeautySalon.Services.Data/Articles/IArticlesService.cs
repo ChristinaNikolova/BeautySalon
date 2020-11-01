@@ -18,5 +18,7 @@
         Task<int> GetTotalCountArticlesAsync();
 
         Task<IEnumerable<T>> SearchByAsync<T>(string categoryId);
+
+        IEnumerable<T> GetRecentArticles<T>();
     }
 }

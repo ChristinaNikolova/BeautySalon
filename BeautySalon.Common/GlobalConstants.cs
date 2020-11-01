@@ -55,5 +55,7 @@
         public const int ProceduresPerPage = 12;
 
         public const int ArticlesPerPage = 6;
+
+        public const int RecentArticlesCount = 5;
     }
 }

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
@@ -62,6 +63,19 @@
                 .CountAsync();
 
             return count;
+        }
+
+        public IEnumerable<T> GetRecentArticles<T>()
+        {
+            var articles = this.articlesRepository
+                .All()
+                .OrderByDescending(a => a.CreatedOn)
+                .ThenBy(a => a.Title)
+                .Take(GlobalConstants.RecentArticlesCount)
+                .To<T>()
+                .ToList();
+
+            return articles;
         }
 
         public async Task<int> GetTotalCountArticlesAsync()

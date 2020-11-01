@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
@@ -11,8 +12,6 @@
 
     public class ArticlesController : Controller
     {
-        private const int ArticlesPerPage = 6;
-
         private readonly IArticlesService articlesService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -26,10 +25,10 @@
         {
             var articlesCount = await this.articlesService.GetTotalCountArticlesAsync();
 
-            var pageCount = (int)Math.Ceiling((double)articlesCount / ArticlesPerPage);
+            var pageCount = (int)Math.Ceiling((double)articlesCount / GlobalConstants.ArticlesPerPage);
 
             var articles = await this.articlesService
-               .GetAllAsync<ArticleViewModel>(ArticlesPerPage, (currentPage - 1) * ArticlesPerPage);
+               .GetAllAsync<ArticleViewModel>(GlobalConstants.ArticlesPerPage, (currentPage - 1) * GlobalConstants.ArticlesPerPage);
 
             var model = new AllArticlesViewModel()
             {

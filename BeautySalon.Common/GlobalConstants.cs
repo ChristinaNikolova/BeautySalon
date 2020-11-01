@@ -51,5 +51,9 @@
         public const string NameCriteria = "name";
 
         public const string PriceCriteria = "price";
+
+        public const int ProceduresPerPage = 12;
+
+        public const int ArticlesPerPage = 6;
     }
 }

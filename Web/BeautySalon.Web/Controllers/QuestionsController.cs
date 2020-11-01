@@ -46,7 +46,7 @@
 
             await this.questionsService.CreateAsync(input.Title, input.Content, input.StylistId, userId);
 
-            return this.Redirect("/");
+            return this.RedirectToAction("GetDetails", "Stylists", new { id = input.StylistId });
         }
     }
 }

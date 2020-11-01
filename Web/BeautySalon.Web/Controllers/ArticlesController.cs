@@ -11,7 +11,7 @@
 
     public class ArticlesController : Controller
     {
-        private const int ArticlesPerPage = 9;
+        private const int ArticlesPerPage = 6;
 
         private readonly IArticlesService articlesService;
         private readonly UserManager<ApplicationUser> userManager;

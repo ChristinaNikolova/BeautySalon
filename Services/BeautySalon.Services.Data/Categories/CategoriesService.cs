@@ -7,6 +7,7 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class CategoriesService : ICategoriesService
@@ -57,6 +58,20 @@
                 .All()
                 .To<T>()
                 .ToList();
+
+            return categories;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync()
+        {
+            var categories = await this.categoriesRepository
+                .All()
+                .Select(c => new SelectListItem()
+                {
+                    Value = c.Id,
+                    Text = c.Name,
+                })
+                .ToListAsync();
 
             return categories;
         }

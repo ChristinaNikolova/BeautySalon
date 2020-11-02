@@ -1,6 +1,7 @@
 ﻿@using BeautySalon.Web.ViewModels.Appoitments.InputModels;
 @model BookAppointmentInputModel;
 
+
 <section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -37,8 +38,8 @@
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate">
                 <h2 class="mb-4">Book an Appointment</h2>
-                <form asp-controller="Appointments" asp-action="Book" method="post" class="contact-form">
-                    <div class="row">
+                <form id="form" asp-controller="Appointments" asp-action="Book" method="post" class="contact-form">
+                    <div class="row theme-color-gold">
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.FirstName"></label>
                             <input asp-for="@Model.FirstName" readonly type="text" class="form-control" />
@@ -59,37 +60,40 @@
                             <input asp-for="@Model.PhoneNumber" readonly type="text" class="form-control" />
                             <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4 form-group">
-                            <label asp-for="@Model.Category"></label>
-                            <input asp-for="@Model.Category" readonly type="text" class="form-control" />
-                            <span asp-validation-for="@Model.Category" class="text-danger"></span>
+                        <div class="col-md-12 form-group">
+                            <label asp-for="@Model.CategoryName"></label>
+                            <select id="category" asp-for="@Model.CategoryName" class="form-control" asp-items="@Model.Categories">
+                                <option selected>Please select beauty category</option>
+                            </select>
+                            <span asp-validation-for="@Model.CategoryName" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-12 form-group">
                             <label asp-for="@Model.StylistName"></label>
-                            <input asp-for="@Model.StylistName" readonly type="text" class="form-control" />
+                            <select id="stylist" asp-for="@Model.StylistName" type="text" class="form-control">
+                            </select>
                             <span asp-validation-for="@Model.StylistName" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-12 form-group">
                             <label asp-for="@Model.ProcedureName"></label>
-                            <input asp-for="@Model.ProcedureName" readonly type="text" class="form-control" />
+                            <select id="procedure" asp-for="@Model.ProcedureName" type="text" class="form-control"></select>
                             <span asp-validation-for="@Model.ProcedureName" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Date"></label>
-                            <input asp-for="@Model.Date" readonly type="text" class="form-control" />
+                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="@DateTime.UtcNow.ToShortDateString()" />
                             <span asp-validation-for="@Model.Date" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Time"></label>
-                            <input asp-for="@Model.Time" readonly type="text" class="form-control" />
+                            <input asp-for="@Model.Time" type="text" class="form-control" />
                             <span asp-validation-for="@Model.Time" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
                             <label asp-for="Comment"></label>
-                            <textarea asp-for="Comment" cols="30" rows="7" class="form-control" placeholder="Comentt"></textarea>
+                            <textarea asp-for="Comment" cols="30" rows="7" class="form-control"></textarea>
                             <span asp-validation-for="Comment" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="col-mn-12 form-group">
                             <input type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
                         </div>
                     </div>
@@ -99,50 +103,121 @@
     </div>
 </section>
 
-@*<form enctype="multipart/form-data" asp-controller="Appointments" asp-action="Book" method="post" class="text-center col-md-6">
+@*
+    <div class="form-group">
+        <label asp-for="Time"></label><br />
+        <select id="time" asp-for="Time" class="form-control col-md-12">
+            <option value="">Please select Time</option>
+        </select>
+        <span asp-validation-for="Time" class="text-danger"></span>
+    </div>*@
 
-        <div class="form-group">
-            <label asp-for="Category"></label>
-            <select id="Category" asp-for="Category" class="form-control col-md-12" asp-items="@Html.GetEnumSelectList<Category>()"> <option value="">Please select Category</option></select>
-            <span asp-validation-for="Category" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EmployeeName"></label><br />
-            <select id="employee" asp-for="EmployeeName" class="form-control col-md-12">
-                <option value="">Please select Stylist</option>
-            </select>
-            <span asp-validation-for="EmployeeName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="ProcedureName"></label><br />
-            <select id="procedure" asp-for="ProcedureName" class="form-control col-md-12">
-                <option value="">Please select Procedure</option>
-            </select>
-            <span asp-validation-for="ProcedureName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Date"></label>
-            <input id="date" asp-for="Date" class="form-control col-md-12" value='<%= Date()%>' />
-            <span asp-validation-for="Date" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Time"></label><br />
-            <select id="time" asp-for="Time" class="form-control col-md-12">
-                <option value="">Please select Time</option>
-            </select>
-            <span asp-validation-for="Time" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Comment"></label>
-            <textarea asp-for="Comment" class="form-control col-md-12"></textarea>
-            <span asp-validation-for="Comment" class="text-danger"></span>
-        </div>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            startDate: new Date(),
+            endDate: "+4m",
+        });
+    });
 
-        <button type="submit" class="btn btn-outline-success" value="Upload" onclick="return ConformCreate();">Book an appointment</button>
-    </form>*@
+    var categoryInput = document.getElementById("category");
+    categoryInput.addEventListener("change", loadStylists);
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    function loadStylists(event) {
+        let categoryId = "";
+
+        Array.from(event.target.children).forEach(child => {
+            if (child.selected === true) {
+                categoryId = child.value;
+            }
+        });
+
+        var token = $("#form input[name=__RequestVerificationToken]").val();
+
+        $.ajax({
+            url: "/Stylists/GetStylistsByCategory/",
+            type: "POST",
+            data: JSON.stringify(categoryId),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                let result = '<option selected>Please select stylist</option>';
+
+                data.stylistNames.forEach(stylyst => {
+                    result += `<option value="${stylyst.id}">${stylyst.fullName}</option>`
+                });
+
+                $('#stylist').html(result);
+            }
+        });
+    }
+
+    var stylistInput = document.getElementById("stylist");
+    stylistInput.addEventListener("change", loadProcedures);
+
+    function loadProcedures(event) {
+        let stylistId = "";
+
+        Array.from(event.target.children).forEach(child => {
+            if (child.selected === true) {
+                stylistId = child.value;
+            }
+        });
+
+        var token = $("#form input[name=__RequestVerificationToken]").val();
+
+        $.ajax({
+            url: "/Procedures/GetProceduresByStylist/",
+            type: "POST",
+            data: JSON.stringify(stylistId),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                let result = '<option selected>Please select procedure</option>';
+
+                data.procedureNames.forEach(procedure => {
+                    result += `<option value="${procedure.procedureId}">${procedure.procedureName}</option>`
+                });
+
+                $('#procedure').html(result);
+            }
+        });
+    }
+
+    //var dateInput = document.getElementById("datepicker");
+    //dateInput.addEventListener("change", test);
+
+    //function test() {
+    //    console.log("in")
+    //}
+
+    //$('#datepicker').on('changeDate', function (event) {
+    //    console.log(dateInput.value)
+    //});
+
+</script>
+@*@section Scripts
+        {
+        <script>
+
+            $("#date").change(function () {
+                var employee = $("#employee").val();
+                var date = $("#date").val();
+                var url = "/Appointments/GetTimes";
+                $.getJSON(url, { Date: date, Employee: employee }, function (data) {
+                    var item = "";
+                    item += '<option value="' + "Please select stylist" + '">' + "Please select time" + '</option>'
+                    $("#time").empty();
+                    $.each(data, function (i, time) {
+                        item += '<option value="' + time + '">' + time + '</option>'
+                    });
+                    $("#time").html(item);
+                    if ($("#time").val() === null) {
+                        alert("On Sunday we are closed! Please Pick another day");
+                    }
+                });
+            });
+        </script>
+    }*@

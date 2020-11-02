@@ -20,6 +20,7 @@
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;
+        private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
 
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
@@ -28,12 +29,14 @@
             IRepository<Procedure> proceduresRepository,
             IRepository<ProcedureReview> procedureReviewsRepository,
             IRepository<ProcedureProduct> procedureProductsRepository,
+            IRepository<ProcedureStylist> procedureStylistsRepository,
             ICategoriesService categoriesService,
             ISkinTypesService skinTypesService)
         {
             this.proceduresRepository = proceduresRepository;
             this.procedureReviewsRepository = procedureReviewsRepository;
             this.procedureProductsRepository = procedureProductsRepository;
+            this.procedureStylistsRepository = procedureStylistsRepository;
             this.categoriesService = categoriesService;
             this.skinTypesService = skinTypesService;
         }
@@ -183,6 +186,18 @@
                 .CountAsync();
 
             return proceduresCount;
+        }
+
+        public async Task<IEnumerable<T>> GetProceduresByStylistAsync<T>(string stylistId)
+        {
+            var procedureNames = await this.procedureStylistsRepository
+                .All()
+                .Where(ps => ps.StylistId == stylistId)
+                .OrderBy(ps => ps.Procedure.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedureNames;
         }
 
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)

@@ -157,6 +157,19 @@
             return stylist;
         }
 
+        public async Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId)
+        {
+            var stylistNames = await this.stylistsRepository
+                .All()
+                .Where(s => s.CategoryId == categoryId)
+                .OrderBy(s => s.FirstName)
+                .ThenBy(s => s.LastName)
+                .To<T>()
+                .ToListAsync();
+
+            return stylistNames;
+        }
+
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)
         {
             return

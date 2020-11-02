@@ -26,5 +26,7 @@
         Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria);
 
         Task<int> GetTotalCountProceduresByCategoryAsync(string categoryId);
+
+        Task<IEnumerable<T>> GetProceduresByStylistAsync<T>(string stylistId);
     }
 }

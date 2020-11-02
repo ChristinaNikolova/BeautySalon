@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public interface ICategoriesService
     {
@@ -20,5 +21,7 @@
         Task<IEnumerable<T>> GetAllAsync<T>();
 
         IEnumerable<T> GetAll<T>();
+
+        Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync();
     }
 }

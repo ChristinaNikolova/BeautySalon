@@ -1,11 +1,13 @@
 ﻿namespace BeautySalon.Web.ViewModels.Appoitments.InputModels
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class BookAppointmentInputModel : IMapFrom<ApplicationUser>
     {
@@ -37,7 +39,9 @@
         public string ProcedureName { get; set; }
 
         [Required]
-        public Category Category { get; set; }
+        public string CategoryName { get; set; }
+
+        public IEnumerable<SelectListItem> Categories { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

@@ -45,5 +45,13 @@
 
             return new AllStylistsViewModel { Stylists = stylists };
         }
+
+        [HttpPost]
+        public async Task<ActionResult<AllStylistNamesViewModel>> GetStylistsByCategory([FromBody] string categoryId)
+        {
+            var stylistNames = await this.stylistsService.GetStylistsByCategoryAsync<StylistNamesViewModel>(categoryId);
+
+            return new AllStylistNamesViewModel { StylistNames = stylistNames };
+        }
     }
 }

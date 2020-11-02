@@ -75,5 +75,13 @@
 
             return new SearchProcedureCriteriaViewModelModel { CategoryId = category.Id, Procedures = procedures };
         }
+
+        [HttpPost]
+        public async Task<ActionResult<AllProcedureNamesViewModel>> GetProceduresByStylist([FromBody] string stylistId)
+        {
+            var procedureNames = await this.proceduresService.GetProceduresByStylistAsync<ProcedureNameViewModel>(stylistId);
+
+            return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };
+        }
     }
 }

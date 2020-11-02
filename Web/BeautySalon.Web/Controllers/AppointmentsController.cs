@@ -1,11 +1,14 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Users;
+    using BeautySalon.Web.ViewModels.Appointments.InputModels;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using BeautySalon.Web.ViewModels.Appoitments.InputModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -35,6 +38,14 @@
             model.Categories = categories;
 
             return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<FreeTimesViewModel>> GetFreeTimes([FromBody] WantedAppointmentInputModel input)
+        {
+            var freeTimes = await this.appointmentsService.GetFreeTimesAsync(input.SelectedDate, input.SelectedStylistId);
+
+            return new FreeTimesViewModel { FreeTimes = freeTimes };
         }
     }
 }

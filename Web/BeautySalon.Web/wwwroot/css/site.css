@@ -189,3 +189,12 @@ div .small {
     color: red;
 }
 
+.datepicker table tr td.active {
+    background-color: #d9bf77 !important;
+    background-image: none;
+}
+
+.datepicker table tr td.active:hover {
+    background-color: #d9bf77 !important;
+    background-image: none;
+}

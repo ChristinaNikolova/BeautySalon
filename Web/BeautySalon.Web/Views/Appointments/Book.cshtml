@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Date"></label>
-                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="@DateTime.UtcNow.ToShortDateString()" />
+                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="" />
                             <span asp-validation-for="@Model.Date" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
@@ -117,10 +117,13 @@
         $("#datepicker").datepicker({
             startDate: new Date(),
             endDate: "+4m",
+            weekStart: 1,
+            daysOfWeekDisabled: "0",
+            defaultDate: "",
         });
     });
 
-    var categoryInput = document.getElementById("category");
+    let categoryInput = document.getElementById("category");
     categoryInput.addEventListener("change", loadStylists);
 
     function loadStylists(event) {
@@ -153,7 +156,7 @@
         });
     }
 
-    var stylistInput = document.getElementById("stylist");
+    let stylistInput = document.getElementById("stylist");
     stylistInput.addEventListener("change", loadProcedures);
 
     function loadProcedures(event) {
@@ -186,16 +189,34 @@
         });
     }
 
-    //var dateInput = document.getElementById("datepicker");
-    //dateInput.addEventListener("change", test);
+    let dateInput = document.getElementById("datepicker");
 
-    //function test() {
-    //    console.log("in")
-    //}
+    $('#datepicker').on('changeDate', function () {
+        let selectedDate = dateInput.value;
+        let selectedStylistId = document.getElementById("stylist").value;
+        console.log(selectedDate);
 
-    //$('#datepicker').on('changeDate', function (event) {
-    //    console.log(dateInput.value)
-    //});
+        var token = $("#form input[name=__RequestVerificationToken]").val();
+        debugger;
+        $.ajax({
+            url: "/Appointments/GetFreeTimes/",
+            type: "POST",
+            data: JSON.stringify({ selectedDate, selectedStylistId }),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                //let result = '<option selected>Please select procedure</option>';
+
+                //data.procedureNames.forEach(procedure => {
+                //    result += `<option value="${procedure.procedureId}">${procedure.procedureName}</option>`
+                //});
+
+                //$('#procedure').html(result);
+            }
+        });
+    });
 
 </script>
 @*@section Scripts

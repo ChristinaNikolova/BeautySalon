@@ -32,14 +32,15 @@
 
         [Required]
         [Display(Name = "Stylist")]
-        public string StylistName { get; set; }
+        public string StylistId { get; set; }
 
         [Required]
         [Display(Name = "Procedure")]
-        public string ProcedureName { get; set; }
+        public string ProcedureId { get; set; }
 
         [Required]
-        public string CategoryName { get; set; }
+        [Display(Name = "Category")]
+        public string CategoryId { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }
 

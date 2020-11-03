@@ -4,6 +4,6 @@
 
     public class FreeTimesViewModel
     {
-        public IEnumerable<string> FreeTimes { get; set; }
+        public IEnumerable<string> FreeHours { get; set; }
     }
 }

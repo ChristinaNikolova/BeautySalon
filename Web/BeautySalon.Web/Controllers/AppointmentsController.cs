@@ -41,11 +41,27 @@
         }
 
         [HttpPost]
+        public async Task<IActionResult> Book(BookAppointmentInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            var userId = this.userManager.GetUserId(this.User);
+
+            await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
+
+            // TODO Redirect to AllAppointmnets
+            return this.Redirect("/");
+        }
+
+        [HttpPost]
         public async Task<ActionResult<FreeTimesViewModel>> GetFreeTimes([FromBody] WantedAppointmentInputModel input)
         {
-            var freeTimes = await this.appointmentsService.GetFreeTimesAsync(input.SelectedDate, input.SelectedStylistId);
+            var freeHours = await this.appointmentsService.GetFreeHoursAsync(input.SelectedDate, input.SelectedStylistId);
 
-            return new FreeTimesViewModel { FreeTimes = freeTimes };
+            return new FreeTimesViewModel { FreeHours = freeHours };
         }
     }
 }

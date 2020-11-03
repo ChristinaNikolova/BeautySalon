@@ -8,6 +8,7 @@
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Data.Models.Enums;
     using Microsoft.EntityFrameworkCore;
 
     public class AppointmentsService : IAppointmentsService
@@ -19,17 +20,35 @@
             this.appointmentsRepository = appointmentsRepository;
         }
 
-        public async Task<IEnumerable<string>> GetFreeTimesAsync(string selectedDate, string selectedStylistId)
+        public async Task CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment)
+        {
+            var appointment = new Appointment()
+            {
+                ClientId = userId,
+                StylistId = stylistId,
+                ProcedureId = procedureId,
+                DateTime = date,
+                StartTime = time,
+                Comment = comment,
+                Status = Status.Processing,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            await this.appointmentsRepository.AddAsync(appointment);
+            await this.appointmentsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId)
         {
             var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
-            var takenApp = await this.appointmentsRepository
+            var takenHours = await this.appointmentsRepository
                 .All()
                 .Where(a => a.DateTime == selectedDateAsDateTime && a.StylistId == selectedStylistId)
                 .Select(a => a.StartTime)
                 .ToListAsync();
 
-            var allApp = new string[]
+            var allHours = new string[]
             {
                 "9:00",
                 "10:00",
@@ -43,11 +62,11 @@
                 "18:00",
             };
 
-            var freeApp = allApp
-                .Where(a => !takenApp.Contains(a))
+            var freeHours = allHours
+                .Where(a => !takenHours.Contains(a))
                 .ToList();
 
-            return freeApp;
+            return freeHours;
         }
     }
 }

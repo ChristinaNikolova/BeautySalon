@@ -61,31 +61,32 @@
                             <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label asp-for="@Model.CategoryName"></label>
-                            <select id="category" asp-for="@Model.CategoryName" class="form-control" asp-items="@Model.Categories">
+                            <label asp-for="@Model.CategoryId"></label>
+                            <select id="category" asp-for="@Model.CategoryId" class="form-control" asp-items="@Model.Categories">
                                 <option selected>Please select beauty category</option>
                             </select>
-                            <span asp-validation-for="@Model.CategoryName" class="text-danger"></span>
+                            <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label asp-for="@Model.StylistName"></label>
-                            <select id="stylist" asp-for="@Model.StylistName" type="text" class="form-control">
+                            <label asp-for="@Model.StylistId"></label>
+                            <select id="stylist" asp-for="@Model.StylistId" type="text" class="form-control">
                             </select>
-                            <span asp-validation-for="@Model.StylistName" class="text-danger"></span>
+                            <span asp-validation-for="@Model.StylistId" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label asp-for="@Model.ProcedureName"></label>
-                            <select id="procedure" asp-for="@Model.ProcedureName" type="text" class="form-control"></select>
-                            <span asp-validation-for="@Model.ProcedureName" class="text-danger"></span>
+                            <label asp-for="@Model.ProcedureId"></label>
+                            <select id="procedure" asp-for="@Model.ProcedureId" type="text" class="form-control"></select>
+                            <span asp-validation-for="@Model.ProcedureId" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Date"></label>
-                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="" />
+                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="Please select date" />
                             <span asp-validation-for="@Model.Date" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Time"></label>
-                            <input asp-for="@Model.Time" type="text" class="form-control" />
+                            <select id="time" asp-for="@Model.Time" class="form-control">
+                            </select>
                             <span asp-validation-for="@Model.Time" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
@@ -103,15 +104,6 @@
     </div>
 </section>
 
-@*
-    <div class="form-group">
-        <label asp-for="Time"></label><br />
-        <select id="time" asp-for="Time" class="form-control col-md-12">
-            <option value="">Please select Time</option>
-        </select>
-        <span asp-validation-for="Time" class="text-danger"></span>
-    </div>*@
-
 <script>
     $(function () {
         $("#datepicker").datepicker({
@@ -120,6 +112,7 @@
             weekStart: 1,
             daysOfWeekDisabled: "0",
             defaultDate: "",
+            autoclose: true
         });
     });
 
@@ -127,8 +120,8 @@
     categoryInput.addEventListener("change", loadStylists);
 
     function loadStylists(event) {
-        let categoryId = "";
 
+        let categoryId = "";
         Array.from(event.target.children).forEach(child => {
             if (child.selected === true) {
                 categoryId = child.value;
@@ -194,10 +187,9 @@
     $('#datepicker').on('changeDate', function () {
         let selectedDate = dateInput.value;
         let selectedStylistId = document.getElementById("stylist").value;
-        console.log(selectedDate);
 
         var token = $("#form input[name=__RequestVerificationToken]").val();
-        debugger;
+
         $.ajax({
             url: "/Appointments/GetFreeTimes/",
             type: "POST",
@@ -206,39 +198,14 @@
             headers: { 'X-CSRF-TOKEN': token },
             dataType: "json",
             success: function (data) {
-                console.log(data);
-                //let result = '<option selected>Please select procedure</option>';
+                let result = '<option value = "" > Please select Time</option>';
 
-                //data.procedureNames.forEach(procedure => {
-                //    result += `<option value="${procedure.procedureId}">${procedure.procedureName}</option>`
-                //});
+                data.freeHours.forEach(hour => {
+                    result += `<option value="${hour}">${hour}</option>`
+                })
 
-                //$('#procedure').html(result);
+                $('#time').html(result);
             }
         });
     });
-
 </script>
-@*@section Scripts
-        {
-        <script>
-
-            $("#date").change(function () {
-                var employee = $("#employee").val();
-                var date = $("#date").val();
-                var url = "/Appointments/GetTimes";
-                $.getJSON(url, { Date: date, Employee: employee }, function (data) {
-                    var item = "";
-                    item += '<option value="' + "Please select stylist" + '">' + "Please select time" + '</option>'
-                    $("#time").empty();
-                    $.each(data, function (i, time) {
-                        item += '<option value="' + time + '">' + time + '</option>'
-                    });
-                    $("#time").html(item);
-                    if ($("#time").val() === null) {
-                        alert("On Sunday we are closed! Please Pick another day");
-                    }
-                });
-            });
-        </script>
-    }*@

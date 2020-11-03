@@ -194,7 +194,11 @@ div .small {
     background-image: none;
 }
 
-.datepicker table tr td.active:hover {
+    .datepicker table tr td.active:hover {
+        background-color: #d9bf77 !important;
+        background-image: none;
+    }
+
+select > option:hover {
     background-color: #d9bf77 !important;
-    background-image: none;
 }

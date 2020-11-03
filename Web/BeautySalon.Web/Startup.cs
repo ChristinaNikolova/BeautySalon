@@ -19,6 +19,7 @@
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Products;
     using BeautySalon.Services.Data.Questions;
+    using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Data.Settings;
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
@@ -101,6 +102,7 @@
             services.AddTransient<IArticlesService, ArticlesService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IAppointmentsService, AppointmentsService>();
+            services.AddTransient<IQuizService, QuizService>();
 
             services.AddAntiforgery(options =>
             {

@@ -202,3 +202,11 @@ div .small {
 select > option:hover {
     background-color: #d9bf77 !important;
 }
+
+#clear-appointment-search {
+    color: gray;
+}
+
+.start-button-quiz {
+    text-align: center;
+}

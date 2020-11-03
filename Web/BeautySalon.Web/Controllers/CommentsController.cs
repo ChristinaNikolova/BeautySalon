@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CommentsController : Controller
+    public class CommentsController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICommentsService commentsService;

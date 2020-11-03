@@ -1,7 +1,6 @@
 ﻿@using BeautySalon.Web.ViewModels.Appoitments.InputModels;
 @model BookAppointmentInputModel;
 
-
 <section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -90,13 +89,13 @@
                             <span asp-validation-for="@Model.Time" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
-                            <label asp-for="Comment"></label>
-                            <textarea asp-for="Comment" cols="30" rows="7" class="form-control"></textarea>
-                            <span asp-validation-for="Comment" class="text-danger"></span>
+                            <label asp-for="@Model.Comment"></label>
+                            <textarea asp-for="@Model.Comment" cols="20" rows="5" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.Comment" class="text-danger"></span>
                         </div>
                         <div class="col-mn-6 form-group">
                             <input type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
-                            <input id="clear" value="Clear" class="btn btn-primary py-3 px-5">
+                            <input id="clear-appointment-search" value="Clear" class="btn btn-outline-primary py-3 px-5">
                         </div>
                     </div>
                 </form>
@@ -117,7 +116,7 @@
         });
     });
 
-    let clearButton = document.getElementById("clear");
+    let clearButton = document.getElementById("clear-appointment-search");
     clearButton.addEventListener("click", clear);
 
     function clear() {

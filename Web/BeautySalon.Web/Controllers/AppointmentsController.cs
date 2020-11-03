@@ -13,7 +13,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class AppointmentsController : Controller
+    public class AppointmentsController : BaseController
     {
         private readonly IAppointmentsService appointmentsService;
         private readonly IUsersService usersService;
@@ -45,6 +45,10 @@
         {
             if (!this.ModelState.IsValid)
             {
+                var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+                input.Categories = categories;
+
+                // TODO Fix bug with selectedCategory
                 return this.View(input);
             }
 

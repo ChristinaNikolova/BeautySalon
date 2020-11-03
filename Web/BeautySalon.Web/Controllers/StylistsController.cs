@@ -7,7 +7,7 @@
     using BeautySalon.Web.ViewModels.Stylists.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
-    public class StylistsController : Controller
+    public class StylistsController : BaseController
     {
         private readonly IStylistsService stylistsService;
 

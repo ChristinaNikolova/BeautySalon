@@ -11,7 +11,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ArticlesController : Controller
+    public class ArticlesController : BaseController
     {
         private readonly IArticlesService articlesService;
         private readonly UserManager<ApplicationUser> userManager;

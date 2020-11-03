@@ -51,8 +51,8 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a asp-controller="Appointments" asp-action="Book" class="nav-link">Appointments</a></li>
-                            <li class="nav-item"><a href="blog.html" class="nav-link">Online Shop</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-controller="Articles" asp-action="GetAll">Blog</a></li>
+                            <li class="nav-item"><a asp-controller="Quiz" asp-action="LoadQuiz" class="nav-link">Make Quiz</a></li>
+                            <li class="nav-item"><a asp-controller="Articles" asp-action="GetAll" class="nav-link">Blog</a></li>
                         }
                         <partial name="_LoginPartial" />
                     </ul>
@@ -145,7 +145,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
     <script src="~/lib/qrcode/qrcode.js"></script>
-    
+
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="~/js/jquery.easing.1.3.js"></script>

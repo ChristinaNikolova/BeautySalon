@@ -10,7 +10,7 @@
     using BeautySalon.Web.ViewModels.Procedures.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
-    public class ProceduresController : Controller
+    public class ProceduresController : BaseController
     {
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;

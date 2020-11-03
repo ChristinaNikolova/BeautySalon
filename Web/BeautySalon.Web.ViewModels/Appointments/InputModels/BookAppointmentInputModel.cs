@@ -49,9 +49,10 @@
         public DateTime Date { get; set; }
 
         [Required]
+        [Display(Name = "Start hour")]
         public string Time { get; set; }
 
-        [MaxLength(DataValidation.AppointmentMaxLenght, ErrorMessage = "The {0} must be at max {1} characters long.")]
+        [MaxLength(DataValidation.AppointmentMaxLenght, ErrorMessage = ErrorMessages.InputModelMaxLength)]
         public string Comment { get; set; }
     }
 }

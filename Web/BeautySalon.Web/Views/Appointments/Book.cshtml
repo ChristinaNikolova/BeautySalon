@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label asp-for="@Model.Date"></label>
-                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="Please select date" />
+                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="" />
                             <span asp-validation-for="@Model.Date" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 form-group">
@@ -94,8 +94,9 @@
                             <textarea asp-for="Comment" cols="30" rows="7" class="form-control"></textarea>
                             <span asp-validation-for="Comment" class="text-danger"></span>
                         </div>
-                        <div class="col-mn-12 form-group">
+                        <div class="col-mn-6 form-group">
                             <input type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
+                            <input id="clear" value="Clear" class="btn btn-primary py-3 px-5">
                         </div>
                     </div>
                 </form>
@@ -116,10 +117,23 @@
         });
     });
 
+    let clearButton = document.getElementById("clear");
+    clearButton.addEventListener("click", clear);
+
+    function clear() {
+        window.location.reload();
+    }
+
+    function clearDateAndTime() {
+        document.getElementById("datepicker").value = "";
+        document.getElementById("time").innerHTML = "";
+    }
+
     let categoryInput = document.getElementById("category");
     categoryInput.addEventListener("change", loadStylists);
 
     function loadStylists(event) {
+        clearDateAndTime();
 
         let categoryId = "";
         Array.from(event.target.children).forEach(child => {
@@ -153,6 +167,8 @@
     stylistInput.addEventListener("change", loadProcedures);
 
     function loadProcedures(event) {
+        clearDateAndTime();
+
         let stylistId = "";
 
         Array.from(event.target.children).forEach(child => {

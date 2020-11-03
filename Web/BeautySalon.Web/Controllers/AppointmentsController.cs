@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;

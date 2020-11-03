@@ -14,12 +14,13 @@
             this.skinTypesService = skinTypesService;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(bool hasToAddSecondCriteria)
         {
             var model = new AllSkinTypesViewModel()
             {
                 SkinTypes = this.skinTypesService
                 .GetAll<SkinTypeViewModel>(),
+                HasToAddSecondCriteria = hasToAddSecondCriteria,
             };
 
             return this.View(model);

@@ -12,18 +12,22 @@
             </div>
         }
     </div>
-    <div class="search-bar-options-criteria">
-        <span class="small theme-color-gold search-bar">Order by: </span>
 
-        <div class="form-check form-check-inline small">
-            <input class="form-check-input criteria" type="radio" name="criteria" id="price" value="Price">
-            <label class="form-check-label criteria" for="criteria">Price</label>
+    @if (Model.HasToAddSecondCriteria == true)
+    {
+        <div class="search-bar-options-criteria">
+            <span class="small theme-color-gold search-bar">Order by: </span>
+
+            <div class="form-check form-check-inline small">
+                <input class="form-check-input criteria" type="radio" name="criteria" id="price" value="Price">
+                <label class="form-check-label criteria" for="criteria">Price</label>
+            </div>
+            <div class="form-check form-check-inline small">
+                <input class="form-check-input criteria" type="radio" name="criteria" id="raiting" value="Raiting">
+                <label class="form-check-label criteria" for="criteria">Raiting</label>
+            </div>
         </div>
-        <div class="form-check form-check-inline small">
-            <input class="form-check-input criteria" type="radio" name="criteria" id="raiting" value="Raiting">
-            <label class="form-check-label criteria" for="criteria">Raiting</label>
-        </div>
-    </div>
+    }
 
     <a id="searchBy" class="btn btn-primary d-inline px-2 py-2">Search</a>
     <a id="clearSearch" class="btn btn-primary d-inline px-2 py-2">Clear</a>

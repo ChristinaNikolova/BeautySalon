@@ -5,5 +5,7 @@
     public class AllSkinTypesViewModel
     {
         public IEnumerable<SkinTypeViewModel> SkinTypes { get; set; }
+
+        public bool HasToAddSecondCriteria { get; set; }
     }
 }

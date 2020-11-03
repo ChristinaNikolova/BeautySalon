@@ -6,8 +6,8 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Contact us</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact us</span></p>
+                <h1 class="mb-3 bread">Appointments</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span></p>
             </div>
         </div>
     </div>
@@ -72,6 +72,14 @@
                             </select>
                             <span asp-validation-for="@Model.StylistId" class="text-danger"></span>
                         </div>
+
+                        @*<div id="smart-search-message" style="display:none">
+                                <span class="smart-search">Need help? </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Smart search</a>
+                            </div>
+                            <div id="smart-search-navbar" style="display:none">
+                                <vc:skin-type-option-bar has-to-add-second-criteria="false"></vc:skin-type-option-bar>
+                            </div>*@
+
                         <div class="col-md-12 form-group">
                             <label asp-for="@Model.ProcedureId"></label>
                             <select id="procedure" asp-for="@Model.ProcedureId" type="text" class="form-control"></select>
@@ -90,7 +98,7 @@
                         </div>
                         <div class="col-md-12 form-group">
                             <label asp-for="@Model.Comment"></label>
-                            <textarea asp-for="@Model.Comment" cols="20" rows="5" class="form-control"></textarea>
+                            <textarea asp-for="@Model.Comment" cols="30" rows="10" class="form-control"></textarea>
                             <span asp-validation-for="@Model.Comment" class="text-danger"></span>
                         </div>
                         <div class="col-mn-6 form-group">
@@ -116,23 +124,22 @@
         });
     });
 
-    let clearButton = document.getElementById("clear-appointment-search");
-    clearButton.addEventListener("click", clear);
+    document.getElementById("clear-appointment-search").addEventListener("click", clear);
 
     function clear() {
         window.location.reload();
     }
 
-    function clearDateAndTime() {
+    function clearData() {
+        document.getElementById("procedure").innerHTML = "";
         document.getElementById("datepicker").value = "";
         document.getElementById("time").innerHTML = "";
     }
 
-    let categoryInput = document.getElementById("category");
-    categoryInput.addEventListener("change", loadStylists);
+    document.getElementById("category").addEventListener("change", loadStylists);
 
     function loadStylists(event) {
-        clearDateAndTime();
+        clearData();
 
         let categoryId = "";
         Array.from(event.target.children).forEach(child => {
@@ -140,6 +147,20 @@
                 categoryId = child.value;
             }
         });
+
+        //if (categoryId === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
+        //    document.getElementById("smart-search-message").style.display = "block";
+        //} else {
+        //    document.getElementById("smart-search-message").style.display = "none";
+        //}
+
+        //let smartSearchButton = document.getElementById("smart-search-button");
+        //smartSearchButton.addEventListener("click", showSmartSearchNavBar);
+
+        //function showSmartSearchNavBar() {
+        //    document.getElementById("smart-search-navbar").style.display = "block";
+        //    document.getElementById("smart-search-message").style.display = "none";
+        //}
 
         var token = $("#form input[name=__RequestVerificationToken]").val();
 
@@ -162,11 +183,10 @@
         });
     }
 
-    let stylistInput = document.getElementById("stylist");
-    stylistInput.addEventListener("change", loadProcedures);
+    document.getElementById("stylist").addEventListener("change", loadProcedures);
 
     function loadProcedures(event) {
-        clearDateAndTime();
+        clearData();
 
         let stylistId = "";
 
@@ -197,10 +217,8 @@
         });
     }
 
-    let dateInput = document.getElementById("datepicker");
-
     $('#datepicker').on('changeDate', function () {
-        let selectedDate = dateInput.value;
+        let selectedDate = document.getElementById("datepicker").value;
         let selectedStylistId = document.getElementById("stylist").value;
 
         var token = $("#form input[name=__RequestVerificationToken]").val();

@@ -7,7 +7,6 @@
     using BeautySalon.Web.ViewModels.Quiz.InputModels;
     using BeautySalon.Web.ViewModels.Quiz.ViewModels;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Microsoft.Extensions.ML;
 
     public class QuizController : BaseController
@@ -32,18 +31,18 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoadQuiz([FromBody] string[] answers)
+        public IActionResult LoadQuiz([FromBody] AnswerQuizInputModel input)
         {
-            string result = string.Join(" ", answers);
+            string result = string.Join(" ", input.Answers);
 
-            var input = new SkinTypeModelInput()
+            var inputML = new SkinTypeModelInput()
             {
                 Description = result,
             };
 
-            var output = this.predictionEngine.Predict(input);
+            var outputML = this.predictionEngine.Predict(inputML);
 
-            return this.View(output);
+            return this.View(outputML);
         }
     }
 }

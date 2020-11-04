@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.SkinProblems
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -13,5 +14,7 @@
         Task DeleteAsync(string id);
 
         Task<SkinProblem> GetByIdAsync(string id);
+
+        Task<IEnumerable<T>> GetAllAsync<T>();
     }
 }

@@ -3,10 +3,12 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Quiz;
+    using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Web.ViewModels.MLModels;
     using BeautySalon.Web.ViewModels.Quiz.InputModels;
     using BeautySalon.Web.ViewModels.Quiz.ViewModels;
+    using BeautySalon.Web.ViewModels.SkinProblems.ViewModels;
     using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.ML;
@@ -16,12 +18,14 @@
         private readonly PredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput> predictionEngine;
         private readonly IQuizService quizService;
         private readonly ISkinTypesService skinTypesService;
+        private readonly ISkinProblemsService skinProblemsService;
 
-        public QuizController(PredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput> predictionEngine, IQuizService quizService, ISkinTypesService skinTypesService)
+        public QuizController(PredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput> predictionEngine, IQuizService quizService, ISkinTypesService skinTypesService, ISkinProblemsService skinProblemsService)
         {
             this.predictionEngine = predictionEngine;
             this.quizService = quizService;
             this.skinTypesService = skinTypesService;
+            this.skinProblemsService = skinProblemsService;
         }
 
         public async Task<IActionResult> Make()
@@ -29,6 +33,7 @@
             var model = new QuizInputModel()
             {
                 Quiz = await this.quizService.GetQuizAsync<QuestionQuizViewModel>(),
+                SkinProblems = await this.skinProblemsService.GetAllAsync<SkinProblemViewModel>(),
             };
 
             return this.View(model);
@@ -54,5 +59,24 @@
 
             return model;
         }
+
+        [HttpPost]
+        public IActionResult Save([FromBody] string[] skinProblems)
+        {
+            ;
+
+            return null;
+        }
+    }
+
+    public class Test
+    {
+        public bool IsSkinSensitive { get; set; }
+
+        public string SkinTypeId { get; set; }
+
+        public string SkinTypeName { get; set; }
+
+        public string[] SkinProblems { get; set; }
     }
 }

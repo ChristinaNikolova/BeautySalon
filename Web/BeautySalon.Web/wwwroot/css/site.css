@@ -195,10 +195,6 @@ div .small {
         background-image: none;
     }
 
-select > option:hover {
-    background-color: #d9bf77 !important;
-}
-
 #clear-appointment-search {
     color: gray;
 }
@@ -207,17 +203,23 @@ select > option:hover {
     text-align: center;
 }
 
-.answer-quiz:hover{
+.answer-quiz:hover {
     color: white !important;
 }
 
-/*#smart-search-button,
-.smart-search {
-    margin: 20px 0px 20px 50px;
+.offer-deal {
+    padding-top: 0px;
 }
 
-#smart-search-navbar {
-    margin: 30px;
-    text-align: center;
-}*/
+.skin-problems-container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
 
+.skin-problems-buttons {
+    margin-top: 30px;
+}
+
+.skin-problems-button {
+    margin: 10px;
+}

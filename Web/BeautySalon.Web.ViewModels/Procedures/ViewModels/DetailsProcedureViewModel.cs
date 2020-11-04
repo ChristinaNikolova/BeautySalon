@@ -6,6 +6,7 @@
     using AutoMapper;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using BeautySalon.Web.ViewModels.SkinProblems.ViewModels;
 
     public class DetailsProcedureViewModel : ProcedureViewModel, IMapFrom<Procedure>, IHaveCustomMappings
     {
@@ -13,13 +14,13 @@
 
         public string SkinTypeDescription { get; set; }
 
-        public IEnumerable<SkinProblemProcedureViewModel> SkinProblems { get; set; }
+        public IEnumerable<SkinProblemViewModel> SkinProblems { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Procedure, DetailsProcedureViewModel>().ForMember(
                 m => m.SkinProblems,
-                opt => opt.MapFrom(x => x.SkinProblemProcedures.Select(y => new SkinProblemProcedureViewModel()
+                opt => opt.MapFrom(x => x.SkinProblemProcedures.Select(y => new SkinProblemViewModel()
                 {
                     Id = y.SkinProblem.Id,
                     Name = y.SkinProblem.Name,

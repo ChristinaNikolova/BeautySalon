@@ -122,10 +122,6 @@ div .small {
     color: #d9bf77;
 }
 
-.btn:not(:disabled):not(.disabled) {
-    color: white;
-}
-
 .stylist-name {
     margin-left: 20px;
 }
@@ -209,6 +205,10 @@ select > option:hover {
 
 .start-button-quiz {
     text-align: center;
+}
+
+.answer-quiz:hover{
+    color: white !important;
 }
 
 /*#smart-search-button,

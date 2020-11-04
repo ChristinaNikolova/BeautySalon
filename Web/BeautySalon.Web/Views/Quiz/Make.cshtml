@@ -20,7 +20,7 @@
     <div class="bg-light p-4">
         <section id="parent-element-section">
             <div class="start-button-quiz">
-                <a id="start-quiz" class="btn btn-primary p-3 px-5 py-4 mr-md-2 justify-content-center">Start quiz</a>
+                <a id="start-quiz" class="btn btn-primary p-3 px-5 py-4 mr-md-2 justify-content-center quiz">Start quiz</a>
             </div>
             @for (var i = 0; i < @Model.Quiz.Count(); i++)
             {
@@ -36,7 +36,7 @@
                             {
                                 <li class="quiz-answer">
                                     <div class="answer-wrap">
-                                        <a class="btn btn-primary answer">@answer.Text</a>
+                                        <a class="btn btn-outline-primary answer-quiz">@answer.Text</a>
                                     </div>
                                 </li>
                             }

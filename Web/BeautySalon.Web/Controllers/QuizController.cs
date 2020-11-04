@@ -2,14 +2,17 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
+    using BeautySalon.Services.Data.Users;
     using BeautySalon.Web.ViewModels.MLModels;
     using BeautySalon.Web.ViewModels.Quiz.InputModels;
     using BeautySalon.Web.ViewModels.Quiz.ViewModels;
     using BeautySalon.Web.ViewModels.SkinProblems.ViewModels;
     using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.ML;
 
@@ -19,13 +22,24 @@
         private readonly IQuizService quizService;
         private readonly ISkinTypesService skinTypesService;
         private readonly ISkinProblemsService skinProblemsService;
+        private readonly IUsersService usersService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public QuizController(PredictionEnginePool<SkinTypeModelInput, SkinTypeModelOutput> predictionEngine, IQuizService quizService, ISkinTypesService skinTypesService, ISkinProblemsService skinProblemsService)
+        public QuizController(
+            PredictionEnginePool<SkinTypeModelInput,
+            SkinTypeModelOutput> predictionEngine,
+            IQuizService quizService,
+            ISkinTypesService skinTypesService,
+            ISkinProblemsService skinProblemsService,
+            IUsersService usersService,
+            UserManager<ApplicationUser> userManager)
         {
             this.predictionEngine = predictionEngine;
             this.quizService = quizService;
             this.skinTypesService = skinTypesService;
             this.skinProblemsService = skinProblemsService;
+            this.usersService = usersService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Make()
@@ -61,22 +75,21 @@
         }
 
         [HttpPost]
-        public IActionResult Save([FromBody] string[] skinProblems)
+        public async Task<IActionResult> Save([FromBody] Test input)
         {
+            var userId = this.userManager.GetUserId(this.User);
+            await this.usersService.AddSkinTypeData(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
             ;
-
-            return null;
+            return this.Redirect("/");
         }
     }
 
     public class Test
     {
-        public bool IsSkinSensitive { get; set; }
-
         public string SkinTypeId { get; set; }
 
-        public string SkinTypeName { get; set; }
+        public bool IsSkinSensitive { get; set; }
 
-        public string[] SkinProblems { get; set; }
+        public string[] SkinProblemNames { get; set; }
     }
 }

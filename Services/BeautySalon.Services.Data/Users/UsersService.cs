@@ -16,12 +16,14 @@
     {
         private readonly IRepository<ApplicationUser> usersRepository;
         private readonly IRepository<SkinType> skinTypesRepository;
+        private readonly IRepository<SkinProblem> skinProblemsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ApplicationUser> usersRepository, IRepository<SkinType> skinTypesRepository, ICloudinaryService cloudinaryService)
+        public UsersService(IRepository<ApplicationUser> usersRepository, IRepository<SkinType> skinTypesRepository, IRepository<SkinProblem> skinProblemsRepository, ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
             this.skinTypesRepository = skinTypesRepository;
+            this.skinProblemsRepository = skinProblemsRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -87,6 +89,37 @@
                 .FirstOrDefaultAsync();
 
             return userData;
+        }
+
+        public async Task AddSkinTypeData(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems)
+        {
+            var user = await this.usersRepository
+                .All()
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            user.IsSkinSensitive = isSkinSensitive;
+            user.SkinTypeId = skinTypeId;
+
+            if (skinProblems != null)
+            {
+                foreach (var skinProblemName in skinProblems)
+                {
+                    var skinProblem = await this.skinProblemsRepository
+                        .All()
+                        .FirstOrDefaultAsync(sp => sp.Name == skinProblemName);
+
+                    var clientSkinProblem = new ClientSkinProblem()
+                    {
+                        SkinProblem = skinProblem,
+                        Client = user,
+                    };
+
+                    user.ClientSkinProblems.Add(clientSkinProblem);
+                }
+            }
+
+            this.usersRepository.Update(user);
+            await this.usersRepository.SaveChangesAsync();
         }
     }
 }

@@ -78,5 +78,16 @@
                 .All()
                 .FirstOrDefaultAsync(st => st.Name == name);
         }
+
+        public async Task<T> GetSkinTypeResultAsync<T>(string skinTypeName)
+        {
+            var result = await this.skinTypesRepository
+                .All()
+                .Where(st => st.Name == skinTypeName)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return result;
+        }
     }
 }

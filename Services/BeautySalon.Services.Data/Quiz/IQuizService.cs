@@ -6,7 +6,5 @@
     public interface IQuizService
     {
         Task<IEnumerable<T>> GetQuizAsync<T>();
-
-        //SkinTypeModelOutput GetQuizResult(string[] answers);
     }
 }

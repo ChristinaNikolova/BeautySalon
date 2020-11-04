@@ -4,7 +4,7 @@
 
     using BeautySalon.Web.ViewModels.Quiz.ViewModels;
 
-    public class LoadQuizInputModel
+    public class QuizInputModel
     {
         public IEnumerable<QuestionQuizViewModel> Quiz { get; set; }
     }

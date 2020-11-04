@@ -61,5 +61,12 @@
       "Clean, healthy, and even!",
       "Clean in the T zone but dry on the cheeks!"
     ]
+  },
+  {
+    "QuestionText": "Would you consider your skin easily reactive?",
+    "Answers": [
+      "Yes - my skin is delicate and sensitive.",
+      "No - my skin isn't sensitive."
+    ]
   }
 ]

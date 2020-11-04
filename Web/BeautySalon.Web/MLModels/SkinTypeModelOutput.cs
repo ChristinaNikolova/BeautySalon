@@ -1,4 +1,4 @@
-﻿namespace BeautySalon.Web.MLModels
+﻿namespace BeautySalon.Web.ViewModels.MLModels
 {
     using Microsoft.ML.Data;
 

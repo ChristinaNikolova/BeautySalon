@@ -28,9 +28,9 @@
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
     using BeautySalon.Web.Hubs;
-    using BeautySalon.Web.MLModels;
     using BeautySalon.Web.SecurityModels;
     using BeautySalon.Web.ViewModels;
+    using BeautySalon.Web.ViewModels.MLModels;
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;

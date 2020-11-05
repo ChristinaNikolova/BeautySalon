@@ -10,6 +10,7 @@
     using BeautySalon.Web.ViewModels.MLModels;
     using BeautySalon.Web.ViewModels.Quiz.InputModels;
     using BeautySalon.Web.ViewModels.Quiz.ViewModels;
+    using BeautySalon.Web.ViewModels.SkinProblems.InputModel;
     using BeautySalon.Web.ViewModels.SkinProblems.ViewModels;
     using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;
     using Microsoft.AspNetCore.Identity;
@@ -75,28 +76,13 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult> Save([FromBody] Test input)
+        public async Task<ActionResult> Save([FromBody] SkinProblemInputModel input)
         {
             var userId = this.userManager.GetUserId(this.User);
-            await this.usersService.AddSkinTypeData(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
-            ;
+
+            await this.usersService.AddSkinTypeDataAsync(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
+
             return this.Json(new RedirectResult("/"));
         }
-    }
-
-    public class Test
-    {
-        public string SkinTypeId { get; set; }
-
-        public string SkinTypeName { get; set; }
-
-        public bool IsSkinSensitive { get; set; }
-
-        public string[] SkinProblemNames { get; set; }
-    }
-
-    public class TestResult
-    {
-        public string[] SkinProblemNames { get; set; }
     }
 }

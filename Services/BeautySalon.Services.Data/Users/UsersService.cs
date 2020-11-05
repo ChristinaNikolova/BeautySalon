@@ -17,13 +17,20 @@
         private readonly IRepository<ApplicationUser> usersRepository;
         private readonly IRepository<SkinType> skinTypesRepository;
         private readonly IRepository<SkinProblem> skinProblemsRepository;
+        private readonly IRepository<ClientSkinProblem> clientSkinProblemsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ApplicationUser> usersRepository, IRepository<SkinType> skinTypesRepository, IRepository<SkinProblem> skinProblemsRepository, ICloudinaryService cloudinaryService)
+        public UsersService(
+            IRepository<ApplicationUser> usersRepository,
+            IRepository<SkinType> skinTypesRepository,
+            IRepository<SkinProblem> skinProblemsRepository,
+            IRepository<ClientSkinProblem> clientSkinProblemsRepository,
+            ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
             this.skinTypesRepository = skinTypesRepository;
             this.skinProblemsRepository = skinProblemsRepository;
+            this.clientSkinProblemsRepository = clientSkinProblemsRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -91,7 +98,7 @@
             return userData;
         }
 
-        public async Task AddSkinTypeData(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems)
+        public async Task AddSkinTypeDataAsync(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems)
         {
             var user = await this.usersRepository
                 .All()
@@ -107,6 +114,13 @@
                     var skinProblem = await this.skinProblemsRepository
                         .All()
                         .FirstOrDefaultAsync(sp => sp.Name == skinProblemName);
+
+                    if (await this.clientSkinProblemsRepository
+                        .All()
+                        .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id))
+                    {
+                        continue;
+                    }
 
                     var clientSkinProblem = new ClientSkinProblem()
                     {

@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Web.ViewModels.Quiz.ViewModels
 {
-
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;

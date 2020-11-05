@@ -75,12 +75,12 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save([FromBody] Test input)
+        public async Task<ActionResult> Save([FromBody] Test input)
         {
             var userId = this.userManager.GetUserId(this.User);
             await this.usersService.AddSkinTypeData(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
             ;
-            return this.Redirect("/");
+            return this.Json(new RedirectResult("/"));
         }
     }
 
@@ -88,8 +88,15 @@
     {
         public string SkinTypeId { get; set; }
 
+        public string SkinTypeName { get; set; }
+
         public bool IsSkinSensitive { get; set; }
 
+        public string[] SkinProblemNames { get; set; }
+    }
+
+    public class TestResult
+    {
         public string[] SkinProblemNames { get; set; }
     }
 }

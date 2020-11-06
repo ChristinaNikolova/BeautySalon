@@ -56,7 +56,7 @@
                         </div>
 
                         <div id="smart-search-message" style="display:none">
-                            <span class="smart-search">Get procedures only for my skin type! </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Search</a>
+                            <span class="smart-search-text">Get procedures only for my skin type! </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Search</a>
                         </div>
 
                         <div class="col-md-12 form-group">
@@ -103,6 +103,7 @@
         });
     });
 
+    let categoryId = "";
     document.getElementById("clear-appointment-search").addEventListener("click", clear);
 
     function clear() {
@@ -120,59 +121,12 @@
     function loadStylists(event) {
         clearData();
 
-        let categoryId = "";
+       
         Array.from(event.target.children).forEach(child => {
             if (child.selected === true) {
                 categoryId = child.value;
             }
         });
-
-        if (categoryId === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
-            document.getElementById("smart-search-message").style.display = "block";
-        } else {
-            document.getElementById("smart-search-message").style.display = "none";
-        }
-
-        let smartSearchButton = document.getElementById("smart-search-button");
-        smartSearchButton.addEventListener("click", showSmartSearchNavBar);
-        debugger;
-        function showSmartSearchNavBar() {
-
-            let clientSkinTypeId = document.getElementById("skin-type-id").innerText;
-            let isSkinSensitive = document.getElementById("sensitive-skin").innerText;
-
-            let stylistId = "";
-            let parentStylist = document.getElementById("parent-stylist");
-
-            Array.from(parentStylist.children[1].children).forEach(child => {
-                if (child.selected === true) {
-                    stylistId = child.value;
-                }
-            });
-
-            var token = $("#form input[name=__RequestVerificationToken]").val();
-
-            $.ajax({
-                url: "/Procedures/SmartSearchProcedures/",
-                type: "POST",
-                data: JSON.stringify({ clientSkinTypeId, isSkinSensitive, stylistId }),
-                contentType: "application/json; charset=utf-8",
-                headers: { 'X-CSRF-TOKEN': token },
-                dataType: "json",
-                success: function (data) {
-                    console.log(data)
-                    //let result = '<option selected>Please select stylist</option>';
-
-                    //data.stylistNames.forEach(stylyst => {
-                    //    result += `<option value="${stylyst.id}">${stylyst.fullName}</option>`
-                    //});
-
-                    //$('#stylist').html(result);
-                }
-            });
-
-
-        }
 
         var token = $("#form input[name=__RequestVerificationToken]").val();
 
@@ -199,6 +153,50 @@
 
     function loadProcedures(event) {
         clearData();
+
+        if (categoryId === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
+            document.getElementById("smart-search-message").style.display = "block";
+        } else {
+            document.getElementById("smart-search-message").style.display = "none";
+        }
+
+        let smartSearchButton = document.getElementById("smart-search-button");
+        smartSearchButton.addEventListener("click", showSmartSearchNavBar);
+
+        function showSmartSearchNavBar() {
+
+            let clientSkinTypeId = document.getElementById("skin-type-id").innerText;
+            let isSkinSensitive = document.getElementById("sensitive-skin").innerText;
+
+            let stylistId = "";
+            let parentStylist = document.getElementById("parent-stylist");
+
+            Array.from(parentStylist.children[1].children).forEach(child => {
+                if (child.selected === true) {
+                    stylistId = child.value;
+                }
+            });
+
+            var token = $("#form input[name=__RequestVerificationToken]").val();
+
+            $.ajax({
+                url: "/Procedures/SmartSearchProcedures/",
+                type: "POST",
+                data: JSON.stringify({ clientSkinTypeId, isSkinSensitive, stylistId }),
+                contentType: "application/json; charset=utf-8",
+                headers: { 'X-CSRF-TOKEN': token },
+                dataType: "json",
+                success: function (data) {
+                    let result = '<option selected>Please select procedure</option>';
+
+                    data.procedureNames.forEach(procedure => {
+                        result += `<option value="${procedure.procedureId}">${procedure.procedureName}</option>`
+                    });
+
+                    $('#procedure').html(result);
+                }
+            });
+        }
 
         let stylistId = "";
 

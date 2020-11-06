@@ -201,6 +201,22 @@
             return procedureNames;
         }
 
+        public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
+        {
+            var isSkinSensitive = skinSensitive.Contains("yes".ToLower()) ? true : false;
+
+            var procedures = await this.procedureStylistsRepository
+                .All()
+                .Where(ps => ps.StylistId == stylistId
+                && ps.Procedure.SkinTypeId == clientSkinTypeId
+                && ps.Procedure.IsSensitive == isSkinSensitive)
+                .OrderBy(ps => ps.Procedure.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
+        }
+
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)
         {
             return
@@ -250,21 +266,6 @@
                  .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
                  .To<T>()
                  .ToListAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
-        {
-            var isSkinSensitive = skinSensitive.Contains("yes".ToLower()) ? true : false;
-
-            var procedures = await this.proceduresRepository
-                 .All()
-                 .Where(p => p.ProcedureStylists.Any(ps => ps.StylistId == stylistId) 
-                 && p.SkinTypeId == clientSkinTypeId)
-                 .OrderBy(p => p.Name)
-                 .To<T>()
-                 .ToListAsync();
-
-            return procedures;
         }
     }
 }

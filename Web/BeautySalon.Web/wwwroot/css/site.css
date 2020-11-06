@@ -241,3 +241,7 @@ div .small {
 .client-info {
     font-weight: bolder;
 }
+
+.smart-search-text {
+    margin-left: 14px !important;
+}

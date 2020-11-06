@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewComponents
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Web.ViewModels.Procedures.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -14,12 +16,12 @@
             this.proceduresService = proceduresService;
         }
 
-        public IViewComponentResult Invoke(string id)
+        public async Task<IViewComponentResult> InvokeAsync(string id)
         {
             var model = new AllProcedureReviewsViewModel()
             {
-                Reviews = this.proceduresService
-                .GetProcedureReviews<ProcedureReviewViewModel>(id),
+                Reviews = await this.proceduresService
+                .GetProcedureReviewsAsync<ProcedureReviewViewModel>(id),
             };
 
             return this.View(model);

@@ -53,14 +53,14 @@
             await this.skinTypesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
-            var skinTypes = this.skinTypesRepository
+            var skinTypes = await this.skinTypesRepository
                 .All()
                 .Where(st => st.Name.ToLower() != "sensitive")
                 .OrderBy(st => st.Name)
                 .To<T>()
-                .ToList();
+                .ToListAsync();
 
             return skinTypes;
         }

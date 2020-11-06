@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewComponents
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Web.ViewModels.SkinTypes.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -14,12 +16,12 @@
             this.skinTypesService = skinTypesService;
         }
 
-        public IViewComponentResult Invoke(bool hasToAddSecondCriteria)
+        public async Task<IViewComponentResult> InvokeAsync(bool hasToAddSecondCriteria)
         {
             var model = new AllSkinTypesViewModel()
             {
-                SkinTypes = this.skinTypesService
-                .GetAll<SkinTypeViewModel>(),
+                SkinTypes = await this.skinTypesService
+                .GetAllAsync<SkinTypeViewModel>(),
                 HasToAddSecondCriteria = hasToAddSecondCriteria,
             };
 

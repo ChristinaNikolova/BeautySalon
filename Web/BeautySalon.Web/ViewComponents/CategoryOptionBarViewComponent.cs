@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewComponents
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Web.ViewModels.Categories.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -14,12 +16,12 @@
             this.categoriesService = categoriesService;
         }
 
-        public IViewComponentResult Invoke(bool hasToAddSecondCriteria)
+        public async Task<IViewComponentResult> InvokeAsync(bool hasToAddSecondCriteria)
         {
             var model = new AllCategoriesViewModel()
             {
-                Categories = this.categoriesService
-                .GetAll<CategoryViewModel>(),
+                Categories = await this.categoriesService
+                .GetAllAsync<CategoryViewModel>(),
                 HasToAddSecondCriteria = hasToAddSecondCriteria,
             };
 

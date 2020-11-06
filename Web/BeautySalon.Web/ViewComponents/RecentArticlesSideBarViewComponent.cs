@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewComponents
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -14,12 +16,12 @@
             this.articlesService = articlesService;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var model = new AllRecentArticlesViewModel()
             {
-                RecentArticles = this.articlesService
-                .GetRecentArticles<RecentArticlesViewModel>(),
+                RecentArticles = await this.articlesService
+                .GetRecentArticlesAsync<RecentArticlesViewModel>(),
             };
 
             return this.View(model);

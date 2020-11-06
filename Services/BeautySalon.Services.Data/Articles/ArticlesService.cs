@@ -65,15 +65,15 @@
             return count;
         }
 
-        public IEnumerable<T> GetRecentArticles<T>()
+        public async Task<IEnumerable<T>> GetRecentArticlesAsync<T>()
         {
-            var articles = this.articlesRepository
+            var articles = await this.articlesRepository
                 .All()
                 .OrderByDescending(a => a.CreatedOn)
                 .ThenBy(a => a.Title)
                 .Take(GlobalConstants.RecentArticlesCount)
                 .To<T>()
-                .ToList();
+                .ToListAsync();
 
             return articles;
         }

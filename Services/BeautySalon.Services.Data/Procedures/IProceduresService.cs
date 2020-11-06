@@ -19,9 +19,9 @@
 
         Task<T> GetProcedureDetailsAsync<T>(string id);
 
-        IEnumerable<T> GetProcedureReviews<T>(string id);
+        Task<IEnumerable<T>> GetProcedureReviewsAsync<T>(string id);
 
-        IEnumerable<T> GetProcedureProducts<T>(string id);
+        Task<IEnumerable<T>> GetProcedureProductsAsync<T>(string id);
 
         Task<IEnumerable<T>> SearchByAsync<T>(string skinTypeId, string criteria);
 

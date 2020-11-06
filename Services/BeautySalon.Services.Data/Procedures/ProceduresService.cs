@@ -119,27 +119,27 @@
             return procedure;
         }
 
-        public IEnumerable<T> GetProcedureProducts<T>(string id)
+        public async Task<IEnumerable<T>> GetProcedureProductsAsync<T>(string id)
         {
-            var products = this.procedureProductsRepository
+            var products = await this.procedureProductsRepository
                 .All()
                 .Where(pp => pp.ProcedureId == id)
                 .OrderBy(pp => pp.Product.Name)
                 .To<T>()
-                .ToList();
+                .ToListAsync();
 
             return products;
         }
 
-        public IEnumerable<T> GetProcedureReviews<T>(string id)
+        public async Task<IEnumerable<T>> GetProcedureReviewsAsync<T>(string id)
         {
-            var reviews = this.procedureReviewsRepository
+            var reviews = await this.procedureReviewsRepository
                 .All()
                 .Where(pr => pr.ProcedureId == id)
                 .OrderByDescending(pr => pr.Date)
                 .Take(GlobalConstants.DefaultProcedureReviewsToDisplay)
                 .To<T>()
-                .ToList();
+                .ToListAsync();
 
             return reviews;
         }

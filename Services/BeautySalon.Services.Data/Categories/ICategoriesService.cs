@@ -20,8 +20,6 @@
 
         Task<IEnumerable<T>> GetAllAsync<T>();
 
-        IEnumerable<T> GetAll<T>();
-
         Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync();
     }
 }

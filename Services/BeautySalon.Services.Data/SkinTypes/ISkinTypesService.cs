@@ -17,7 +17,7 @@
 
         Task<SkinType> GetByNameAsync(string name);
 
-        IEnumerable<T> GetAll<T>();
+        Task<IEnumerable<T>> GetAllAsync<T>();
 
         Task<T> GetSkinTypeResultAsync<T>(string skinTypeName);
     }

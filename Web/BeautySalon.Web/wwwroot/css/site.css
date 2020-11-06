@@ -223,3 +223,17 @@ div .small {
 .skin-problems-button {
     margin: 10px;
 }
+
+.coach .text h3 a {
+    color: #d9bf77;
+}
+
+.btn.btn-primary {
+    background: #d9bf77 !important;
+    border: 1px solid #d9bf77 !important;
+    color: #fff !important;
+}
+
+    .btn.btn-primary:hover {
+        color: gray !important;
+    }

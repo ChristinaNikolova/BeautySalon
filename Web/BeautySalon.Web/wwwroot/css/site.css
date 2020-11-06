@@ -118,7 +118,8 @@ div .small {
     margin-right: 10px;
 }
 
-.theme-color-gold {
+.theme-color-gold,
+.coach .text h3 a {
     color: #d9bf77;
 }
 
@@ -225,23 +226,15 @@ div .small {
     margin: 10px;
 }
 
-.coach .text h3 a {
-    color: #d9bf77;
-}
-
 .btn.btn-primary {
     background: #d9bf77 !important;
     border: 1px solid #d9bf77 !important;
     color: #fff !important;
 }
 
-    .btn.btn-primary:hover {
+.btn.btn-primary:hover {
         color: gray !important;
     }
-
-.client-info {
-    font-weight: bolder;
-}
 
 .smart-search-text {
     margin-left: 14px !important;
@@ -250,8 +243,6 @@ div .small {
 #smart-search-button {
     margin-left: 15px;
 }
-
-
 
 #client-skin-info {
     background: #FAFAFA;
@@ -266,8 +257,18 @@ div .small {
     z-index: -10;
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
     #client-skin-info {
         position: static;
     }
+}
+
+.client-info-list {
+    line-height: 1.4;
+    color: #000;
+    font-weight: 400;
+}
+
+.client-info {
+    font-weight: 400;
 }

@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-12 mb-4">
             <h2 class="h4"> My skin's info</h2>
+            <hr />
             <div id="skin-type-id" hidden>@Model.SkinTypeId</div>
         </div>
         @if (Model.SkinTypeName == null)
@@ -22,8 +23,7 @@
                    class="client-info theme-color-gold"><span>Is my skin sensitive: </span> @Model.SkinSensitive</p>
             </div>
             <div class="col-md-12 mb-3">
-
-                <span class="client-info">My skin's problems: </span>
+                <span class="client-info-list">My skin's problems: </span>
                 @if (@Model.SkinProblemNames.Count() == 0)
                 {
                     <p>You haven't share skin problems yet!</p>

@@ -245,3 +245,7 @@ div .small {
 .smart-search-text {
     margin-left: 14px !important;
 }
+
+#smart-search-button {
+    margin-left: 15px;
+}

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
@@ -249,6 +250,21 @@
                  .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
                  .To<T>()
                  .ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
+        {
+            var isSkinSensitive = skinSensitive.Contains("yes".ToLower()) ? true : false;
+
+            var procedures = await this.proceduresRepository
+                 .All()
+                 .Where(p => p.ProcedureStylists.Any(ps => ps.StylistId == stylistId) 
+                 && p.SkinTypeId == clientSkinTypeId)
+                 .OrderBy(p => p.Name)
+                 .To<T>()
+                 .ToListAsync();
+
+            return procedures;
         }
     }
 }

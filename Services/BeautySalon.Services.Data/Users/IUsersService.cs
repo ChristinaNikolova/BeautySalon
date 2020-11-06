@@ -17,6 +17,8 @@
 
         Task<T> GetUserDataAsync<T>(string userId);
 
+        Task<T> GetUserSkinDataAsync<T>(string userId);
+
         Task AddSkinTypeDataAsync(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems);
     }
 }

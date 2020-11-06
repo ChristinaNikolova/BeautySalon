@@ -11,6 +11,8 @@
 
     public class BookAppointmentInputModel : IMapFrom<ApplicationUser>
     {
+        public string Id { get; set; }
+
         [Required]
         [StringLength(DataValidation.UserFirstNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.UserFirstNameMinLenght)]
         [Display(Name = "Firstname")]

@@ -135,5 +135,16 @@
             this.usersRepository.Update(user);
             await this.usersRepository.SaveChangesAsync();
         }
+
+        public async Task<T> GetUserSkinDataAsync<T>(string userId)
+        {
+            var userSkinData = await this.usersRepository
+                .All()
+                .Where(u => u.Id == userId)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return userSkinData;
+        }
     }
 }

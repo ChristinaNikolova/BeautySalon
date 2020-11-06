@@ -12,28 +12,10 @@
         </div>
     </div>
 </section>
-<section class="ftco-section contact-section">
+<section id="ParentContainer" class="ftco-section contact-section">
     <div class="container">
         <div class="row block-9">
-            <div class="col-md-4 contact-info ftco-animate bg-light p-4">
-                <div class="row">
-                    <div class="col-md-12 mb-4">
-                        <h2 class="h4">Contact Information</h2>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <p><span>Website:</span> <a href="#">yoursite.com</a></p>
-                    </div>
-                </div>
-            </div>
+            <vc:users-skin-type-info user-id="@Model.Id"></vc:users-skin-type-info>
             <div class="col-md-1"></div>
             <div class="col-md-6 ftco-animate">
                 <h2 class="mb-4">Book an Appointment</h2>
@@ -66,19 +48,16 @@
                             </select>
                             <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                         </div>
-                        <div class="col-md-12 form-group">
+                        <div id="parent-stylist" class="col-md-12 form-group">
                             <label asp-for="@Model.StylistId"></label>
                             <select id="stylist" asp-for="@Model.StylistId" type="text" class="form-control">
                             </select>
                             <span asp-validation-for="@Model.StylistId" class="text-danger"></span>
                         </div>
 
-                        @*<div id="smart-search-message" style="display:none">
-                                <span class="smart-search">Need help? </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Smart search</a>
-                            </div>
-                            <div id="smart-search-navbar" style="display:none">
-                                <vc:skin-type-option-bar has-to-add-second-criteria="false"></vc:skin-type-option-bar>
-                            </div>*@
+                        <div id="smart-search-message" style="display:none">
+                            <span class="smart-search">Get procedures only for my skin type! </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Search</a>
+                        </div>
 
                         <div class="col-md-12 form-group">
                             <label asp-for="@Model.ProcedureId"></label>
@@ -148,19 +127,52 @@
             }
         });
 
-        //if (categoryId === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
-        //    document.getElementById("smart-search-message").style.display = "block";
-        //} else {
-        //    document.getElementById("smart-search-message").style.display = "none";
-        //}
+        if (categoryId === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
+            document.getElementById("smart-search-message").style.display = "block";
+        } else {
+            document.getElementById("smart-search-message").style.display = "none";
+        }
 
-        //let smartSearchButton = document.getElementById("smart-search-button");
-        //smartSearchButton.addEventListener("click", showSmartSearchNavBar);
+        let smartSearchButton = document.getElementById("smart-search-button");
+        smartSearchButton.addEventListener("click", showSmartSearchNavBar);
+        debugger;
+        function showSmartSearchNavBar() {
 
-        //function showSmartSearchNavBar() {
-        //    document.getElementById("smart-search-navbar").style.display = "block";
-        //    document.getElementById("smart-search-message").style.display = "none";
-        //}
+            let clientSkinTypeId = document.getElementById("skin-type-id").innerText;
+            let isSkinSensitive = document.getElementById("sensitive-skin").innerText;
+
+            let stylistId = "";
+            let parentStylist = document.getElementById("parent-stylist");
+
+            Array.from(parentStylist.children[1].children).forEach(child => {
+                if (child.selected === true) {
+                    stylistId = child.value;
+                }
+            });
+
+            var token = $("#form input[name=__RequestVerificationToken]").val();
+
+            $.ajax({
+                url: "/Procedures/SmartSearchProcedures/",
+                type: "POST",
+                data: JSON.stringify({ clientSkinTypeId, isSkinSensitive, stylistId }),
+                contentType: "application/json; charset=utf-8",
+                headers: { 'X-CSRF-TOKEN': token },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    //let result = '<option selected>Please select stylist</option>';
+
+                    //data.stylistNames.forEach(stylyst => {
+                    //    result += `<option value="${stylyst.id}">${stylyst.fullName}</option>`
+                    //});
+
+                    //$('#stylist').html(result);
+                }
+            });
+
+
+        }
 
         var token = $("#form input[name=__RequestVerificationToken]").val();
 

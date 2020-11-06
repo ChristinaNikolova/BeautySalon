@@ -49,6 +49,7 @@
                     if (skinType != null)
                     {
                         procedure.SkinTypeId = skinType.Id;
+                        procedure.IsSensitive = currentProcedureData.IsSensitive;
                     }
 
                     if (currentProcedureData.SkinType != null)

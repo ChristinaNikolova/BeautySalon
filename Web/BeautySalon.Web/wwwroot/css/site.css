@@ -237,3 +237,7 @@ div .small {
     .btn.btn-primary:hover {
         color: gray !important;
     }
+
+.client-info {
+    font-weight: bolder;
+}

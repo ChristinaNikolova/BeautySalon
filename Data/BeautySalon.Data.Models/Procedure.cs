@@ -32,6 +32,8 @@
 
         public double AverageRating { get; set; }
 
+        public bool? IsSensitive { get; set; }
+
         [Required]
         public string CategoryId { get; set; }
 

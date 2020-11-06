@@ -83,5 +83,21 @@
 
             return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };
         }
+
+        public async Task<ActionResult<AllProcedureNamesViewModel>> SmartSearchProcedures([FromBody] TestInput input)
+        {
+            var procedureNames = await this.proceduresService.GetSmartSearchProceduresAsync<ProcedureNameViewModel>(input.ClientSkinTypeId, input.IsSkinSensitive, input.StylistId);
+
+            return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };
+        }
+    }
+
+    public class TestInput
+    {
+        public string ClientSkinTypeId { get; set; }
+
+        public string IsSkinSensitive { get; set; }
+
+        public string StylistId { get; set; }
     }
 }

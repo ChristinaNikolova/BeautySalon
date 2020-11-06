@@ -12,6 +12,8 @@
 
         public string SkinType { get; set; }
 
+        public bool? IsSensitive { get; set; }
+
         public string[] SkinProblems { get; set; }
 
         public string[] Products { get; set; }

@@ -197,6 +197,7 @@ div .small {
 
 #clear-appointment-search {
     color: gray;
+    margin: 10px
 }
 
 .start-button-quiz {
@@ -248,4 +249,25 @@ div .small {
 
 #smart-search-button {
     margin-left: 15px;
+}
+
+
+
+#client-skin-info {
+    background: #FAFAFA;
+    max-height: 500px;
+    margin-top: 10px;
+    padding-left: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    overflow: hidden;
+    width: 100%;
+    z-index: -10;
+}
+
+@media screen and (max-width: 720px) {
+    #client-skin-info {
+        position: static;
+    }
 }

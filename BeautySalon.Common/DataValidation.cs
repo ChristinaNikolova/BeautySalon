@@ -30,6 +30,8 @@
 
         public const int AddressMaxLenght = 50;
 
+        public const int StylistDescriptionMaxLenght = 1000;
+
         // Appointment
         public const int AppointmentMaxLenght = 500;
 

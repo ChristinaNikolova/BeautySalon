@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Products;
     using BeautySalon.Web.ViewModels.Products.ViewModels;
     using Microsoft.AspNetCore.Mvc;

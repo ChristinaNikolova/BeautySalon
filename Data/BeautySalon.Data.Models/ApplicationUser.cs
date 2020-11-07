@@ -75,6 +75,7 @@ namespace BeautySalon.Data.Models
 
         public double AverageRating { get; set; }
 
+        [MaxLength(DataValidation.StylistDescriptionMaxLenght)]
         public string Description { get; set; }
 
         // Audit info

@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Stylists;
+    using BeautySalon.Web.ViewModels.Administration.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,13 @@
             {
                 Stylists = await this.stylistsService.GetAllAdministrationAsync<StylistAdministrationViewModel>(),
             };
+
+            return this.View(model);
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var model = await this.stylistsService.GetStylistDataForUpdateAsync<UpdateStylistInputModel>(id);
 
             return this.View(model);
         }

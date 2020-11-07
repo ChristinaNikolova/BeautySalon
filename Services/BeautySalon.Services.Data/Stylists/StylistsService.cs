@@ -27,6 +27,7 @@
             this.categoriesService = categoriesService;
             this.jobTypesService = jobTypesService;
         }
+
         public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
         {
             var stylistRoleId = this.GetStylistRoleId();
@@ -182,6 +183,17 @@
                 .ToListAsync();
 
             return stylistNames;
+        }
+
+        public async Task<T> GetStylistDataForUpdateAsync<T>(string id)
+        {
+            var stylist = await this.stylistsRepository
+                .All()
+                .Where(s => s.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return stylist;
         }
 
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)

@@ -18,6 +18,7 @@
         public string BrandName { get; set; }
 
         public string CategoryName { get; set; }
+
         //public virtual ICollection<ProductReview> ProductReviews { get; set; }
 
         //public virtual ICollection<ClientProductLike> Likes { get; set; }

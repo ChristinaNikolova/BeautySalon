@@ -1,0 +1,60 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
+@model AllStylistsAdministrationViewModel;
+@*<div align="center">
+        <a class="btn btn-success btn-lg" href="/Administration/Procedures/Create" role="button">Create new procedure</a>
+        <a class="btn btn-outline-info btn-lg" href="/Administration/Dashboard" role="button">Back to Dashboard</a>
+    </div>
+    <hr />*@
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Admin's dashboard</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-3">
+            <partial name="_NavBarAdministration" />
+        </div>
+        <div class="col-8">
+            <h2 class="text-center">Stylists</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-field="#">#</th>
+                        <th data-field="name">Full Name</th>
+                        <th data-field="category">Category</th>
+                        <th data-field="categoryType">Job Type</th>
+                        <th data-field="Rating">Rating</th>
+                        @*<th scope="col">Details</th>*@
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Stylists.Count(); i++)
+                    {
+                        var currentStylist = Model.Stylists.ToList()[i];
+
+                        <tr class="content">
+                            <th scope="row">@(i+1)</th>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id">@currentStylist.FullName</a></td>
+                            <td>@currentStylist.CategoryName</td>
+                            <td>@currentStylist.JobTypeName</td>
+                            <td>@currentStylist.FormattedRaiting</td>
+                            @*<td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Full Info</a></td>*@
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

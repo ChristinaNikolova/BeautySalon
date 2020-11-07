@@ -24,5 +24,7 @@
         Task<T> GetStylistNamesAsync<T>(string id);
 
         Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId);
+
+        Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
     }
 }

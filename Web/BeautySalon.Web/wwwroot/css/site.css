@@ -287,3 +287,16 @@ div .small {
 .product-name {
     text-align: center;
 }
+
+
+.admin-dashboard {
+    margin-left: 300px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #d9bf77;
+}
+
+.administration {
+    margin-bottom: 15px
+}

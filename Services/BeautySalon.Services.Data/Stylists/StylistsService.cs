@@ -27,6 +27,20 @@
             this.categoriesService = categoriesService;
             this.jobTypesService = jobTypesService;
         }
+        public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
+        {
+            var stylistRoleId = this.GetStylistRoleId();
+
+            var stylists = await this.stylistsRepository
+                .All()
+                .Where(s => s.Roles.Any(r => r.RoleId == stylistRoleId))
+                .OrderBy(s => s.FirstName)
+                .ThenBy(s => s.LastName)
+                .To<T>()
+                .ToListAsync();
+
+            return stylists;
+        }
 
         public async Task<string> AddRoleStylistAsync(string username, string email)
         {

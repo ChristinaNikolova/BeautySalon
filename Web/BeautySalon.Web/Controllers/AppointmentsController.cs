@@ -42,16 +42,17 @@
         [HttpPost]
         public async Task<IActionResult> Book(BookAppointmentInputModel input)
         {
+            var userId = this.userManager.GetUserId(this.User);
+
             if (!this.ModelState.IsValid)
             {
                 var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.Categories = categories;
+                input.Id = userId;
 
                 // TODO Fix bug with selectedCategory
                 return this.View(input);
             }
-
-            var userId = this.userManager.GetUserId(this.User);
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
 

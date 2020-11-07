@@ -7,6 +7,7 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using BeautySalon.Web.Infrastructure.ValidationAttributes;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class BookAppointmentInputModel : IMapFrom<ApplicationUser>
@@ -34,20 +35,24 @@
 
         [Required]
         [Display(Name = "Stylist")]
+        [ValidateSelectedDropDownOption]
         public string StylistId { get; set; }
 
         [Required]
         [Display(Name = "Procedure")]
+        [ValidateSelectedDropDownOption]
         public string ProcedureId { get; set; }
 
         [Required]
         [Display(Name = "Category")]
+        [ValidateSelectedDropDownOption]
         public string CategoryId { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [IsDateBeforeToday]
         public DateTime Date { get; set; }
 
         [Required]

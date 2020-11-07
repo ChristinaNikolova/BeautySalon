@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\BeautySalon.Services.Mapping\BeautySalon.Services.Mapping.csproj" />
+    <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

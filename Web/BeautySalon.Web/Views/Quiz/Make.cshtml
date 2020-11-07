@@ -1,5 +1,6 @@
 ﻿@using BeautySalon.Web.ViewModels.Quiz.InputModels;
 @model QuizInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -70,4 +71,13 @@
 {
     <script src="~/js/quiz.js" asp-append-version="true"></script>
     <script>quiz();</script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+
+            });
+        });
+    </script>
 }

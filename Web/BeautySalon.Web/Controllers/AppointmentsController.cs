@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -49,6 +50,7 @@
                 var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.Categories = categories;
                 input.Id = userId;
+                input.CategoryId = null;
 
                 // TODO Fix bug with selectedCategory
                 return this.View(input);

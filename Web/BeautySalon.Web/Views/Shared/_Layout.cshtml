@@ -51,7 +51,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item"><a asp-controller="Appointments" asp-action="Book" class="nav-link">Appointments</a></li>
-                            <li class="nav-item"><a asp-controller="Quiz" asp-action="Make" class="nav-link">Make Quiz</a></li>
+                            <li class="nav-item"><a asp-controller="Quiz" asp-action="Make" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Make Quiz</a></li>
                             <li class="nav-item"><a asp-controller="Articles" asp-action="GetAll" class="nav-link">Blog</a></li>
                         }
                         <partial name="_LoginPartial" />

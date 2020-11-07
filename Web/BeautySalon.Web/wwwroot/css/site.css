@@ -232,7 +232,7 @@ div .small {
     color: #fff !important;
 }
 
-.btn.btn-primary:hover {
+    .btn.btn-primary:hover {
         color: gray !important;
     }
 
@@ -271,4 +271,14 @@ div .small {
 
 .client-info {
     font-weight: 400;
+}
+
+#smart-search-message {
+    margin: 10px;
+}
+
+#success-smart-search {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-left: 10px
 }

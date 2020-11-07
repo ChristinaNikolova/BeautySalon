@@ -11,7 +11,7 @@
         @if (Model.SkinTypeName == null)
         {
             <p>We didn't find information about your skin type!</p>
-            <p>Have you already done our Skin <a asp-controller="Quiz" asp-action="Make">Quiz</a>?</p>
+            <p>Go and do our Skin Quiz?</p>
         }
         else
         {
@@ -27,7 +27,7 @@
                 @if (@Model.SkinProblemNames.Count() == 0)
                 {
                     <p>You haven't share skin problems yet!</p>
-                    <a asp-controller="Quiz" asp-action="Make">Share rigth now!</a>
+                    <p>Go and do our Skin Quiz?</p>
                 }
                 else
                 {
@@ -42,4 +42,6 @@
         }
     </div>
 </div>
+
+
 

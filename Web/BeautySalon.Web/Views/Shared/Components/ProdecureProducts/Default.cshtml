@@ -21,7 +21,7 @@
                                     <span class="icon-instagram"></span>
                                 </div>
                             </a>
-                            <div class="custom-color-identity small"><a asp-area="" asp-controller="" asp-action="" asp-route-id="@product.ProductId">@product.ProductName</a></div>
+                            <div class="custom-color-identity small"><a asp-controller="Products" asp-action="GetDetails" asp-route-id="@product.ProductId">@product.ProductName</a></div>
                             <div>@product.ProductBrandName</div>
                         </div>
                     }

@@ -1,0 +1,26 @@
+﻿@using BeautySalon.Web.ViewModels.Products.ViewModels;
+@model DetailsProductViewModel;
+
+<section class="ftco-section ftco-intro custom-margin-identity" style="background-image: url(/images/intro.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate">
+                    <h4 class="mb-4 product-name theme-color-gold">@Model.Name</h4>
+                </div>
+                <div class="offer-deal text-center px-2 px-lg-5">
+                    <div class="img" style="background-image: url(@Model.Picture);"></div>
+                    <div class="text mt-4">
+                        <p class="mb-5">@Model.Description</p>
+                        <ul>
+                            <li class="theme-color-gold"><span>Price: </span>@Model.Price</li>
+                            <li class="theme-color-gold"><span>Category: </span>@Model.CategoryName</li>
+                            <li class="theme-color-gold"><span>Brand: </span>@Model.BrandName</li>
+                            <li class="theme-color-gold"><span>Raiting: </span>@Model.AverageRating</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

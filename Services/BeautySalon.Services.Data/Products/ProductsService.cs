@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Products
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
@@ -7,6 +8,7 @@
     using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Data.Brands;
     using BeautySalon.Services.Data.Categories;
+    using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
 
@@ -86,6 +88,17 @@
             return await this.productsRepository
                             .All()
                             .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<T> GetDetailsAsync<T>(string id)
+        {
+            var product = await this.productsRepository
+                .All()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return product;
         }
 
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)

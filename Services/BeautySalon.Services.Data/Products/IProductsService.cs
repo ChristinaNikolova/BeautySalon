@@ -14,5 +14,7 @@
         Task DeleteAsync(string id);
 
         Task<Product> GetByIdAsync(string id);
+
+        Task<T> GetDetailsAsync<T>(string id);
     }
 }

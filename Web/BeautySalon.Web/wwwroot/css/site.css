@@ -73,7 +73,7 @@ li {
 
 .log {
     margin-top: 10px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .custom-margin-identity {
@@ -282,4 +282,8 @@ div .small {
     font-size: 14px;
     margin-top: 15px;
     margin-left: 10px
+}
+
+.product-name {
+    text-align: center;
 }

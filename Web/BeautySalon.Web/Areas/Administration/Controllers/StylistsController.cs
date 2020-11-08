@@ -2,11 +2,14 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
+    using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Web.ViewModels.Administration.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class StylistsController : AdministrationController
@@ -14,12 +17,14 @@
         private readonly IStylistsService stylistsService;
         private readonly ICategoriesService categoriesService;
         private readonly IJobTypesService jobTypesService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public StylistsController(IStylistsService stylistsService, ICategoriesService categoriesService, IJobTypesService jobTypesService)
+        public StylistsController(IStylistsService stylistsService, ICategoriesService categoriesService, IJobTypesService jobTypesService, UserManager<ApplicationUser> userManager)
         {
             this.stylistsService = stylistsService;
             this.categoriesService = categoriesService;
             this.jobTypesService = jobTypesService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> GetAll()
@@ -74,6 +79,15 @@
             }
 
             return this.RedirectToAction(nameof(this.Update), new { Id = stylistId });
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var stylist = await this.stylistsService.GetByIdAsync(id);
+
+            await this.userManager.RemoveFromRoleAsync(stylist, GlobalConstants.StylistRoleName);
+
+            return this.RedirectToAction(nameof(this.GetAll));
         }
     }
 }

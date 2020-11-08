@@ -19,16 +19,12 @@
     {
         private readonly IRepository<ApplicationUser> stylistsRepository;
         private readonly IRepository<ApplicationRole> rolesRepository;
-        private readonly ICategoriesService categoriesService;
-        private readonly IJobTypesService jobTypesService;
         private readonly ICloudinaryService cloudinaryService;
 
-        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, ICategoriesService categoriesService, IJobTypesService jobTypesService, ICloudinaryService cloudinaryService)
+        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, ICloudinaryService cloudinaryService)
         {
             this.stylistsRepository = stylistsepository;
             this.rolesRepository = rolesRepository;
-            this.categoriesService = categoriesService;
-            this.jobTypesService = jobTypesService;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -108,16 +104,6 @@
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             return stylist;
-        }
-
-        public async Task DeleteAsync(string id)
-        {
-            var stylist = await this.GetByIdAsync(id);
-
-            stylist.IsDeleted = true;
-
-            this.stylistsRepository.Update(stylist);
-            await this.stylistsRepository.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<T>()

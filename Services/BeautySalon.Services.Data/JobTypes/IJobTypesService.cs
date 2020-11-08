@@ -1,8 +1,10 @@
 ﻿namespace BeautySalon.Services.Data.JobTypes
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public interface IJobTypesService
     {
@@ -15,5 +17,7 @@
         Task<JobType> GetByIdAsync(string id);
 
         Task<JobType> GetByNameAsync(string name);
+
+        Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync();
     }
 }

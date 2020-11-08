@@ -8,11 +8,11 @@
         public const int AnswerContentMaxLenght = 500;
 
         // AppUser
-        public const int UserFirstNameMinLenght = 3;
+        public const int UserFirstNameMinLenght = 2;
 
         public const int UserFirstNameMaxLenght = 50;
 
-        public const int UserLastNameMinLenght = 3;
+        public const int UserLastNameMinLenght = 2;
 
         public const int UserLastNameMaxLenght = 50;
 

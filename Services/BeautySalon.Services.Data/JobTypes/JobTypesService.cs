@@ -1,9 +1,13 @@
 ﻿namespace BeautySalon.Services.Data.JobTypes
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class JobTypesService : IJobTypesService
@@ -46,6 +50,20 @@
 
             this.jobTypesRepository.Update(jobType);
             await this.jobTypesRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync()
+        {
+            var jobTypes = await this.jobTypesRepository
+               .All()
+               .Select(c => new SelectListItem()
+               {
+                   Value = c.Id,
+                   Text = c.Name,
+               })
+               .ToListAsync();
+
+            return jobTypes;
         }
 
         public async Task<JobType> GetByIdAsync(string id)

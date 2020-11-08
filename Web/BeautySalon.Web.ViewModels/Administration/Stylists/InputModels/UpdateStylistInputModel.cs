@@ -1,11 +1,13 @@
 ﻿namespace BeautySalon.Web.ViewModels.Administration.Stylists.InputModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class UpdateStylistInputModel : IMapFrom<ApplicationUser>
     {
@@ -24,17 +26,20 @@
         [Required]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [Display(Name = "Job Type")]
-        public JobType JobType { get; set; }
+        public IEnumerable<SelectListItem> JobTypes { get; set; }
 
         [Required]
-        public Category Category { get; set; }
+        [Display(Name = "Job Type")]
+        public string JobTypeId { get; set; }
+
+        public IEnumerable<SelectListItem> Categories { get; set; }
+
+        [Required]
+        public string CategoryId { get; set; }
 
         [MaxLength(DataValidation.StylistDescriptionMaxLenght)]
         public string Description { get; set; }
 
-        [Required]
         public string Picture { get; set; }
 
         [DataType(DataType.Upload)]

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Http;
 
     public interface IStylistsService
     {
@@ -11,7 +12,7 @@
 
         Task<T> GetStylistDataForUpdateAsync<T>(string id);
 
-        Task<ApplicationUser> UpdateStylistProfileAsync(string id, string categoryName, string jobTypeName, string descripion);
+        Task<ApplicationUser> UpdateStylistProfileAsync(string id, string firstName, string lastName, string phoneNumber, string category, string jobType, string descripion, IFormFile newPicture);
 
         Task<ApplicationUser> GetByIdAsync(string id);
 

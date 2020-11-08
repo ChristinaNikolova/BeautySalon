@@ -14,57 +14,60 @@
 </section>
 <section class="custom-margin-identity">
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <partial name="_NavBarAdministration" />
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <form enctype="multipart/form-data" asp-area="Administration" asp-controller="Stylists" asp-action="Update" method="post" class="text-center">
                 <input asp-for="@Model.Id" type="hidden" />
                 <div class="row">
-                    <div class="form-group col-6 ftco-animate text-center">
+                    <div class="form-group col-md-6 ftco-animate text-center">
                         <div class="coach align-items-stretch">
                             <div class="img" style="background-image: url(@Model.Picture);">
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-12">
+                    <div class="form-group col-md-6">
                         <label asp-for="@Model.NewPicture"></label><br />
                         <input type="file" asp-for="@Model.NewPicture" name="NewPicture" />
                         <span asp-validation-for="@Model.NewPicture" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-12">
-                        <label asp-for="FirstName"></label>
-                        <input asp-for="FirstName" class="form-control" />
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <div class="form-group col-md-4">
+                        <label asp-for="@Model.FirstName"></label>
+                        <input asp-for="@Model.FirstName" class="form-control" />
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-12">
-                        <label asp-for="LastName"></label>
-                        <input asp-for="LastName" class="form-control" />
-                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    <div class="form-group col-md-4">
+                        <label asp-for="@Model.LastName"></label>
+                        <input asp-for="@Model.LastName" class="form-control" />
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-12">
-                        <label asp-for="PhoneNumber"></label>
-                        <input asp-for="PhoneNumber" class="form-control" />
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    <div class="form-group col-md-4">
+                        <label asp-for="@Model.PhoneNumber"></label>
+                        <input asp-for="@Model.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                     </div>
-                    @*<div class="form-group">
-                            <label asp-for="JobType"></label>
-                            <select asp-for="JobType" class="form-control col-md-12" asp-items="@Html.GetEnumSelectList<JobType>()"> <option selected="selected" value="">Please select Job Type</option></select>
-                            <span asp-validation-for="JobType" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Category"></label>
-                            <select asp-for="Category" class="form-control col-md-12" asp-items="@Html.GetEnumSelectList<Category>()"> <option selected="selected" value="">Please select Category</option></select>
-                            <span asp-validation-for="Category" class="text-danger"></span>
-                        </div>*@
-                    <div class="form-group col-12">
-                        <label asp-for="Description"></label>
-                        <textarea asp-for="Description" rows="10" class="form-control"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                    <div class="form-group col-md-6">
+                        <label asp-for="@Model.JobTypeId"></label>
+                        <select asp-for="@Model.JobTypeId" class="form-control col-md-12" asp-items="@Model.JobTypes"> <option selected="selected" value="">Please select Job Type</option></select>
+                        <span asp-validation-for="@Model.JobTypeId" class="text-danger"></span>
                     </div>
-                    <button type="submit" class="btn btn-outline-primary" value="Upload">Update</button>
+                    <div class="form-group col-md-6">
+                        <label asp-for="@Model.CategoryId"></label>
+                        <select  asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories"> <option selected>Please select beauty category</option></select>
+                        <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="@Model.Description"></label>
+                        <textarea asp-for="@Model.Description" rows="10" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group justify-content-center">
+                        <button id="update-stylist-button" type="submit" class="btn btn-outline-primary" value="Upload">Update</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
+

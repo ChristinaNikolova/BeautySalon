@@ -93,10 +93,10 @@
 
             await this.usersService.UpdateUserProfileAsync(user.Id, user.UserName, this.Input.FirstName, this.Input.LastName, this.Input.Address, this.Input.PhoneNumber, this.Input.Gender, this.Input.SkinType, this.Input.IsSkinSensitive, this.Input.Picture);
 
-            if (this.User.IsInRole(GlobalConstants.StylistRoleName))
-            {
-                await this.stylistsService.UpdateStylistProfileAsync(user.Id, this.Input.Category, this.Input.JobType, this.Input.Description);
-            }
+            //if (this.User.IsInRole(GlobalConstants.StylistRoleName))
+            //{
+            //    await this.stylistsService.UpdateStylistProfileAsync(user.Id, this.Input.Category, this.Input.JobType, this.Input.Description);
+            //}
 
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";

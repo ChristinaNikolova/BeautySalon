@@ -7,9 +7,11 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
@@ -19,13 +21,15 @@
         private readonly IRepository<ApplicationRole> rolesRepository;
         private readonly ICategoriesService categoriesService;
         private readonly IJobTypesService jobTypesService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, ICategoriesService categoriesService, IJobTypesService jobTypesService)
+        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, ICategoriesService categoriesService, IJobTypesService jobTypesService, ICloudinaryService cloudinaryService)
         {
             this.stylistsRepository = stylistsepository;
             this.rolesRepository = rolesRepository;
             this.categoriesService = categoriesService;
             this.jobTypesService = jobTypesService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
@@ -68,16 +72,26 @@
             return stylist.Id;
         }
 
-        public async Task<ApplicationUser> UpdateStylistProfileAsync(string id, string categoryName, string jobTypeName, string descripion)
+        public async Task<ApplicationUser> UpdateStylistProfileAsync(string id, string firstName, string lastName, string phoneNumber, string category, string jobType, string descripion, IFormFile newPicture)
         {
             var stylist = await this.GetByIdAsync(id);
-            var category = await this.categoriesService.GetByNameAsync(categoryName);
-            var jobType = await this.jobTypesService.GetByNameAsync(jobTypeName);
 
-            stylist.CategoryId = category.Id;
-            stylist.JobTypeId = jobType.Id;
+            if (newPicture != null)
+            {
+                var fullName = firstName + " " + lastName;
+                var newPictureAsUrl = await this.cloudinaryService.UploudAsync(newPicture, fullName);
+
+                stylist.Picture = newPictureAsUrl;
+            }
+
+            stylist.FirstName = firstName;
+            stylist.LastName = lastName;
+            stylist.PhoneNumber = phoneNumber;
+            stylist.CategoryId = category;
+            stylist.JobTypeId = jobType;
             stylist.Description = descripion;
 
+            this.stylistsRepository.Update(stylist);
             await this.stylistsRepository.SaveChangesAsync();
 
             return stylist;

@@ -304,3 +304,16 @@ div .small {
 #update-stylist-button {
     margin-left: 350px;
 }
+
+#add-stylist-button,
+#add-new-stylist-title {
+    margin-left: 20px;
+}
+
+#add-new-stylist-title {
+    padding-top: 20px
+}
+
+.add-new-stylist-form {
+    background-color: #EFEEF3;
+}

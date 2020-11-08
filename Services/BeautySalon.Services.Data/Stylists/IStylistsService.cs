@@ -8,7 +8,7 @@
 
     public interface IStylistsService
     {
-        Task<string> AddRoleStylistAsync(string username, string email);
+        Task<string> AddRoleStylistAsync(string email);
 
         Task<T> GetStylistDataForUpdateAsync<T>(string id);
 

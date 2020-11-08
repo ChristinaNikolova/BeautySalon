@@ -57,5 +57,23 @@
 
             return this.RedirectToAction(nameof(this.GetAll));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(string stylistEmail)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.Redirect(nameof(this.GetAll));
+            }
+
+            var stylistId = await this.stylistsService.AddRoleStylistAsync(stylistEmail);
+
+            if (stylistId == null)
+            {
+                return this.RedirectToAction(nameof(this.GetAll));
+            }
+
+            return this.RedirectToAction(nameof(this.Update), new { Id = stylistId });
+        }
     }
 }

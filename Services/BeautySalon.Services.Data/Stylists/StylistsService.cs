@@ -47,11 +47,16 @@
             return stylists;
         }
 
-        public async Task<string> AddRoleStylistAsync(string username, string email)
+        public async Task<string> AddRoleStylistAsync(string email)
         {
             var stylist = await this.stylistsRepository
                 .All()
-                .FirstOrDefaultAsync(s => s.UserName == username && s.Email == email);
+                .FirstOrDefaultAsync(s => s.Email == email);
+
+            if (stylist == null)
+            {
+                return null;
+            }
 
             var stylistRole = await this.rolesRepository
                 .All()
@@ -65,7 +70,6 @@
 
             stylist.Roles.Add(userRole);
 
-            // TODO: Check if it WORKS!!!!
             this.stylistsRepository.Update(stylist);
             await this.stylistsRepository.SaveChangesAsync();
 

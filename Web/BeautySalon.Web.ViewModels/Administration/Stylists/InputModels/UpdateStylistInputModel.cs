@@ -6,7 +6,7 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using Microsoft.AspNetCore.Http;
+    using BeautySalon.Web.Infrastructure.ValidationAttributes;    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class UpdateStylistInputModel : IMapFrom<ApplicationUser>
@@ -30,11 +30,14 @@
 
         [Required]
         [Display(Name = "Job Type")]
+        [ValidateSelectedDropDownOption]
         public string JobTypeId { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }
 
         [Required]
+        [Display(Name = "Category")]
+        [ValidateSelectedDropDownOption]
         public string CategoryId { get; set; }
 
         [MaxLength(DataValidation.StylistDescriptionMaxLenght)]

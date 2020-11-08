@@ -1,5 +1,6 @@
 ﻿@using BeautySalon.Web.ViewModels.Administration.Stylists.InputModels;
 @model UpdateStylistInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -54,7 +55,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="@Model.CategoryId"></label>
-                        <select  asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories"> <option selected>Please select beauty category</option></select>
+                        <select asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories"> <option selected>Please select beauty category</option></select>
                         <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-12">
@@ -71,3 +72,12 @@
     </div>
 </section>
 
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

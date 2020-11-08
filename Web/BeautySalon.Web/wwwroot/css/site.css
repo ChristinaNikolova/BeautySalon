@@ -301,7 +301,8 @@ div .small {
     margin-bottom: 15px
 }
 
-#update-stylist-button {
+#update-stylist-button,
+#add-procedure-button {
     margin-left: 350px;
 }
 
@@ -310,10 +311,16 @@ div .small {
     margin-left: 20px;
 }
 
-#add-new-stylist-title {
+#add-new-stylist-title,
+#add-new-procedure-title {
     padding-top: 20px
 }
 
-.add-new-stylist-form {
+.add-new-stylist-form,
+.add-new-procedure {
     background-color: #EFEEF3;
+}
+
+.add-new-procedure-button {
+    margin-left: 380px;
 }

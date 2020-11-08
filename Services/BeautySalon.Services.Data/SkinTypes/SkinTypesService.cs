@@ -7,6 +7,7 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class SkinTypesService : ISkinTypesService
@@ -88,6 +89,20 @@
                 .FirstOrDefaultAsync();
 
             return result;
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync()
+        {
+            var skinTypes = await this.skinTypesRepository
+                .All()
+                .Select(c => new SelectListItem()
+                {
+                    Value = c.Id,
+                    Text = c.Name,
+                })
+                .ToListAsync();
+
+            return skinTypes;
         }
     }
 }

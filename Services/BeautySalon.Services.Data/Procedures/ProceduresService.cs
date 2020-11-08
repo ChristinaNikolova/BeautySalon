@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
@@ -86,6 +85,18 @@
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
+        {
+            var procedures = await this.proceduresRepository
+                .All()
+                .OrderBy(p => p.Category.Name)
+                .ThenBy(p => p.SkinType.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
         }
 
         public async Task<IEnumerable<T>> GetAllByCategoryAsync<T>(string categoryId, int take, int skip)

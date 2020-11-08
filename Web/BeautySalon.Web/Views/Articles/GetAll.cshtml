@@ -1,18 +1,10 @@
 ﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
 @model AllArticlesViewModel;
+@{
+    ViewData["Title"] = "Blog";
+}
 
-<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Blog</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span> <span>Blog</span></p>
-            </div>
-        </div>
-    </div>
-</section>
-
+<partial name="_TitlePageSection" />
 <section class="ftco-section bg-light">
     <div class="row justify-content-center mb-5">
         <div class="col-md-12 heading-section text-center ftco-animate">
@@ -98,7 +90,7 @@
                     let result = '';
                     debugger;
                     data.articles.forEach(article => {
-                        result += '<div class="col-md-4 d-flex"> <div class="blog-entry justify-content-end">' + `<a class="block-20" style="background-image: url('${article.picture}');"></a>` + '<div class="text p-4 float-right d-block">' + '<div class="d-flex align-items-center pt-2 mb-4">' + '<div class="one">' + `<span class="day">${article.day}</span>` + '</div>' + '<div class="two">' + `<span class="yr">${article.year}</span>` + `<span class="mos">${article.month}</span>` + '</div> </div >' + `<h3 class="heading mt-2"><a href="/Articles/GetDetails/${article.id}">${article.title}</a></h3>` + `<p class="small">${article.shortContent}</p>` + '<ul class="subheading article-category d-inline">'+`<li class="theme-color-gold small article-category"><strong>Category: </strong>${article.categoryName}</li>`+
+                        result += '<div class="col-md-4 d-flex"> <div class="blog-entry justify-content-end">' + `<a class="block-20" style="background-image: url('${article.picture}');"></a>` + '<div class="text p-4 float-right d-block">' + '<div class="d-flex align-items-center pt-2 mb-4">' + '<div class="one">' + `<span class="day">${article.day}</span>` + '</div>' + '<div class="two">' + `<span class="yr">${article.year}</span>` + `<span class="mos">${article.month}</span>` + '</div> </div >' + `<h3 class="heading mt-2"><a href="/Articles/GetDetails/${article.id}">${article.title}</a></h3>` + `<p class="small">${article.shortContent}</p>` + '<ul class="subheading article-category d-inline">' + `<li class="theme-color-gold small article-category"><strong>Category: </strong>${article.categoryName}</li>` +
                             `<li class="theme-color-gold small article-category"><strong>Author: </strong><a href="/Stylists/GetDetails/${article.stylistId}">${article.stylistFullName}</a></li>` +
                             `<li class="theme-color-gold small article-category"><strong>Likes: </strong>${article.likesCount}</li>` +
                             '</ul>' +

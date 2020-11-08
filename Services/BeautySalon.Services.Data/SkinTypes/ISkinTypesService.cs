@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public interface ISkinTypesService
     {
@@ -20,5 +21,7 @@
         Task<IEnumerable<T>> GetAllAsync<T>();
 
         Task<T> GetSkinTypeResultAsync<T>(string skinTypeName);
+
+        Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync();
     }
 }

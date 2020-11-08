@@ -1,18 +1,11 @@
 ﻿@using BeautySalon.Web.ViewModels.Stylists.ViewModels;
 @model AllStylistsViewModel;
 
-<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Our Team Specialists</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span>
-            </div>
-        </div>
-    </div>
-</section>
+@{
+    ViewData["Title"] = "Specialists";
+}
 
+<partial name="_TitlePageSection" />
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-5">

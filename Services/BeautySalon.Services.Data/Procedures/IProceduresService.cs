@@ -30,5 +30,7 @@
         Task<IEnumerable<T>> GetProceduresByStylistAsync<T>(string stylistId);
 
         Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string isSkinSensitive, string stylistId);
+
+        Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
     }
 }

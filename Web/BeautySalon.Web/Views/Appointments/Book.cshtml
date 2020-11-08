@@ -1,18 +1,11 @@
 ﻿@using BeautySalon.Web.ViewModels.Appoitments.InputModels;
 @model BookAppointmentInputModel;
 @inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+@{
+    ViewData["Title"] = "Appointments";
+}
 
-<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Appointments</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span></p>
-            </div>
-        </div>
-    </div>
-</section>
+<partial name="_TitlePageSection" />
 <section id="ParentContainer" class="ftco-section contact-section">
     <div class="container">
         <div class="row block-9">

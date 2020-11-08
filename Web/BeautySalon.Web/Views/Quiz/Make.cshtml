@@ -2,19 +2,11 @@
 @model QuizInputModel;
 @inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
-<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Skin Quiz</h1>
-                <h2 class="mb-5" align="center">What Skin Type Am I?</h2>
-                <h3 class="mb-5" align="center">Find out right now!</h3>
-            </div>
-        </div>
-    </div>
-</section>
+@{
+    ViewData["Title"] = "Skin Quiz";
+}
 
+<partial name="_TitlePageSection" />
 <form id="form-quiz" method="post"></form>
 <div class="comment-form-wrap pt-5">
     <h2 id="make-quiz-heading" class="mb-5" align="center" style="display:block">Make the quiz</h2>

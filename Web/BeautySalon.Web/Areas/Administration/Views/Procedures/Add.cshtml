@@ -1,0 +1,89 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
+@model AddProcedureInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Add</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Administration" asp-controller="Procedures" asp-action="GetAll">All Procedures</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="custom-margin-identity">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministration" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Add Procedure</h2>
+            <hr />
+            <form asp-area="Administration" asp-controller="Procedures" asp-action="Add" method="post" class="text-center">
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Price"></label>
+                        <input asp-for="@Model.Price" class="form-control" />
+                        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.CategoryId"></label>
+                        <select id="category" asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories"> <option selected="selected" value="">Please select beauty category</option></select>
+                        <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                    </div>
+                    <div id="skin-type" class="form-group col-md-8 hidden">
+                        <label asp-for="@Model.SkinTypeId"></label>
+                        <select asp-for="@Model.SkinTypeId" class="form-control col-md-12" asp-items="@Model.SkinTypes"> <option selected>Please select skin type</option></select>
+                        <span asp-validation-for="@Model.SkinTypeId" class="text-danger"></span>
+                    </div>
+                    <div id="is-sensitive" class="form-group col-md-8 form-check hidden">
+                        <label asp-for="@Model.IsSensitive"></label><br />
+                        <input asp-for="@Model.IsSensitive" type="radio" value="Yes" /> Yes<br />
+                        <input asp-for="@Model.IsSensitive" type="radio" value="No" /> No<br />
+                        <span asp-validation-for="@Model.IsSensitive" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Description"></label>
+                        <textarea asp-for="@Model.Description" rows="15" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <button id="add-procedure-button" type="submit" class="btn btn-outline-primary ml-md-4" value="Add">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
+    <script>
+        let category = document.getElementById("category");
+        category.addEventListener("change", checkCategory);
+
+        function checkCategory() {
+            if (category.value === 'ecc3136a-e09f-491b-a96d-cacbfe0397b2') {
+                document.getElementById("is-sensitive").style.display = "block";
+                document.getElementById("skin-type").style.display = "block";
+            } else {
+                document.getElementById("is-sensitive").style.display = "none";
+                document.getElementById("skin-type").style.display = "none";
+            }
+        }
+    </script>
+}

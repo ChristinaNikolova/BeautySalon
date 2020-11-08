@@ -64,9 +64,17 @@
         public const int OrderCommentMaxLenght = 1000;
 
         // Procedure
+        public const int ProcedureNameMinLenght = 5;
+
         public const int ProcedureNameMaxLenght = 100;
 
+        public const int ProcedureDescriptionMinLenght = 10;
+
         public const int ProcedureDescriptionMaxLenght = 1000;
+
+        public const string ProcedureMinPrice = "10";
+
+        public const string ProcedureMaxPrice = "1000";
 
         // ProcedureReview
         public const int ProcedureReviewContentMaxLenght = 1000;

@@ -8,8 +8,6 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Cloudinary;
-    using BeautySalon.Services.Data.Categories;
-    using BeautySalon.Services.Data.JobTypes;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;

@@ -1,0 +1,55 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Procedures.ViewModels;
+@model AllProceduresAdministrationViewModel;
+
+@{
+    ViewData["Title"] = "Admin's dashboard";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-3">
+            <partial name="_NavBarAdministration" />
+        </div>
+        <div class="col-8">
+            <h2 class="text-center">Procedures</h2>
+            <hr />
+            <div class="add-new-procedure">
+                <h4 id="add-new-procedure-title" class="text-center">Add Procedure</h4>
+                <a asp-area="Administration" asp-controller="Procedures" asp-action="Add" class="btn btn-primary p-2 px-2 py-2 add-new-procedure-button">Add</a>
+                <hr />
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-field="#">#</th>
+                        <th data-field="name">Name</th>
+                        <th data-field="category">Category</th>
+                        <th data-field="categoryType">Skin Type</th>
+                        <th data-field="Rating">Rating</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Procedures.Count(); i++)
+                    {
+                        var currentProcedure = Model.Procedures.ToList()[i];
+
+                        <tr class="content">
+                            <th scope="row">@(i+1)</th>
+                            <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@currentProcedure.Id">@currentProcedure.Name</a></td>
+                            <td>@currentProcedure.CategoryName</td>
+                            <td>@currentProcedure.SkinTypeName</td>
+                            <td>@currentProcedure.FormattedRaiting</td>
+                            <td>@currentProcedure.FormattedPrice</td>
+                            <td><a asp-area="Administration" asp-controller="Procedures" asp-action="Update" asp-route-id="@currentProcedure.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
+                            <td><a asp-area="Administration" asp-controller="Procedures" asp-action="Delete" asp-route-id="@currentProcedure.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

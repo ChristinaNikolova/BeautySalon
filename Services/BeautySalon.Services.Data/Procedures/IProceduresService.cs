@@ -7,7 +7,7 @@
 
     public interface IProceduresService
     {
-        Task<string> CreateAsync(string name, string description, decimal price, string categoryName, string skinTypeName);
+        Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
 
         Task EditAsync(string name, string description, decimal price, string categoryName, string skinTypeName, string id);
 

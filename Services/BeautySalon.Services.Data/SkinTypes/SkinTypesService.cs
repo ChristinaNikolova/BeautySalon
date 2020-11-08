@@ -95,6 +95,7 @@
         {
             var skinTypes = await this.skinTypesRepository
                 .All()
+                .Where(st => st.Name.ToLower() != "sensitive")
                 .Select(c => new SelectListItem()
                 {
                     Value = c.Id,

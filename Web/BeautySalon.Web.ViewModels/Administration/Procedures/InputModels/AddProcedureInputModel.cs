@@ -30,10 +30,9 @@
         public IEnumerable<SelectListItem> SkinTypes { get; set; }
 
         [Display(Name = "Skin Type")]
-        [ValidateSelectedDropDownOption]
         public string SkinTypeId { get; set; }
 
         [Display(Name = "Is for sensitive skin")]
-        public bool? IsSensitive { get; set; }
+        public string IsSensitive { get; set; }
     }
 }

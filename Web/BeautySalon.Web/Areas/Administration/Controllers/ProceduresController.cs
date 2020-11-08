@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.SkinTypes;
@@ -32,7 +33,7 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Create()
         {
             var model = new AddProcedureInputModel()
             {
@@ -43,16 +44,21 @@
             return this.View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Add()
-        //{
-        //    var model = new AddProcedureInputModel()
-        //    {
-        //        Categories = await this.categoriesService.GetAllAsSelectListItemAsync(),
-        //        SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync(),
-        //    };
+        [HttpPost]
+        public async Task<IActionResult> Create(AddProcedureInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+                input.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
 
-        //    return this.View(model);
-        //}
+                return this.View(input);
+            }
+
+            await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
+
+                //redirect to Update!
+            return this.RedirectToAction(nameof(this.GetAll));
+        }
     }
 }

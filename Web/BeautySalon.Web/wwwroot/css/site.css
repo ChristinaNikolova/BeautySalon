@@ -313,7 +313,7 @@ div .small {
 
 #add-new-stylist-title,
 #add-new-procedure-title {
-    padding-top: 20px
+    padding-top: 20px;
 }
 
 .add-new-stylist-form,
@@ -323,4 +323,20 @@ div .small {
 
 .add-new-procedure-button {
     margin-left: 380px;
+}
+
+skin-type-name {
+    margin: 20px;
+}
+
+.color-black {
+    color: black;
+}
+
+.color-grey {
+    color: grey;
+}
+
+.radio-choice {
+    margin: 10px;
 }

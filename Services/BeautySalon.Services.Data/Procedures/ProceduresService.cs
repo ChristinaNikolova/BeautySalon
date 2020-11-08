@@ -41,19 +41,21 @@
             this.skinTypesService = skinTypesService;
         }
 
-        public async Task<string> CreateAsync(string name, string description, decimal price, string categoryName, string skinTypeName)
+        public async Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
         {
-            var category = await this.categoriesService.GetByNameAsync(categoryName);
-            var skinType = await this.skinTypesService.GetByNameAsync(skinTypeName);
-
             var procedure = new Procedure()
             {
                 Name = name,
                 Description = description,
                 Price = price,
-                CategoryId = category.Id,
-                SkinTypeId = skinType.Id,
+                CategoryId = categoryId,
             };
+
+            if (skinTypeId != null)
+            {
+                procedure.SkinTypeId = skinTypeId;
+                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
+            }
 
             await this.proceduresRepository.AddAsync(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -93,6 +95,7 @@
                 .All()
                 .OrderBy(p => p.Category.Name)
                 .ThenBy(p => p.SkinType.Name)
+                .ThenBy(p => p.Name)
                 .To<T>()
                 .ToListAsync();
 

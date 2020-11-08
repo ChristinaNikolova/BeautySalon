@@ -67,7 +67,7 @@
         {
             if (string.IsNullOrWhiteSpace(input.CategoryId))
             {
-                return this.RedirectToAction("GetAll");
+                return this.RedirectToAction(nameof(this.GetAll));
             }
 
             var articles = await this.articlesService.SearchByAsync<ArticleViewModel>(input.CategoryId);

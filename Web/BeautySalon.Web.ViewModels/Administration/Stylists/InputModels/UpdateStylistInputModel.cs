@@ -40,7 +40,8 @@
         [ValidateSelectedDropDownOption]
         public string CategoryId { get; set; }
 
-        [MaxLength(DataValidation.StylistDescriptionMaxLenght)]
+        [Required]
+        [StringLength(DataValidation.StylistDescriptionMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.StylistDescriptionMinLenght)]
         public string Description { get; set; }
 
         public string Picture { get; set; }

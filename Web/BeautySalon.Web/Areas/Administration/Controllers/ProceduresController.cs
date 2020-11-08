@@ -57,7 +57,14 @@
 
             await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
 
-                //redirect to Update!
+            //redirect to Update!
+            return this.RedirectToAction(nameof(this.GetAll));
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.proceduresService.DeleteAsync(id);
+
             return this.RedirectToAction(nameof(this.GetAll));
         }
     }

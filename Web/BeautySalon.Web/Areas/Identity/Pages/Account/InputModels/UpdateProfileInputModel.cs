@@ -31,20 +31,5 @@
 
         [DataType(DataType.Upload)]
         public IFormFile Picture { get; set; }
-
-        [Display(Name = "Skin type")]
-        public string SkinType { get; set; }
-
-        [Display(Name = "Sensitive skin")]
-        public string IsSkinSensitive { get; set; }
-
-        [Display(Name = "Job Category")]
-        public string Category { get; set; }
-
-        [Display(Name = "Job Type")]
-        public string JobType { get; set; }
-
-        [Display(Name = "About me")]
-        public string Description { get; set; }
     }
 }

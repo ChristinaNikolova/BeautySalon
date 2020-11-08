@@ -91,12 +91,7 @@
                 return this.Page();
             }
 
-            await this.usersService.UpdateUserProfileAsync(user.Id, user.UserName, this.Input.FirstName, this.Input.LastName, this.Input.Address, this.Input.PhoneNumber, this.Input.Gender, this.Input.SkinType, this.Input.IsSkinSensitive, this.Input.Picture);
-
-            //if (this.User.IsInRole(GlobalConstants.StylistRoleName))
-            //{
-            //    await this.stylistsService.UpdateStylistProfileAsync(user.Id, this.Input.Category, this.Input.JobType, this.Input.Description);
-            //}
+            await this.usersService.UpdateUserProfileAsync(user.Id, user.UserName, this.Input.FirstName, this.Input.LastName, this.Input.Address, this.Input.PhoneNumber, this.Input.Gender, this.Input.Picture);
 
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";
@@ -112,8 +107,6 @@
             this.Username = userName;
             this.Email = email;
 
-            var skinType = await this.usersService.GetUserSkinTypeByIdAsync(user.SkinTypeId);
-
             this.Input = new UpdateProfileInputModel
             {
                 PhoneNumber = phoneNumber,
@@ -121,23 +114,7 @@
                 LastName = user.LastName,
                 Address = user.Address,
                 Gender = user.Gender.ToString(),
-                IsSkinSensitive = user.IsSkinSensitive.Value ? "Yes" : "No",
             };
-
-            if (skinType != null)
-            {
-                this.Input.SkinType = skinType.Name;
-            }
-
-            if (this.User.IsInRole(GlobalConstants.StylistRoleName))
-            {
-                var category = await this.categoriesService.GetByIdAsync(user.CategoryId);
-                var jobType = await this.jobTypesService.GetByIdAsync(user.JobTypeId);
-
-                this.Input.Category = category.Name;
-                this.Input.JobType = jobType.Name;
-                this.Input.Description = user.Description;
-            }
         }
     }
 }

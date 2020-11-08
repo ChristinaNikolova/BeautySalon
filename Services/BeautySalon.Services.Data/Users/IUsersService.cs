@@ -7,7 +7,7 @@
 
     public interface IUsersService
     {
-        Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, string skinTypeName, string isSkinSensitive, IFormFile picture);
+        Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, IFormFile picture);
 
         Task<SkinType> GetUserSkinTypeByIdAsync(string skinTypeId);
 

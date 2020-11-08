@@ -34,7 +34,7 @@
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, string skinTypeName, string isSkinSensitive, IFormFile picture)
+        public async Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, IFormFile picture)
         {
             var user = await this.GetUserByIdAsync(id);
 
@@ -43,13 +43,6 @@
             user.Address = address;
             user.PhoneNumber = phoneNumber;
             user.Gender = Enum.Parse<Gender>(gender);
-            user.IsSkinSensitive = isSkinSensitive == "Yes";
-
-            if (skinTypeName != null)
-            {
-                var newSkinType = await this.GetUserSkinTypeByNameAsync(skinTypeName);
-                user.SkinTypeId = newSkinType.Id;
-            }
 
             if (picture != null)
             {

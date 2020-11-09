@@ -17,12 +17,14 @@
     {
         private readonly IRepository<ApplicationUser> stylistsRepository;
         private readonly IRepository<ApplicationRole> rolesRepository;
+        private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, ICloudinaryService cloudinaryService)
+        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, IRepository<ProcedureStylist> procedureStylistsRepository, ICloudinaryService cloudinaryService)
         {
             this.stylistsRepository = stylistsepository;
             this.rolesRepository = rolesRepository;
+            this.procedureStylistsRepository = procedureStylistsRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -207,6 +209,27 @@
                 .FirstOrDefaultAsync();
 
             return pictureUrl;
+        }
+
+        public async Task<T> GetStylistProceduresAsync<T>(string id)
+        {
+            var stylist = await this.stylistsRepository
+                .All()
+                .Where(s => s.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return stylist;
+        }
+
+        public async Task RemoveProcedureAsync(string stylistId, string procedureId)
+        {
+            var stylistProcedure = await this.procedureStylistsRepository
+                .All()
+                .FirstOrDefaultAsync(ps => ps.StylistId == stylistId && ps.ProcedureId == procedureId);
+
+            this.procedureStylistsRepository.Delete(stylistProcedure);
+            await this.procedureStylistsRepository.SaveChangesAsync();
         }
 
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)

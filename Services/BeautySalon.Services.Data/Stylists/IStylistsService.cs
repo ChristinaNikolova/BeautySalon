@@ -29,5 +29,9 @@
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
 
         Task<string> GetPictureUrlAsync(string id);
+
+        Task<T> GetStylistProceduresAsync<T>(string id);
+
+        Task RemoveProcedureAsync(string stylistId, string procedureId);
     }
 }

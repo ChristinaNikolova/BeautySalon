@@ -1,0 +1,93 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
+@model ManageStylistProceduresViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Manage Procedures</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Administration" asp-controller="Stylists" asp-action="Update" asp-route-id="@Model.Id">Stylist</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-3">
+            <partial name="_NavBarAdministration" />
+        </div>
+        <div class="col-8">
+            <h2 class="text-center">Manage Procedures</h2>
+            <h3 class="text-center theme-color-gold">@Model.FirstName @Model.LastName</h3>
+            <div id="stylist-id" hidden>@Model.Id</div>
+            <hr />
+            @*<div class="add-new-procedure">
+                <h4 id="add-new-stylist-procedure" class="text-center">Add Procedure</h4>
+                <a asp-area="Administration" asp-controller="Stylists" asp-action="AddProcedure" class="btn btn-primary p-2 px-2 py-2 add-new-procedure-button">Create</a>
+                <hr />
+            </div>*@
+            <form id="form-delete-procedure" method="post"></form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-field="#">#</th>
+                        <th data-field="name">Name</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-stylist-procedures">
+                    @for (var i = 0; i < Model.Procedures.Count(); i++)
+                    {
+                        var currentProcedure = Model.Procedures.ToList()[i];
+
+                        <tr class="content">
+                            <th scope="row">@(i+1)</th>
+                            <td><a id="@currentProcedure.Id">@currentProcedure.Name</a></td>
+                            <td><a class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 delete-button">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    console.log("in");
+    let deleteButtons = [...document.getElementsByClassName("delete-button")];
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", deleteProcedure);
+    });
+
+    function deleteProcedure(event) {
+        let procedureId = event.target.parentElement.parentElement.children[1].children[0].id;
+        let stylistId = document.getElementById("stylist-id").innerText;
+
+        var token = $("#form-delete-procedure input[name=__RequestVerificationToken]").val();
+
+        $.ajax({
+            url: "/Administration/Stylists/DeleteStylistProcedure/",
+            type: "POST",
+            data: JSON.stringify({ procedureId, stylistId }),
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-TOKEN': token },
+            dataType: "json",
+            success: function (data) {
+                let result = '';
+                let counter = 1;
+                data.procedures.forEach(procedure => {
+                    result += '<tr class="content">' + `<th scope="row">${counter}</th>` + `<td><a id="${procedure.Id}" >${procedure.name}</a></td>` + '<td><a class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 delete-button">Delete</a></td>' + '</tr>';
+
+                    counter++;
+                });
+
+                $('#tbody-stylist-procedures').html(result);
+                window.location.reload();
+            }
+        });
+    }
+
+</script>

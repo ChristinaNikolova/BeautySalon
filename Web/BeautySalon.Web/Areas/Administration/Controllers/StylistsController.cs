@@ -90,5 +90,28 @@
 
             return this.RedirectToAction(nameof(this.GetAll));
         }
+
+        public async Task<IActionResult> ManageProcedures(string id)
+        {
+            var model = await this.stylistsService.GetStylistProceduresAsync<ManageStylistProceduresViewModel>(id);
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] Test input)
+        {
+            await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
+
+            var stylistProcedures = await this.stylistsService.GetStylistProceduresAsync<ManageStylistProceduresViewModel>(input.StylistId);
+
+            return stylistProcedures;
+        }
+    }
+
+    public class Test
+    {
+        public string ProcedureId { get; set; }
+        public string StylistId { get; set; }
     }
 }

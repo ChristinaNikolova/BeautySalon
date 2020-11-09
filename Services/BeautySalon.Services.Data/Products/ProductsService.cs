@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
@@ -17,15 +18,11 @@
     {
         private readonly IRepository<Product> productsRepository;
         private readonly ICloudinaryService cloudinaryService;
-        private readonly IBrandsService brandsService;
-        private readonly ICategoriesService categoriesService;
 
-        public ProductsService(IRepository<Product> productsRepository, ICloudinaryService cloudinaryService, IBrandsService brandsService, ICategoriesService categoriesService)
+        public ProductsService(IRepository<Product> productsRepository, ICloudinaryService cloudinaryService)
         {
             this.productsRepository = productsRepository;
             this.cloudinaryService = cloudinaryService;
-            this.brandsService = brandsService;
-            this.categoriesService = categoriesService;
         }
 
         public async Task<string> CreateAsync(string name, string description, decimal price, IFormFile picture, string brandId, string categoryId)
@@ -59,18 +56,15 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(string name, string description, decimal price, int quantity, IFormFile newPicture, string brandName, string categoryName, string id)
+        public async Task UpdateAsync(string id, string name, string description, decimal price, IFormFile newPicture, string brandId, string categoryId)
         {
             var product = await this.GetByIdAsync(id);
-            var category = await this.categoriesService.GetByNameAsync(categoryName);
-            var brand = await this.brandsService.GetByNameAsync(brandName);
 
             product.Name = name;
             product.Description = description;
             product.Price = price;
-            product.Quantity = quantity;
-            product.CategoryId = category.Id;
-            product.BrandId = brand.Id;
+            product.CategoryId = categoryId;
+            product.BrandId = brandId;
 
             if (newPicture != null)
             {
@@ -111,6 +105,28 @@
                 .FirstOrDefaultAsync();
 
             return product;
+        }
+
+        public async Task<T> GetProductDataForUpdateAsync<T>(string id)
+        {
+            var product = await this.productsRepository
+                 .All()
+                 .Where(p => p.Id == id)
+                 .To<T>()
+                 .FirstOrDefaultAsync();
+
+            return product;
+        }
+
+        public async Task<string> GetPictureUrlAsync(string id)
+        {
+            var pictureUrl = await this.productsRepository
+                .All()
+                .Where(p => p.Id == id)
+                .Select(p => p.Picture)
+                .FirstOrDefaultAsync();
+
+            return pictureUrl;
         }
 
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)

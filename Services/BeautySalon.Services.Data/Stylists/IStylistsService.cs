@@ -27,5 +27,7 @@
         Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId);
 
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
+
+        Task<string> GetPictureUrlAsync(string id);
     }
 }

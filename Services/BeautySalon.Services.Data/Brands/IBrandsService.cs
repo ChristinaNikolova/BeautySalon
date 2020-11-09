@@ -14,6 +14,7 @@
         Task EditAsync(string name, IFormFile newLogo, string logo, string description, string id);
 
         Task DeleteAsync(string id);
+
         Task<Brand> GetByIdAsync(string id);
 
         Task<Brand> GetByNameAsync(string name);

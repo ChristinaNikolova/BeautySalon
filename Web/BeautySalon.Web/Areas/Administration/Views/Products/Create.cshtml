@@ -19,10 +19,9 @@
             <partial name="_NavBarAdministration" />
         </div>
         <div class="col-md-8">
-            <h2 class="text-center">Create Products</h2>
+            <h2 class="text-center">Create Product</h2>
             <hr />
             <form asp-area="Administration" asp-controller="Products" asp-action="Create" method="post" class="text-center" enctype="multipart/form-data">
-                @*<div asp-validation-summary="All"></div>*@
                 <div class="row justify-content-center">
                     <div class="form-group col-md-8">
                         <label asp-for="@Model.Name"></label>

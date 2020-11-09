@@ -6,7 +6,8 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using BeautySalon.Web.Infrastructure.ValidationAttributes;    using Microsoft.AspNetCore.Http;
+    using BeautySalon.Web.Infrastructure.ValidationAttributes;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class UpdateStylistInputModel : IMapFrom<ApplicationUser>

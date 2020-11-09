@@ -54,6 +54,7 @@
             {
                 input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.JobTypes = await this.jobTypesService.GetAllAsSelectListItemAsync();
+                input.Picture = await this.stylistsService.GetPictureUrlAsync(input.Id);
 
                 return this.View(input);
             }

@@ -10,7 +10,7 @@
     {
         Task<string> CreateAsync(string name, string description, decimal price, IFormFile picture, string brandId, string categoryId);
 
-        Task EditAsync(string name, string description, decimal price, int quantity, IFormFile newPicture, string brandName, string categoryName, string id);
+        Task UpdateAsync(string id, string name, string description, decimal price, IFormFile newPicture, string brandId, string categoryId);
 
         Task DeleteAsync(string id);
 
@@ -19,5 +19,9 @@
         Task<T> GetDetailsAsync<T>(string id);
 
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
+
+        Task<T> GetProductDataForUpdateAsync<T>(string id);
+
+        Task<string> GetPictureUrlAsync(string id);
     }
 }

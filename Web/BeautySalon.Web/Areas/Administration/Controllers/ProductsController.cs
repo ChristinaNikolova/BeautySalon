@@ -56,8 +56,34 @@
 
             var id = await this.productsService.CreateAsync(input.Name, input.Description, input.Price, input.Picture, input.BrandId, input.CategoryId);
 
-            //return this.RedirectToAction(nameof(this.Update), new { Id = id });
-            return this.Redirect(nameof(this.GetAll));
+            return this.RedirectToAction(nameof(this.Update), new { Id = id });
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var model = await this.productsService.GetProductDataForUpdateAsync<UpdateProductInputModel>(id);
+
+            model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+            model.Brands = await this.brandsService.GetAllAsSelectListItemAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateProductInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+                input.Brands = await this.brandsService.GetAllAsSelectListItemAsync();
+                input.Picture = await this.productsService.GetPictureUrlAsync(input.Id);
+
+                return this.View(input);
+            }
+
+            await this.productsService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.NewPicture, input.BrandId, input.CategoryId);
+
+            return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Delete(string id)

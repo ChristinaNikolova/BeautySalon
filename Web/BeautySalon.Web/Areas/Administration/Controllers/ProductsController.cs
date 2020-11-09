@@ -59,5 +59,12 @@
             //return this.RedirectToAction(nameof(this.Update), new { Id = id });
             return this.Redirect(nameof(this.GetAll));
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.productsService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(this.GetAll));
+        }
     }
 }

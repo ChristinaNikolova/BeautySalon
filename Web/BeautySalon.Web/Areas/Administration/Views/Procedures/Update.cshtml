@@ -1,4 +1,5 @@
 ﻿@using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
+@using BeautySalon.Common
 @model UpdateProcedureInputModel;
 @inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
 
@@ -21,8 +22,10 @@
         <div class="col-md-8">
             <h2 class="text-center">Update Procedure</h2>
             <hr />
-            <form asp-area="Administration" asp-controller="Procedures" asp-action="Create" method="post" class="text-center">
+            <form asp-area="Administration" asp-controller="Procedures" asp-action="Update" method="post" class="text-center">
                 <input asp-for="@Model.Id" type="hidden" />
+                <div id="category-skin-care-id" hidden>@GlobalConstants.CategorySkinCareId</div>
+                <div asp-validation-summary="All"></div>
                 <div class="row justify-content-center">
                     <div class="form-group col-md-8">
                         <label asp-for="@Model.Name"></label>
@@ -36,12 +39,16 @@
                     </div>
                     <div class="form-group col-md-8">
                         <label asp-for="@Model.CategoryId"></label>
-                        <select id="category" asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories"> <option selected="selected" value="">Please select beauty category</option></select>
+                        <select id="category" asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories">
+                            <option selected>Please select beauty category</option>
+                        </select>
                         <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div id="skin-type" class="form-group col-md-8">
                         <label asp-for="@Model.SkinTypeId"></label>
-                        <select id="category" asp-for="@Model.SkinTypeId" class="form-control col-md-12" asp-items="@Model.SkinTypes"> <option selected="selected" value="">Please select skin type</option></select>
+                        <select id="category" asp-for="@Model.SkinTypeId" class="form-control col-md-12" asp-items="@Model.SkinTypes">
+                            <option selected>Please select skin type</option>
+                        </select>
                         <span asp-validation-for="@Model.SkinTypeId" class="text-danger"></span>
                     </div>
                     <div id="is-sensitive" class="form-group col-md-8 form-check color-black">

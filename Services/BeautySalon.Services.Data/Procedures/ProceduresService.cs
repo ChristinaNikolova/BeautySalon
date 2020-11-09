@@ -51,11 +51,7 @@
                 CategoryId = categoryId,
             };
 
-            if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
-            {
-                procedure.SkinTypeId = skinTypeId;
-                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
-            }
+            CheckSkinType(skinTypeId, isSensitive, procedure);
 
             await this.proceduresRepository.AddAsync(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -93,14 +89,19 @@
             procedure.Price = price;
             procedure.CategoryId = categoryId;
 
-            if (skinTypeId != null)
+            CheckSkinType(skinTypeId, isSensitive, procedure);
+
+            this.proceduresRepository.Update(procedure);
+            await this.proceduresRepository.SaveChangesAsync();
+        }
+
+        private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)
+        {
+            if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
                 procedure.SkinTypeId = skinTypeId;
                 procedure.IsSensitive = isSensitive == "Yes" ? true : false;
             }
-
-            this.proceduresRepository.Update(procedure);
-            await this.proceduresRepository.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()

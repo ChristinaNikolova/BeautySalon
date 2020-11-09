@@ -6,6 +6,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.JobTypes;
+    using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Web.ViewModels.Administration.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
@@ -17,13 +18,15 @@
         private readonly IStylistsService stylistsService;
         private readonly ICategoriesService categoriesService;
         private readonly IJobTypesService jobTypesService;
+        private readonly IProceduresService proceduresService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public StylistsController(IStylistsService stylistsService, ICategoriesService categoriesService, IJobTypesService jobTypesService, UserManager<ApplicationUser> userManager)
+        public StylistsController(IStylistsService stylistsService, ICategoriesService categoriesService, IJobTypesService jobTypesService, IProceduresService proceduresService, UserManager<ApplicationUser> userManager)
         {
             this.stylistsService = stylistsService;
             this.categoriesService = categoriesService;
             this.jobTypesService = jobTypesService;
+            this.proceduresService = proceduresService;
             this.userManager = userManager;
         }
 
@@ -99,6 +102,31 @@
         }
 
         [HttpPost]
+        public async Task<IActionResult> AddProcedure(Test2 input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+            }
+
+            var procedureId = await this.proceduresService.GetProcedureIdByNameAsync(input.ProcedureName);
+
+            if (procedureId == null)
+            {
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+            }
+
+            var isSuccess = await this.stylistsService.AddProcedureToStylistAsync(input.Id, procedureId);
+
+            if (!isSuccess)
+            {
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+            }
+
+            return this.RedirectToAction(nameof(this.Update), new { Id = input.Id });
+        }
+
+        [HttpPost]
         public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] Test input)
         {
             await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
@@ -113,5 +141,11 @@
     {
         public string ProcedureId { get; set; }
         public string StylistId { get; set; }
+    }
+
+    public class Test2
+    {
+        public string ProcedureName { get; set; }
+        public string Id { get; set; }
     }
 }

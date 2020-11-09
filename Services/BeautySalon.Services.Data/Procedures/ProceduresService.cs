@@ -8,7 +8,6 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
-    using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
@@ -232,6 +231,17 @@
                 .ToListAsync();
 
             return procedures;
+        }
+
+        public async Task<string> GetProcedureIdByNameAsync(string procedureName)
+        {
+            var procedureId = await this.proceduresRepository
+                .All()
+                .Where(p => p.Name == procedureName)
+                .Select(p => p.Id)
+                .FirstOrDefaultAsync();
+
+            return procedureId;
         }
 
         private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)

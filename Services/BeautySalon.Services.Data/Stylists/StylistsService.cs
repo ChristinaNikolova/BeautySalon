@@ -232,6 +232,29 @@
             await this.procedureStylistsRepository.SaveChangesAsync();
         }
 
+        public async Task<bool> AddProcedureToStylistAsync(string id, string procedureId)
+        {
+            var isAlreadyAdded = await this.procedureStylistsRepository
+                .All()
+                .AnyAsync(ps => ps.StylistId == id && ps.ProcedureId == procedureId);
+
+            if (isAlreadyAdded)
+            {
+                return false;
+            }
+
+            var procedureStylist = new ProcedureStylist()
+            {
+                StylistId = id,
+                ProcedureId = procedureId,
+            };
+
+            await this.procedureStylistsRepository.AddAsync(procedureStylist);
+            await this.procedureStylistsRepository.SaveChangesAsync();
+
+            return true;
+        }
+
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)
         {
             return

@@ -33,5 +33,7 @@
         Task<T> GetStylistProceduresAsync<T>(string id);
 
         Task RemoveProcedureAsync(string stylistId, string procedureId);
+
+        Task<bool> AddProcedureToStylistAsync(string id, string procedureId);
     }
 }

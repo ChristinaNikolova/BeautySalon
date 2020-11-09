@@ -34,5 +34,7 @@
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
 
         Task<T> GetProcedureDataForUpdateAsync<T>(string id);
+
+        Task<string> GetProcedureIdByNameAsync(string procedureName);
     }
 }

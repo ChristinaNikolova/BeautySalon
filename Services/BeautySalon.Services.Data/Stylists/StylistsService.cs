@@ -18,13 +18,15 @@
         private readonly IRepository<ApplicationUser> stylistsRepository;
         private readonly IRepository<ApplicationRole> rolesRepository;
         private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
+        private readonly IRepository<Procedure> proceduresRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, IRepository<ProcedureStylist> procedureStylistsRepository, ICloudinaryService cloudinaryService)
+        public StylistsService(IRepository<ApplicationUser> stylistsepository, IRepository<ApplicationRole> rolesRepository, IRepository<ProcedureStylist> procedureStylistsRepository, IRepository<Procedure> proceduresRepository, ICloudinaryService cloudinaryService)
         {
             this.stylistsRepository = stylistsepository;
             this.rolesRepository = rolesRepository;
             this.procedureStylistsRepository = procedureStylistsRepository;
+            this.proceduresRepository = proceduresRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -91,10 +93,32 @@
             stylist.JobTypeId = jobType;
             stylist.Description = descripion;
 
+            await this.AddProcedureToStylistByCreatingStylistAsync(id, category);
+
             this.stylistsRepository.Update(stylist);
             await this.stylistsRepository.SaveChangesAsync();
 
             return stylist;
+        }
+
+        private async Task AddProcedureToStylistByCreatingStylistAsync(string id, string category)
+        {
+            var procedures = await this.proceduresRepository
+                            .All()
+                            .Where(p => p.CategoryId == category)
+                            .Select(p => p.Id)
+                            .ToListAsync();
+
+            foreach (var procedure in procedures)
+            {
+                var procedureStylist = new ProcedureStylist()
+                {
+                    StylistId = id,
+                    ProcedureId = procedure,
+                };
+
+                await this.procedureStylistsRepository.AddAsync(procedureStylist);
+            }
         }
 
         public async Task<ApplicationUser> GetByIdAsync(string id)

@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Services.Data.Brands
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
@@ -8,6 +9,7 @@
     using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class BrandsService : IBrandsService
@@ -87,6 +89,20 @@
             return await this.brandsRepository
                             .All()
                             .FirstOrDefaultAsync(b => b.Name == name);
+        }
+
+        public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync()
+        {
+            var brands = await this.brandsRepository
+                .All()
+                .Select(c => new SelectListItem()
+                {
+                    Value = c.Id,
+                    Text = c.Name,
+                })
+                .ToListAsync();
+
+            return brands;
         }
 
         private async Task<string> GetLogoAsStringAsync(string name, IFormFile logo)

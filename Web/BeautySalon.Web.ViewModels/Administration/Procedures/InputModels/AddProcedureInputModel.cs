@@ -6,7 +6,6 @@
     using BeautySalon.Common;
     using BeautySalon.Web.Infrastructure.ValidationAttributes;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.Extensions.Options;
 
     public class AddProcedureInputModel : IValidatableObject
     {

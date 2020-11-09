@@ -8,7 +8,7 @@
 
     public interface IProductsService
     {
-        Task<string> CreateAsync(string name, string description, decimal price, int quantity, IFormFile picture, string brandName, string categoryName);
+        Task<string> CreateAsync(string name, string description, decimal price, IFormFile picture, string brandId, string categoryId);
 
         Task EditAsync(string name, string description, decimal price, int quantity, IFormFile newPicture, string brandName, string categoryName, string id);
 

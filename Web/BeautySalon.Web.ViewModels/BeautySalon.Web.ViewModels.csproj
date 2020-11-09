@@ -26,8 +26,4 @@
     <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Administration\Products\InputModels\" />
-  </ItemGroup>
-
 </Project>

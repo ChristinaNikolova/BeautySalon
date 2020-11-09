@@ -82,9 +82,17 @@
         public const int ProcedureReviewContentMaxLenght = 1000;
 
         // Product
+        public const int ProductNameMinLenght = 3;
+
         public const int ProductNameMaxLenght = 60;
 
+        public const int ProductDescriptionMinLenght = 10;
+
         public const int ProductDescriptionMaxLenght = 1000;
+
+        public const string ProductMinPrice = "10";
+
+        public const string ProductMaxPrice = "1000";
 
         // ProductReview
         public const int ProductReviewContentMaxLenght = 1000;

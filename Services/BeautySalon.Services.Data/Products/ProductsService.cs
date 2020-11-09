@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Cloudinary;
@@ -28,21 +28,19 @@
             this.categoriesService = categoriesService;
         }
 
-        public async Task<string> CreateAsync(string name, string description, decimal price, int quantity, IFormFile picture, string brandName, string categoryName)
+        public async Task<string> CreateAsync(string name, string description, decimal price, IFormFile picture, string brandId, string categoryId)
         {
             var pictureAsString = await this.GetPictureAsStringAsync(name, picture);
-            var category = await this.categoriesService.GetByNameAsync(categoryName);
-            var brand = await this.brandsService.GetByNameAsync(brandName);
 
             var product = new Product()
             {
                 Name = name,
                 Description = description,
                 Price = price,
-                Quantity = quantity,
+                Quantity = GlobalConstants.DefaultProductQuantity,
                 Picture = pictureAsString,
-                CategoryId = category.Id,
-                BrandId = brand.Id,
+                CategoryId = categoryId,
+                BrandId = brandId,
             };
 
             await this.productsRepository.AddAsync(product);

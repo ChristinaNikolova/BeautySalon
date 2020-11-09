@@ -51,7 +51,7 @@
                 CategoryId = categoryId,
             };
 
-            if (skinTypeId != null)
+            if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
                 procedure.SkinTypeId = skinTypeId;
                 procedure.IsSensitive = isSensitive == "Yes" ? true : false;
@@ -61,6 +61,17 @@
             await this.proceduresRepository.SaveChangesAsync();
 
             return procedure.Id;
+        }
+
+        public async Task<T> GetProcedureDataForUpdateAsync<T>(string id)
+        {
+            var procedure = await this.proceduresRepository
+                .All()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return procedure;
         }
 
         public async Task DeleteAsync(string id)
@@ -73,17 +84,20 @@
             await this.proceduresRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(string name, string description, decimal price, string categoryName, string skinTypeName, string id)
+        public async Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
         {
             var procedure = await this.GetByIdAsync(id);
-            var category = await this.categoriesService.GetByNameAsync(categoryName);
-            var skinType = await this.skinTypesService.GetByNameAsync(skinTypeName);
 
             procedure.Name = name;
             procedure.Description = description;
             procedure.Price = price;
-            procedure.CategoryId = category.Id;
-            procedure.SkinTypeId = skinType.Id;
+            procedure.CategoryId = categoryId;
+
+            if (skinTypeId != null)
+            {
+                procedure.SkinTypeId = skinTypeId;
+                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
+            }
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();

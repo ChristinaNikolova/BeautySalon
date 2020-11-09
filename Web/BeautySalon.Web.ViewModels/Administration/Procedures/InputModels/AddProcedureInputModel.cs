@@ -6,8 +6,9 @@
     using BeautySalon.Common;
     using BeautySalon.Web.Infrastructure.ValidationAttributes;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using Microsoft.Extensions.Options;
 
-    public class AddProcedureInputModel
+    public class AddProcedureInputModel : IValidatableObject
     {
         [Required]
         [StringLength(DataValidation.ProcedureNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.ProcedureNameMinLenght)]
@@ -34,5 +35,18 @@
 
         [Display(Name = "Is for sensitive skin")]
         public string IsSensitive { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (this.CategoryId == GlobalConstants.CategorySkinCareId && this.SkinTypeId.StartsWith("Please select"))
+            {
+                yield return new ValidationResult(ErrorMessages.InvalidSkinTypeName);
+            }
+
+            if (this.CategoryId != GlobalConstants.CategorySkinCareId && this.SkinTypeId != null && !this.SkinTypeId.StartsWith("Please select"))
+            {
+                yield return new ValidationResult(ErrorMessages.InvalidCombinationCategoryAndSkinType);
+            }
+        }
     }
 }

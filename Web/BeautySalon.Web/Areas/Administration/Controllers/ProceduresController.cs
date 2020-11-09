@@ -55,9 +55,34 @@
                 return this.View(input);
             }
 
-            await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
+            var id = await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
 
-            //redirect to Update!
+            return this.RedirectToAction(nameof(this.Update), new { Id = id });
+        }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var model = await this.proceduresService.GetProcedureDataForUpdateAsync<UpdateProcedureInputModel>(id);
+
+            model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+            model.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateProcedureInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+                input.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
+
+                return this.View(input);
+            }
+
+            await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
+
             return this.RedirectToAction(nameof(this.GetAll));
         }
 

@@ -57,5 +57,9 @@
         public const int ArticlesPerPage = 6;
 
         public const int RecentArticlesCount = 5;
+
+        public const string CategorySkinCareId = "ecc3136a-e09f-491b-a96d-cacbfe0397b2";
+
+        public const string StartDropDownDefaultMessage = "Please select";
     }
 }

@@ -9,7 +9,7 @@
     {
         Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
 
-        Task EditAsync(string name, string description, decimal price, string categoryName, string skinTypeName, string id);
+        Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
 
         Task DeleteAsync(string id);
 
@@ -32,5 +32,7 @@
         Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string isSkinSensitive, string stylistId);
 
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
+
+        Task<T> GetProcedureDataForUpdateAsync<T>(string id);
     }
 }

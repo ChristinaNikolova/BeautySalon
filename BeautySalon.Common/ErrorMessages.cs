@@ -16,5 +16,10 @@
         public const string UserExists = "User with this email and username already exists!";
 
         public const string UsernameErrorRegex = "Username must containts only latin letters and/or digits!";
+
+        // Procedures
+        public const string InvalidSkinTypeName = "Invalid skin type.";
+
+        public const string InvalidCombinationCategoryAndSkinType = "You can choose skin type only when the category name is equal to skin care.";
     }
 }

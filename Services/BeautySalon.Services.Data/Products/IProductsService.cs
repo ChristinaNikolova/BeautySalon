@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Products
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -16,5 +17,7 @@
         Task<Product> GetByIdAsync(string id);
 
         Task<T> GetDetailsAsync<T>(string id);
+
+        Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
     }
 }

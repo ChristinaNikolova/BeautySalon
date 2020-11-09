@@ -23,22 +23,19 @@
         private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
 
         private readonly ICategoriesService categoriesService;
-        private readonly ISkinTypesService skinTypesService;
 
         public ProceduresService(
             IRepository<Procedure> proceduresRepository,
             IRepository<ProcedureReview> procedureReviewsRepository,
             IRepository<ProcedureProduct> procedureProductsRepository,
             IRepository<ProcedureStylist> procedureStylistsRepository,
-            ICategoriesService categoriesService,
-            ISkinTypesService skinTypesService)
+            ICategoriesService categoriesService)
         {
             this.proceduresRepository = proceduresRepository;
             this.procedureReviewsRepository = procedureReviewsRepository;
             this.procedureProductsRepository = procedureProductsRepository;
             this.procedureStylistsRepository = procedureStylistsRepository;
             this.categoriesService = categoriesService;
-            this.skinTypesService = skinTypesService;
         }
 
         public async Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
@@ -93,15 +90,6 @@
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
-        }
-
-        private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)
-        {
-            if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
-            {
-                procedure.SkinTypeId = skinTypeId;
-                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
-            }
         }
 
         public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
@@ -244,6 +232,15 @@
                 .ToListAsync();
 
             return procedures;
+        }
+
+        private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)
+        {
+            if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
+            {
+                procedure.SkinTypeId = skinTypeId;
+                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
+            }
         }
 
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)

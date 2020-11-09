@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Products
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -81,6 +82,19 @@
 
             this.productsRepository.Update(product);
             await this.productsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
+        {
+            var products = await this.productsRepository
+                .All()
+                .OrderBy(p => p.Brand.Name)
+                .ThenBy(p => p.Name)
+                .ThenBy(p => p.Price)
+                .To<T>()
+                .ToListAsync();
+
+            return products;
         }
 
         public async Task<Product> GetByIdAsync(string id)

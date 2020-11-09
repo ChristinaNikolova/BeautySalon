@@ -1,0 +1,55 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Products.ViewModels;
+@model AllProductsAdministrationViewModel;
+
+@{
+    ViewData["Title"] = "Admin's dashboard";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-3">
+            <partial name="_NavBarAdministration" />
+        </div>
+        <div class="col-8">
+            <h2 class="text-center">Products</h2>
+            <hr />
+            <div class="add-new-procedure">
+                <h4 id="add-new-procedure-title" class="text-center">Create Product</h4>
+                <a asp-area="Administration" asp-controller="Products" asp-action="Create" class="btn btn-primary p-2 px-2 py-2 add-new-procedure-button">Create</a>
+                <hr />
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-field="#">#</th>
+                        <th data-field="name">Name</th>
+                        <th data-field="category">Category</th>
+                        <th data-field="categoryType">Brand Name</th>
+                        <th data-field="Rating">Rating</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Products.Count(); i++)
+                    {
+                        var currentProduct = Model.Products.ToList()[i];
+
+                        <tr class="content">
+                            <th scope="row">@(i+1)</th>
+                            <td><a asp-area="" asp-controller="Products" asp-action="GetDetails" asp-route-id="@currentProduct.Id">@currentProduct.Name</a></td>
+                            <td>@currentProduct.CategoryName</td>
+                            <td>@currentProduct.BrandName</td>
+                            <td>@currentProduct.FormattedRating</td>
+                            <td>@currentProduct.FormattedPrice</td>
+                            <td><a asp-area="Administration" asp-controller="Products" asp-action="Update" asp-route-id="@currentProduct.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
+                            <td><a asp-area="Administration" asp-controller="Products" asp-action="Delete" asp-route-id="@currentProduct.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

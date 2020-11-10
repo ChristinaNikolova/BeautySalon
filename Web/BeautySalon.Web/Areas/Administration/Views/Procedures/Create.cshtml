@@ -56,11 +56,22 @@
                         <input asp-for="@Model.IsSensitive" type="radio" value="No" /> No
                         <span asp-validation-for="@Model.IsSensitive" class="text-danger"></span>
                     </div>
-                    <div id="skin-problem" class="form-group col-md-8 hidden">
+                    <div id="skin-problem" class="form-group col-md-7 color-black hidden">
+                        <label asp-for="@Model.SkinProblems" class="color-grey"></label>
                         @for (var i = 0; i < Model.SkinProblems.Count; i++)
                         {
-                            <input type="hidden" asp-for="@Model.SkinProblems[i].Value" />
-                            <input asp-for="SkinProblems[i].Selected" />@Model.SkinProblems[i].Text
+                            if (i % 3 == 0)
+                            {
+                                <input type="hidden" asp-for="@Model.SkinProblems[i].Value" /><br />
+                            }
+                            else
+                            {
+                                <input type="hidden" asp-for="@Model.SkinProblems[i].Value" />
+                            }
+
+                            <input class="ml-3" asp-for="SkinProblems[i].Selected" />
+                            @Model.SkinProblems[i].Text
+
                         }
                     </div>
                     <div class="form-group col-md-8">

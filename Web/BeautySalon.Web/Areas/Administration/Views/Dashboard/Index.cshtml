@@ -32,8 +32,8 @@
                         <tr>
                             <th scope="row">@(i+1)</th>
                             <td>@appointment.ClientFullName</td>
-                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@appointment.StylistId"></a>@appointment.StylistFullName</td>
-                            <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@appointment.ProcedureId"></a>@appointment.ProcedureName</td>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@appointment.StylistId">@appointment.StylistFullName</a></td>
+                            <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@appointment.ProcedureId">@appointment.ProcedureName</a></td>
                             <td>@appointment.StartTime</td>
                         </tr>
                     }

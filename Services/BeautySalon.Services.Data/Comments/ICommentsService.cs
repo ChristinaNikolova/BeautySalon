@@ -8,5 +8,9 @@
         Task CreateAsync(string content, string articleId, string userId);
 
         Task<IEnumerable<T>> GetAllAsync<T>(string articleId);
+
+        Task<IEnumerable<T>> GetAllFromPreviousDayAsync<T>();
+
+        Task DeleteAsync(string id);
     }
 }

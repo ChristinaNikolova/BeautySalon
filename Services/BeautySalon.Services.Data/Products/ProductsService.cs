@@ -8,8 +8,6 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Cloudinary;
-    using BeautySalon.Services.Data.Brands;
-    using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
@@ -127,6 +125,17 @@
                 .FirstOrDefaultAsync();
 
             return pictureUrl;
+        }
+
+        public async Task<string> GetProductIdByNameAsync(string productName)
+        {
+            var productId = await this.productsRepository
+                .All()
+                .Where(p => p.Name == productName)
+                .Select(p => p.Id)
+                .FirstOrDefaultAsync();
+
+            return productId;
         }
 
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)

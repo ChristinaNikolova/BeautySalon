@@ -4,6 +4,7 @@
 
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
+    using BeautySalon.Services.Data.Products;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Procedures.ViewModels;
@@ -15,12 +16,14 @@
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
+        private readonly IProductsService productsService;
 
-        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService, ISkinTypesService skinTypesService)
+        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService, ISkinTypesService skinTypesService, IProductsService productsService)
         {
             this.proceduresService = proceduresService;
             this.categoriesService = categoriesService;
             this.skinTypesService = skinTypesService;
+            this.productsService = productsService;
         }
 
         public async Task<IActionResult> GetAll()
@@ -100,5 +103,53 @@
 
             return this.View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(Test22 input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(this.ManageProducts), new { Id = input.Id });
+            }
+
+            var productId = await this.productsService.GetProductIdByNameAsync(input.ProductName);
+
+            if (productId == null)
+            {
+                return this.RedirectToAction(nameof(this.ManageProducts), new { Id = input.Id });
+            }
+
+            var isSuccess = await this.proceduresService.AddProductToProcedureAsync(input.Id, productId);
+
+            if (!isSuccess)
+            {
+                return this.RedirectToAction(nameof(this.ManageProducts), new { Id = input.Id });
+            }
+
+            return this.RedirectToAction(nameof(this.Update), new { Id = input.Id });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ManageProcedureProductsViewModel>> DeleteProcedureProduct([FromBody] Test11 input)
+        {
+            await this.proceduresService.RemoveProductAsync(input.ProductId, input.ProcedureId);
+
+            var procedureProducts = await this.proceduresService.GetProcedureProductsAdministrationAsync<ManageProcedureProductsViewModel>(input.ProcedureId);
+
+            return procedureProducts;
+        }
+    }
+
+    public class Test22
+    {
+        public string ProductName { get; set; }
+
+        public string Id { get; set; }
+    }
+
+    public class Test11
+    {
+        public string ProductId { get; set; }
+        public string ProcedureId { get; set; }
     }
 }

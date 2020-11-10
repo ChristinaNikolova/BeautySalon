@@ -13,8 +13,6 @@
 
     public class ProceduresService : IProceduresService
     {
-        // TODO: add products to procedure by create/edit
-
         // TODO: add SkinProblems to procedure by create/edit
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
@@ -244,6 +242,50 @@
             return procedureId;
         }
 
+        public async Task<T> GetProcedureProductsAdministrationAsync<T>(string id)
+        {
+            var procedure = await this.proceduresRepository
+                .All()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return procedure;
+        }
+
+        public async Task<bool> AddProductToProcedureAsync(string id, string productId)
+        {
+            var isAlreadyAdded = await this.procedureProductsRepository
+                .All()
+                .AnyAsync(pp => pp.ProductId == productId && pp.ProcedureId == id);
+
+            if (isAlreadyAdded)
+            {
+                return false;
+            }
+
+            var procedureProduct = new ProcedureProduct()
+            {
+                ProductId = productId,
+                ProcedureId = id,
+            };
+
+            await this.procedureProductsRepository.AddAsync(procedureProduct);
+            await this.procedureProductsRepository.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task RemoveProductAsync(string productId, string procedureId)
+        {
+            var procedureProduct = await this.procedureProductsRepository
+               .All()
+               .FirstOrDefaultAsync(pp => pp.ProductId == productId && pp.ProcedureId == procedureId);
+
+            this.procedureProductsRepository.Delete(procedureProduct);
+            await this.procedureProductsRepository.SaveChangesAsync();
+        }
+
         private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
@@ -302,17 +344,6 @@
                  .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
                  .To<T>()
                  .ToListAsync();
-        }
-
-        public async Task<T> GetProcedureProductsAdministrationAsync<T>(string id)
-        {
-            var procedure = await this.proceduresRepository
-                .All()
-                .Where(p => p.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return procedure;
         }
     }
 }

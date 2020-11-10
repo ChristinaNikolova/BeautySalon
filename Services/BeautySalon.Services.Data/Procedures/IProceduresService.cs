@@ -38,5 +38,9 @@
         Task<string> GetProcedureIdByNameAsync(string procedureName);
 
         Task<T> GetProcedureProductsAdministrationAsync<T>(string id);
+
+        Task<bool> AddProductToProcedureAsync(string id, string productId);
+
+        Task RemoveProductAsync(string productId, string procedureId);
     }
 }

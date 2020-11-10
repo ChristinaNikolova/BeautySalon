@@ -23,5 +23,7 @@
         Task<T> GetProductDataForUpdateAsync<T>(string id);
 
         Task<string> GetPictureUrlAsync(string id);
+
+        Task<string> GetProductIdByNameAsync(string productName);
     }
 }

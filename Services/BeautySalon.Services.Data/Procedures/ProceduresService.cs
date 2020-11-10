@@ -9,6 +9,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class ProceduresService : IProceduresService
@@ -17,6 +18,7 @@
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;
+        private readonly IRepository<SkinProblemProcedure> skinProblemProceduresRespository;
         private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
 
         private readonly ICategoriesService categoriesService;
@@ -26,16 +28,18 @@
             IRepository<ProcedureReview> procedureReviewsRepository,
             IRepository<ProcedureProduct> procedureProductsRepository,
             IRepository<ProcedureStylist> procedureStylistsRepository,
+            IRepository<SkinProblemProcedure> skinProblemProceduresRespository,
             ICategoriesService categoriesService)
         {
             this.proceduresRepository = proceduresRepository;
             this.procedureReviewsRepository = procedureReviewsRepository;
             this.procedureProductsRepository = procedureProductsRepository;
             this.procedureStylistsRepository = procedureStylistsRepository;
+            this.skinProblemProceduresRespository = skinProblemProceduresRespository;
             this.categoriesService = categoriesService;
         }
 
-        public async Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
+        public async Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems)
         {
             var procedure = new Procedure()
             {
@@ -45,7 +49,7 @@
                 CategoryId = categoryId,
             };
 
-            CheckSkinType(skinTypeId, isSensitive, procedure);
+            await this.CheckSkinTypeAsync(skinTypeId, isSensitive, procedure, skinProblems);
 
             await this.proceduresRepository.AddAsync(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -70,11 +74,13 @@
 
             procedure.IsDeleted = true;
 
+            await this.RemoveAllProductsAsync(id);
+
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
+        public async Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems)
         {
             var procedure = await this.GetByIdAsync(id);
 
@@ -83,7 +89,7 @@
             procedure.Price = price;
             procedure.CategoryId = categoryId;
 
-            CheckSkinType(skinTypeId, isSensitive, procedure);
+            await this.CheckSkinTypeAsync(skinTypeId, isSensitive, procedure, skinProblems);
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -286,12 +292,40 @@
             await this.procedureProductsRepository.SaveChangesAsync();
         }
 
-        private static void CheckSkinType(string skinTypeId, string isSensitive, Procedure procedure)
+        private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems)
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
                 procedure.SkinTypeId = skinTypeId;
                 procedure.IsSensitive = isSensitive == "Yes" ? true : false;
+
+                await this.GetSkinProblems(procedure, skinProblems);
+            }
+        }
+
+        private async Task GetSkinProblems(Procedure procedure, IList<SelectListItem> skinProblems)
+        {
+            var selectedSkinProblems = skinProblems
+                .Where(sp => sp.Selected == true)
+                .Select(sp => sp.Value)
+                .ToList();
+
+            foreach (var skinProblem in selectedSkinProblems)
+            {
+                if (await this.skinProblemProceduresRespository
+                    .All()
+                    .AnyAsync(spp => spp.SkinProblemId == skinProblem && spp.ProcedureId == procedure.Id))
+                {
+                    continue;
+                }
+
+                var skinProblemProcedure = new SkinProblemProcedure()
+                {
+                    SkinProblemId = skinProblem,
+                    ProcedureId = procedure.Id,
+                };
+
+                await this.skinProblemProceduresRespository.AddAsync(skinProblemProcedure);
             }
         }
 
@@ -344,6 +378,21 @@
                  .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
                  .To<T>()
                  .ToListAsync();
+        }
+
+        private async Task RemoveAllProductsAsync(string id)
+        {
+            var products = await this.procedureProductsRepository
+                .All()
+                .Where(pp => pp.ProcedureId == id)
+                .ToListAsync();
+
+            foreach (var product in products)
+            {
+                this.procedureProductsRepository.Delete(product);
+            }
+
+            await this.procedureProductsRepository.SaveChangesAsync();
         }
     }
 }

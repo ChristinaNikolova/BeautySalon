@@ -5,6 +5,7 @@
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Products;
+    using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Procedures.ViewModels;
@@ -16,13 +17,15 @@
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;
         private readonly ISkinTypesService skinTypesService;
+        private readonly ISkinProblemsService skinProblemsService;
         private readonly IProductsService productsService;
 
-        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService, ISkinTypesService skinTypesService, IProductsService productsService)
+        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService, ISkinTypesService skinTypesService, ISkinProblemsService skinProblemsService, IProductsService productsService)
         {
             this.proceduresService = proceduresService;
             this.categoriesService = categoriesService;
             this.skinTypesService = skinTypesService;
+            this.skinProblemsService = skinProblemsService;
             this.productsService = productsService;
         }
 
@@ -42,6 +45,7 @@
             {
                 Categories = await this.categoriesService.GetAllAsSelectListItemAsync(),
                 SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync(),
+                SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync(),
             };
 
             return this.View(model);
@@ -54,11 +58,12 @@
             {
                 input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
+                input.SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync();
 
                 return this.View(input);
             }
 
-            var id = await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
+            var id = await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive, input.SkinProblems);
 
             return this.RedirectToAction(nameof(this.Update), new { Id = id });
         }
@@ -69,6 +74,7 @@
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
             model.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
+            model.SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync();
 
             return this.View(model);
         }
@@ -80,11 +86,12 @@
             {
                 input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
+                input.SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync();
 
                 return this.View(input);
             }
 
-            await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
+            await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive, input.SkinProblems);
 
             return this.RedirectToAction(nameof(this.GetAll));
         }

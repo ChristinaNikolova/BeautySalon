@@ -35,6 +35,8 @@
         [Display(Name = "Is for sensitive skin")]
         public string IsSensitive { get; set; }
 
+        public IList<SelectListItem> SkinProblems { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (this.CategoryId == GlobalConstants.CategorySkinCareId && this.SkinTypeId.StartsWith("Please select"))

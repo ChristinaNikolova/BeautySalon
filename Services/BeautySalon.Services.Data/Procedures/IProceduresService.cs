@@ -4,12 +4,13 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public interface IProceduresService
     {
-        Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
+        Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems);
 
-        Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
+        Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems);
 
         Task DeleteAsync(string id);
 

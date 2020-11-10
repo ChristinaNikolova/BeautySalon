@@ -56,6 +56,13 @@
                         <input asp-for="@Model.IsSensitive" type="radio" value="No" /> No
                         <span asp-validation-for="@Model.IsSensitive" class="text-danger"></span>
                     </div>
+                    <div id="skin-problem" class="form-group col-md-8 hidden">
+                        @for (var i = 0; i < Model.SkinProblems.Count; i++)
+                        {
+                            <input type="hidden" asp-for="@Model.SkinProblems[i].Value" />
+                            <input asp-for="SkinProblems[i].Selected" />@Model.SkinProblems[i].Text
+                        }
+                    </div>
                     <div class="form-group col-md-8">
                         <label asp-for="@Model.Description"></label>
                         <textarea asp-for="@Model.Description" rows="15" class="form-control"></textarea>
@@ -89,9 +96,11 @@
             if (category.value === categorySkinCareId) {
                 document.getElementById("is-sensitive").style.display = "block";
                 document.getElementById("skin-type").style.display = "block";
+                document.getElementById("skin-problem").style.display = "block";
             } else {
                 document.getElementById("is-sensitive").style.display = "none";
                 document.getElementById("skin-type").style.display = "none";
+                document.getElementById("skin-problem").style.display = "none";
             }
         }
     </script>

@@ -7,6 +7,7 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     public class SkinProblemsService : ISkinProblemsService
@@ -51,6 +52,20 @@
 
             this.skinProblemsRepository.Update(skinProblem);
             await this.skinProblemsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IList<SelectListItem>> GetAllAsSelectListItemAsync()
+        {
+            var skinProblems = await this.skinProblemsRepository
+                .All()
+                .Select(c => new SelectListItem()
+                {
+                    Value = c.Id,
+                    Text = c.Name,
+                })
+                .ToListAsync();
+
+            return skinProblems;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<T>()

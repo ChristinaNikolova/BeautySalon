@@ -14,7 +14,6 @@
         <div class="col-8">
             <h2 class="text-center">Comments - Previous day</h2>
             <hr />
-
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -29,13 +28,13 @@
                     @for (var i = 0; i < Model.Comments.ToList().Count; i++)
                     {
                         var comment = Model.Comments.ToList()[i];
-                    <tr>
-                        <th scope="row">@(i+1)</th>
-                        <td><a asp-area="" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@comment.ArticleId">@comment.ArticleTitle</a></td>
-                        <td>@comment.ClientUsername</td>
-                        <td>@comment.Content</td>
-                        <td><a asp-area="Administration" asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
-                    </tr>
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td><a asp-area="" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@comment.ArticleId">@comment.ArticleTitle</a></td>
+                            <td>@comment.ClientUsername</td>
+                            <td>@comment.Content</td>
+                            <td><a asp-area="Administration" asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
+                        </tr>
                     }
                 </tbody>
             </table>

@@ -103,32 +103,32 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProcedure(Test2 input)
+        public async Task<IActionResult> AddProcedure(AddProcedureStylistInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
             }
 
             var procedureId = await this.proceduresService.GetProcedureIdByNameAsync(input.ProcedureName);
 
             if (procedureId == null)
             {
-                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
             }
 
             var isSuccess = await this.stylistsService.AddProcedureToStylistAsync(input.Id, procedureId);
 
             if (!isSuccess)
             {
-                return this.RedirectToAction(nameof(this.ManageProcedures), new { Id = input.Id });
+                return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
             }
 
-            return this.RedirectToAction(nameof(this.Update), new { Id = input.Id });
+            return this.RedirectToAction(nameof(this.Update), new { input.Id });
         }
 
         [HttpPost]
-        public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] Test input)
+        public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] DeleteProcedureStylistInputModel input)
         {
             await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
 
@@ -136,17 +136,5 @@
 
             return stylistProcedures;
         }
-    }
-
-    public class Test
-    {
-        public string ProcedureId { get; set; }
-        public string StylistId { get; set; }
-    }
-
-    public class Test2
-    {
-        public string ProcedureName { get; set; }
-        public string Id { get; set; }
     }
 }

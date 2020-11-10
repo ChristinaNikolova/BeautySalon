@@ -36,5 +36,7 @@
         Task<T> GetProcedureDataForUpdateAsync<T>(string id);
 
         Task<string> GetProcedureIdByNameAsync(string procedureName);
+
+        Task<T> GetProcedureProductsAdministrationAsync<T>(string id);
     }
 }

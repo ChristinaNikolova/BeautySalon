@@ -303,5 +303,16 @@
                  .To<T>()
                  .ToListAsync();
         }
+
+        public async Task<T> GetProcedureProductsAdministrationAsync<T>(string id)
+        {
+            var procedure = await this.proceduresRepository
+                .All()
+                .Where(p => p.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return procedure;
+        }
     }
 }

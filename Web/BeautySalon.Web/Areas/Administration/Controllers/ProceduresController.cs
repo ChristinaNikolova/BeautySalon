@@ -92,5 +92,13 @@
 
             return this.RedirectToAction(nameof(this.GetAll));
         }
+
+        public async Task<IActionResult> ManageProducts(string id)
+        {
+            var model = await this.proceduresService
+                .GetProcedureProductsAdministrationAsync<ManageProcedureProductsViewModel>(id);
+
+            return this.View(model);
+        }
     }
 }

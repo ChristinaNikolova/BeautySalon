@@ -101,26 +101,6 @@
             return stylist;
         }
 
-        private async Task AddProcedureToStylistByCreatingStylistAsync(string id, string category)
-        {
-            var procedures = await this.proceduresRepository
-                            .All()
-                            .Where(p => p.CategoryId == category)
-                            .Select(p => p.Id)
-                            .ToListAsync();
-
-            foreach (var procedure in procedures)
-            {
-                var procedureStylist = new ProcedureStylist()
-                {
-                    StylistId = id,
-                    ProcedureId = procedure,
-                };
-
-                await this.procedureStylistsRepository.AddAsync(procedureStylist);
-            }
-        }
-
         public async Task<ApplicationUser> GetByIdAsync(string id)
         {
             var stylist = await this.stylistsRepository
@@ -354,6 +334,26 @@
                 .Where(r => r.Name == GlobalConstants.StylistRoleName)
                 .Select(r => r.Id)
                 .FirstOrDefault();
+        }
+
+        private async Task AddProcedureToStylistByCreatingStylistAsync(string id, string category)
+        {
+            var procedures = await this.proceduresRepository
+                            .All()
+                            .Where(p => p.CategoryId == category)
+                            .Select(p => p.Id)
+                            .ToListAsync();
+
+            foreach (var procedure in procedures)
+            {
+                var procedureStylist = new ProcedureStylist()
+                {
+                    StylistId = id,
+                    ProcedureId = procedure,
+                };
+
+                await this.procedureStylistsRepository.AddAsync(procedureStylist);
+            }
         }
     }
 }

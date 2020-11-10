@@ -8,7 +8,6 @@
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
     using BeautySalon.Web.ViewModels.Administration.Products.ViewModels;
 
     public class ManageStylistProceduresViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
@@ -33,7 +32,8 @@
                 {
                     Id = y.Procedure.Id,
                     Name = y.Procedure.Name,
-                })));
+                })
+                .OrderBy(y => y.Name)));
         }
     }
 }

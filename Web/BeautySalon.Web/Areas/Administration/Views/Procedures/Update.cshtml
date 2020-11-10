@@ -22,6 +22,9 @@
         <div class="col-md-8">
             <h2 class="text-center">Update Procedure</h2>
             <hr />
+            <div class="col-md-12 text-center">
+                <a asp-area="Administration" asp-controller="Procedures" asp-action="ManageProducts" asp-route-id="@Model.Id" class="btn btn-outline-primary p-2 px-2 py-2 mb-5 md-ml-4">Products</a>
+            </div>
             <form asp-area="Administration" asp-controller="Procedures" asp-action="Update" method="post" class="text-center">
                 <input asp-for="@Model.Id" type="hidden" />
                 <div id="category-skin-care-id" hidden>@GlobalConstants.CategorySkinCareId</div>

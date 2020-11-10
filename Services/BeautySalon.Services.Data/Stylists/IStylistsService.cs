@@ -34,6 +34,8 @@
 
         Task RemoveProcedureAsync(string stylistId, string procedureId);
 
+        Task RemoveAllProceduresAsync(string id);
+
         Task<bool> AddProcedureToStylistAsync(string id, string procedureId);
     }
 }

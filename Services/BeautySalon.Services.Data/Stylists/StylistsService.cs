@@ -279,6 +279,21 @@
             return true;
         }
 
+        public async Task RemoveAllProceduresAsync(string id)
+        {
+            var procedures = await this.procedureStylistsRepository
+                .All()
+                .Where(ps => ps.StylistId == id)
+                .ToListAsync();
+
+            foreach (var procedure in procedures)
+            {
+                this.procedureStylistsRepository.Delete(procedure);
+            }
+
+            await this.procedureStylistsRepository.SaveChangesAsync();
+        }
+
         private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string categoryId, string stylistRoleId)
         {
             return

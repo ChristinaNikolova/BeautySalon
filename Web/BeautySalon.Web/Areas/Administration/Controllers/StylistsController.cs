@@ -90,6 +90,7 @@
             var stylist = await this.stylistsService.GetByIdAsync(id);
 
             await this.userManager.RemoveFromRoleAsync(stylist, GlobalConstants.StylistRoleName);
+            await this.stylistsService.RemoveAllProceduresAsync(id);
 
             return this.RedirectToAction(nameof(this.GetAll));
         }

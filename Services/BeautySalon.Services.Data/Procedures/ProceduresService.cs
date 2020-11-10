@@ -14,7 +14,6 @@
 
     public class ProceduresService : IProceduresService
     {
-        // TODO: add SkinProblems to procedure by create/edit
         private readonly IRepository<Procedure> proceduresRepository;
         private readonly IRepository<ProcedureReview> procedureReviewsRepository;
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;

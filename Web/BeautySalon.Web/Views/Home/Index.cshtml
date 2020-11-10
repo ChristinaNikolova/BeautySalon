@@ -12,7 +12,7 @@
                 <h1>Welcome to @GlobalConstants.SystemName!</h1>
                 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
-                    <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Administration" asp-controller="Stylists" asp-action="GetAll" title="Admin">
+                    <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">
                         Administration Area
                     </a>
                 }

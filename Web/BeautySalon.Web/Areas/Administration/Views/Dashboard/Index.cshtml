@@ -1,4 +1,7 @@
-﻿@{
+﻿@using BeautySalon.Web.ViewModels.Administration.Dashboard.ViewModels;
+@model AllAppointmentsViewModel;
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -11,6 +14,31 @@
         <div class="col-8">
             <h2 class="text-center">Today's Appointments</h2>
             <hr />
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Stylist</th>
+                        <th scope="col">Procedure</th>
+                        <th scope="col">Start</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Appointments.ToList().Count; i++)
+                    {
+                        var appointment = Model.Appointments.ToList()[i];
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td>@appointment.ClientFullName</td>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@appointment.StylistId"></a>@appointment.StylistFullName</td>
+                            <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@appointment.ProcedureId"></a>@appointment.ProcedureName</td>
+                            <td>@appointment.StartTime</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

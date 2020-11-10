@@ -1,19 +1,28 @@
 ﻿namespace BeautySalon.Web.Areas.Administration.Controllers
 {
-    using BeautySalon.Services.Data.Settings;
-    using BeautySalon.Web.ViewModels.Administration.Dashboard;
+    using System.Threading.Tasks;
 
+    using BeautySalon.Services.Data.Appointments;
+    using BeautySalon.Web.ViewModels.Administration.Dashboard.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {
-        public DashboardController()
+        private readonly IAppointmentsService appointmentsService;
+
+        public DashboardController(IAppointmentsService appointmentsService)
         {
+            this.appointmentsService = appointmentsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return this.View();
+            var model = new AllAppointmentsViewModel()
+            {
+                Appointments = await this.appointmentsService.GetAllAppointmentsForTodayAsync<AppointmentViewModel>(),
+            };
+
+            return this.View(model);
         }
     }
 }

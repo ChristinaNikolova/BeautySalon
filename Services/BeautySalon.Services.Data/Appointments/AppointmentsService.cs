@@ -9,6 +9,7 @@
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
+    using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class AppointmentsService : IAppointmentsService
@@ -38,6 +39,20 @@
             await this.appointmentsRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAppointmentsForTodayAsync<T>()
+        {
+            var currentDate = DateTime.UtcNow.Date;
+
+            var appointments = await this.appointmentsRepository
+                .All()
+                .Where(a => a.DateTime.Date == currentDate)
+                .OrderBy(a => a.StartTime)
+                .To<T>()
+                .ToListAsync();
+
+            return appointments;
+        }
+
         public async Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId)
         {
             var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
@@ -50,7 +65,6 @@
 
             var allHours = new string[]
             {
-                "9:00",
                 "10:00",
                 "11:00",
                 "12:00",

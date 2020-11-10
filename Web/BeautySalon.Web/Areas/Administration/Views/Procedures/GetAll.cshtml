@@ -8,15 +8,15 @@
 <partial name="_TitlePageSection" />
 <section>
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <partial name="_NavBarAdministration" />
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <h2 class="text-center">Procedures</h2>
             <hr />
-            <div class="add-new-procedure">
+            <div class="add-new-procedure col-md-12">
                 <h4 id="add-new-procedure-title" class="text-center">Create Procedure</h4>
-                <div class="col-md-12 text-center">
+                <div class="text-center">
                     <a asp-area="Administration" asp-controller="Procedures" asp-action="Create" class="btn btn-primary p-2 px-2 py-2 md-ml-4">Create</a>
                 </div>
                 <hr />
@@ -24,11 +24,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th data-field="#">#</th>
-                        <th data-field="name">Name</th>
-                        <th data-field="category">Category</th>
-                        <th data-field="categoryType">Skin Type</th>
-                        <th data-field="Rating">Rating</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Skin Type</th>
+                        <th scope="col">Rating</th>
                         <th scope="col">Price</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
@@ -39,7 +39,7 @@
                     {
                         var currentProcedure = Model.Procedures.ToList()[i];
 
-                        <tr class="content">
+                        <tr>
                             <th scope="row">@(i+1)</th>
                             <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@currentProcedure.Id">@currentProcedure.Name</a></td>
                             <td>@currentProcedure.CategoryName</td>

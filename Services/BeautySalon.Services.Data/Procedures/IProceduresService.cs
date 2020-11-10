@@ -10,7 +10,7 @@
     {
         Task<string> CreateAsync(string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems);
 
-        Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems);
+        Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive);
 
         Task DeleteAsync(string id);
 

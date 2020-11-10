@@ -75,12 +75,13 @@
             procedure.IsDeleted = true;
 
             await this.RemoveAllProductsAsync(id);
+            await this.RemoveAllSkinProblemsAsync(id);
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive, IList<SelectListItem> skinProblems)
+        public async Task UpdateAsync(string id, string name, string description, decimal price, string categoryId, string skinTypeId, string isSensitive)
         {
             var procedure = await this.GetByIdAsync(id);
 
@@ -89,7 +90,7 @@
             procedure.Price = price;
             procedure.CategoryId = categoryId;
 
-            await this.CheckSkinTypeAsync(skinTypeId, isSensitive, procedure, skinProblems);
+            await this.CheckSkinTypeAsync(skinTypeId, isSensitive, procedure);
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -292,14 +293,17 @@
             await this.procedureProductsRepository.SaveChangesAsync();
         }
 
-        private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems)
+        private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems = null)
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
                 procedure.SkinTypeId = skinTypeId;
                 procedure.IsSensitive = isSensitive == "Yes" ? true : false;
 
-                await this.GetSkinProblems(procedure, skinProblems);
+                if (skinProblems != null)
+                {
+                    await this.GetSkinProblems(procedure, skinProblems);
+                }
             }
         }
 
@@ -393,6 +397,21 @@
             }
 
             await this.procedureProductsRepository.SaveChangesAsync();
+        }
+
+        private async Task RemoveAllSkinProblemsAsync(string id)
+        {
+            var skinProblems = await this.skinProblemProceduresRespository
+                .All()
+                .Where(spp => spp.ProcedureId == id)
+                .ToListAsync();
+
+            foreach (var skinProblem in skinProblems)
+            {
+                this.skinProblemProceduresRespository.Delete(skinProblem);
+            }
+
+            await this.skinProblemProceduresRespository.SaveChangesAsync();
         }
     }
 }

@@ -74,7 +74,6 @@
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
             model.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
-            model.SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync();
 
             return this.View(model);
         }
@@ -86,12 +85,11 @@
             {
                 input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
-                input.SkinProblems = await this.skinProblemsService.GetAllAsSelectListItemAsync();
 
                 return this.View(input);
             }
 
-            await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive, input.SkinProblems);
+            await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
 
             return this.RedirectToAction(nameof(this.GetAll));
         }

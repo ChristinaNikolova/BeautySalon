@@ -45,5 +45,16 @@
 
             return questions;
         }
+
+        public async Task<T> GetQuestionDetailsAsync<T>(string id)
+        {
+            var question = await this.questionsRepository
+                .All()
+                .Where(q => q.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return question;
+        }
     }
 }

@@ -1,0 +1,82 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Questions.ViewModels;
+@model SeeQuestionViewModel;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">See Question</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="@Model.StylistId">Questions</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylist" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Question</h2>
+            <hr />
+            <div class="col-md-12">
+                <div class="about-author d-flex">
+                    <div class="bio align-self-md-start mr-4 col-md-3">
+                        <img src="@Model.ClientPicture" alt="client-picture" class="img-fluid mb-4" />
+                        <div class="d-inline">
+                            <i class="fas fa-calendar-alt theme-color-gold">
+                                <span class="tag-cloud-link thin">@Model.FormattedDate</span>
+                            </i>
+                            <i class="fas fa-user-edit theme-color-gold">
+                                <span class="tag-cloud-link thin"> @Model.ClientUsername</span>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="desc align-self-md-center col-md-9">
+                        <h3>@Model.Title</h3>
+                        <p>@Model.Content</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group col-md-12">
+                    <a id="answer-button" class="btn btn-primary p-1 px-3 py-2 mb-4 offset-5">Answer</a>
+                </div>
+                <div id="form-answer" class="col-md-12 ftco-animate hidden">
+                    <hr />
+                    <form asp-area="Stylists" asp-controller="Answers" asp-action="Create" method="post" class="contact-form">
+                        <h3 class="text-center">Answer</h3>
+                        <input type="hidden" asp-for="@Model.Id" />
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <input asp-for="@Model.Title" type="text" class="form-control" placeholder="Title">
+                                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Content"></textarea>
+                                <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="submit" value="Send Answer" class="btn btn-primary py-3 px-4 offset-5">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById("answer-button").addEventListener("click", showAnswerForm);
+    let answerForm = document.getElementById("form-answer");
+
+    function showAnswerForm() {
+        if (answerForm.style.display === "block") {
+            answerForm.style.display = "none";
+        } else {
+            answerForm.style.display = "block";
+        }
+    }
+</script>

@@ -11,14 +11,10 @@
 
         public string Title { get; set; }
 
-        public string Content { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
         public string FormattedDate
             => this.CreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
-
-        public string ClientId { get; set; }
 
         public string ClientUsername { get; set; }
 

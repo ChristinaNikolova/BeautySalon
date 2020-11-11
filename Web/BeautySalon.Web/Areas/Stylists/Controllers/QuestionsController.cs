@@ -33,5 +33,12 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> SeeQuestion(string id)
+        {
+            var model = await this.questionsService.GetQuestionDetailsAsync<SeeQuestionViewModel>(id);
+            ;
+            return this.View(model);
+        }
     }
 }

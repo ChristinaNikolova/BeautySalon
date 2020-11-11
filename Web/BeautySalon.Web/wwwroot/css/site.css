@@ -331,3 +331,8 @@ skin-type-name {
 .radio-choice {
     margin: 10px;
 }
+
+.nav-link:hover {
+    background-color: #d9bf77;
+    color: white;
+}

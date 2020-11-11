@@ -14,8 +14,6 @@
     {
         public string Id { get; set; }
 
-        public string StylistId { get; set; }
-
         [Required]
         [StringLength(DataValidation.ArticleTitleMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.ArticleTitleMinLenght)]
         public string Title { get; set; }

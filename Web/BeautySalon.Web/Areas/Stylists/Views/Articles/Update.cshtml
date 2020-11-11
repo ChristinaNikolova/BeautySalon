@@ -24,7 +24,6 @@
 
             <form asp-area="Stylists" asp-controller="Articles" asp-action="Update" method="post" class="text-center" enctype="multipart/form-data">
                 <input asp-for="@Model.Id" type="hidden" />
-                <input asp-for="@Model.StylistId" type="hidden" />
                 <div class="row justify-content-center">
                     <div class="form-group col-md-12 ftco-animate text-center">
                         <div class="coach align-items-stretch">
@@ -32,30 +31,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-12">
                         <label asp-for="@Model.Title"></label>
                         <input asp-for="@Model.Title" class="form-control" />
                         <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-12">
                         <label asp-for="@Model.Content"></label>
                         <textarea asp-for="@Model.Content" rows="10" class="form-control"></textarea>
                         <span asp-validation-for="@Model.Content" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-12">
                         <label asp-for="@Model.CategoryId"></label>
                         <select id="category" asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories">
                             <option selected>Please select beauty category</option>
                         </select>
                         <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <label asp-for="@Model.NewPicture"></label>
                         <input type="file" asp-for="@Model.NewPicture" />
                         <span asp-validation-for="@Model.NewPicture" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-8">
-                        <button type="submit" class="btn btn-outline-primary ml-md-4" value="Create">Create</button>
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-outline-primary ml-md-4" value="Update">Update</button>
                     </div>
                 </div>
             </form>

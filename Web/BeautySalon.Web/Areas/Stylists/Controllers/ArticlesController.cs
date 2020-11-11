@@ -60,8 +60,7 @@
 
             string articleId = await this.articlesService.CreateAsync(input.Title, input.Content, input.CategoryId, input.Picture, stylistId);
 
-            //TODO Redirect To Update
-            return this.RedirectToAction(nameof(this.GetAllForStylist));
+            return this.RedirectToAction(nameof(this.Update), new { id = articleId });
         }
 
         public async Task<IActionResult> Update(string id)
@@ -71,6 +70,22 @@
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
 
             return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateArticleInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+                input.Picture = await this.articlesService.GetPictureUrlAsync(input.Id);
+
+                return this.View(input);
+            }
+
+            await this.articlesService.UpdateAsync(input.Title, input.Content, input.CategoryId, input.NewPicture, input.Id);
+
+            return this.RedirectToAction(nameof(this.GetAllForStylist));
         }
     }
 }

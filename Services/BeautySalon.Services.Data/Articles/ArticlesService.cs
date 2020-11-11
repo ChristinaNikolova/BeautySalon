@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
@@ -37,7 +36,7 @@
 
         public async Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId)
         {
-            var pictureAsUrl = await this.cloudinaryService.UploudAsync(picture, title);
+            string pictureAsUrl = await this.GetPictureAsUrl(title, picture);
 
             var article = new Article()
             {
@@ -112,6 +111,17 @@
             return count;
         }
 
+        public async Task<string> GetPictureUrlAsync(string id)
+        {
+            var pictureUrl = await this.articlesRepository
+                .All()
+                .Where(a => a.Id == id)
+                .Select(a => a.Picture)
+                .FirstOrDefaultAsync();
+
+            return pictureUrl;
+        }
+
         public async Task<IEnumerable<T>> GetRecentArticlesAsync<T>()
         {
             var articles = await this.articlesRepository
@@ -175,6 +185,31 @@
                 .ToListAsync();
 
             return categories;
+        }
+
+        public async Task UpdateAsync(string title, string content, string categoryId, IFormFile newPicture, string id)
+        {
+            var article = await this.articlesRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            article.Title = title;
+            article.Content = content;
+            article.CategoryId = categoryId;
+
+            if (newPicture != null)
+            {
+                string pictureAsUrl = await this.GetPictureAsUrl(title, newPicture);
+                article.Picture = pictureAsUrl;
+            }
+
+            this.articlesRepository.Update(article);
+            await this.articlesRepository.SaveChangesAsync();
+        }
+
+        private async Task<string> GetPictureAsUrl(string title, IFormFile picture)
+        {
+            return await this.cloudinaryService.UploudAsync(picture, title);
         }
     }
 }

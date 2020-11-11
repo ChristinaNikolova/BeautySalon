@@ -11,6 +11,10 @@
 
         Task<T> GetDataForUpdateAsync<T>(string id);
 
+        Task UpdateAsync(string title, string content, string categoryId, IFormFile newPicture, string id);
+
+        Task<string> GetPictureUrlAsync(string id);
+
         Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip);
 
         Task<T> GetArticleDetailsAsync<T>(string id);

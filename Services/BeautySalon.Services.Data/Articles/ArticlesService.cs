@@ -91,6 +91,17 @@
             return article;
         }
 
+        public async Task<T> GetDataForUpdateAsync<T>(string id)
+        {
+            var article = await this.articlesRepository
+                .All()
+                .Where(a => a.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return article;
+        }
+
         public async Task<int> GetLikesCountAsync(string articleId)
         {
             var count = await this.clientArticleLikesRepository

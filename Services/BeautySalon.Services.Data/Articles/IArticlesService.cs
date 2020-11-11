@@ -9,6 +9,8 @@
     {
         Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId);
 
+        Task<T> GetDataForUpdateAsync<T>(string id);
+
         Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip);
 
         Task<T> GetArticleDetailsAsync<T>(string id);

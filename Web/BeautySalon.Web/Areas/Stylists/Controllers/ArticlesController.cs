@@ -63,5 +63,14 @@
             //TODO Redirect To Update
             return this.RedirectToAction(nameof(this.GetAllForStylist));
         }
+
+        public async Task<IActionResult> Update(string id)
+        {
+            var model = await this.articlesService.GetDataForUpdateAsync<UpdateArticleInputModel>(id);
+
+            model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
+
+            return this.View(model);
+        }
     }
 }

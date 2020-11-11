@@ -8,10 +8,10 @@
 <partial name="_TitlePageSection" />
 <section>
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <partial name="_NavBarAdministration" />
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <h2 class="text-center">Products</h2>
             <hr />
             <div class="add-new-procedure">
@@ -24,11 +24,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th data-field="#">#</th>
-                        <th data-field="name">Name</th>
-                        <th data-field="category">Category</th>
-                        <th data-field="categoryType">Brand Name</th>
-                        <th data-field="Rating">Rating</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Brand Name</th>
+                        <th scope="col">Rating</th>
                         <th scope="col">Price</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
@@ -39,7 +39,7 @@
                     {
                         var currentProduct = Model.Products.ToList()[i];
 
-                        <tr class="content">
+                        <tr>
                             <th scope="row">@(i+1)</th>
                             <td><a asp-area="" asp-controller="Products" asp-action="GetDetails" asp-route-id="@currentProduct.Id">@currentProduct.Name</a></td>
                             <td>@currentProduct.CategoryName</td>

@@ -9,10 +9,10 @@
 <partial name="_TitlePageSection" />
 <section>
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <partial name="_NavBarAdministration" />
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <h2 class="text-center">Stylists</h2>
             <hr />
             <div class="add-new-stylist-form">
@@ -31,11 +31,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th data-field="#">#</th>
-                        <th data-field="name">Full Name</th>
-                        <th data-field="category">Category</th>
-                        <th data-field="categoryType">Job Type</th>
-                        <th data-field="Rating">Rating</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Job Type</th>
+                        <th scope="col">Rating</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -45,7 +45,7 @@
                     {
                         var currentStylist = Model.Stylists.ToList()[i];
 
-                        <tr class="content">
+                        <tr>
                             <th scope="row">@(i+1)</th>
                             <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id">@currentStylist.FullName</a></td>
                             <td>@currentStylist.CategoryName</td>

@@ -44,7 +44,7 @@
             var currentDate = DateTime.UtcNow.Date;
 
             var appointments = await this.appointmentsRepository
-                .All()
+                .AllAsNoTracking()
                 .Where(a => a.DateTime.Date == currentDate)
                 .OrderBy(a => a.StartTime)
                 .To<T>()

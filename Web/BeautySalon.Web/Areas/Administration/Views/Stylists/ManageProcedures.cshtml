@@ -15,10 +15,10 @@
 </section>
 <section>
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <partial name="_NavBarAdministration" />
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <h2 class="text-center">Manage Procedures</h2>
             <h3 class="text-center theme-color-gold">@Model.FirstName @Model.LastName</h3>
             <div id="stylist-id" hidden>@Model.Id</div>
@@ -37,8 +37,8 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th data-field="#">#</th>
-                        <th data-field="name">Name</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -47,7 +47,7 @@
                     {
                         var currentProcedure = Model.Procedures.ToList()[i];
 
-                        <tr class="content">
+                        <tr>
                             <th scope="row">@(i+1)</th>
                             <td><a id="@currentProcedure.Id">@currentProcedure.Name</a></td>
                             <td><a class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 delete-button">Delete</a></td>

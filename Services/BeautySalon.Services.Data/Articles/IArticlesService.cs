@@ -3,8 +3,12 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Http;
+
     public interface IArticlesService
     {
+        Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId);
+
         Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip);
 
         Task<T> GetArticleDetailsAsync<T>(string id);

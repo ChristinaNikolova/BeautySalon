@@ -38,7 +38,11 @@
         public const int AppointmentMaxLenght = 500;
 
         // Article
+        public const int ArticleTitleMinLenght = 5;
+
         public const int ArticleTitleMaxLenght = 100;
+
+        public const int ArticleContentMinLenght = 10;
 
         public const int ArticleContentMaxLenght = 6000;
 

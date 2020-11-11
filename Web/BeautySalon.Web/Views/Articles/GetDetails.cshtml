@@ -23,9 +23,9 @@
                 <p>
                     <img src="@Model.Picture" alt="article-picture" class="img-fluid">
                 </p>
-                <p>
-                    @Model.Content
-                </p>
+                <article>
+                    @Html.Raw(@Model.SanitizedContent)
+                </article>
 
                 <div class="mb-5 mt-5 d-inline">
                     <div class="d-inline">

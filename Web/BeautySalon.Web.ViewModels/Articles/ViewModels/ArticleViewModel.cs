@@ -1,9 +1,12 @@
 ﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModels
 {
     using System;
+    using System.Net;
+    using System.Text.RegularExpressions;
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
+    using Ganss.XSS;
 
     public class ArticleViewModel : IMapFrom<Article>
     {
@@ -13,13 +16,17 @@
 
         public string Content { get; set; }
 
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
+
         public string ShortContent
         {
             get
             {
-                return this.Content.Length > 200
-                        ? this.Content.Substring(0, 200) + "..."
-                        : this.Content;
+                var content = WebUtility.HtmlDecode(Regex.Replace(this.SanitizedContent, @"<[^>]+>", string.Empty));
+
+                return content.Length > 200
+                        ? content.Substring(0, 200) + "..."
+                        : content;
             }
         }
 

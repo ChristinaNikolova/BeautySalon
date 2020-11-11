@@ -2,23 +2,28 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Mapping;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
 
     public class ArticlesService : IArticlesService
     {
         private readonly IRepository<Article> articlesRepository;
         private readonly IRepository<ClientArticleLike> clientArticleLikesRepository;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public ArticlesService(IRepository<Article> articlesRepository, IRepository<ClientArticleLike> clientArticleLikesRepository)
+        public ArticlesService(IRepository<Article> articlesRepository, IRepository<ClientArticleLike> clientArticleLikesRepository, ICloudinaryService cloudinaryService)
         {
             this.articlesRepository = articlesRepository;
             this.clientArticleLikesRepository = clientArticleLikesRepository;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task<bool> CheckFavouriteArticlesAsync(string id, string userId)
@@ -28,6 +33,25 @@
                 .AnyAsync(ca => ca.ArticleId == id && ca.ClientId == userId);
 
             return isFavourite;
+        }
+
+        public async Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId)
+        {
+            var pictureAsUrl = await this.cloudinaryService.UploudAsync(picture, title);
+
+            var article = new Article()
+            {
+                Title = title,
+                Content = content,
+                CategoryId = categoryId,
+                Picture = pictureAsUrl,
+                StylistId = stylistId,
+            };
+
+            await this.articlesRepository.AddAsync(article);
+            await this.articlesRepository.SaveChangesAsync();
+
+            return article.Id;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip)
@@ -50,8 +74,6 @@
                 .All()
                 .Where(a => a.StylistId == stylistId)
                 .OrderByDescending(a => a.CreatedOn)
-                .OrderByDescending(a => a.Likes.Count())
-                .OrderByDescending(a => a.Comments.Count())
                 .To<T>()
                 .ToListAsync();
 

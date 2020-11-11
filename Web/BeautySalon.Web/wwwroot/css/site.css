@@ -233,9 +233,9 @@ div .small {
     color: #fff !important;
 }
 
-    .btn.btn-primary:hover {
-        color: gray !important;
-    }
+.btn.btn-primary:hover {
+     color: gray !important;
+}
 
 .smart-search-text {
     margin-left: 14px !important;
@@ -288,7 +288,6 @@ div .small {
     text-align: center;
 }
 
-
 .admin-dashboard {
     margin-left: 300px;
 }
@@ -331,8 +330,3 @@ skin-type-name {
 .radio-choice {
     margin: 10px;
 }
-
-/*.nav-link:hover {
-    background-color: #d9bf77;
-    color: white;
-}*/

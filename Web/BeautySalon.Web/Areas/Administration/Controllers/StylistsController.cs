@@ -21,7 +21,12 @@
         private readonly IProceduresService proceduresService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public StylistsController(IStylistsService stylistsService, ICategoriesService categoriesService, IJobTypesService jobTypesService, IProceduresService proceduresService, UserManager<ApplicationUser> userManager)
+        public StylistsController(
+            IStylistsService stylistsService,
+            ICategoriesService categoriesService,
+            IJobTypesService jobTypesService,
+            IProceduresService proceduresService,
+            UserManager<ApplicationUser> userManager)
         {
             this.stylistsService = stylistsService;
             this.categoriesService = categoriesService;

@@ -20,7 +20,12 @@
         private readonly ISkinProblemsService skinProblemsService;
         private readonly IProductsService productsService;
 
-        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService, ISkinTypesService skinTypesService, ISkinProblemsService skinProblemsService, IProductsService productsService)
+        public ProceduresController(
+            IProceduresService proceduresService,
+            ICategoriesService categoriesService,
+            ISkinTypesService skinTypesService,
+            ISkinProblemsService skinProblemsService,
+            IProductsService productsService)
         {
             this.proceduresService = proceduresService;
             this.categoriesService = categoriesService;

@@ -15,7 +15,10 @@
         private readonly ICategoriesService categoriesService;
         private readonly IBrandsService brandsService;
 
-        public ProductsController(IProductsService productsService, ICategoriesService categoriesService, IBrandsService brandsService)
+        public ProductsController(
+            IProductsService productsService,
+            ICategoriesService categoriesService,
+            IBrandsService brandsService)
         {
             this.productsService = productsService;
             this.categoriesService = categoriesService;

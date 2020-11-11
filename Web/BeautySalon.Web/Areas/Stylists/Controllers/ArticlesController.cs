@@ -87,5 +87,12 @@
 
             return this.RedirectToAction(nameof(this.GetAllForStylist));
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.articlesService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(this.GetAllForStylist));
+        }
     }
 }

@@ -15,12 +15,14 @@
     public class ArticlesService : IArticlesService
     {
         private readonly IRepository<Article> articlesRepository;
+        private readonly IRepository<Comment> commentsRepository;
         private readonly IRepository<ClientArticleLike> clientArticleLikesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public ArticlesService(IRepository<Article> articlesRepository, IRepository<ClientArticleLike> clientArticleLikesRepository, ICloudinaryService cloudinaryService)
+        public ArticlesService(IRepository<Article> articlesRepository, IRepository<Comment> commentsRepository, IRepository<ClientArticleLike> clientArticleLikesRepository, ICloudinaryService cloudinaryService)
         {
             this.articlesRepository = articlesRepository;
+            this.commentsRepository = commentsRepository;
             this.clientArticleLikesRepository = clientArticleLikesRepository;
             this.cloudinaryService = cloudinaryService;
         }
@@ -51,6 +53,21 @@
             await this.articlesRepository.SaveChangesAsync();
 
             return article.Id;
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            var article = await this.articlesRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            article.IsDeleted = true;
+
+            await this.RemoveArticleLikesAsync(id);
+            await this.RemoveArticleCommentsAsync(id);
+
+            this.articlesRepository.Update(article);
+            await this.articlesRepository.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip)
@@ -210,6 +227,36 @@
         private async Task<string> GetPictureAsUrl(string title, IFormFile picture)
         {
             return await this.cloudinaryService.UploudAsync(picture, title);
+        }
+
+        private async Task RemoveArticleLikesAsync(string id)
+        {
+            var articleLikes = await this.clientArticleLikesRepository
+                .All()
+                .Where(cal => cal.ArticleId == id)
+                .ToListAsync();
+
+            foreach (var articleLike in articleLikes)
+            {
+                this.clientArticleLikesRepository.Delete(articleLike);
+            }
+
+            await this.clientArticleLikesRepository.SaveChangesAsync();
+        }
+
+        private async Task RemoveArticleCommentsAsync(string id)
+        {
+            var comments = await this.commentsRepository
+                .All()
+                .Where(c => c.ArticleId == id)
+                .ToListAsync();
+
+            foreach (var comment in comments)
+            {
+                comment.IsDeleted = true;
+            }
+
+            await this.commentsRepository.SaveChangesAsync();
         }
     }
 }

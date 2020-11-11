@@ -15,6 +15,8 @@
 
         Task<string> GetPictureUrlAsync(string id);
 
+        Task DeleteAsync(string id);
+
         Task<IEnumerable<T>> GetAllAsync<T>(int take, int skip);
 
         Task<T> GetArticleDetailsAsync<T>(string id);

@@ -20,5 +20,7 @@
         Task<IEnumerable<T>> SearchByAsync<T>(string categoryId);
 
         Task<IEnumerable<T>> GetRecentArticlesAsync<T>();
+
+        Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
     }
 }

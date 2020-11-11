@@ -1,16 +1,54 @@
 ﻿@{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Dashboard - Stylists";
 }
 
 <partial name="_TitlePageSection" />
 <section>
     <div class="row">
         <div class="col-md-3">
-            <partial name="_NavBarAdministration" />
+            <partial name="_NavBarStylist" />
         </div>
         <div class="col-md-8">
-            <h2 class="text-center">Title</h2>
-            <hr />
+            <h2 class="text-center">Notifications</h2>
+            <section class="ftco-section ftco-section-services bg-light">
+                <div class="container-fluid px-md-5">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-candle"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>Appointment's Requests</h3>
+                                    <p>A small river named<p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-beauty-treatment"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>Today's Appointments</h3>
+                                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-stone"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>New Questions</h3>
+                                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </section>

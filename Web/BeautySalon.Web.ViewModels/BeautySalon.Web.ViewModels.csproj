@@ -8,6 +8,10 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StylistsArea\Articles\ViewModels\ArticleStylistAreaViewModel.cs~RF26d1ece3.TMP" />
+  </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
@@ -27,8 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="StylistsArea\InputModels\" />
-    <Folder Include="StylistsArea\ViewModels\" />
+    <Folder Include="StylistsArea\Dashboard\" />
   </ItemGroup>
 
 </Project>

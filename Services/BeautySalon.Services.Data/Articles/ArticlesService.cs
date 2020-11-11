@@ -44,6 +44,20 @@
             return articles;
         }
 
+        public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
+        {
+            var articles = await this.articlesRepository
+                .All()
+                .Where(a => a.StylistId == stylistId)
+                .OrderByDescending(a => a.CreatedOn)
+                .OrderByDescending(a => a.Likes.Count())
+                .OrderByDescending(a => a.Comments.Count())
+                .To<T>()
+                .ToListAsync();
+
+            return articles;
+        }
+
         public async Task<T> GetArticleDetailsAsync<T>(string id)
         {
             var article = await this.articlesRepository

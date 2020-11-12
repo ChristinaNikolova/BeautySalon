@@ -1,5 +1,6 @@
-﻿@using BeautySalon.Web.ViewModels.StylistsArea.Questions.ViewModels;
-@model SeeQuestionViewModel;
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Answers.InputModels;
+@model CreateAnswerInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -7,7 +8,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">See Question</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="@Model.StylistId">Questions</a></span>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="@Model.Question.StylistId">Questions</a></span>
             </div>
         </div>
     </div>
@@ -23,19 +24,19 @@
             <div class="col-md-12">
                 <div class="about-author d-flex">
                     <div class="bio align-self-md-start mr-4 col-md-3">
-                        <img src="@Model.ClientPicture" alt="client-picture" class="img-fluid mb-4" />
+                        <img src="@Model.Question.ClientPicture" alt="client-picture" class="img-fluid mb-4" />
                         <div class="d-inline">
                             <i class="fas fa-calendar-alt theme-color-gold">
-                                <span class="tag-cloud-link thin">@Model.FormattedDate</span>
+                                <span class="tag-cloud-link thin">@Model.Question.FormattedDate</span>
                             </i>
                             <i class="fas fa-user-edit theme-color-gold">
-                                <span class="tag-cloud-link thin"> @Model.ClientUsername</span>
+                                <span class="tag-cloud-link thin"> @Model.Question.ClientUsername</span>
                             </i>
                         </div>
                     </div>
                     <div class="desc align-self-md-center col-md-9">
-                        <h3>@Model.Title</h3>
-                        <p>@Model.Content</p>
+                        <h3>@Model.Question.Title</h3>
+                        <p>@Model.Question.Content</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +48,9 @@
                     <hr />
                     <form asp-area="Stylists" asp-controller="Answers" asp-action="Create" method="post" class="contact-form">
                         <h3 class="text-center">Answer</h3>
-                        <input type="hidden" asp-for="@Model.Id" />
+                        <input type="hidden" asp-for="@Model.Question.Id" />
+                        <input type="hidden" asp-for="@Model.Question.StylistId" />
+                        <input type="hidden" asp-for="@Model.Question.ClientId" />
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <input asp-for="@Model.Title" type="text" class="form-control" placeholder="Title">
@@ -68,15 +71,25 @@
     </div>
 </section>
 
-<script>
-    document.getElementById("answer-button").addEventListener("click", showAnswerForm);
-    let answerForm = document.getElementById("form-answer");
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
 
-    function showAnswerForm() {
-        if (answerForm.style.display === "block") {
-            answerForm.style.display = "none";
-        } else {
-            answerForm.style.display = "block";
+    <script>
+        document.getElementById("answer-button").addEventListener("click", showAnswerForm);
+        let answerForm = document.getElementById("form-answer");
+
+        function showAnswerForm() {
+            if (answerForm.style.display === "block") {
+                answerForm.style.display = "none";
+            } else {
+                answerForm.style.display = "block";
+            }
         }
-    }
-</script>
+    </script>
+}

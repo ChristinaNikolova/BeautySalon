@@ -3,7 +3,11 @@
     public static class DataValidation
     {
         // Answer
+        public const int AnswerTitleMinLenght = 3;
+
         public const int AnswerTitleMaxLenght = 50;
+
+        public const int AnswerContentMinLenght = 5;
 
         public const int AnswerContentMaxLenght = 500;
 

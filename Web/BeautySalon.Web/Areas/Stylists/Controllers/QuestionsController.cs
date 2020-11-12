@@ -4,6 +4,7 @@
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Questions;
+    using BeautySalon.Web.ViewModels.StylistsArea.Answers.InputModels;
     using BeautySalon.Web.ViewModels.StylistsArea.Questions.ViewModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -36,8 +37,12 @@
 
         public async Task<IActionResult> SeeQuestion(string id)
         {
-            var model = await this.questionsService.GetQuestionDetailsAsync<SeeQuestionViewModel>(id);
-            ;
+            var question = await this.questionsService.GetQuestionDetailsAsync<SeeQuestionViewModel>(id);
+            var model = new CreateAnswerInputModel()
+            {
+                Question = question,
+            };
+
             return this.View(model);
         }
     }

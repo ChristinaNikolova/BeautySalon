@@ -8,5 +8,7 @@
         public string Content { get; set; }
 
         public string StylistId { get; set; }
+
+        public string ClientId { get; set; }
     }
 }

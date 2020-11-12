@@ -1,0 +1,85 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels;
+@model DetailsAnswerStylistAreaViewModel;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Answer</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Answers" asp-action="GetStylistsAllAnswers">Anwered Questions</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylist" />
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <h2 class="text-center">Answer</h2>
+                <hr />
+                <div class="about-author d-flex">
+                    <div class="bio align-self-md-start mr-4 col-md-3">
+                        <img src="@Model.StylistPicture" alt="stylist-picture" class="img-fluid mb-4" />
+                        <div class="d-inline">
+                            <i class="fas fa-calendar-alt theme-color-gold">
+                                <span class="tag-cloud-link thin">@Model.FormattedCreatedOn</span>
+                            </i>
+                            <i class="fas fa-user-edit theme-color-gold">
+                                <span class="tag-cloud-link thin"> @Model.StylistUsername</span>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="desc align-self-md-center col-md-9">
+                        <h3>@Model.Title</h3>
+                        <p>@Model.Content</p>
+                    </div>
+                </div>
+                <a id="hide-question" class="btn btn-white px-2 py-3 offset-5">Hide Question</a>
+                <div id="question-section" style="display:block">
+                    <h2 class="text-center">Question</h2>
+                    <hr />
+                    <div class="about-author d-flex">
+                        <div class="desc align-self-md-center col-md-9">
+                            <h3>@Model.QuestionTitle</h3>
+                            <p>@Model.QuestionContent</p>
+                        </div>
+                        <div class="bio align-self-md-start mr-4 col-md-3">
+                            <img src="@Model.ClientPicture" alt="client-picture" class="img-fluid mb-4" />
+                            <div class="d-inline">
+                                <i class="fas fa-calendar-alt theme-color-gold">
+                                    <span class="tag-cloud-link thin">@Model.FormattedQuestionCreatedOn</span>
+                                </i>
+                                <i class="fas fa-user-edit theme-color-gold">
+                                    <span class="tag-cloud-link thin"> @Model.ClientUsername</span>
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <a asp-area="Stylists" asp-controller="Answers" asp-action="GetStylistsAllAnswers" class="btn btn-white px-4 py-3 offset-5">Back<span class="ion-ios-arrow-round-forward"></span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let button = document.getElementById("hide-question");
+    button.addEventListener("click", hideQuestion);
+
+    function hideQuestion() {
+        let question = document.getElementById("question-section");
+
+        if (question.style.display === "block") {
+            question.style.display = "none";
+            button.innerText = "Show Question";
+        } else {
+            question.style.display = "block";
+            button.innerText = "Hide Question";
+        }
+    }
+</script>

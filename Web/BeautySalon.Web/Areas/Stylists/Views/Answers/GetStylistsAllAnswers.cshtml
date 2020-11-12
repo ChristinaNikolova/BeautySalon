@@ -1,0 +1,50 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels;
+@model AllAnswersStylistAreaViewModel;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Answered Questions</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="@Model.StylistId">New Questions</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylist" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Answered Questions</h2>
+            <hr />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.AnsweredQuestions.Count(); i++)
+                    {
+                        var currentQuestion = Model.AnsweredQuestions.ToList()[i];
+
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td>@currentQuestion.FormattedQuestionCreatedOn</td>
+                            <td>@currentQuestion.QuestionTitle</td>
+                            <td>@currentQuestion.QuestionClientUsername</td>
+                            <td><a asp-area="Stylists" asp-controller="Answers" asp-action="SeeDetails" asp-route-id="@currentQuestion.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

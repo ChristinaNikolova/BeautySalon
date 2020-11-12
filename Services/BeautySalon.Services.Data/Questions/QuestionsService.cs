@@ -38,7 +38,7 @@
         {
             var questions = await this.questionsRepository
                 .All()
-                .Where(q => q.StylistId == stylistId && q.AnswerId == null)
+                .Where(q => q.StylistId == stylistId && q.IsAnswered == false)
                 .OrderByDescending(q => q.CreatedOn)
                 .To<T>()
                 .ToListAsync();

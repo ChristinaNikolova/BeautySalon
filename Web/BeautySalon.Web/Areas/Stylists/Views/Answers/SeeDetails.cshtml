@@ -67,19 +67,7 @@
     </div>
 </section>
 
-<script>
-    let button = document.getElementById("hide-question");
-    button.addEventListener("click", hideQuestion);
-
-    function hideQuestion() {
-        let question = document.getElementById("question-section");
-
-        if (question.style.display === "block") {
-            question.style.display = "none";
-            button.innerText = "Show Question";
-        } else {
-            question.style.display = "block";
-            button.innerText = "Hide Question";
-        }
-    }
-</script>
+@section Scripts {
+    <script src="~/js/hideShowQuestion.js" asp-append-version="true"></script>
+    <script>hideShowQuestion();</script>
+}

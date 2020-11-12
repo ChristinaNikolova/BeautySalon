@@ -12,10 +12,14 @@
     public class AnswersService : IAnswersService
     {
         private readonly IRepository<Answer> answersRepository;
+        private readonly IRepository<Question> questionsRepository;
 
-        public AnswersService(IRepository<Answer> answersRepository)
+        public AnswersService(
+            IRepository<Answer> answersRepository,
+            IRepository<Question> questionsRepository)
         {
             this.answersRepository = answersRepository;
+            this.questionsRepository = questionsRepository;
         }
 
         public async Task<string> CreateAsync(string title, string content, string questionStylistId, string questionClientId, string questionId)
@@ -28,6 +32,8 @@
                 ClientId = questionClientId,
                 QuestionId = questionId,
             };
+
+            await this.ChangeQuestionIsAnseredPropertyAsync(questionId);
 
             await this.answersRepository.AddAsync(answer);
             await this.answersRepository.SaveChangesAsync();
@@ -56,6 +62,15 @@
                 .FirstOrDefaultAsync();
 
             return answer;
+        }
+
+        private async Task ChangeQuestionIsAnseredPropertyAsync(string questionId)
+        {
+            var question = await this.questionsRepository
+                .All()
+                .FirstOrDefaultAsync(q => q.Id == questionId);
+
+            question.IsAnswered = true;
         }
     }
 }

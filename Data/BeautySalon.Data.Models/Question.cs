@@ -11,6 +11,7 @@
         public Question()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.IsAnswered = false;
         }
 
         [Required]
@@ -34,5 +35,7 @@
         public string AnswerId { get; set; }
 
         public virtual Answer Answer { get; set; }
+
+        public bool IsAnswered { get; set; }
     }
 }

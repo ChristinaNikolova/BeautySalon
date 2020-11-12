@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Areas.Stylists.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Answers;
     using BeautySalon.Web.ViewModels.StylistsArea.Answers.InputModels;
@@ -31,8 +32,7 @@
 
             var answerId = await this.answersService.CreateAsync(input.Title, input.Content, input.Question.StylistId, input.Question.ClientId, input.Question.Id);
 
-            //TODO better redirect(send messages)!!!!!!!!!
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.SeeDetails), new { Id = answerId });
         }
 
         public async Task<IActionResult> GetStylistsAllAnswers()
@@ -51,9 +51,8 @@
         public async Task<IActionResult> SeeDetails(string id)
         {
             var model = await this.answersService.GetAnswerDetailsAsync<DetailsAnswerStylistAreaViewModel>(id);
-            
+
             return this.View(model);
         }
-
     }
 }

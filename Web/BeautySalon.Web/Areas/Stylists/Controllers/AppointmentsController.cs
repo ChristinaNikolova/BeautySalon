@@ -51,5 +51,12 @@
 
             return this.RedirectToAction(nameof(this.Index));
         }
+
+        public async Task<IActionResult> Done(string id)
+        {
+            await this.appointmentsService.DoneAsync(id);
+
+            return this.RedirectToAction(nameof(this.Index));
+        }
     }
 }

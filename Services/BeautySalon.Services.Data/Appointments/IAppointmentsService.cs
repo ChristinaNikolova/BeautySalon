@@ -17,5 +17,7 @@
         Task<T> GetDetailsAsync<T>(string id);
 
         Task CancelAsync(string id);
+
+        Task DoneAsync(string id);
     }
 }

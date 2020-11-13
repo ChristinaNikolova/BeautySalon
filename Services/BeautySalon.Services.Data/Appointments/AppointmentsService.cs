@@ -41,11 +41,19 @@
 
         public async Task CancelAsync(string id)
         {
-            var appointment = await this.appointmentsRepository
-                .All()
-                .FirstOrDefaultAsync(a => a.Id == id);
+            var appointment = await this.GetById(id);
 
             appointment.Status = Status.CancelledByStylist;
+
+            this.appointmentsRepository.Update(appointment);
+            await this.appointmentsRepository.SaveChangesAsync();
+        }
+
+        public async Task DoneAsync(string id)
+        {
+            var appointment = await this.GetById(id);
+
+            appointment.Status = Status.Done;
 
             this.appointmentsRepository.Update(appointment);
             await this.appointmentsRepository.SaveChangesAsync();
@@ -116,6 +124,13 @@
                 .ToList();
 
             return freeHours;
+        }
+
+        private async Task<Appointment> GetById(string id)
+        {
+            return await this.appointmentsRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }

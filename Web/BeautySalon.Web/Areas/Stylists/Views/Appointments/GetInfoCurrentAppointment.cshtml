@@ -56,13 +56,13 @@
                     <div class="offset-4">
                         @if (@Model.Status.ToString() == "Processing")
                         {
-                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Approve" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 mr-2">Approve</a>
+                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 mr-2">Approve</a>
                         }
                         else
                         {
-                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Done" class="btn btn-outline-primary p-1 px-3 py-2 mb-4">Done</a>
+                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Done" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4">Done</a>
                         }
-                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Delete" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Delete</a>
+                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Cancel</a>
                     </div>
                 </div>
             </div>

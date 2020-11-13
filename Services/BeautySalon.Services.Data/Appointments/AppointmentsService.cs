@@ -39,6 +39,18 @@
             await this.appointmentsRepository.SaveChangesAsync();
         }
 
+        public async Task CancelAsync(string id)
+        {
+            var appointment = await this.appointmentsRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            appointment.Status = Status.CancelledByStylist;
+
+            this.appointmentsRepository.Update(appointment);
+            await this.appointmentsRepository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAllAppointmentsForTodayAsync<T>()
         {
             var currentDate = DateTime.UtcNow.Date;
@@ -55,10 +67,10 @@
 
         public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
         {
-            //TODO STATUS!!!!
+            //TODO CHECK !!!!!!!!!!!!!!!!!! STATUS!!!!
             var appointments = await this.appointmentsRepository
                 .All()
-                .Where(a => a.StylistId == stylistId)
+                .Where(a => a.StylistId == stylistId && (a.Status == Status.Approved || a.Status == Status.Done))
                 .To<T>()
                 .ToListAsync();
 

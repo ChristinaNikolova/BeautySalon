@@ -44,5 +44,12 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> Cancel(string id)
+        {
+            await this.appointmentsService.CancelAsync(id);
+
+            return this.RedirectToAction(nameof(this.Index));
+        }
     }
 }

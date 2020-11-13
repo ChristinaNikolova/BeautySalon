@@ -15,5 +15,7 @@
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
 
         Task<T> GetDetailsAsync<T>(string id);
+
+        Task CancelAsync(string id);
     }
 }

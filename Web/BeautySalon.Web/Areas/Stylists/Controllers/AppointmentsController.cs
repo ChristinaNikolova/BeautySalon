@@ -34,14 +34,15 @@
             {
                 Appointments = await this.appointmentsService.GetAllForStylistAsync<AppointmentStylistAreaViewModel>(stylistId),
             };
-            
+
             return this.Json(model);
         }
 
-        public IActionResult GetInfoCurrentAppointment(string id)
+        public async Task<IActionResult> GetInfoCurrentAppointment(string id)
         {
-            ;
-            return null;
+            var model = await this.appointmentsService.GetDetailsAsync<DetailsAppointmentStylistAreaViewModel>(id);
+
+            return this.View(model);
         }
     }
 }

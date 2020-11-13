@@ -1,0 +1,79 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels;
+@model DetailsAppointmentStylistAreaViewModel;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Appointment's Details</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-area="Stylists" asp-controller="Appointments" asp-action="Index">My Appointments</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section contact-section">
+    <div class="container">
+        <div class="row block-9">
+            <div class="col-md-6 contact-info ftco-animate bg-light p-4">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <h2 class="h2">Appointment's Details</h2>
+                    </div>
+                    <h3>Appointment</h3>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Date:</span> @Model.FormattedDate</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Hour:</span> @Model.StartTime h</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Comment:</span> @Model.Comment</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Status:</span> @Model.Status</p>
+                    </div>
+                    <h3>Procedure</h3>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Name:</span><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@Model.ProcedureId"> @Model.ProcedureName</a></p>
+                    </div>
+                    <h3>Client</h3>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Client Name:</span> @Model.ClientFullName (@Model.ClientUsername)</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Phone:</span> @Model.ClientPhoneNumber</p>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <p><span>Email:</span> @Model.ClientEmail</p>
+                    </div>
+                    <h3>Stylist</h3>
+                    <div class="col-md-12 mb-3">
+                        <p>
+                            <span>Stylist Name:</span><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@Model.StylistId"> @Model.StylistFullName</a>
+                        </p>
+                    </div>
+                    <div class="offset-4">
+                        @if (@Model.Status.ToString() == "Processing")
+                        {
+                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Approve" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 mr-2">Approve</a>
+                        }
+                        else
+                        {
+                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Done" class="btn btn-outline-primary p-1 px-3 py-2 mb-4">Done</a>
+                        }
+                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Delete" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Delete</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-4 ftco-animate">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Feedback</h2>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

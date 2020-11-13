@@ -65,6 +65,17 @@
             return appointments;
         }
 
+        public async Task<T> GetDetailsAsync<T>(string id)
+        {
+            var appointment = await this.appointmentsRepository
+                .All()
+                .Where(a => a.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return appointment;
+        }
+
         public async Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId)
         {
             var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);

@@ -41,6 +41,10 @@
                             </div>
                         </div>
                     }
+                    @if (Model.Questions.ToList().Count == 0)
+                    {
+                        <h4 class="offset-4">You don't have any new questions!</h4>
+                    }
                 </div>
             </div>
         </div>

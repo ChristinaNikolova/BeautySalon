@@ -13,5 +13,7 @@
         Task<IEnumerable<T>> GetAllAppointmentsForTodayAsync<T>();
 
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
+
+        Task<T> GetDetailsAsync<T>(string id);
     }
 }

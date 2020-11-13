@@ -11,5 +11,7 @@
         Task CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment);
 
         Task<IEnumerable<T>> GetAllAppointmentsForTodayAsync<T>();
+
+        Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
     }
 }

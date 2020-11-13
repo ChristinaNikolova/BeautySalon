@@ -53,6 +53,18 @@
             return appointments;
         }
 
+        public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
+        {
+            //TODO STATUS!!!!
+            var appointments = await this.appointmentsRepository
+                .All()
+                .Where(a => a.StylistId == stylistId)
+                .To<T>()
+                .ToListAsync();
+
+            return appointments;
+        }
+
         public async Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId)
         {
             var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);

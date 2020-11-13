@@ -15,7 +15,9 @@
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;
 
-        public ProceduresController(IProceduresService proceduresService, ICategoriesService categoriesService)
+        public ProceduresController(
+            IProceduresService proceduresService, 
+            ICategoriesService categoriesService)
         {
             this.proceduresService = proceduresService;
             this.categoriesService = categoriesService;

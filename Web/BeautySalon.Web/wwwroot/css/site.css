@@ -233,9 +233,9 @@ div .small {
     color: #fff !important;
 }
 
-.btn.btn-primary:hover {
-     color: gray !important;
-}
+    .btn.btn-primary:hover {
+        color: gray !important;
+    }
 
 .smart-search-text {
     margin-left: 14px !important;
@@ -329,4 +329,9 @@ skin-type-name {
 
 .radio-choice {
     margin: 10px;
+}
+
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
 }

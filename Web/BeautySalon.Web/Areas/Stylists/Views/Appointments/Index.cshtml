@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Stylist's dashboard";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylist" />
+        </div>
+
+        <div class="col-md-9">
+            <h2 class="text-center">My Appointments</h2>
+            <hr />
+            <div id='calendar'></div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        var events = [];
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Stylists/Appointments/GetAppointments",
+                success: function (data) {
+                    data.appointments.forEach(appointment => {
+                        events.push({
+                            title: appointment.procedureName + " : " + appointment.clientFullName,
+                            start: appointment.formattedStart,
+                            end: appointment.formattedEnd,
+                            url: `https://localhost:44319/Stylists/Appointments/GetInfoCurrentAppointment/${appointment.id}`,
+                        });
+                    });
+                    generateCalender(events);
+                },
+            });
+
+            function generateCalender(events) {
+                var divCalender = document.getElementById("calendar");
+                var calendar = new FullCalendar.Calendar(divCalender, {
+                    height: 'auto',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    initialDate: new Date(),
+                    navLinks: true, // can click day/week names to navigate views
+                    selectable: true,
+                    selectMirror: true,
+                    editable: true,
+                    dayMaxEvents: true, // allow "more" link when too many events
+                    events: events,
+                    selectAllow: function (select) {
+                        return moment().diff(select.start) <= 0
+                    },
+                    eventClick: function (info) {
+                        console.log(info.event.url);
+                    },
+                    //function(event, jsEvent, view) {
+
+                    //}
+                });
+                calendar.render();
+            };
+        });
+    </script>
+}

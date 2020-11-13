@@ -33,6 +33,74 @@
     <None Include="wwwroot\fonts\ionicons\fonts\ionicons.woff2" />
     <None Include="wwwroot\fonts\open-iconic\open-iconic.svg" />
     <None Include="wwwroot\images\.DS_Store" />
+    <None Include="wwwroot\lib\fullcalender\locales\af.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-dz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-kw.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-ly.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-ma.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-sa.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-tn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\az.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\bg.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\bs.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ca.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\cs.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\da.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\de.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\el.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-au.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-gb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-nz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\es-us.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\es.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\et.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\eu.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fa.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr-ca.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr-ch.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\gl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\he.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hu.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\id.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\is.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\it.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ja.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ka.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\kk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ko.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lt.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lv.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\mk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ms.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ne.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pt-br.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pt.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ro.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ru.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sq.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sr-cyrl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sv.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\th.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\tr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ug.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\uk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\uz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\vi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\zh-cn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\zh-tw.js" />
     <None Include="wwwroot\scss\.DS_Store" />
     <None Include="wwwroot\scss\bootstrap\.DS_Store" />
     <None Include="wwwroot\scss\bootstrap\bootstrap-grid.scss" />
@@ -249,6 +317,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\images\trainer-4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\qrcode\qrcode.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\lib\tinymce\tinymce.min.js">

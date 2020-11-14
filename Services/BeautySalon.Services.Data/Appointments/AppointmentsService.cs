@@ -161,6 +161,29 @@
             return appointments;
         }
 
+        public async Task<int> GetAppointmentsForTodayCountAsync(string stylistId)
+        {
+            var appointmentsCount = await this.appointmentsRepository
+                .All()
+                .Where(a => a.StylistId == stylistId
+                    && a.Status == Status.Approved
+                    && a.DateTime.Date == DateTime.UtcNow.Date)
+                .CountAsync();
+
+            return appointmentsCount;
+        }
+
+        public async Task<int> GetAppointmentsRequestsCountAsync(string stylistId)
+        {
+            var appointmentsCount = await this.appointmentsRepository
+               .All()
+               .Where(a => a.StylistId == stylistId
+                   && a.Status == Status.Processing)
+               .CountAsync();
+
+            return appointmentsCount;
+        }
+
         private async Task<Appointment> GetByIdAsync(string id)
         {
             return await this.appointmentsRepository

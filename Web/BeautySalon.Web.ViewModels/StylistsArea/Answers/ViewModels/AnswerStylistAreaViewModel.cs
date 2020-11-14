@@ -1,9 +1,10 @@
-﻿using BeautySalon.Data.Models;
-using BeautySalon.Services.Mapping;
-using System;
-
-namespace BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels
 {
+    using System;
+
+    using BeautySalon.Data.Models;
+    using BeautySalon.Services.Mapping;
+
     public class AnswerStylistAreaViewModel : IMapFrom<Answer>
     {
         public string Id { get; set; }

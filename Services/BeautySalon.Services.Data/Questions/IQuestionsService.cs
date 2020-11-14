@@ -10,5 +10,7 @@
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
 
         Task<T> GetQuestionDetailsAsync<T>(string id);
+
+        Task<int> GetNewQuestionsCountAsync(string stylistId);
     }
 }

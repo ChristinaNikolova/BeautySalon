@@ -31,8 +31,4 @@
     <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="StylistsArea\Dashboard\" />
-  </ItemGroup>
-
 </Project>

@@ -52,7 +52,7 @@
                 input.Id = userId;
                 input.CategoryId = null;
 
-                // TODO Fix bug with selectedCategory
+                //TODO Fix bug with selectedCategory
                 return this.View(input);
             }
 

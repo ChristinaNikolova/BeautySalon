@@ -1,4 +1,8 @@
-﻿@{
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Dashboard.ViewModels;
+@model DashboardViewModel;
+
+
+@{
     ViewData["Title"] = "Dashboard - Stylists";
 }
 
@@ -19,8 +23,10 @@
                                     <span class="flaticon-candle"></span>
                                 </div>
                                 <div class="text mt-3">
-                                    <h3>Appointment's Requests</h3>
-                                    <p>A small river named<p>
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Index">Appointment's Requests</a>
+                                    </h3>
+                                    <h5>@Model.NewAppointmentRequests</h5>
                                 </div>
                             </div>
                         </div>
@@ -30,8 +36,10 @@
                                     <span class="flaticon-beauty-treatment"></span>
                                 </div>
                                 <div class="text mt-3">
-                                    <h3>Today's Appointments</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Index">Today's Appointments</a>
+                                    </h3>
+                                    <h5>@Model.AppointmentsForToday</h5>
                                 </div>
                             </div>
                         </div>
@@ -41,8 +49,10 @@
                                     <span class="flaticon-stone"></span>
                                 </div>
                                 <div class="text mt-3">
-                                    <h3>New Questions</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist">New Questions</a>
+                                    </h3>
+                                    <h5>@Model.NewQuestions</h5>
                                 </div>
                             </div>
                         </div>

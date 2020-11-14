@@ -46,6 +46,17 @@
             return questions;
         }
 
+        public async Task<int> GetNewQuestionsCountAsync(string stylistId)
+        {
+            var questionsCount = await this.questionsRepository
+                .All()
+                .Where(q => q.StylistId == stylistId
+                    && q.IsAnswered == false)
+                .CountAsync();
+
+            return questionsCount;
+        }
+
         public async Task<T> GetQuestionDetailsAsync<T>(string id)
         {
             var question = await this.questionsRepository

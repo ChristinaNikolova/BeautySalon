@@ -25,5 +25,9 @@
         Task<IEnumerable<T>> GetRequestsAsync<T>();
 
         Task<IEnumerable<T>> GetHistoryAsync<T>(string stylistId);
+
+        Task<int> GetAppointmentsForTodayCountAsync(string stylistId);
+
+        Task<int> GetAppointmentsRequestsCountAsync(string stylistId);
     }
 }

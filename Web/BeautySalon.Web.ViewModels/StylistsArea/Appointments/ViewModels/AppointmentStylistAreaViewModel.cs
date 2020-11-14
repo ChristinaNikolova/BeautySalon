@@ -5,8 +5,9 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Mapping;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
 
-    public class AppointmentStylistAreaViewModel : BaseAppoitmentStylistAreaViewModel, IMapFrom<Appointment>
+    public class AppointmentStylistAreaViewModel : BaseAppoitmentViewModel, IMapFrom<Appointment>
     {
         public int FormattedStartTime
         {
@@ -23,7 +24,5 @@
 
         public DateTime FormattedEnd
             => this.DateTime.AddHours(this.FormattedStartTime + 1);
-
-        public Status Status { get; set; }
     }
 }

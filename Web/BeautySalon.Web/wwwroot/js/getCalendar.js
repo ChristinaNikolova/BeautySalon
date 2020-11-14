@@ -11,7 +11,7 @@
                         title: appointment.procedureName + " - " + appointment.clientFullName,
                         start: appointment.formattedStart,
                         end: appointment.formattedEnd,
-                        url: `https://localhost:44319/Stylists/Appointments/GetInfoCurrentAppointment/${appointment.id}`,
+                        url: `https://localhost:44319/Appointments/GetInfoCurrentAppointment/${appointment.id}`,
                         backgroundColor: appointment.status == 5 ? "#4F4F51" : "#D9BF77",
                     });
                 });

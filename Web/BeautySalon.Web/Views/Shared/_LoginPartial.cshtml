@@ -8,10 +8,6 @@
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
-            <a class="btn btn-primary p-2 px-2 py-2 mr-md-2 log" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
-        </li>
-
-        <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
                 <button type="submit" class="btn btn-primary p-2 px-2 py-2 mr-md-2 log">Logout</button>
             </form>

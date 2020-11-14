@@ -1,11 +1,12 @@
-﻿namespace BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.Appointments.ViewModels
 {
     using System;
 
     using BeautySalon.Data.Models;
+    using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Mapping;
 
-    public class BaseAppoitmentStylistAreaViewModel : IMapFrom<Appointment>
+    public class BaseAppoitmentViewModel : IMapFrom<Appointment>
     {
         public string Id { get; set; }
 
@@ -31,5 +32,7 @@
             => this.DateTime.ToShortDateString();
 
         public string StartTime { get; set; }
+
+        public Status Status { get; set; }
     }
 }

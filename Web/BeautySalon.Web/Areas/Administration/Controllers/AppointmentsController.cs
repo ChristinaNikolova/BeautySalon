@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Appointments;
-    using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
     public class AppointmentsController : AdministrationController
@@ -17,9 +17,9 @@
 
         public async Task<IActionResult> GetHistory()
         {
-            var model = new AllBaseAppoitmentStylistAreaViewModel()
+            var model = new AllBaseAppoitmentViewModel()
             {
-                Appoitments = await this.appointmentsService.GetHistoryAllStylistsAsync<BaseAppoitmentStylistAreaViewModel>(),
+                Appoitments = await this.appointmentsService.GetHistoryAllStylistsAsync<BaseAppoitmentViewModel>(),
             };
 
             return this.View(model);

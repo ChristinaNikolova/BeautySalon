@@ -4,6 +4,7 @@
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Appointments;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -63,9 +64,9 @@
         {
             var stylistId = this.userManager.GetUserId(this.User);
 
-            var model = new AllBaseAppoitmentStylistAreaViewModel()
+            var model = new AllBaseAppoitmentViewModel()
             {
-                Appoitments = await this.appointmentsService.GetHistoryStylistAsync<BaseAppoitmentStylistAreaViewModel>(stylistId),
+                Appoitments = await this.appointmentsService.GetHistoryStylistAsync<BaseAppoitmentViewModel>(stylistId),
             };
 
             return this.View(model);

@@ -11,6 +11,7 @@
         public Answer()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.IsRed = false;
         }
 
         [Required]
@@ -20,6 +21,8 @@
         [Required]
         [MaxLength(DataValidation.AnswerContentMaxLenght)]
         public string Content { get; set; }
+
+        public bool IsRed { get; set; }
 
         [Required]
         public string StylistId { get; set; }

@@ -94,6 +94,17 @@
             return appointments;
         }
 
+        public async Task<IEnumerable<T>> GetClientsUpcomingAppointmentsAsync<T>(string userId)
+        {
+            var appointments = await this.appointmentsRepository
+               .All()
+               .Where(a => a.ClientId == userId && (a.Status == Status.Approved || a.Status == Status.Processing))
+               .To<T>()
+               .ToListAsync();
+
+            return appointments;
+        }
+
         public async Task<T> GetDetailsAsync<T>(string id)
         {
             var appointment = await this.appointmentsRepository

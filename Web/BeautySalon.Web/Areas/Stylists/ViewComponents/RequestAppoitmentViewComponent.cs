@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Appointments;
-    using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
     [ViewComponent]
@@ -18,10 +18,10 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = new AllBaseAppoitmentStylistAreaViewModel()
+            var model = new AllBaseAppoitmentViewModel()
             {
                 Appoitments = await this.appointmentsService
-                .GetRequestsAsync<BaseAppoitmentStylistAreaViewModel>(),
+                .GetRequestsAsync<BaseAppoitmentViewModel>(),
             };
 
             return this.View(model);

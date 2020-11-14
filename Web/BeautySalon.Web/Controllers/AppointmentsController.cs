@@ -69,5 +69,12 @@
 
             return new FreeTimesViewModel { FreeHours = freeHours };
         }
+
+        public async Task<IActionResult> GetInfoCurrentAppointment(string id)
+        {
+            var model = await this.appointmentsService.GetDetailsAsync<DetailsAppointmentViewModel>(id);
+
+            return this.View(model);
+        }
     }
 }

@@ -147,12 +147,25 @@
             return appoitments;
         }
 
-        public async Task<IEnumerable<T>> GetHistoryAsync<T>(string stylistId)
+        public async Task<IEnumerable<T>> GetHistoryStylistAsync<T>(string stylistId)
         {
             var appointments = await this.appointmentsRepository
                 .All()
                 .Where(a => a.StylistId == stylistId
                    && (a.Status == Status.Done || a.Status == Status.CancelledByStylist))
+                .OrderByDescending(a => a.DateTime)
+                .ThenBy(a => a.StartTime)
+                .To<T>()
+                .ToListAsync();
+
+            return appointments;
+        }
+
+        public async Task<IEnumerable<T>> GetHistoryAllStylistsAsync<T>()
+        {
+            var appointments = await this.appointmentsRepository
+                .All()
+                .Where(a => a.Status == Status.Done || a.Status == Status.CancelledByStylist)
                 .OrderByDescending(a => a.DateTime)
                 .ThenBy(a => a.StartTime)
                 .To<T>()

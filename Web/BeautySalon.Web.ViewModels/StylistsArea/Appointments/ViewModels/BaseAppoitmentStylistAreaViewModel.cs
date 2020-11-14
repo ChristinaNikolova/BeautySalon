@@ -16,6 +16,13 @@
         public string ClientFullName
             => this.ClientFirstName + " " + this.ClientLastName;
 
+        public string StylistFirstName { get; set; }
+
+        public string StylistLastName { get; set; }
+
+        public string StylistFullName
+            => this.StylistFirstName + " " + this.StylistLastName;
+
         public string ProcedureName { get; set; }
 
         public DateTime DateTime { get; set; }

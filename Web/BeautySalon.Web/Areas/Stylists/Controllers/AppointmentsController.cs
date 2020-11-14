@@ -38,13 +38,6 @@
             return this.Json(model);
         }
 
-        public async Task<IActionResult> GetInfoCurrentAppointment(string id)
-        {
-            var model = await this.appointmentsService.GetDetailsAsync<DetailsAppointmentStylistAreaViewModel>(id);
-
-            return this.View(model);
-        }
-
         public async Task<IActionResult> Cancel(string id)
         {
             await this.appointmentsService.CancelAsync(id);
@@ -72,7 +65,7 @@
 
             var model = new AllBaseAppoitmentStylistAreaViewModel()
             {
-                Appoitments = await this.appointmentsService.GetHistoryAsync<BaseAppoitmentStylistAreaViewModel>(stylistId),
+                Appoitments = await this.appointmentsService.GetHistoryStylistAsync<BaseAppoitmentStylistAreaViewModel>(stylistId),
             };
 
             return this.View(model);

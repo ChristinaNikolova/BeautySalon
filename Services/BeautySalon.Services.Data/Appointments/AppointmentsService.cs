@@ -41,7 +41,7 @@
 
         public async Task CancelAsync(string id)
         {
-            var appointment = await this.GetById(id);
+            var appointment = await this.GetByIdAsync(id);
 
             appointment.Status = Status.CancelledByStylist;
 
@@ -51,9 +51,19 @@
 
         public async Task DoneAsync(string id)
         {
-            var appointment = await this.GetById(id);
+            var appointment = await this.GetByIdAsync(id);
 
             appointment.Status = Status.Done;
+
+            this.appointmentsRepository.Update(appointment);
+            await this.appointmentsRepository.SaveChangesAsync();
+        }
+
+        public async Task ApproveAsync(string id)
+        {
+            var appointment = await this.GetByIdAsync(id);
+
+            appointment.Status = Status.Approved;
 
             this.appointmentsRepository.Update(appointment);
             await this.appointmentsRepository.SaveChangesAsync();
@@ -75,7 +85,6 @@
 
         public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
         {
-            //TODO CHECK !!!!!!!!!!!!!!!!!! STATUS!!!!
             var appointments = await this.appointmentsRepository
                 .All()
                 .Where(a => a.StylistId == stylistId && (a.Status == Status.Approved || a.Status == Status.Done))
@@ -138,7 +147,7 @@
             return appoitments;
         }
 
-        private async Task<Appointment> GetById(string id)
+        private async Task<Appointment> GetByIdAsync(string id)
         {
             return await this.appointmentsRepository
                 .All()

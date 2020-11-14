@@ -25,23 +25,8 @@
 
 @section Scripts {
     <script src="~/js/getCalendar.js" asp-append-version="true"></script>
+    <script src="~/js/showAppoitmentsRequests.js" asp-append-version="true"></script>
+
     <script>getCalendar();</script>
-
-    <script>
-        let requestButton = document.getElementById("request-appointment");
-        requestButton.addEventListener("click", showRequests);
-
-        function showRequests() {
-            let requests = document.getElementById("requests");
-
-            if (requests.style.display === "block") {
-                requests.style.display = "none";
-                requestButton.innerText = "Show";
-            } else {
-                requests.style.display = "block";
-                requestButton.innerText = "Hide";
-            }
-
-        }
-    </script>
+    <script>showAppoitmentsRequests();</script>
 }

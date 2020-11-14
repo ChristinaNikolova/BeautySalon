@@ -58,5 +58,12 @@
 
             return this.RedirectToAction(nameof(this.Index));
         }
+
+        public async Task<IActionResult> Approve(string id)
+        {
+            await this.appointmentsService.ApproveAsync(id);
+
+            return this.RedirectToAction(nameof(this.Index));
+        }
     }
 }

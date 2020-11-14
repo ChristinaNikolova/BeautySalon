@@ -20,6 +20,8 @@
 
         Task DoneAsync(string id);
 
+        Task ApproveAsync(string id);
+
         Task<IEnumerable<T>> GetRequestsAsync<T>();
     }
 }

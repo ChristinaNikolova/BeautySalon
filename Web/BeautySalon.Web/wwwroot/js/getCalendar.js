@@ -12,6 +12,8 @@
                         start: appointment.formattedStart,
                         end: appointment.formattedEnd,
                         url: `https://localhost:44319/Stylists/Appointments/GetInfoCurrentAppointment/${appointment.id}`,
+                        backgroundColor: appointment.status == 5 ? "#4F4F51" : "#D9BF77",
+                        textColor: appointment.status == 5 ? "#4F4F51" : "#D9BF77",
                     });
                 });
                 generateCalender(events);

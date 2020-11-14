@@ -23,8 +23,6 @@
         public string StylistFullName
             => this.StylistFirstName + " " + this.StylistLastName;
 
-        public Status Status { get; set; }
-
         public string Comment { get; set; }
     }
 }

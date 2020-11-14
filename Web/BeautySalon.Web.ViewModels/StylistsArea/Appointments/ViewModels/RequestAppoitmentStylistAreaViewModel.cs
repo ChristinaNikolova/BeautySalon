@@ -5,7 +5,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
-    public class RequestAppoitmentViewModel : IMapFrom<Appointment>
+    public class RequestAppoitmentStylistAreaViewModel : IMapFrom<Appointment>
     {
         public string Id { get; set; }
 

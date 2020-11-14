@@ -10,5 +10,7 @@
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
 
         Task<T> GetAnswerDetailsAsync<T>(string id);
+
+        Task<bool> CheckNewAnswerAsync(string userId);
     }
 }

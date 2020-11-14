@@ -13,6 +13,7 @@
         {
             this.Id = Guid.NewGuid().ToString();
             this.Status = Status.Processing;
+            this.IsReview = false;
         }
 
         [Required]
@@ -39,5 +40,7 @@
 
         [MaxLength(DataValidation.AppointmentMaxLenght)]
         public string Comment { get; set; }
+
+        public bool IsReview { get; set; }
     }
 }

@@ -22,6 +22,15 @@
             this.questionsRepository = questionsRepository;
         }
 
+        public async Task<bool> CheckNewAnswerAsync(string userId)
+        {
+            bool isNewAnswer = await this.answersRepository
+                .All()
+                .AnyAsync(a => a.ClientId == userId && a.IsRed == false);
+
+            return isNewAnswer;
+        }
+
         public async Task<string> CreateAsync(string title, string content, string questionStylistId, string questionClientId, string questionId)
         {
             var answer = new Answer()

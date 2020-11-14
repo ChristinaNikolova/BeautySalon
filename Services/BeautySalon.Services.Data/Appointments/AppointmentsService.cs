@@ -208,6 +208,17 @@
             return appointmentsCount;
         }
 
+        public async Task<bool> CheckPastProceduresAsync(string userId)
+        {
+            var hasToReview = await this.appointmentsRepository
+                .All()
+                .AnyAsync(a => a.ClientId == userId
+                 && a.DateTime.Date < DateTime.UtcNow.Date
+                 && a.IsReview == false);
+
+            return hasToReview;
+        }
+
         private async Task<Appointment> GetByIdAsync(string id)
         {
             return await this.appointmentsRepository

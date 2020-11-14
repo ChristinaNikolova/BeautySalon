@@ -1,5 +1,5 @@
-﻿@using BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels;
-@model AllAnswersStylistAreaViewModel;
+﻿@*@using BeautySalon.Web.ViewModels.Answers.ViewModels;
+@model AllAnsweredQuestionsViewModel;
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -8,7 +8,7 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Answered Questions</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="@Model.StylistId">New Questions</a></span>
+                    <span class="mr-2"><a asp-area="" asp-controller="Users" asp-action="Index">Dashboard</a></span>
                 </p>
             </div>
         </div>
@@ -17,7 +17,7 @@
 <section>
     <div class="row">
         <div class="col-md-3">
-            <partial name="_NavBarStylistPartial" />
+            <partial name="_NavBarUserPartial" />
         </div>
         <div class="col-md-8">
             <h2 class="text-center">Answered Questions</h2>
@@ -26,22 +26,22 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Question's Date</th>
-                        <th scope="col">Question's Title</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Answer's Date</th>
+                        <th scope="col">Answer's Title</th>
+                        <th scope="col">Stylist</th>
                         <th scope="col">Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (var i = 0; i < Model.AnsweredQuestions.Count(); i++)
                     {
-                        var currentQuestion = Model.AnsweredQuestions.ToList()[i];
+                        //ar currentAnswer = Model.AnsweredQuestions.ToList()[i];
 
                         <tr>
                             <th scope="row">@(i+1)</th>
-                            <td>@currentQuestion.FormattedQuestionCreatedOn</td>
-                            <td>@currentQuestion.QuestionTitle</td>
-                            <td>@currentQuestion.QuestionClientUsername</td>
+                            <td>@currentAnswer.forma</td>
+                            <td>@currentAnswer.QuestionTitle</td>
+                            <td>@currentAnswer.QuestionClientUsername</td>
                             <td><a asp-area="Stylists" asp-controller="Answers" asp-action="SeeDetails" asp-route-id="@currentQuestion.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See details</a></td>
                         </tr>
                     }
@@ -49,4 +49,4 @@
             </table>
         </div>
     </div>
-</section>
+</section>*@

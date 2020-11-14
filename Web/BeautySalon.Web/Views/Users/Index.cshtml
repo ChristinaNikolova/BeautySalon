@@ -1,0 +1,39 @@
+﻿@using BeautySalon.Web.ViewModels.Users.ViewModels;
+@model IndexUserViewModel;
+
+@{
+    ViewData["Title"] = "Client's dashboard";
+}
+
+<partial name="_TitlePageSection" />
+
+
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Dashboard</h2>
+            <hr />
+            @if (Model.IsNewAnswer)
+            {
+                <div class="col-md-4 contact-info ftco-animate bg-light p-2 offset-md-4">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <h6 class="text-center">You have new Answer!</h6>
+                            <a asp-area="" asp-controller="Answers" asp-action="GetClientsAnswers" class="btn btn-outline-primary p-1 px-3 py-2 offset-md-4">Read</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            @if (Model.HasToReview)
+            {
+                <div>Has To  Review</div>
+            }
+            <h3 class="text-center">Upcoming Appointments</h3>
+            <partial name="_AppointmentsTablePartial" model="@Model.Appoitments" />
+        </div>
+    </div>
+</section>

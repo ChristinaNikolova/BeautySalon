@@ -33,5 +33,7 @@
         Task<int> GetAppointmentsRequestsCountAsync(string stylistId);
 
         Task<IEnumerable<T>> GetClientsUpcomingAppointmentsAsync<T>(string userId);
+
+        Task<bool> CheckPastProceduresAsync(string userId);
     }
 }

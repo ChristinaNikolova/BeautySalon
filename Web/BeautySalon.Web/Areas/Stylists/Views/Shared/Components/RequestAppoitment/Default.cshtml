@@ -1,0 +1,33 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels;
+@model AllRequestAppoitmentViewModel;
+
+<div class="col-md-12">
+    <hr />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Hour</th>
+                <th scope="col">Client</th>
+                <th scope="col">Procedure</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.RequestAppoitments.Count(); i++)
+            {
+                var currentAppoitment = Model.RequestAppoitments.ToList()[i];
+
+                <tr>
+                    <th scope="row">@(i+1)</th>
+                    <td>@currentAppoitment.FormattedDate</td>
+                    <td>@currentAppoitment.StartTime</td>
+                    <td>@currentAppoitment.ClientLastName</td>
+                    <td>@currentAppoitment.ProcedureName</td>
+                    <td><a asp-area="Stylists" asp-controller="Appointments" asp-action="GetInfoCurrentAppointment" asp-route-id="@currentAppoitment.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -126,6 +126,18 @@
             return freeHours;
         }
 
+        public async Task<IEnumerable<T>> GetRequestsAsync<T>()
+        {
+            var appoitments = await this.appointmentsRepository
+                .All()
+                .Where(a => a.Status == Status.Processing)
+                .OrderBy(a => a.CreatedOn)
+                .To<T>()
+                .ToListAsync();
+
+            return appoitments;
+        }
+
         private async Task<Appointment> GetById(string id)
         {
             return await this.appointmentsRepository

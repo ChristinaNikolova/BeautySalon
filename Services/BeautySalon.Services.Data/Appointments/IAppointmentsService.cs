@@ -19,5 +19,7 @@
         Task CancelAsync(string id);
 
         Task DoneAsync(string id);
+
+        Task<IEnumerable<T>> GetRequestsAsync<T>();
     }
 }

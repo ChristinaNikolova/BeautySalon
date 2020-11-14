@@ -58,11 +58,14 @@
                         {
                             <a asp-area="Stylists" asp-controller="Appointments" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 mr-2">Approve</a>
                         }
-                        else
+                        else if (@Model.Status.ToString() != "Done")
                         {
                             <a asp-area="Stylists" asp-controller="Appointments" asp-action="Done" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4">Done</a>
                         }
-                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Cancel</a>
+                        @if (@Model.Status.ToString() != "CancelledByStylist" && @Model.Status.ToString() != "Done")
+                        {
+                            <a asp-area="Stylists" asp-controller="Appointments" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Cancel</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -76,4 +79,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>

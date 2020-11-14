@@ -8,11 +8,17 @@
         <div class="col-md-3">
             <partial name="_NavBarStylist" />
         </div>
-
         <div class="col-md-9">
-            <h2 class="text-center">My Appointments</h2>
-            <hr />
-            <div id='calendar'></div>
+            <h2 class="offset-md-4">Requests from clients</h2>
+            <div id="requests" class="col-md-12 hidden">
+                <vc:request-appoitment></vc:request-appoitment>
+            </div>
+            <a id="request-appointment" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 offset-5">Show</a>
+            <div class="col-md-12">
+                <h2 class="text-center">My Appointments</h2>
+                <hr />
+                <div id='calendar'></div>
+            </div>
         </div>
     </div>
 </section>
@@ -20,4 +26,22 @@
 @section Scripts {
     <script src="~/js/getCalendar.js" asp-append-version="true"></script>
     <script>getCalendar();</script>
+
+    <script>
+        let requestButton = document.getElementById("request-appointment");
+        requestButton.addEventListener("click", showRequests);
+
+        function showRequests() {
+            let requests = document.getElementById("requests");
+
+            if (requests.style.display === "block") {
+                requests.style.display = "none";
+                requestButton.innerText = "Show";
+            } else {
+                requests.style.display = "block";
+                requestButton.innerText = "Hide";
+            }
+
+        }
+    </script>
 }

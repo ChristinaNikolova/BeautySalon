@@ -18,10 +18,10 @@
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = new AllRequestAppoitmentStylistAreaViewModel()
+            var model = new AllBaseAppoitmentStylistAreaViewModel()
             {
-                RequestAppoitments = await this.appointmentsService
-                .GetRequestsAsync<RequestAppoitmentStylistAreaViewModel>(),
+                Appoitments = await this.appointmentsService
+                .GetRequestsAsync<BaseAppoitmentStylistAreaViewModel>(),
             };
 
             return this.View(model);

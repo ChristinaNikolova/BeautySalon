@@ -6,7 +6,7 @@
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Mapping;
 
-    public class AppointmentStylistAreaViewModel : RequestAppoitmentStylistAreaViewModel, IMapFrom<Appointment>
+    public class AppointmentStylistAreaViewModel : BaseAppoitmentStylistAreaViewModel, IMapFrom<Appointment>
     {
         public int FormattedStartTime
         {

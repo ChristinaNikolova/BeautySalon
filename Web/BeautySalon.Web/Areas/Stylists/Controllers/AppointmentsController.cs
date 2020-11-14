@@ -65,5 +65,17 @@
 
             return this.RedirectToAction(nameof(this.Index));
         }
+
+        public async Task<IActionResult> GetHistory()
+        {
+            var stylistId = this.userManager.GetUserId(this.User);
+
+            var model = new AllBaseAppoitmentStylistAreaViewModel()
+            {
+                Appoitments = await this.appointmentsService.GetHistoryAsync<BaseAppoitmentStylistAreaViewModel>(stylistId),
+            };
+
+            return this.View(model);
+        }
     }
 }

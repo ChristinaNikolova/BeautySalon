@@ -1,0 +1,44 @@
+﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
+@model AllUsersFavouriteArticlesViewModel;
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Favourite Articles</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a asp-area="" asp-controller="Users" asp-action="Index">Dashboard</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <h2 class="text-center">Favourite Articles</h2>
+                <hr />
+                @foreach (var article in Model.Articles)
+                {
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url(@article.ArticlePicture);"></a>
+                        <div class="text">
+                            <h3 class="heading"><a asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.ArticleId">@article.ArticleTitle</a></h3>
+                            <div class="meta">
+                                <p class="small">@article.ShortContent</p>
+                                <div><a><span class="icon-calendar"></span> @article.FormattedDate</a></div>
+                                <div class="heading"><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@article.ArticleStylistId"><span class="icon-person"></span> @article.StylistFullName</a></div>
+                                <div><a><span class="icon-chat"></span> @article.ArticleCommentsCount</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

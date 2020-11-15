@@ -34,5 +34,7 @@
         Task<IEnumerable<T>> GetRecentArticlesAsync<T>();
 
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
+
+        Task<IEnumerable<T>> GetUsersFavouriteArticlesAsync<T>(string userId);
     }
 }

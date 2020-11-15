@@ -224,6 +224,18 @@
             await this.articlesRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetUsersFavouriteArticlesAsync<T>(string userId)
+        {
+            var articles = await this.clientArticleLikesRepository
+                .All()
+                .Where(cal => cal.ClientId == userId)
+                .OrderByDescending(cal => cal.Article.CreatedOn)
+                .To<T>()
+                .ToListAsync();
+
+            return articles;
+        }
+
         private async Task<string> GetPictureAsUrl(string title, IFormFile picture)
         {
             return await this.cloudinaryService.UploudAsync(picture, title);

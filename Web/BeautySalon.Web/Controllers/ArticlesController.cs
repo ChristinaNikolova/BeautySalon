@@ -74,5 +74,17 @@
 
             return new AllArticlesViewModel { Articles = articles };
         }
+
+        public async Task<IActionResult> GetUsersFavouriteArticles()
+        {
+            var userId = this.userManager.GetUserId(this.User);
+
+            var model = new AllUsersFavouriteArticlesViewModel()
+            {
+                Articles = await this.articlesService.GetUsersFavouriteArticlesAsync<UsersFavouriteArticlesViewModel>(userId),
+            };
+            ;
+            return this.View(model);
+        }
     }
 }

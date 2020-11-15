@@ -82,7 +82,7 @@
 
             await this.usersService.AddSkinTypeDataAsync(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
 
-            return this.Json(new RedirectResult("/"));
+            return this.Json(new RedirectResult("/Users/GetUsersSkinInfo"));
         }
     }
 }

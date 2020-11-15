@@ -292,6 +292,19 @@
             await this.procedureProductsRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetPerfectProceduresForSkinTypeAsync<T>(bool isSkinSensitive, string skinTypeId)
+        {
+            var procedures = await this.proceduresRepository
+                .All()
+                .Where(p => p.IsSensitive == isSkinSensitive
+                && p.SkinTypeId == skinTypeId)
+                .OrderBy(p => p.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
+        }
+
         private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems = null)
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
@@ -411,19 +424,6 @@
             }
 
             await this.skinProblemProceduresRespository.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetPerfectProceduresForSkinTypeAsync<T>(bool isSkinSensitive, string skinTypeId)
-        {
-            var procedures = await this.proceduresRepository
-                .All()
-                .Where(p => p.IsSensitive == isSkinSensitive
-                && p.SkinTypeId == skinTypeId)
-                .OrderBy(p => p.Name)
-                .To<T>()
-                .ToListAsync();
-
-            return procedures;
         }
     }
 }

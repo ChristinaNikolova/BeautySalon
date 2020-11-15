@@ -4,6 +4,7 @@
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Answers;
+    using BeautySalon.Web.ViewModels.Answers.ViewModels;
     using BeautySalon.Web.ViewModels.StylistsArea.Answers.InputModels;
     using BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels;
     using Microsoft.AspNetCore.Identity;
@@ -50,7 +51,7 @@
 
         public async Task<IActionResult> SeeDetails(string id)
         {
-            var model = await this.answersService.GetAnswerDetailsAsync<DetailsAnswerStylistAreaViewModel>(id);
+            var model = await this.answersService.GetAnswerDetailsAsync<DetailsAnswerViewModel>(id);
 
             return this.View(model);
         }

@@ -7,7 +7,7 @@
     {
         Task CreateAsync(string title, string content, string stylistId, string userId);
 
-        Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
+        Task<IEnumerable<T>> GetAllNewQuestionsForStylistAsync<T>(string stylistId);
 
         Task<T> GetQuestionDetailsAsync<T>(string id);
 

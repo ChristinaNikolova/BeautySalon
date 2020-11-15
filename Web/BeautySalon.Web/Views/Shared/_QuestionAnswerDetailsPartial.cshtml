@@ -1,0 +1,40 @@
+﻿<div class="about-author d-flex">
+    <div class="bio align-self-md-start mr-4 col-md-3">
+        <img src="@Model.StylistPicture" alt="stylist-picture" class="img-fluid mb-4" />
+        <div class="d-inline">
+            <i class="fas fa-calendar-alt theme-color-gold">
+                <span class="tag-cloud-link thin">@Model.FormattedCreatedOn</span>
+            </i>
+            <i class="fas fa-user-edit theme-color-gold">
+                <span class="tag-cloud-link thin"> @Model.StylistUsername</span>
+            </i>
+        </div>
+    </div>
+    <div class="desc align-self-md-center col-md-9">
+        <h3>@Model.Title</h3>
+        <p>@Model.Content</p>
+    </div>
+</div>
+<a id="hide-question" class="btn btn-white px-2 py-3 offset-5">Hide Question</a>
+<div id="question-section" style="display:block">
+    <h2 class="text-center">Question</h2>
+    <hr />
+    <div class="about-author d-flex">
+        <div class="desc align-self-md-center col-md-9">
+            <h3>@Model.QuestionTitle</h3>
+            <p>@Model.QuestionContent</p>
+        </div>
+        <div class="bio align-self-md-start mr-4 col-md-3">
+            <img src="@Model.ClientPicture" alt="client-picture" class="img-fluid mb-4" />
+            <div class="d-inline">
+                <i class="fas fa-calendar-alt theme-color-gold">
+                    <span class="tag-cloud-link thin">@Model.FormattedQuestionCreatedOn</span>
+                </i>
+                <i class="fas fa-user-edit theme-color-gold">
+                    <span class="tag-cloud-link thin"> @Model.ClientUsername</span>
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />

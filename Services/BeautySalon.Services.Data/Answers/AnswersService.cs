@@ -22,6 +22,18 @@
             this.questionsRepository = questionsRepository;
         }
 
+        public async Task ChangeIsRedAsync(string id)
+        {
+            var answer = await this.answersRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            answer.IsRed = true;
+
+            this.answersRepository.Update(answer);
+            await this.answersRepository.SaveChangesAsync();
+        }
+
         public async Task<bool> CheckNewAnswerAsync(string userId)
         {
             bool isNewAnswer = await this.answersRepository
@@ -50,6 +62,18 @@
             return answer.Id;
         }
 
+        public async Task<IEnumerable<T>> GetAllAnswersForUserAsync<T>(string userId)
+        {
+            var answerdQuestions = await this.answersRepository
+                .All()
+                .Where(a => a.ClientId == userId)
+                .OrderByDescending(a => a.CreatedOn)
+                .To<T>()
+                .ToListAsync();
+
+            return answerdQuestions;
+        }
+
         public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
         {
             var answerdQuestions = await this.answersRepository
@@ -60,6 +84,18 @@
                 .ToListAsync();
 
             return answerdQuestions;
+        }
+
+        public async Task<IEnumerable<T>> GetAllNewAnswersForUserAsync<T>(string userId)
+        {
+            var answers = await this.answersRepository
+                .All()
+                .Where(a => a.ClientId == userId && a.IsRed == false)
+                .OrderByDescending(a => a.CreatedOn)
+                .To<T>()
+                .ToListAsync();
+
+            return answers;
         }
 
         public async Task<T> GetAnswerDetailsAsync<T>(string id)

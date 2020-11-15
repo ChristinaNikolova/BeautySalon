@@ -1,14 +1,14 @@
-﻿@*@using BeautySalon.Web.ViewModels.Answers.ViewModels;
-@model AllAnsweredQuestionsViewModel;
+﻿@using BeautySalon.Web.ViewModels.Answers.ViewModels;
+@model AllAnswersForUserViewModel;
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Answered Questions</h1>
+                <h1 class="mb-3 bread">Replies</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="" asp-controller="Users" asp-action="Index">Dashboard</a></span>
+                    <span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="">New Questions</a></span>
                 </p>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <partial name="_NavBarUserPartial" />
         </div>
         <div class="col-md-8">
-            <h2 class="text-center">Answered Questions</h2>
+            <h2 class="text-center">Replies</h2>
             <hr />
             <table class="table table-hover">
                 <thead>
@@ -33,20 +33,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (var i = 0; i < Model.AnsweredQuestions.Count(); i++)
+                    @for (var i = 0; i < Model.Answers.Count(); i++)
                     {
-                        //ar currentAnswer = Model.AnsweredQuestions.ToList()[i];
+                        var currentAnswer = Model.Answers.ToList()[i];
 
                         <tr>
                             <th scope="row">@(i+1)</th>
-                            <td>@currentAnswer.forma</td>
-                            <td>@currentAnswer.QuestionTitle</td>
-                            <td>@currentAnswer.QuestionClientUsername</td>
-                            <td><a asp-area="Stylists" asp-controller="Answers" asp-action="SeeDetails" asp-route-id="@currentQuestion.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See details</a></td>
+                            <td>@currentAnswer.FormattedCreatedOn</td>
+                            <td>@currentAnswer.Title</td>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentAnswer.StylistId">@currentAnswer.StylistFullName</a></td>
+                            <td><a asp-area="" asp-controller="Answers" asp-action="SeeAnswer" asp-route-id="@currentAnswer.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See details</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-</section>*@
+</section>

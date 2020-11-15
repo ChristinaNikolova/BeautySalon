@@ -9,8 +9,14 @@
 
         Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId);
 
+        Task<IEnumerable<T>> GetAllAnswersForUserAsync<T>(string userId);
+
+        Task<IEnumerable<T>> GetAllNewAnswersForUserAsync<T>(string userId);
+
         Task<T> GetAnswerDetailsAsync<T>(string id);
 
         Task<bool> CheckNewAnswerAsync(string userId);
+
+        Task ChangeIsRedAsync(string id);
     }
 }

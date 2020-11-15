@@ -1,11 +1,11 @@
-﻿namespace BeautySalon.Web.ViewModels.StylistsArea.Answers.ViewModels
+﻿namespace BeautySalon.Web.ViewModels.Answers.ViewModels
 {
     using System;
 
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
-    public class DetailsAnswerStylistAreaViewModel : IMapFrom<Answer>
+    public class DetailsAnswerViewModel : IMapFrom<Answer>
     {
         public string Title { get; set; }
 

@@ -8,7 +8,7 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Answer</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="Stylists" asp-controller="Answers" asp-action="GetStylistsAllAnswers">Anwered Questions</a></span>
+                    <span class="mr-2"><a asp-area="" asp-controller="Answers" asp-action="GetAnswersForClientQuestion">Anwered Questions</a></span>
                 </p>
             </div>
         </div>
@@ -17,14 +17,14 @@
 <section>
     <div class="row">
         <div class="col-md-3">
-            <partial name="_NavBarStylistPartial" />
+            <partial name="_NavBarUserPartial" />
         </div>
         <div class="col-md-8">
             <div class="col-md-12">
                 <h2 class="text-center">Answer</h2>
                 <hr />
                 <partial name="_QuestionAnswerDetailsPartial" model="@Model" />
-                <a asp-area="Stylists" asp-controller="Answers" asp-action="GetStylistsAllAnswers" class="btn btn-white px-4 py-3 offset-5">Back<span class="ion-ios-arrow-round-forward"></span></a>
+                <a asp-area="" asp-controller="Answers" asp-action="GetNewAnswersForUsersQuestion" class="btn btn-white px-4 py-3 offset-5">Back<span class="ion-ios-arrow-round-forward"></span></a>
             </div>
         </div>
     </div>

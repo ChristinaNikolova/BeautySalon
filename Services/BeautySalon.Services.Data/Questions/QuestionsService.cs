@@ -34,7 +34,7 @@
             await this.questionsRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllForStylistAsync<T>(string stylistId)
+        public async Task<IEnumerable<T>> GetAllNewQuestionsForStylistAsync<T>(string stylistId)
         {
             var questions = await this.questionsRepository
                 .All()

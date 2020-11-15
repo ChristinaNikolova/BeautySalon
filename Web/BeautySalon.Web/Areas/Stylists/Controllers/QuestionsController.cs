@@ -29,7 +29,7 @@
             var model = new AllQuestionForStylistViewModel()
             {
                 Questions = await this.questionsService
-                .GetAllForStylistAsync<QuestionForStylistViewModel>(stylistId),
+                .GetAllNewQuestionsForStylistAsync<QuestionForStylistViewModel>(stylistId),
             };
 
             return this.View(model);

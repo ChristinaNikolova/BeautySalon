@@ -1,5 +1,6 @@
 ﻿@page
 @model LoginWithRecoveryCodeModel
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 @{
     ViewData["Title"] = "Recovery code verification";
 }
@@ -26,4 +27,15 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
 }

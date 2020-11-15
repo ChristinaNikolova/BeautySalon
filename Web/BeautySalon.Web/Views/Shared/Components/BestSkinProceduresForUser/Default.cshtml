@@ -1,0 +1,13 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model AllProcedurePrimaryViewModel;
+
+
+@foreach (var procedure in Model.Procedures)
+{
+    <p class="ftco-animate"><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@procedure.Id"><span class="flaticon-lotus theme-color-gold"></span> @procedure.Name</a></p>
+}
+
+@if (Model.Procedures.ToList().Count() == 0)
+{
+    <p>Please make our Skin <a asp-area="" asp-controller="Quiz" asp-action="Make">Quiz</a> to find out, which procedures are best for you!</p>
+}

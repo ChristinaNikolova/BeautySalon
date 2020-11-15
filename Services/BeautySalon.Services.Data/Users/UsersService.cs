@@ -139,5 +139,16 @@
 
             return userSkinData;
         }
+
+        public async Task<T> GetUsersSkinDataForProfilePageAsync<T>(string userId)
+        {
+            var userSkinData = await this.usersRepository
+               .All()
+               .Where(u => u.Id == userId)
+               .To<T>()
+               .FirstOrDefaultAsync();
+
+            return userSkinData;
+        }
     }
 }

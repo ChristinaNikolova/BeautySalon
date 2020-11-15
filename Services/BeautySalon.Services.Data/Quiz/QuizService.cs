@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Services.Data.Quiz
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
@@ -24,6 +25,7 @@
         {
             var quiz = await this.quizQuestionRepository
                 .All()
+                .OrderByDescending(q => q.QuizAnswers.Count)
                 .To<T>()
                 .ToListAsync();
 

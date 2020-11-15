@@ -889,9 +889,8 @@ namespace BeautySalon.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("QuizQuestionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("QuizQuestionId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -908,8 +907,10 @@ namespace BeautySalon.Data.Migrations
 
             modelBuilder.Entity("BeautySalon.Data.Models.QuizQuestion", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");

@@ -10,6 +10,8 @@
 
     public class UsersSkinTypeInfoViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings
     {
+        public string Id { get; set; }
+
         public string SkinTypeId { get; set; }
 
         public string SkinTypeName { get; set; }

@@ -412,5 +412,18 @@
 
             await this.skinProblemProceduresRespository.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<T>> GetPerfectProceduresForSkinTypeAsync<T>(bool isSkinSensitive, string skinTypeId)
+        {
+            var procedures = await this.proceduresRepository
+                .All()
+                .Where(p => p.IsSensitive == isSkinSensitive
+                && p.SkinTypeId == skinTypeId)
+                .OrderBy(p => p.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
+        }
     }
 }

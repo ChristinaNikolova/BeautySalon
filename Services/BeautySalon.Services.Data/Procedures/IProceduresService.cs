@@ -32,6 +32,8 @@
 
         Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string isSkinSensitive, string stylistId);
 
+        Task<IEnumerable<T>> GetPerfectProceduresForSkinTypeAsync<T>(bool isSkinSensitive, string skinTypeId);
+
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
 
         Task<T> GetProcedureDataForUpdateAsync<T>(string id);

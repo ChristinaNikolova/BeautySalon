@@ -322,6 +322,9 @@
     <Content Update="wwwroot\lib\qrcode\qrcode.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\lib\qrcode\qrcode.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\lib\tinymce\tinymce.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -83,7 +83,7 @@
             {
                 Articles = await this.articlesService.GetUsersFavouriteArticlesAsync<UsersFavouriteArticlesViewModel>(userId),
             };
-            ;
+
             return this.View(model);
         }
     }

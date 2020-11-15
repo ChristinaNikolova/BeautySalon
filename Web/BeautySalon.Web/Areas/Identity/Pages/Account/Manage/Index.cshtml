@@ -3,8 +3,9 @@
 @inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
+    // ViewData["Title"] = "Profile";
+    // ViewData["ActivePage"] = ManageNavPages.Index;
+    ViewData["Title"] = "Edit Profile";
 }
 
 <h4>@ViewData["Title"]</h4>
@@ -48,9 +49,9 @@
                 <span asp-validation-for="Input.Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Picture">Profile Picture</label>
-                <input type="file" asp-for="Input.Picture" />
-                <span asp-validation-for="Input.Picture" class="text-danger"></span>
+                <label asp-for="Input.NewPicture">New Profile Picture</label>
+                <input type="file" asp-for="Input.NewPicture" />
+                <span asp-validation-for="Input.NewPicture" class="text-danger"></span>
             </div>
 
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>

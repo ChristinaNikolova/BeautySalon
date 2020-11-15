@@ -1,19 +1,11 @@
 ﻿@using BeautySalon.Web.ViewModels.Answers.ViewModels;
 @model AllNewAnswersForUserViewModel;
 
-<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">New Answers</h1>
-                <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="" asp-controller="Users" asp-action="Index">Dashboard</a></span>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+@{
+    ViewData["Title"] = "New Answers";
+}
+
+<partial name="_UserTitlePageSection" />
 <section>
     <div class="row">
         <div class="col-md-3">
@@ -24,8 +16,9 @@
                 <div class="input-group col-md-12">
                     @if (Model.Answers.ToList().Count == 0)
                     {
-                        <a asp-area="" asp-controller="Answers" asp-action="GetUsersAllAnswers" 
-                           class="btn btn-primary p-1 px-3 py-2 mb-4 offset-5">My Mail Box
+                        <a asp-area="" asp-controller="Answers" asp-action="GetUsersAllAnswers"
+                           class="btn btn-primary p-1 px-3 py-2 mb-4 offset-5">
+                            My Mail Box
                         </a>
                     }
                 </div>

@@ -2,11 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    using BeautySalon.Common;
     using BeautySalon.Data.Models;
-    using BeautySalon.Services.Data.Categories;
-    using BeautySalon.Services.Data.JobTypes;
-    using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Web.Areas.Identity.Pages.Account.InputModels;
     using Microsoft.AspNetCore.Http;
@@ -19,24 +15,15 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IUsersService usersService;
-        private readonly IStylistsService stylistsService;
-        private readonly ICategoriesService categoriesService;
-        private readonly IJobTypesService jobTypesService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IUsersService usersService,
-            IStylistsService stylistsService,
-            ICategoriesService categoriesService1,
-            IJobTypesService jobTypesService)
+            IUsersService usersService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.usersService = usersService;
-            this.stylistsService = stylistsService;
-            this.categoriesService = categoriesService1;
-            this.jobTypesService = jobTypesService;
         }
 
         public string Username { get; set; }
@@ -53,11 +40,7 @@
 
         public string Gender { get; set; }
 
-        public IFormFile Picture { get; set; }
-
-        public string SkinType { get; set; }
-
-        public bool IsSkinSensitive { get; set; }
+        public IFormFile NewPicture { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -91,7 +74,7 @@
                 return this.Page();
             }
 
-            await this.usersService.UpdateUserProfileAsync(user.Id, user.UserName, this.Input.FirstName, this.Input.LastName, this.Input.Address, this.Input.PhoneNumber, this.Input.Gender, this.Input.Picture);
+            await this.usersService.UpdateUserProfileAsync(user.Id, user.UserName, this.Input.FirstName, this.Input.LastName, this.Input.Address, this.Input.PhoneNumber, this.Input.Gender, this.Input.NewPicture);
 
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";

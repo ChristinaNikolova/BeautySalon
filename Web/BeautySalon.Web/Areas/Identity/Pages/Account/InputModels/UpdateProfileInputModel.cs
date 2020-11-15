@@ -30,6 +30,6 @@
         public string Gender { get; set; }
 
         [DataType(DataType.Upload)]
-        public IFormFile Picture { get; set; }
+        public IFormFile NewPicture { get; set; }
     }
 }

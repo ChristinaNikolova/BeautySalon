@@ -34,7 +34,7 @@
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, IFormFile picture)
+        public async Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, IFormFile newPicture)
         {
             var user = await this.GetUserByIdAsync(id);
 
@@ -44,10 +44,10 @@
             user.PhoneNumber = phoneNumber;
             user.Gender = Enum.Parse<Gender>(gender);
 
-            if (picture != null)
+            if (newPicture != null)
             {
-                string newPicture = await this.cloudinaryService.UploudAsync(picture, username);
-                user.Picture = newPicture;
+                string newPictureAsUrl = await this.cloudinaryService.UploudAsync(newPicture, username);
+                user.Picture = newPictureAsUrl;
             }
 
             await this.usersRepository.SaveChangesAsync();

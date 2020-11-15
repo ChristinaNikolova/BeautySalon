@@ -8,7 +8,7 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Answer</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="" asp-controller="Answers" asp-action="GetAnswersForClientQuestion">Anwered Questions</a></span>
+                    <span class="mr-2"><a asp-area="" asp-controller="Answers" asp-action="GetUsersAllAnswers">Replies</a></span>
                 </p>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <h2 class="text-center">Answer</h2>
                 <hr />
                 <partial name="_QuestionAnswerDetailsPartial" model="@Model" />
-                <a asp-area="" asp-controller="Answers" asp-action="GetNewAnswersForUsersQuestion" class="btn btn-white px-4 py-3 offset-5">Back<span class="ion-ios-arrow-round-forward"></span></a>
+                <a asp-area="" asp-controller="Answers" asp-action="GetUsersAllAnswers" class="btn btn-white px-4 py-3 offset-5">Back<span class="ion-ios-arrow-round-forward"></span></a>
             </div>
         </div>
     </div>

@@ -5,18 +5,18 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
-    public class DetailsAnswerViewModel : IMapFrom<Answer>
+    public class DetailsAnswerViewModel : NewAnswerForUserViewModel, IMapFrom<Answer>
     {
-        public string Title { get; set; }
+        //public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        //public DateTime CreatedOn { get; set; }
 
-        public string FormattedCreatedOn
-            => this.CreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
+        //public string FormattedCreatedOn
+        //    => this.CreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
 
-        public string StylistPicture { get; set; }
+        //public string StylistPicture { get; set; }
 
         public string StylistUsername { get; set; }
 

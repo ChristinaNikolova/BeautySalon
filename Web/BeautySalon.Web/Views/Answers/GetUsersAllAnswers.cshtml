@@ -8,7 +8,7 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">Replies</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist" asp-route-id="">New Questions</a></span>
+                    <span class="mr-2"><a asp-area="" asp-controller="Answers" asp-action="GetNewAnswersForUsersQuestion">New Answers</a></span>
                 </p>
             </div>
         </div>
@@ -42,7 +42,7 @@
                             <td>@currentAnswer.FormattedCreatedOn</td>
                             <td>@currentAnswer.Title</td>
                             <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentAnswer.StylistId">@currentAnswer.StylistFullName</a></td>
-                            <td><a asp-area="" asp-controller="Answers" asp-action="SeeAnswer" asp-route-id="@currentAnswer.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See details</a></td>
+                            <td><a asp-area="" asp-controller="Answers" asp-action="SeeAnswer" asp-route-id="@currentAnswer.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">See Answer</a></td>
                         </tr>
                     }
                 </tbody>

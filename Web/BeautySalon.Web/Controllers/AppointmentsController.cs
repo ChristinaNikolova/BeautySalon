@@ -76,14 +76,15 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> GetUsersHistory(string id)
+        public async Task<IActionResult> GetUsersHistory()
         {
             var userId = this.userManager.GetUserId(this.User);
 
-            var model = new AllBaseAppoitmentViewModel()
+            var model = new BaseAppointmentsAndUserInfoViewModel()
             {
                 Appoitments = await
                 this.appointmentsService.GetHistoryUserAsync<BaseAppoitmentViewModel>(userId),
+                UserId = userId,
             };
 
             return this.View(model);

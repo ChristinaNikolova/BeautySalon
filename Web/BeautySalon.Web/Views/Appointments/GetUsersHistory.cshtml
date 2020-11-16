@@ -1,5 +1,5 @@
 ﻿@using BeautySalon.Web.ViewModels.Appointments.ViewModels;
-@model AllBaseAppoitmentViewModel;
+@model BaseAppointmentsAndUserInfoViewModel;
 
 @{
     ViewData["Title"] = "Appointments History";
@@ -13,6 +13,8 @@
         </div>
         <div class="col-md-8">
             <div class="col-md-12">
+                <h2 class="text-center">Appointments to review</h2>
+                <vc:appointments-to-review user-id="@Model.UserId"></vc:appointments-to-review>
                 <h2 class="text-center">History</h2>
                 <hr />
                 <partial name="_AppointmentsTablePartial" model="@Model.Appoitments" />

@@ -39,5 +39,7 @@
         Task<IEnumerable<T>> GetHistoryUserAsync<T>(string userId);
 
         Task<IEnumerable<T>> GetAppointmentsToReviewAsync<T>(string userId);
+
+        Task<T> GetByIdAsync<T>(string appointmentId);
     }
 }

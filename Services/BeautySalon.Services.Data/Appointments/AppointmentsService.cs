@@ -250,6 +250,17 @@
             return hasToReview;
         }
 
+        public async Task<T> GetByIdAsync<T>(string appointmentId)
+        {
+            var appointment = await this.appointmentsRepository
+                .All()
+                .Where(a => a.Id == appointmentId)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return appointment;
+        }
+
         private async Task<Appointment> GetByIdAsync(string id)
         {
             return await this.appointmentsRepository

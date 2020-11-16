@@ -87,7 +87,13 @@
         public const string ProcedureMaxPrice = "1000";
 
         // ProcedureReview
+        public const int ProcedureReviewContentMinLenght = 5;
+
         public const int ProcedureReviewContentMaxLenght = 1000;
+
+        public const string ProcedureReviewMinPoints = "1";
+
+        public const string ProcedureReviewMaxPoints = "5";
 
         // Product
         public const int ProductNameMinLenght = 3;

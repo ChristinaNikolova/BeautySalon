@@ -1,0 +1,62 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.InputModels;
+@model ReviewProcedureInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Procedure's Review";
+}
+
+<partial name="_TitlePageSection" />
+<div>
+    <div class="col-md-12 ftco-animate">
+        <form asp-controller="Questions" asp-action="Create" method="post" class="contact-form">
+            <div class="row"></div>
+            <div class="row">
+                <div class="col-md-4 ftco-animate bg-light">
+                    <h2 class="text-center">Procedure's Info</h2>
+                    <div>
+                        <p><span class="color-black">Procedure Name:</span><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@Model.Appointment.ProcedureId"> @Model.Appointment.ProcedureName</a></p>
+                    </div>
+                    <div>
+                        <p><span class="color-black">Stylist Name:</span><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@Model.Appointment.StylistId"> @Model.Appointment.StylistFullName</a></p>
+                    </div>
+                    <div>
+                        <p><span class="color-black">Date:</span> @Model.Appointment.FormattedDateTime</p>
+                    </div>
+                    <div>
+                        <p><span class="color-black">Time:</span> @Model.Appointment.StartTime</p>
+                    </div>
+                </div>
+                <div class="col-md-7 ftco-animate">
+                    <h2 class="text-center">Review</h2>
+                    <hr />
+                    <div class="form-group">
+                        <label class="color-black" asp-for="@Model.Content"></label>
+                        <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Review"></textarea>
+                        <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Points" class="color-black" ></label>
+                        @*//select*@
+                        <select asp-for="@Model.Points" class="form-control" placeholder="Points" />
+                        <span asp-validation-for="@Model.Points" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Send Review" class="btn btn-primary py-3 px-5 offset-4">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+
+            });
+        });
+    </script>
+}

@@ -102,6 +102,10 @@
                     <div class="col-md-6">
                         <h2>Feedback</h2>
                         <hr />
+                        @if (!Model.IsReview && Model.Status.ToString() == "Done")
+                        {
+                            <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>
+                        }
                     </div>
                 </div>
             </div>

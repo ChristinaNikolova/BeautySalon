@@ -4,8 +4,10 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
+    using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
+    using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using BeautySalon.Web.ViewModels.Procedures.InputModels;
     using BeautySalon.Web.ViewModels.Procedures.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -14,13 +16,16 @@
     {
         private readonly IProceduresService proceduresService;
         private readonly ICategoriesService categoriesService;
+        private readonly IAppointmentsService appointmentsService;
 
         public ProceduresController(
             IProceduresService proceduresService,
-            ICategoriesService categoriesService)
+            ICategoriesService categoriesService,
+            IAppointmentsService appointmentsService)
         {
             this.proceduresService = proceduresService;
             this.categoriesService = categoriesService;
+            this.appointmentsService = appointmentsService;
         }
 
         public async Task<IActionResult> ProceduresByCategories()
@@ -91,6 +96,16 @@
             var procedureNames = await this.proceduresService.GetSmartSearchProceduresAsync<ProcedureNameViewModel>(input.ClientSkinTypeId, input.IsSkinSensitive, input.StylistId);
 
             return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };
+        }
+
+        public async Task<ActionResult> Review(string appointmentId)
+        {
+            var model = new ReviewProcedureInputModel()
+            {
+                Appointment = await this.appointmentsService.GetByIdAsync<AppointmentViewModel>(appointmentId),
+            };
+
+            return this.View(model);
         }
     }
 }

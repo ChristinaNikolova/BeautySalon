@@ -9,7 +9,15 @@
                 <div class="icon">
                     <span class="flaticon-lotus"></span>
                 </div>
-                <h1>Welcome to @GlobalConstants.SystemName!</h1>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <h1>Welcome, @(this.User.Identity.Name)!</h1>
+                }
+                else
+                {
+                    <h1>Welcome to @GlobalConstants.SystemName!</h1>
+                }
+
                 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
                     <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">

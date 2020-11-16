@@ -102,27 +102,7 @@
 
             if (skinProblems != null)
             {
-                foreach (var skinProblemName in skinProblems)
-                {
-                    var skinProblem = await this.skinProblemsRepository
-                        .All()
-                        .FirstOrDefaultAsync(sp => sp.Name == skinProblemName);
-
-                    if (await this.clientSkinProblemsRepository
-                        .All()
-                        .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id))
-                    {
-                        continue;
-                    }
-
-                    var clientSkinProblem = new ClientSkinProblem()
-                    {
-                        SkinProblem = skinProblem,
-                        Client = user,
-                    };
-
-                    user.ClientSkinProblems.Add(clientSkinProblem);
-                }
+                await this.AddSkinProblemsAsync(userId, skinProblems, user);
             }
 
             this.usersRepository.Update(user);
@@ -149,6 +129,57 @@
                .FirstOrDefaultAsync();
 
             return userSkinData;
+        }
+
+        private async Task RemoveExistingClientSkinProblemsAsync(string userId)
+        {
+            var hasClientAlreadySkinProblemsAsync = await this.clientSkinProblemsRepository
+                                    .All()
+                                    .AnyAsync(csp => csp.ClientId == userId);
+
+            if (hasClientAlreadySkinProblemsAsync)
+            {
+                var clientSkinProblems = await this.clientSkinProblemsRepository
+                    .All()
+                    .Where(csp => csp.ClientId == userId)
+                    .ToListAsync();
+
+                foreach (var clientSkinProblemToRemove in clientSkinProblems)
+                {
+                    this.clientSkinProblemsRepository.Delete(clientSkinProblemToRemove);
+                }
+
+                await this.clientSkinProblemsRepository.SaveChangesAsync();
+            }
+        }
+
+        private async Task AddSkinProblemsAsync(string userId, string[] skinProblems, ApplicationUser user)
+        {
+            foreach (var skinProblemName in skinProblems)
+            {
+                var skinProblem = await this.skinProblemsRepository
+                    .All()
+                    .FirstOrDefaultAsync(sp => sp.Name == skinProblemName);
+
+                var isUserSkinProblemAlreadyAddedAsync = await this.clientSkinProblemsRepository
+                    .All()
+                    .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id);
+
+                if (isUserSkinProblemAlreadyAddedAsync)
+                {
+                    continue;
+                }
+
+                await this.RemoveExistingClientSkinProblemsAsync(userId);
+
+                var clientSkinProblem = new ClientSkinProblem()
+                {
+                    SkinProblem = skinProblem,
+                    Client = user,
+                };
+
+                user.ClientSkinProblems.Add(clientSkinProblem);
+            }
         }
     }
 }

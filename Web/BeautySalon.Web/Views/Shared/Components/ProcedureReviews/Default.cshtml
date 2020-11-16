@@ -16,9 +16,9 @@
                 }
                 else
                 {
-                    <div class="carousel-testimony owl-carousel">
-                        @foreach (var review in Model.Reviews)
-                        {
+
+                    @foreach (var review in Model.Reviews)
+                    {<div class="carousel-testimony owl-carousel">
                             <div class="item">
                                 <div class="testimony-wrap p-4 pb-5">
                                     <div class="text">
@@ -29,7 +29,6 @@
                                             </span>
                                         </div>
                                         <div class="d-flex align-items-center">
-
                                             <div class="user-img" style="background-image:
                                               url('@review.ClientPicture')"></div>
                                             <div class="ml-4">
@@ -40,10 +39,11 @@
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 }
             </div>
         </div>
     </div>
 </section>
+

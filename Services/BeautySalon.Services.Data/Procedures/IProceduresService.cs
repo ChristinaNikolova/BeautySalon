@@ -45,5 +45,7 @@
         Task<bool> AddProductToProcedureAsync(string id, string productId);
 
         Task RemoveProductAsync(string productId, string procedureId);
+
+        Task GetProcedureReviewsAsync(string appoitmentId, string content, int points);
     }
 }

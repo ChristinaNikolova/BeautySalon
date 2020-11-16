@@ -107,5 +107,21 @@
 
             return this.View(model);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Review(ReviewProcedureInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Appointment = await
+                    this.appointmentsService.GetByIdAsync<AppointmentViewModel>(input.AppoitmentId);
+
+                return this.View(input);
+            }
+
+            await this.proceduresService.GetProcedureReviewsAsync(input.AppoitmentId, input.Content, input.Points);
+            ;
+            return this.RedirectToAction("GetUsersHistory", "Appointments", new { Id = input.AppoitmentId });
+        }
     }
 }

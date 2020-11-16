@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Procedures
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -19,7 +20,7 @@
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;
         private readonly IRepository<SkinProblemProcedure> skinProblemProceduresRespository;
         private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
-
+        private readonly IRepository<Appointment> appointmentsRepository;
         private readonly ICategoriesService categoriesService;
 
         public ProceduresService(
@@ -27,14 +28,16 @@
             IRepository<ProcedureReview> procedureReviewsRepository,
             IRepository<ProcedureProduct> procedureProductsRepository,
             IRepository<ProcedureStylist> procedureStylistsRepository,
-            IRepository<SkinProblemProcedure> skinProblemProceduresRespository,
+            IRepository<SkinProblemProcedure> skinProblemProceduresRepository,
+            IRepository<Appointment> appointmentsRepository,
             ICategoriesService categoriesService)
         {
             this.proceduresRepository = proceduresRepository;
             this.procedureReviewsRepository = procedureReviewsRepository;
             this.procedureProductsRepository = procedureProductsRepository;
             this.procedureStylistsRepository = procedureStylistsRepository;
-            this.skinProblemProceduresRespository = skinProblemProceduresRespository;
+            this.skinProblemProceduresRespository = skinProblemProceduresRepository;
+            this.appointmentsRepository = appointmentsRepository;
             this.categoriesService = categoriesService;
         }
 
@@ -303,6 +306,28 @@
                 .ToListAsync();
 
             return procedures;
+        }
+
+        public async Task GetProcedureReviewsAsync(string appoitmentId, string content, int points)
+        {
+            var appointment = await this.appointmentsRepository
+                .All()
+                .FirstOrDefaultAsync(a => a.Id == appoitmentId);
+
+            appointment.IsReview = true;
+
+            var procedureReview = new ProcedureReview()
+            {
+                ProcedureId = appointment.ProcedureId,
+                ClientId = appointment.ClientId,
+                Content = content,
+                Points = points,
+                Date = DateTime.UtcNow,
+            };
+
+            this.appointmentsRepository.Update(appointment);
+            await this.procedureReviewsRepository.AddAsync(procedureReview);
+            await this.procedureReviewsRepository.SaveChangesAsync();
         }
 
         private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems = null)

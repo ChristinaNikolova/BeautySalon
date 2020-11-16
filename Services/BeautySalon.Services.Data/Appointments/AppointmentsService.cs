@@ -245,6 +245,7 @@
                 .All()
                 .AnyAsync(a => a.ClientId == userId
                  && a.DateTime.Date < DateTime.UtcNow.Date
+                 && a.Status == Status.Done
                  && a.IsReview == false);
 
             return hasToReview;

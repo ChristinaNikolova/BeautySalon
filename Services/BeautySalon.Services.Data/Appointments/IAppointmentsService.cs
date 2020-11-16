@@ -35,5 +35,7 @@
         Task<IEnumerable<T>> GetClientsUpcomingAppointmentsAsync<T>(string userId);
 
         Task<bool> CheckPastProceduresAsync(string userId);
+
+        Task<IEnumerable<T>> GetHistoryUserAsync<T>(string userId);
     }
 }

@@ -58,7 +58,7 @@
 
         public const int RecentArticlesCount = 5;
 
-        public const string CategorySkinCareId = "ecc3136a-e09f-491b-a96d-cacbfe0397b2";
+        public const string CategorySkinCareId = "1565c8bb-ad79-46b6-bde1-908a40cd573c";
 
         public const string StartDropDownDefaultMessage = "Please select";
 

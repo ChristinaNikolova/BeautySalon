@@ -58,8 +58,7 @@
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
 
-            // TODO Redirect to AllAppointmnets
-            return this.Redirect("/");
+            return this.Redirect("/Users/Index");
         }
 
         [HttpPost]
@@ -73,6 +72,19 @@
         public async Task<IActionResult> GetInfoCurrentAppointment(string id)
         {
             var model = await this.appointmentsService.GetDetailsAsync<DetailsAppointmentViewModel>(id);
+
+            return this.View(model);
+        }
+
+        public async Task<IActionResult> GetUsersHistory(string id)
+        {
+            var userId = this.userManager.GetUserId(this.User);
+
+            var model = new AllBaseAppoitmentViewModel()
+            {
+                Appoitments = await
+                this.appointmentsService.GetHistoryUserAsync<BaseAppoitmentViewModel>(userId),
+            };
 
             return this.View(model);
         }

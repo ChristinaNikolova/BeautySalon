@@ -20,8 +20,8 @@
             else
             {
                 <th scope="col">Stylist</th>
-                <th scope="col">Status</th>
             }
+            <th scope="col">Status</th>
             <th scope="col">Details</th>
         </tr>
     </thead>
@@ -47,15 +47,20 @@
                 else
                 {
                     <td>@currentAppoitment.StylistFullName</td>
-                    if (@currentAppoitment.Status.ToString() == "Approved")
-                    {
-                        <td class="alert-success">@currentAppoitment.Status</td>
-                    }
-                    else
-                    {
-                        <td class="alert-warning">@currentAppoitment.Status</td>
-                    }
+                }
 
+                @if (@currentAppoitment.Status.ToString() == "Approved"
+                      || @currentAppoitment.Status.ToString() == "Done")
+                {
+                    <td class="alert-success">@currentAppoitment.Status</td>
+                }
+                else if (@currentAppoitment.Status.ToString() == "Processing")
+                {
+                    <td class="alert-warning">@currentAppoitment.Status</td>
+                }
+                else
+                {
+                    <td class="alert-danger">@currentAppoitment.Status</td>
                 }
                 <td><a asp-area="" asp-controller="Appointments" asp-action="GetInfoCurrentAppointment" asp-route-id="@currentAppoitment.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Details</a></td>
             </tr>

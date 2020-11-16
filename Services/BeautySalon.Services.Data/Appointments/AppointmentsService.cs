@@ -99,6 +99,8 @@
             var appointments = await this.appointmentsRepository
                .All()
                .Where(a => a.ClientId == userId && (a.Status == Status.Approved || a.Status == Status.Processing))
+               .OrderBy(a => a.DateTime)
+               .ThenBy(a => a.StartTime)
                .To<T>()
                .ToListAsync();
 
@@ -181,6 +183,20 @@
                 .ThenBy(a => a.StartTime)
                 .To<T>()
                 .ToListAsync();
+
+            return appointments;
+        }
+
+        public async Task<IEnumerable<T>> GetHistoryUserAsync<T>(string userId)
+        {
+            var appointments = await this.appointmentsRepository
+               .All()
+               .Where(a => a.ClientId == userId
+                  && (a.Status == Status.Done || a.Status == Status.CancelledByStylist))
+               .OrderByDescending(a => a.DateTime)
+               .ThenBy(a => a.StartTime)
+               .To<T>()
+               .ToListAsync();
 
             return appointments;
         }

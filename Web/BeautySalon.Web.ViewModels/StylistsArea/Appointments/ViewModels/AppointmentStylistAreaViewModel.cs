@@ -3,7 +3,6 @@
     using System;
 
     using BeautySalon.Data.Models;
-    using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Web.ViewModels.Appointments.ViewModels;
 

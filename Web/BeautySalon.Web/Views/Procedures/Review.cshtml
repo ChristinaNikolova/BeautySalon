@@ -29,31 +29,35 @@
             <div class="col-md-7 ftco-animate">
                 <h2 class="text-center">Review</h2>
                 <hr />
-                <form asp-area="" asp-controller="Procedures" asp-action="Review" method="post" class="contact-form">
-                    <div class="form-group" hidden>
-                        <input asp-for="@Model.AppoitmentId" type="text" class="form-control" value="@Model.Appointment.Id">
-                    </div>
-                    <div class="form-group">
-                        <label class="color-black" asp-for="@Model.Content"></label>
-                        <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Review"></textarea>
-                        <span asp-validation-for="@Model.Content" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Points" class="color-black"></label>
-                        <select asp-for="@Model.Points" class="form-control">
-                            <option selected>Please select points</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <span asp-validation-for="@Model.Points" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Send Review" class="btn btn-primary py-3 px-5 offset-4">
-                    </div>
-                </form>
+                @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName) 
+                  && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                {
+                    <form asp-area="" asp-controller="Procedures" asp-action="Review" method="post" class="contact-form">
+                        <div class="form-group" hidden>
+                            <input asp-for="@Model.AppoitmentId" type="text" class="form-control" value="@Model.Appointment.Id">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-black" asp-for="@Model.Content"></label>
+                            <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Review"></textarea>
+                            <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Points" class="color-black"></label>
+                            <select asp-for="@Model.Points" class="form-control">
+                                <option selected>Please select points</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <span asp-validation-for="@Model.Points" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Send Review" class="btn btn-primary py-3 px-5 offset-4">
+                        </div>
+                    </form>
+                }
             </div>
         </div>
     </div>

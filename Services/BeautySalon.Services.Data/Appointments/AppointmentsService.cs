@@ -124,7 +124,9 @@
 
             var takenHours = await this.appointmentsRepository
                 .All()
-                .Where(a => a.DateTime == selectedDateAsDateTime && a.StylistId == selectedStylistId)
+                .Where(a => a.DateTime == selectedDateAsDateTime
+                    && a.StylistId == selectedStylistId
+                    && a.Status != Status.CancelledByStylist)
                 .Select(a => a.StartTime)
                 .ToListAsync();
 

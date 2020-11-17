@@ -8,7 +8,7 @@
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section ftco-animate text-center">
                     <h2 class="mb-1 heading-color">Products we use:</h2>
-                    <a class="btn btn-primary p-2 px-2 py-2 mr-md-2 get-products">Show products</a>
+                    <a id="button-show-info" class="btn btn-primary p-2 px-2 py-2 mr-md-2 get-products">Show products</a>
                 </div>
             </div>
             <div class="show-more-products hidden">
@@ -31,14 +31,25 @@
     </section>
 }
 
-<script>
-    let button = [...document.getElementsByClassName("get-products")];
+@section Scripts {
+    <script>
+        let button = [...document.getElementsByClassName("get-products")];
 
-    button.forEach(button => {
-        button.addEventListener("click", showMore);
-    });
+        button.forEach(button => {
+            button.addEventListener("click", showMore);
+        });
 
-    function showMore() {
-        $(".show-more-products").toggle();
-    }
-</script>
+        function showMore() {
+            let info = document.getElementsByClassName("show-more-products")[0];
+            let button = document.getElementById("button-show-info");
+
+            if (info.style.display === "block") {
+                info.style.display = "none";
+                button.innerText = "Show products";
+            } else {
+                info.style.display = "block";
+                button.innerText = "Hide products";
+            }
+        }
+    </script>
+}

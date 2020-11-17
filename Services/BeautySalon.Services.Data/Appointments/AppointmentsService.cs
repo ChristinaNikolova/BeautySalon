@@ -205,11 +205,11 @@
 
         public async Task<IEnumerable<T>> GetAppointmentsToReviewAsync<T>(string userId)
         {
-            //TODO Date < dateUtcNow
             var appointments = await this.appointmentsRepository
                .All()
                .Where(a => a.ClientId == userId
-                  && (a.Status == Status.Done)
+                  && a.Status == Status.Done
+                  && a.DateTime.Date < DateTime.UtcNow.Date
                   && !a.IsReview)
                .OrderByDescending(a => a.DateTime)
                .ThenBy(a => a.StartTime)

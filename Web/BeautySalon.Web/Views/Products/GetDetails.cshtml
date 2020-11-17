@@ -1,26 +1,55 @@
 ﻿@using BeautySalon.Web.ViewModels.Products.ViewModels;
 @model DetailsProductViewModel;
 
-<section class="ftco-section ftco-intro custom-margin-identity" style="background-image: url(/images/intro.jpg);">
+<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
     <div class="container">
-        <div class="row justify-content-end">
-            <div class="col-md-6">
-                <div class="heading-section ftco-animate">
-                    <h4 class="mb-4 product-name theme-color-gold">@Model.Name</h4>
-                </div>
-                <div class="offer-deal text-center px-2 px-lg-5">
-                    <div class="img" style="background-image: url(@Model.Picture);"></div>
-                    <div class="text mt-4">
-                        <p class="mb-5">@Model.Description</p>
-                        <ul>
-                            <li class="theme-color-gold"><span>Price: </span>@Model.Price</li>
-                            <li class="theme-color-gold"><span>Category: </span>@Model.CategoryName</li>
-                            <li class="theme-color-gold"><span>Brand: </span>@Model.BrandName</li>
-                            <li class="theme-color-gold"><span>Raiting: </span>@Model.AverageRating</li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">Product's Details</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2">
+                        <a asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@Model.CategoryId">Procedures</a>
+                    </span>
+                </p>
             </div>
         </div>
     </div>
 </section>
+<section class="custom-margin-identity">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate text-center mb-lg-4">
+                    <h4 class="product-name theme-color-gold">@Model.Name</h4>
+                </div>
+                <div class="offer-deal text-center px-2 px-lg-5">
+                    <div class="img" style="background-image: url(@Model.Picture);"></div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <p><span class="flaticon-lotus theme-color-gold"> Product's Description: </span>@Model.Description</p>
+                <span class="flaticon-lotus theme-color-gold"> Category: </span><a class="theme-color-gold">@Model.CategoryName</a>
+                <br />
+                <span class="flaticon-lotus theme-color-gold"> Brand: </span><a id="brand-name" class="theme-color-gold">@Model.BrandName</a>
+                <p id="brand-description" class="hidden">
+                    <span class="flaticon-lotus theme-color-gold"> Brand's Description: </span>@Model.BrandDescription
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById("brand-name").addEventListener("click", showBrandDescroption);
+
+    function showBrandDescroption() {
+        let brandDescription = document.getElementById("brand-description");
+
+        if (brandDescription.style.display === "none") {
+            brandDescription.style.display = "block";
+        } else {
+            brandDescription.style.display = "none";
+        }
+    }
+</script>

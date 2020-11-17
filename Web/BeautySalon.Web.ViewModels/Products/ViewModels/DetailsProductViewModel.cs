@@ -9,13 +9,13 @@
 
         public string Description { get; set; }
 
-        public decimal Price { get; set; }
-
         public string Picture { get; set; }
 
-        public double AverageRating { get; set; }
-
         public string BrandName { get; set; }
+
+        public string BrandDescription { get; set; }
+
+        public string CategoryId { get; set; }
 
         public string CategoryName { get; set; }
 

@@ -353,3 +353,8 @@ div .tooltip-inner {
 .best-procedure {
     margin-left: 20px
 }
+
+#brand-name:hover {
+    color: #d9bf77;
+    cursor: pointer;
+}

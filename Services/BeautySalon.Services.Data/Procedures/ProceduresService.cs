@@ -16,7 +16,7 @@
     public class ProceduresService : IProceduresService
     {
         private readonly IRepository<Procedure> proceduresRepository;
-        private readonly IRepository<ProcedureReview> procedureReviewsRepository;
+        private readonly IRepository<Review> procedureReviewsRepository;
         private readonly IRepository<ProcedureProduct> procedureProductsRepository;
         private readonly IRepository<SkinProblemProcedure> skinProblemProceduresRespository;
         private readonly IRepository<ProcedureStylist> procedureStylistsRepository;
@@ -25,7 +25,7 @@
 
         public ProceduresService(
             IRepository<Procedure> proceduresRepository,
-            IRepository<ProcedureReview> procedureReviewsRepository,
+            IRepository<Review> procedureReviewsRepository,
             IRepository<ProcedureProduct> procedureProductsRepository,
             IRepository<ProcedureStylist> procedureStylistsRepository,
             IRepository<SkinProblemProcedure> skinProblemProceduresRepository,
@@ -160,8 +160,7 @@
             var reviews = await this.procedureReviewsRepository
                 .All()
                 .Where(pr => pr.ProcedureId == id)
-                .OrderByDescending(pr => pr.Date)
-                .Take(GlobalConstants.DefaultProcedureReviewsToDisplay)
+                .OrderByDescending(pr => pr.CreatedOn)
                 .To<T>()
                 .ToListAsync();
 
@@ -316,7 +315,7 @@
 
             appointment.IsReview = true;
 
-            var procedureReview = new ProcedureReview()
+            var review = new Review()
             {
                 ProcedureId = appointment.ProcedureId,
                 ClientId = appointment.ClientId,
@@ -326,7 +325,7 @@
             };
 
             this.appointmentsRepository.Update(appointment);
-            await this.procedureReviewsRepository.AddAsync(procedureReview);
+            await this.procedureReviewsRepository.AddAsync(review);
             await this.procedureReviewsRepository.SaveChangesAsync();
         }
 

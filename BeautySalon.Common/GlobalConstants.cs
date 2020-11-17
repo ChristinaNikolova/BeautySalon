@@ -44,8 +44,6 @@
 
         public const string ArticleSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Articles.json";
 
-        public const int DefaultProcedureReviewsToDisplay = 12;
-
         public const string CategorySkinName = "Skin Care";
 
         public const string NameCriteria = "name";
@@ -58,7 +56,7 @@
 
         public const int RecentArticlesCount = 5;
 
-        public const string CategorySkinCareId = "1565c8bb-ad79-46b6-bde1-908a40cd573c";
+        public const string CategorySkinCareId = "5c18b9b0-edf7-4257-89d4-9000f2c1d0c3";
 
         public const string StartDropDownDefaultMessage = "Please select";
 

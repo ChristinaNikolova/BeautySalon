@@ -12,6 +12,11 @@
                 .HasMany(p => p.Appointments)
                 .WithOne(a => a.Procedure)
                 .HasForeignKey(a => a.ProcedureId);
+
+            procedure
+               .HasMany(p => p.Reviews)
+               .WithOne(r => r.Procedure)
+               .HasForeignKey(r => r.ProcedureId);
         }
     }
 }

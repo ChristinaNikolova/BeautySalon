@@ -4,9 +4,15 @@
     using System.ComponentModel.DataAnnotations;
 
     using BeautySalon.Common;
+    using BeautySalon.Data.Common.Models;
 
-    public class ProcedureReview
+    public class Review : BaseDeletableModel<string>
     {
+        public Review()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         [Required]
         public string ProcedureId { get; set; }
 

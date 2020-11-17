@@ -16,29 +16,14 @@
                 }
                 else
                 {
-
-                    @foreach (var review in Model.Reviews)
-                    {<div class="carousel-testimony owl-carousel">
-                            <div class="item">
-                                <div class="testimony-wrap p-4 pb-5">
-                                    <div class="text">
-                                        <div class="line pl-5">
-                                            <p class="mb-4 pb-1">@review.Content</p>
-                                            <span class="quote d-flex align-items-center justify-content-center">
-                                                <i class="icon-quote-left"></i>
-                                            </span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="user-img" style="background-image:
-                                              url('@review.ClientPicture')"></div>
-                                            <div class="ml-4">
-                                                <p class="name">@review.ClientUsername</p>
-                                                <span class="position">@review.FormattedDate</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    if (Model.Reviews.Count() < 4)
+                    {
+                        <partial name="_ReviewProcedurePartial" model="@Model.Reviews" />
+                    }
+                    else
+                    {
+                        <div class="carousel-testimony owl-carousel">
+                            <partial name="_ReviewProcedurePartial" model="@Model.Reviews" />
                         </div>
                     }
                 }

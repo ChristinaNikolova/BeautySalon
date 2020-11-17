@@ -203,6 +203,7 @@
 
         public async Task<IEnumerable<T>> GetAppointmentsToReviewAsync<T>(string userId)
         {
+            //TODO Date < dateUtcNow
             var appointments = await this.appointmentsRepository
                .All()
                .Where(a => a.ClientId == userId

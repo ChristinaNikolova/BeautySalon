@@ -5,7 +5,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
-    public class ProcedureReviewViewModel : IMapFrom<ProcedureReview>
+    public class ProcedureReviewViewModel : IMapFrom<Review>
     {
         public string ClientUsername { get; set; }
 

@@ -15,7 +15,7 @@
             this.AverageRating = 0;
             this.SkinProblemProcedures = new HashSet<SkinProblemProcedure>();
             this.ProcedureProducts = new HashSet<ProcedureProduct>();
-            this.ProcedureReviews = new HashSet<ProcedureReview>();
+            this.Reviews = new HashSet<Review>();
             this.ProcedureStylists = new HashSet<ProcedureStylist>();
             this.Appointments = new HashSet<Appointment>();
         }
@@ -47,7 +47,7 @@
 
         public virtual ICollection<ProcedureProduct> ProcedureProducts { get; set; }
 
-        public virtual ICollection<ProcedureReview> ProcedureReviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
         public virtual ICollection<ProcedureStylist> ProcedureStylists { get; set; }
 

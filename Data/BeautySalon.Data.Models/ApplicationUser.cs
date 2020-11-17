@@ -26,7 +26,7 @@ namespace BeautySalon.Data.Models
             this.ProductReviews = new HashSet<ProductReview>();
             this.ProductLikes = new HashSet<ClientProductLike>();
             this.Orders = new HashSet<Order>();
-            this.ProcedureReviews = new HashSet<ProcedureReview>();
+            this.Reviews = new HashSet<Review>();
             this.ClientAppointments = new HashSet<Appointment>();
 
             // Stylist
@@ -103,7 +103,7 @@ namespace BeautySalon.Data.Models
 
         public virtual ICollection<Order> Orders { get; set; }
 
-        public virtual ICollection<ProcedureReview> ProcedureReviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
         public virtual ICollection<Appointment> ClientAppointments { get; set; }
 

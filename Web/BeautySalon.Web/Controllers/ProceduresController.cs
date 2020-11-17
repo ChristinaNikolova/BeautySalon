@@ -120,7 +120,7 @@
             }
 
             await this.proceduresService.GetProcedureReviewsAsync(input.AppoitmentId, input.Content, input.Points);
-            ;
+
             return this.RedirectToAction("GetUsersHistory", "Appointments", new { Id = input.AppoitmentId });
         }
     }

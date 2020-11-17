@@ -54,6 +54,11 @@
                 .HasForeignKey(m => m.ReceiverId);
 
             appUser
+               .HasMany(u => u.Reviews)
+               .WithOne(r => r.Client)
+               .HasForeignKey(r => r.ClientId);
+
+            appUser
                 .HasMany(e => e.Claims)
                 .WithOne()
                 .HasForeignKey(e => e.UserId)

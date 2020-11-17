@@ -52,8 +52,6 @@
 
         public DbSet<ProcedureProduct> ProcedureProducts { get; set; }
 
-        public DbSet<ProcedureReview> ProcedureReviews { get; set; }
-
         public DbSet<ProcedureStylist> ProcedureStylists { get; set; }
 
         public DbSet<Product> Products { get; set; }
@@ -67,6 +65,8 @@
         public DbSet<QuizAnswer> QuizAnswers { get; set; }
 
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 

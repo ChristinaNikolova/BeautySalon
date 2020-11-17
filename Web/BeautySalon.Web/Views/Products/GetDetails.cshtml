@@ -22,6 +22,7 @@
             <div class="col-md-6">
                 <div class="heading-section ftco-animate text-center mb-lg-4">
                     <h4 class="product-name theme-color-gold">@Model.Name</h4>
+                    <div id="productId" hidden>@Model.Id</div>
                 </div>
                 <div class="offer-deal text-center px-2 px-lg-5">
                     <a href="@Model.Picture" class="gallery image-popup img d-flex align-items-center" style="background-image: url(@Model.Picture);"></a>
@@ -35,6 +36,26 @@
                 <p id="brand-description" style="display:none">
                     <span class="flaticon-lotus theme-color-gold"> Brand's Description: </span>@Model.BrandDescription
                 </p>
+                <hr />
+                <div class="d-inline">
+                    <i class="fas fa-hashtag theme-color-gold"><span class="tag-cloud-link d-inline thin">@Model.CategoryName</span></i>
+                    <form id="likes" class="tag-cloud-link d-inline" method="post"></form>
+                    <span id="likeProduct" class="tag-cloud-link d-inline theme-color-gold thin-heart">
+                        @if (Model.IsFavourite)
+                        {
+                            <a>
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a>
+                                <i class="far fa-heart"></i>
+                            </a>
+                        }
+                    </span>
+                    <span id="likesCount" class="tag-cloud-link d-inline thin">@Model.LikesCount Likes</span>
+                </div>
             </div>
         </div>
     </div>
@@ -43,4 +64,34 @@
 @section Scripts {
     <script src="~/js/showProductsBrandDescription.js"></script>
     <script>showProductsBrandDescription();</script>
+
+    <script>
+        document.getElementById("likeProduct").addEventListener("click", likeProduct);
+
+        function likeProduct() {
+            let productId = document.getElementById("productId").innerHTML;
+            var token = $("#likes input[name=__RequestVerificationToken]").val();
+
+            $.ajax({
+                url: "/Products/Like/",
+                type: "POST",
+                data: JSON.stringify(productId),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                headers: { 'X-CSRF-TOKEN': token },
+                success: function (data) {
+                    let result = "";
+
+                    if (data.isAdded) {
+                        result = '<a><i class="fa fa-heart"></i>';
+                    } else {
+                        result = '<a><i class="far fa-heart"></i>';
+                    }
+
+                    $("#likeProduct").html(result);
+                    $("#likesCount").html(data.likesCount + " Likes");
+                }
+            });
+        }
+    </script>
 }

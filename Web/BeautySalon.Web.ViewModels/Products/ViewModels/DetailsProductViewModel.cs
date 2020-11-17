@@ -5,6 +5,8 @@
 
     public class DetailsProductViewModel : IMapFrom<Product>
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -19,8 +21,8 @@
 
         public string CategoryName { get; set; }
 
-        //public virtual ICollection<ProductReview> ProductReviews { get; set; }
+        public bool IsFavourite { get; set; }
 
-        //public virtual ICollection<ClientProductLike> Likes { get; set; }
+        public int LikesCount { get; set; }
     }
 }

@@ -15,11 +15,16 @@
     public class ProductsService : IProductsService
     {
         private readonly IRepository<Product> productsRepository;
+        private readonly IRepository<ClientProductLike> clientProductLikesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public ProductsService(IRepository<Product> productsRepository, ICloudinaryService cloudinaryService)
+        public ProductsService(
+            IRepository<Product> productsRepository,
+            IRepository<ClientProductLike> clientProductLikesRepository,
+            ICloudinaryService cloudinaryService)
         {
             this.productsRepository = productsRepository;
+            this.clientProductLikesRepository = clientProductLikesRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -136,6 +141,55 @@
                 .FirstOrDefaultAsync();
 
             return productId;
+        }
+
+        public async Task<bool> CheckFavouriteProductsAsync(string id, string userId)
+        {
+            var isFavourite = await this.clientProductLikesRepository
+                 .All()
+                 .AnyAsync(cp => cp.ProductId == id && cp.ClientId == userId);
+
+            return isFavourite;
+        }
+
+        public async Task<bool> LikeProductAsync(string productId, string userId)
+        {
+            var isFavourite = await this.CheckFavouriteProductsAsync(productId, userId);
+            var isAdded = true;
+
+            if (!isFavourite)
+            {
+                var clientProductLike = new ClientProductLike()
+                {
+                    ClientId = userId,
+                    ProductId = productId,
+                };
+
+                await this.clientProductLikesRepository.AddAsync(clientProductLike);
+            }
+            else
+            {
+                var clientProductLike = await this.clientProductLikesRepository
+                    .All()
+                    .FirstOrDefaultAsync(cp => cp.ProductId == productId && cp.ClientId == userId);
+
+                this.clientProductLikesRepository.Delete(clientProductLike);
+                isAdded = false;
+            }
+
+            await this.clientProductLikesRepository.SaveChangesAsync();
+
+            return isAdded;
+        }
+
+        public async Task<int> GetLikesCountAsync(string productId)
+        {
+            var count = await this.clientProductLikesRepository
+                .All()
+                .Where(cp => cp.ProductId == productId)
+                .CountAsync();
+
+            return count;
         }
 
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)

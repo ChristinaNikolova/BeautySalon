@@ -44,39 +44,9 @@
 <vc:procedure-reviews id="@Model.Id"></vc:procedure-reviews>
 
 @section Scripts{
-    <script>
-        let problems = [...document.getElementsByClassName("show-more-info")];
+    <script src="~/js/showSkinProblemsInfo.js"></script>
+    <script src="~/js/showProcedureProducts.js"></script>
 
-        problems.forEach((problem) => {
-            problem.addEventListener("click", showInfo);
-        });
-
-        function showInfo(event) {
-            let parent = event.target.parentElement;
-            let infoMessage = parent.children[1];
-
-            if (infoMessage.style.display === "block") {
-                infoMessage.style.display = "none";
-            }
-            else {
-                infoMessage.style.display = "block";
-            }
-        }
-    </script>
-    <script>
-        let button = document.getElementById("button-show-info");
-        button.addEventListener("click", showMore)
-
-        function showMore() {
-            let info = document.getElementsByClassName("show-more-products")[0];
-
-            if (info.style.display === "block") {
-                info.style.display = "none";
-                button.innerText = "Show products";
-            } else {
-                info.style.display = "block";
-                button.innerText = "Hide products";
-            }
-        }
-    </script>
+    <script>showSkinProblemsInfo();</script>
+    <script>showProcedureProducts();</script>
 }

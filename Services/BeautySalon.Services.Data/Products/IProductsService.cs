@@ -25,5 +25,11 @@
         Task<string> GetPictureUrlAsync(string id);
 
         Task<string> GetProductIdByNameAsync(string productName);
+
+        Task<bool> CheckFavouriteProductsAsync(string id, string userId);
+
+        Task<bool> LikeProductAsync(string productId, string userId);
+
+        Task<int> GetLikesCountAsync(string productId);
     }
 }

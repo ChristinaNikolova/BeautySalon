@@ -15,7 +15,6 @@ namespace BeautySalon.Data.Models
         public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.AverageRating = 0;
             this.IsSkinSensitive = false;
 
             // Client
@@ -72,8 +71,6 @@ namespace BeautySalon.Data.Models
         public string JobTypeId { get; set; }
 
         public virtual JobType JobType { get; set; }
-
-        public double AverageRating { get; set; }
 
         [MaxLength(DataValidation.StylistDescriptionMaxLenght)]
         public string Description { get; set; }

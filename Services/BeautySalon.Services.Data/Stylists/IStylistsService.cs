@@ -20,11 +20,11 @@
 
         Task<T> GetStylistDetailsAsync<T>(string id);
 
-        Task<IEnumerable<T>> SearchByAsync<T>(string categoryId, string criteria);
-
-        Task<T> GetStylistNamesAsync<T>(string id);
+        Task<IEnumerable<T>> SearchByCategoryAsync<T>(string categoryId);
 
         Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId);
+
+        Task<T> GetStylistNamesAsync<T>(string id);
 
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
 

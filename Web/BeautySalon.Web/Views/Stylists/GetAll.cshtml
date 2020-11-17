@@ -12,7 +12,7 @@
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h3 class="subheading">Stylists</h3>
                 <h2 class="mb-1">Meet Our Stylists</h2>
-                <vc:category-option-bar has-to-add-second-criteria="true"></vc:category-option-bar>
+                <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
             </div>
         </div>
         <div id="showResult" class="row">
@@ -25,7 +25,6 @@
                             <h3><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">@stylist.FirstName @stylist.LastName</a></h3>
                             <div class="subheading"><strong>Category:</strong> @stylist.CategoryName</div>
                             <div class="subheading"><strong>Speciality:</strong> @stylist.JobTypeName</div>
-                            <div class="subheading"><strong>Raiting:</strong> @stylist.FormattedRaiting</div>
                             <strong>About me</strong><p class="about-me">@stylist.ShortDescription</p>
                             <a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@stylist.Id">More info</a>
                             <p></p>

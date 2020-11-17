@@ -307,11 +307,13 @@
             return procedures;
         }
 
-        public async Task GetProcedureReviewsAsync(string appoitmentId, string content, int points)
+        public async Task AddProcedureReviewsAsync(string appoitmentId, string content, int points)
         {
             var appointment = await this.appointmentsRepository
                 .All()
                 .FirstOrDefaultAsync(a => a.Id == appoitmentId);
+
+            await this.CalculateAverageRaitingAsync(points, appointment);
 
             appointment.IsReview = true;
 
@@ -327,6 +329,29 @@
             this.appointmentsRepository.Update(appointment);
             await this.procedureReviewsRepository.AddAsync(review);
             await this.procedureReviewsRepository.SaveChangesAsync();
+            await this.appointmentsRepository.SaveChangesAsync();
+        }
+
+        private async Task CalculateAverageRaitingAsync(int points, Appointment appointment)
+        {
+            var procedure = await this.proceduresRepository
+             .All()
+             .FirstOrDefaultAsync(p => p.Id == appointment.ProcedureId);
+
+            var totalReviews = await this.procedureReviewsRepository
+                .All()
+                .Where(pr => pr.ProcedureId == appointment.ProcedureId)
+                .CountAsync();
+
+            var totalPoints = await this.procedureReviewsRepository
+                .All()
+                .Where(pr => pr.ProcedureId == appointment.ProcedureId)
+                .SumAsync(pr => pr.Points);
+
+            procedure.AverageRating = (double)(totalPoints + points) / (totalReviews + 1);
+
+            this.proceduresRepository.Update(procedure);
+            await this.proceduresRepository.SaveChangesAsync();
         }
 
         private async Task CheckSkinTypeAsync(string skinTypeId, string isSensitive, Procedure procedure, IList<SelectListItem> skinProblems = null)

@@ -36,12 +36,12 @@
         [HttpPost]
         public async Task<ActionResult<AllStylistsViewModel>> SearchBy([FromBody] SearchStylistCriteriaInputModel input)
         {
-            if (string.IsNullOrWhiteSpace(input.CategoryId) && string.IsNullOrWhiteSpace(input.Criteria))
+            if (string.IsNullOrWhiteSpace(input.CategoryId))
             {
                 return this.RedirectToAction("GetAll");
             }
 
-            var stylists = await this.stylistsService.SearchByAsync<StylistViewModel>(input.CategoryId, input.Criteria);
+            var stylists = await this.stylistsService.SearchByCategoryAsync<StylistViewModel>(input.CategoryId);
 
             return new AllStylistsViewModel { Stylists = stylists };
         }

@@ -46,6 +46,6 @@
 
         Task RemoveProductAsync(string productId, string procedureId);
 
-        Task GetProcedureReviewsAsync(string appoitmentId, string content, int points);
+        Task AddProcedureReviewsAsync(string appoitmentId, string content, int points);
     }
 }

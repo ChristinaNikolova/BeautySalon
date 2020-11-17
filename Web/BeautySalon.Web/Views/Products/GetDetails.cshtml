@@ -24,7 +24,7 @@
                     <h4 class="product-name theme-color-gold">@Model.Name</h4>
                 </div>
                 <div class="offer-deal text-center px-2 px-lg-5">
-                    <div class="img" style="background-image: url(@Model.Picture);"></div>
+                    <a href="@Model.Picture" class="gallery image-popup img d-flex align-items-center" style="background-image: url(@Model.Picture);"></a>
                 </div>
             </div>
             <div class="col-md-6 ">
@@ -32,7 +32,7 @@
                 <span class="flaticon-lotus theme-color-gold"> Category: </span><a class="theme-color-gold">@Model.CategoryName</a>
                 <br />
                 <span class="flaticon-lotus theme-color-gold"> Brand: </span><a id="brand-name" class="theme-color-gold">@Model.BrandName</a>
-                <p id="brand-description" class="hidden">
+                <p id="brand-description" style="display:none">
                     <span class="flaticon-lotus theme-color-gold"> Brand's Description: </span>@Model.BrandDescription
                 </p>
             </div>
@@ -40,16 +40,7 @@
     </div>
 </section>
 
-<script>
-    document.getElementById("brand-name").addEventListener("click", showBrandDescroption);
-
-    function showBrandDescroption() {
-        let brandDescription = document.getElementById("brand-description");
-
-        if (brandDescription.style.display === "none") {
-            brandDescription.style.display = "block";
-        } else {
-            brandDescription.style.display = "none";
-        }
-    }
-</script>
+@section Scripts {
+    <script src="~/js/showProductsBrandDescription.js"></script>
+    <script>showProductsBrandDescription();</script>
+}

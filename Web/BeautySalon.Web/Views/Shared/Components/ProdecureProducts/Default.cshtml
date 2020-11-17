@@ -30,26 +30,3 @@
         </div>
     </section>
 }
-
-@section Scripts {
-    <script>
-        let button = [...document.getElementsByClassName("get-products")];
-
-        button.forEach(button => {
-            button.addEventListener("click", showMore);
-        });
-
-        function showMore() {
-            let info = document.getElementsByClassName("show-more-products")[0];
-            let button = document.getElementById("button-show-info");
-
-            if (info.style.display === "block") {
-                info.style.display = "none";
-                button.innerText = "Show products";
-            } else {
-                info.style.display = "block";
-                button.innerText = "Hide products";
-            }
-        }
-    </script>
-}

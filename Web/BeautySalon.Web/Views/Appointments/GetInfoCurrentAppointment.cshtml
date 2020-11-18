@@ -103,15 +103,17 @@
                     <h2 class="mb-3 offset-4">Feedback</h2>
                     <hr />
                     @if (!Model.IsReview && Model.Status.ToString() == "Done"
-           && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-           && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+         && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+         && !this.User.IsInRole(GlobalConstants.StylistRoleName))
                     {
                         {
                             <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>
                         }
                     }
-
-                    <vc:review appointment-id="@Model.Id"></vc:review>
+                    @if (Model.IsReview)
+                    {
+                        <vc:review appointment-id="@Model.Id"></vc:review>
+                    }
                 </div>
             </div>
         </div>

@@ -11,6 +11,8 @@
 
         public string Content { get; set; }
 
+        public int Points { get; set; }
+
         public string ClientPicture { get; set; }
 
         public DateTime Date { get; set; }

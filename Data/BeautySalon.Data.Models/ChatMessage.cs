@@ -22,6 +22,8 @@
 
         public virtual ApplicationUser Receiver { get; set; }
 
+        public string User { get; set; }
+
         [Required]
         public string Content { get; set; }
     }

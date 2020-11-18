@@ -1,37 +1,20 @@
 ﻿namespace BeautySalon.Web.Hubs
 {
+    using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.ChatMessages;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.SignalR;
+    using System.Threading.Tasks;
 
     [Authorize]
     public class ChatHub : Hub
     {
-        private readonly IChatMessagesService chatMessagesService;
-
-        public ChatHub(IChatMessagesService chatMessagesService)
+        public async Task Send(string message)
         {
-            this.chatMessagesService = chatMessagesService;
+            await this.Clients.All.SendAsync(
+                "NewMessage",
+                new ChatMessage { User = this.Context.User.Identity.Name, Content = message, });
         }
-
-        // public async Task Send(SendMessageInputModel inputModel)
-        // {
-        //    var newChatMessage = this.chatMessagesService.CreateAsync();
-        // }
     }
 }
-
-
-// var caller = this.userManager
-//    .Users
-//    .First(x => x.Id == inputModel.CallerId)
-//    .ProfilePictureUrl;
-
-// await this.Clients
-//    .User(inputModel.UserId)
-//    .SendAsync("RecieveMessage", message, caller);
-
-// await this.Clients
-//    .Caller
-//    .SendAsync("SendMessage", message);

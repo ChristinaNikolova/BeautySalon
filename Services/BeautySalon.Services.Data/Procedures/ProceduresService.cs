@@ -324,6 +324,7 @@
                 Content = content,
                 Points = points,
                 Date = DateTime.UtcNow,
+                AppointmentId = appoitmentId,
             };
 
             this.appointmentsRepository.Update(appointment);

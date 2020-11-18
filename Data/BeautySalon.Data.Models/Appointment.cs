@@ -42,5 +42,9 @@
         public string Comment { get; set; }
 
         public bool IsReview { get; set; }
+
+        public string ReviewId { get; set; }
+
+        public virtual Review Review { get; set; }
     }
 }

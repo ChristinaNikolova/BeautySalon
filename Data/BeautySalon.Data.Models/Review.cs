@@ -24,6 +24,11 @@
         public virtual ApplicationUser Client { get; set; }
 
         [Required]
+        public string AppointmentId { get; set; }
+
+        public virtual Appointment Appointment { get; set; }
+
+        [Required]
         [MaxLength(DataValidation.ProcedureReviewContentMaxLenght)]
         public string Content { get; set; }
 

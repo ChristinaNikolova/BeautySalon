@@ -38,8 +38,8 @@
 </section>
 <section class="ftco-section contact-section">
     <div class="container">
-        <div class="row block-9">
-            <div class="col-md-6 contact-info ftco-animate bg-light p-4">
+        <div class="row">
+            <div class="col-md-5 contact-info ftco-animate bg-light p-4">
                 <div class="row">
                     <div class="col-md-12 mb-4">
                         <h2 class="h2">Appointment's Details</h2>
@@ -99,18 +99,19 @@
             <div class="col-md-1"></div>
             <div class="col-md-4 ftco-animate">
                 <div class="row">
-                    <div class="col-md-6">
-                        @if (!Model.IsReview && Model.Status.ToString() == "Done"
-                        && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-                        && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                    <div class="text-center"></div>
+                    <h2 class="mb-3 offset-4">Feedback</h2>
+                    <hr />
+                    @if (!Model.IsReview && Model.Status.ToString() == "Done"
+           && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+           && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                    {
                         {
-                            {
-                                <h2>Feedback</h2>
-                                <hr />
-                                <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>
-                            }
+                            <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>
                         }
-                    </div>
+                    }
+
+                    <vc:review appointment-id="@Model.Id"></vc:review>
                 </div>
             </div>
         </div>

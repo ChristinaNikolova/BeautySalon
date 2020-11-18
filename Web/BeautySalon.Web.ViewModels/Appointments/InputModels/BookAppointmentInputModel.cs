@@ -8,6 +8,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Web.Infrastructure.ValidationAttributes;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class BookAppointmentInputModel : IMapFrom<ApplicationUser>

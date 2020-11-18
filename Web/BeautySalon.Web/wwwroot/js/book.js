@@ -61,7 +61,6 @@
 
     function loadProcedures(event) {
         clearData();
-
         if (categoryId === '5c18b9b0-edf7-4257-89d4-9000f2c1d0c3' && clientSkinTypeId !== "") {
             document.getElementById("smart-search-message").style.display = "block";
         } else {

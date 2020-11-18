@@ -34,6 +34,11 @@
 
             var model = await this.usersService.GetUserDataAsync<BookAppointmentInputModel>(userId);
 
+            if (model.CategoryId != null)
+            {
+                model.CategoryId = null;
+            }
+
             var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
             model.Categories = categories;
 

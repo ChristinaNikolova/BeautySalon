@@ -63,24 +63,6 @@
 
             if (this.ModelState.IsValid)
             {
-                var existingEmail = await this.userManager.Users
-                    .FirstOrDefaultAsync(u => u.Email == this.Input.Email);
-
-                var existingUsername = await this.userManager.Users
-                    .FirstOrDefaultAsync(u => u.UserName == this.Input.Username);
-
-                if (existingEmail != null && existingUsername != null)
-                {
-                    this.TempData["InfoMessage"] = ErrorMessages.UserExists;
-                    return this.RedirectToPage("Register");
-                }
-
-                if (existingEmail != null)
-                {
-                    this.TempData["InfoMessage"] = ErrorMessages.EmailExists;
-                    return this.RedirectToPage("Register");
-                }
-
                 string pictureAsString = await this.cloudinaryService.UploudAsync(this.Input.Picture, this.Input.Username);
 
                 var user = new ApplicationUser()

@@ -8,11 +8,14 @@
 
     public class HomeController : BaseController
     {
+        //check if works on HomeComtroller(Attr)
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return this.View();
         }
 
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return this.View();

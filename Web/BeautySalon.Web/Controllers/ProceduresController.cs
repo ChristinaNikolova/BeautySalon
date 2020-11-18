@@ -10,6 +10,7 @@
     using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using BeautySalon.Web.ViewModels.Procedures.InputModels;
     using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class ProceduresController : BaseController
@@ -28,6 +29,7 @@
             this.appointmentsService = appointmentsService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> ProceduresByCategories()
         {
             var model = new ProceduresByCategoriesViewModel()
@@ -38,6 +40,7 @@
             return this.View(model);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> GetProceduresByCategory(string id, int currentPage = 1)
         {
             var proceduresCount = await this.proceduresService.GetTotalCountProceduresByCategoryAsync(id);
@@ -69,6 +72,7 @@
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<SearchProcedureCriteriaViewModelModel>> SearchBy([FromBody] SearchProcedureCriteriaInputModel input)
         {
             var category = await this.categoriesService.GetByNameAsync(input.CategoryName);

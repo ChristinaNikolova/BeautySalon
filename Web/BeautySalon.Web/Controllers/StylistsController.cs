@@ -5,6 +5,7 @@
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Web.ViewModels.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Stylists.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class StylistsController : BaseController
@@ -16,6 +17,7 @@
             this.stylistsService = stylistsService;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var model = new AllStylistsViewModel()
@@ -34,6 +36,7 @@
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<AllStylistsViewModel>> SearchBy([FromBody] SearchStylistCriteriaInputModel input)
         {
             if (string.IsNullOrWhiteSpace(input.CategoryId))

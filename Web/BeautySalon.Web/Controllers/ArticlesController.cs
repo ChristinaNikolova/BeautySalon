@@ -8,6 +8,7 @@
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Web.ViewModels.Articles.InputModels;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@
             this.userManager = userManager;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll(int currentPage = 1)
         {
             var articlesCount = await this.articlesService.GetTotalCountArticlesAsync();
@@ -63,6 +65,7 @@
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<AllArticlesViewModel>> SearchBy([FromBody] SearchArticleCriteriaInputModel input)
         {
             if (string.IsNullOrWhiteSpace(input.CategoryId))

@@ -47,5 +47,7 @@
         Task RemoveProductAsync(string productId, string procedureId);
 
         Task AddProcedureReviewsAsync(string appoitmentId, string content, int points);
+
+        Task<IEnumerable<T>> GetProceduresUseProductAsync<T>(string productId);
     }
 }

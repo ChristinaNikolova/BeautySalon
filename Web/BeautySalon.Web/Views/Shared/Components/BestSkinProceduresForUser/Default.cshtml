@@ -2,10 +2,7 @@
 @model AllProcedurePrimaryViewModel;
 
 
-@foreach (var procedure in Model.Procedures)
-{
-    <p class="ftco-animate"><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@procedure.Id"><span class="flaticon-lotus theme-color-gold"></span> @procedure.Name</a></p>
-}
+<partial name="_ListOfProceduresPartial" model="@Model.Procedures" />
 
 @if (Model.Procedures.ToList().Count() == 0)
 {

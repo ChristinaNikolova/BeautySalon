@@ -1,0 +1,7 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model IEnumerable<ProcedurePrimaryViewModel>;
+
+@foreach (var procedure in Model)
+{
+    <p class="ftco-animate"><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@procedure.Id"><span class="flaticon-lotus theme-color-gold"></span> @procedure.Name</a></p>
+}

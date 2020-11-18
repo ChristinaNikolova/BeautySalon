@@ -332,6 +332,18 @@
             await this.appointmentsRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetProceduresUseProductAsync<T>(string productId)
+        {
+            var procedures = await this.proceduresRepository
+                .All()
+                .Where(p => p.ProcedureProducts.Any(pp => pp.ProductId == productId))
+                .OrderBy(p => p.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
+        }
+
         private async Task CalculateAverageRaitingAsync(int points, Appointment appointment)
         {
             var procedure = await this.proceduresRepository

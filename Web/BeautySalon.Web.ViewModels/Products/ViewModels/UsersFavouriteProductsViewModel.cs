@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Web.ViewModels.Products.ViewModels
 {
-
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 

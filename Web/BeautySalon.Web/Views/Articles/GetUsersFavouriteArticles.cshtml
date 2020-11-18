@@ -30,6 +30,11 @@
                         </div>
                     </div>
                 }
+
+                @if (Model.Articles.ToList().Count() == 0)
+                {
+                    <p class="text-center">You dont't have any favourite articles yet!</p>
+                }
             </div>
         </div>
     </div>

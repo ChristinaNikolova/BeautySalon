@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Products;
     using BeautySalon.Web.ViewModels.Products.ViewModels;
@@ -37,6 +38,18 @@
             var likesCount = await this.productsService.GetLikesCountAsync(productId);
 
             return new LikeProductViewModel { IsAdded = isAdded, LikesCount = likesCount };
+        }
+
+        public async Task<IActionResult> GetUsersFavouriteProducts()
+        {
+            var userId = this.userManager.GetUserId(this.User);
+
+            var model = new AllUsersFavouriteProductsViewModel()
+            {
+                Products = await this.productsService.GetUsersFavouriteProductsAsync<UsersFavouriteProductsViewModel>(userId),
+            };
+
+            return this.View(model);
         }
     }
 }

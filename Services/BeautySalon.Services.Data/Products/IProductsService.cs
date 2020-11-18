@@ -31,5 +31,7 @@
         Task<bool> LikeProductAsync(string productId, string userId);
 
         Task<int> GetLikesCountAsync(string productId);
+
+        Task<IEnumerable<T>> GetUsersFavouriteProductsAsync<T>(string userId);
     }
 }

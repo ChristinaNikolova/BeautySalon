@@ -192,6 +192,18 @@
             return count;
         }
 
+        public async Task<IEnumerable<T>> GetUsersFavouriteProductsAsync<T>(string userId)
+        {
+            var products = await this.clientProductLikesRepository
+               .All()
+               .Where(cpl => cpl.ClientId == userId)
+               .OrderBy(cpl => cpl.Product.Name)
+               .To<T>()
+               .ToListAsync();
+
+            return products;
+        }
+
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)
         {
             return await this.cloudinaryService.UploudAsync(picture, name);

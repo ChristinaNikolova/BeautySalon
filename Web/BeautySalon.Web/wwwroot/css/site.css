@@ -374,3 +374,7 @@ div .tooltip-inner {
     height: 300px;
     overflow-y: scroll;
 }
+
+#small-pic {
+    max-width: 9%;
+}

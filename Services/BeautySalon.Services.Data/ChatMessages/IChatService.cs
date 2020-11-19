@@ -4,8 +4,10 @@
 
     using BeautySalon.Data.Models;
 
-    public interface IChatMessagesService
+    public interface IChatService
     {
         Task<ChatMessage> CreateAsync(string content, string receiverId, string senderId);
+
+        Task<T> CreateChatAsync<T>(string userId);
     }
 }

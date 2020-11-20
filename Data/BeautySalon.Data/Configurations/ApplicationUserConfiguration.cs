@@ -59,6 +59,16 @@
                .HasForeignKey(r => r.ClientId);
 
             appUser
+                .HasMany(u => u.ClientChatGroups)
+                .WithOne(chg => chg.Client)
+                .HasForeignKey(chg => chg.ClientId);
+
+            appUser
+                .HasMany(u => u.AdminChatGroups)
+                .WithOne(chg => chg.Admin)
+                .HasForeignKey(chg => chg.AdminId);
+
+            appUser
                 .HasMany(e => e.Claims)
                 .WithOne()
                 .HasForeignKey(e => e.UserId)

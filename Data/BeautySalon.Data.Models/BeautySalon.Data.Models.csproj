@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ApplicationUser.cs~RF9ebafba.TMP" />
     <None Remove="Question.cs~RF75d78a.TMP" />
   </ItemGroup>
   <ItemGroup>

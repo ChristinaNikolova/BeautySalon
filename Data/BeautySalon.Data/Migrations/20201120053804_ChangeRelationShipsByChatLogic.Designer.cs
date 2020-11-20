@@ -4,14 +4,16 @@ using BeautySalon.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeautySalon.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201120053804_ChangeRelationShipsByChatLogic")]
+    partial class ChangeRelationShipsByChatLogic
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,10 +455,6 @@ namespace BeautySalon.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ChatGroupId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)")
@@ -482,12 +480,7 @@ namespace BeautySalon.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("WaitingForAnswerFromAdmin")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ChatGroupId");
 
                     b.HasIndex("IsDeleted");
 
@@ -1341,12 +1334,6 @@ namespace BeautySalon.Data.Migrations
 
             modelBuilder.Entity("BeautySalon.Data.Models.ChatMessage", b =>
                 {
-                    b.HasOne("BeautySalon.Data.Models.ChatGroup", "ChatGroup")
-                        .WithMany("ChatMessages")
-                        .HasForeignKey("ChatGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("BeautySalon.Data.Models.ApplicationUser", "Receiver")
                         .WithMany("ReceivedMessages")
                         .HasForeignKey("ReceiverId")

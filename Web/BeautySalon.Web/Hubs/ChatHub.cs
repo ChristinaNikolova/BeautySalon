@@ -1,33 +1,31 @@
-﻿using System.Threading.Tasks;
-using BeautySalon.Common;
-using BeautySalon.Data.Models;
-using Ganss.XSS;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
-
-namespace BeautySalon.Web.Hubs
+﻿namespace BeautySalon.Web.Hubs
 {
+    using System.Threading.Tasks;
+
+    using BeautySalon.Data.Models;
+    using BeautySalon.Services.Data.ChatMessages;
+    using Ganss.XSS;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.SignalR;
+    using Microsoft.EntityFrameworkCore;
+
     [Authorize]
     public class ChatHub : Hub
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IChatsService chatService;
 
-        public ChatHub(UserManager<ApplicationUser> userManager)
+        public ChatHub(UserManager<ApplicationUser> userManager, IChatsService chatService)
         {
             this.userManager = userManager;
+            this.chatService = chatService;
         }
-
-        //public async Task Send(string message, string picture)
-        //{
-        //    await this.Clients.All.SendAsync(
-        //        "NewMessage",
-        //        new ChatMessage { User = this.Context.User.Identity.Name, Content = message, Picture = picture });
-        //}
 
         public async Task Send(SendMessageInputModel input)
         {
+            //todo validate length
+            //todo sanitizer
             var sanitizer = new HtmlSanitizer();
             var message = sanitizer.Sanitize(input.ChatMessage);
 
@@ -36,29 +34,27 @@ namespace BeautySalon.Web.Hubs
                 return;
             }
 
-            var connId = this.Context.ConnectionId;
-            var clients = this.Clients.Caller;
-            ;
-            //var testUser = await this.userManager.FindByIdAsync(input.UserId);
-            var senderUsername = this.Context.User.Identity.Name;
+            var sender = await this.userManager.Users.FirstAsync(u => u.UserName == input.SenderUsername);
+            var receiver = await this.userManager.Users.FirstAsync(u => u.UserName == input.ReceiverUsername);
 
-            var sender = await this.userManager.Users.FirstAsync(u => u.UserName == senderUsername);
-            ;
-            //if (input.Id != input.UserId)
-            //{
-            //    sender = await this.userManager.Users.FirstAsync(u => u.Id == input.AdminId);
-            //}
-            ;
-            //var receiver = await this.userManager.Users.FirstAsync(u => u.Id == input.ReceiverId);
+            await this.chatService.SendMessageAsync(input.ChatMessage, sender, receiver, input.GroupName);
 
+            await this.Clients
+                .User(receiver.Id)
+                .SendAsync("ReceiveMessage", message, sender.UserName, sender.Picture);
 
-            //await this.Clients
-            //    .User(receiver.Id)
-            //    .SendAsync("RecieveMessage", message, sender.UserName, sender.Picture);
+            await this.Clients
+                .Caller
+                .SendAsync("SendMessage", message, sender.UserName, sender.Picture);
+        }
 
-            //await this.Clients
-            //    .Caller
-            //    .SendAsync("SendMessage", message, sender.UserName, sender.Picture);
+        public async Task CreateGroup(string senderUsername, string receiverUsername, string groupName)
+        {
+            var sender = await this.userManager.FindByNameAsync(senderUsername);
+            var receiver = await this.userManager.FindByNameAsync(receiverUsername);
+
+            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, groupName);
+            await this.chatService.CreateUsersGroup(sender, receiver, groupName);
         }
     }
 
@@ -66,8 +62,10 @@ namespace BeautySalon.Web.Hubs
     {
         public string ChatMessage { get; set; }
 
-        public string AdminId { get; set; }
+        public string SenderUsername { get; set; }
 
-        public string UserId { get; set; }
+        public string ReceiverUsername { get; set; }
+
+        public string GroupName { get; set; }
     }
 }

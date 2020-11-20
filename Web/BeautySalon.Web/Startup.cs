@@ -91,7 +91,7 @@
 
             services.AddTransient<IBrandsService, BrandsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
-            services.AddTransient<IChatService, ChatService>();
+            services.AddTransient<IChatsService, ChatsService>();
             services.AddTransient<IJobTypesService, JobTypesService>();
             services.AddTransient<IProceduresService, ProceduresService>();
             services.AddTransient<IProductsService, ProductsService>();

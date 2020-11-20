@@ -36,6 +36,8 @@ namespace BeautySalon.Data.Models
 
             this.ReceivedMessages = new HashSet<ChatMessage>();
             this.SendMessages = new HashSet<ChatMessage>();
+            this.ClientChatGroups = new HashSet<UserChatGroup>();
+            this.AdminChatGroups = new HashSet<UserChatGroup>();
 
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
@@ -117,6 +119,10 @@ namespace BeautySalon.Data.Models
         public virtual ICollection<ChatMessage> ReceivedMessages { get; set; }
 
         public virtual ICollection<ChatMessage> SendMessages { get; set; }
+
+        public virtual ICollection<UserChatGroup> ClientChatGroups { get; set; }
+
+        public virtual ICollection<UserChatGroup> AdminChatGroups { get; set; }
 
         // Default
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }

@@ -4,14 +4,16 @@ using BeautySalon.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeautySalon.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201120050902_AddChatEntities")]
+    partial class AddChatEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,10 +455,6 @@ namespace BeautySalon.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ChatGroupId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)")
@@ -482,12 +480,7 @@ namespace BeautySalon.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("WaitingForAnswerFromAdmin")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ChatGroupId");
 
                     b.HasIndex("IsDeleted");
 
@@ -1119,42 +1112,15 @@ namespace BeautySalon.Data.Migrations
 
             modelBuilder.Entity("BeautySalon.Data.Models.UserChatGroup", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AdminId")
-                        .IsRequired()
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ChatGroupId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
+                    b.HasKey("ApplicationUserId", "ChatGroupId");
 
                     b.HasIndex("ChatGroupId");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("IsDeleted");
 
                     b.ToTable("UserChatGroups");
                 });
@@ -1341,12 +1307,6 @@ namespace BeautySalon.Data.Migrations
 
             modelBuilder.Entity("BeautySalon.Data.Models.ChatMessage", b =>
                 {
-                    b.HasOne("BeautySalon.Data.Models.ChatGroup", "ChatGroup")
-                        .WithMany("ChatMessages")
-                        .HasForeignKey("ChatGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("BeautySalon.Data.Models.ApplicationUser", "Receiver")
                         .WithMany("ReceivedMessages")
                         .HasForeignKey("ReceiverId")
@@ -1573,21 +1533,15 @@ namespace BeautySalon.Data.Migrations
 
             modelBuilder.Entity("BeautySalon.Data.Models.UserChatGroup", b =>
                 {
-                    b.HasOne("BeautySalon.Data.Models.ApplicationUser", "Admin")
-                        .WithMany("AdminChatGroups")
-                        .HasForeignKey("AdminId")
+                    b.HasOne("BeautySalon.Data.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("UserChatGroups")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BeautySalon.Data.Models.ChatGroup", "ChatGroup")
                         .WithMany("UserChatGroups")
                         .HasForeignKey("ChatGroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BeautySalon.Data.Models.ApplicationUser", "Client")
-                        .WithMany("ClientChatGroups")
-                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

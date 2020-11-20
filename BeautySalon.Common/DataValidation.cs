@@ -62,6 +62,12 @@
         // Category
         public const int CategoryNameMaxLenght = 50;
 
+        // ChatGroup
+        public const int ChatGroupNameMaxLength = 200;
+
+        // ChatMessage
+        public const int ChatMessageContentMaxLength = 1000;
+
         // Comment
         public const int CommentContentMinLenght = 3;
 

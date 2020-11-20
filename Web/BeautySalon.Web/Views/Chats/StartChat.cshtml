@@ -1,0 +1,121 @@
+﻿@using BeautySalon.Web.ViewModels.Chats.ViewModels;
+@model StartChatViewModel;
+
+@{
+    ViewData["Title"] = "Chat room";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            @if (this.User.IsInRole("Admin"))
+            {
+                <partial name="_NavBarAdministrationPartial" />
+            }
+            else
+            {
+                <partial name="_NavBarUserPartial" />
+            }
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <h5 class="text-center">Chat with Admin</h5>
+                @if (@Model.SenderUsername != "Admin")
+                {
+                    <div id="group-name" class="hidden">@Model.SenderUsername</div>
+                }
+                else
+                {
+                    <div id="group-name" class="hidden">@Model.ReceiverUsername</div>
+                }
+
+                <div id="sender-username" class="hidden">@Model.SenderUsername</div>
+                <div id="receiver-username" class="hidden">@Model.ReceiverUsername</div>
+                <div id="messagesList" style="font-size: 28px;">
+                    @if (Model.ChatMessages.ToList().Count() != 0)
+                    {
+                        foreach (var message in Model.ChatMessages)
+                        {
+                            if (Model.SenderUsername == message.SenderUsername)
+                            {
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h6 class="mt-0 mb-1 color-black">@message.SenderUsername</h6><p class="small mb-2"> @message.Content</p>
+                                    </div><img id="small-pic" src="@message.SenderPicture" class="ml-3" alt="user-pic">
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="media"><img id="small-pic" src="@message.ReceiverPicture" class="ml-3" alt="user-pic"></div>
+                                <div class="media-body">
+                                    <h6 class="mt-0 color-black">@message.ReceiverUsername</h6><p class="small mb-2"> @message.Content</p>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+                <hr style="height: 5px;" class="bg-primary" />
+                <div class="row">
+                    <div id="message-holder" class="mt-3 d-flex justify-content-start">
+                        <h4 class="mt-2">Message</h4>
+                        <textarea class="w-75 ml-4 pl-3" rols="5" type="text" id="messageInput" placeholder="Message..."></textarea>
+                    </div>
+                    <button id="sendButton" class="ml-4 btn btn-primary btn-lg">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+
+    <script>
+        var connection =
+            new signalR.HubConnectionBuilder()
+                .withUrl("/chat")
+                .build();
+
+        connection.start().then(function () {
+            var senderUsername = document.getElementById("sender-username").innerText;
+            var receiverUsername = document.getElementById("receiver-username").innerText;
+            var groupName = document.getElementById("group-name").innerText;
+
+            connection
+                .invoke("CreateGroup", senderUsername, receiverUsername, groupName);
+        });
+
+        $("#sendButton").click(function () {
+            var chatMessage = $("#messageInput").val();
+            var senderUsername = document.getElementById("sender-username").innerText;
+            var receiverUsername = document.getElementById("receiver-username").innerText;
+            var groupName = document.getElementById("group-name").innerText;
+
+            var model = {
+                chatMessage: chatMessage,
+                senderUsername: senderUsername,
+                receiverUsername: receiverUsername,
+                groupName: groupName,
+            };
+
+            connection.invoke("Send", model);
+            $("textarea").val("");
+            $("textarea").focus();
+        });
+
+        connection.on("SendMessage", function (message, username, picture) {
+            var date = new Date();
+            var chatInfo = `<div class="media"><div class="media-body"><h6 class="mt-0 mb-1 color-black">${username}</h6><p class="small mb-2"> ${message}</p></div><img id="small-pic" src="${picture}" class="ml-3" alt="user-pic"></div>`;
+
+            $("#messagesList").append(chatInfo);
+        });
+
+        connection.on("ReceiveMessage", function (message, username, picture) {
+            var date = new Date();
+            var chatInfo = `<div class="media"><img id="small-pic" src="${picture}" class="ml-3" alt="user-pic"></div>class="media-body"><h6 class="mt-0 color-black">${username}</h6><p class="small mb-2"> ${message}</p></div>`;
+
+            $("#messagesList").append(chatInfo);
+        });
+    </script>
+}

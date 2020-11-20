@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
@@ -14,18 +15,15 @@
         private readonly IRepository<ChatMessage> chatMessagesRepository;
         private readonly IRepository<ChatGroup> chatGroupsRepository;
         private readonly IRepository<UserChatGroup> userChatGroupsRepository;
-        private readonly IRepository<ApplicationUser> usersRepository;
 
         public ChatsService(
             IRepository<ChatMessage> chatMessagesRepository,
             IRepository<ChatGroup> chatGroupsRepository,
-            IRepository<UserChatGroup> userChatGroupsRepository,
-            IRepository<ApplicationUser> usersRepository)
+            IRepository<UserChatGroup> userChatGroupsRepository)
         {
             this.chatMessagesRepository = chatMessagesRepository;
             this.chatGroupsRepository = chatGroupsRepository;
             this.userChatGroupsRepository = userChatGroupsRepository;
-            this.usersRepository = usersRepository;
         }
 
         public async Task<string> CreateUsersGroup(ApplicationUser sender, ApplicationUser receiver, string groupName)

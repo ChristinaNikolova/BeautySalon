@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.ChatMessages;
@@ -23,7 +24,6 @@
 
         public async Task<IActionResult> Index()
         {
-            ;
             var model = new IndexViewModel()
             {
                 AdminUsername = GlobalConstants.AdminName,
@@ -53,8 +53,10 @@
 
             var model = new StartChatViewModel()
             {
+                CurrentUserUsername = this.userManager.GetUserName(this.User),
                 SenderUsername = client.UserName,
                 ReceiverUsername = receiver.UserName,
+                GroupName = groupName,
                 ChatMessages = await this.chatsService.GetOldMessagesAsync<ChatMessageViewModel>(groupId),
             };
 

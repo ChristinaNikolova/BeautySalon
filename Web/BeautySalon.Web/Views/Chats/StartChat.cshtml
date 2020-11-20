@@ -21,27 +21,19 @@
         <div class="col-md-9">
             <div class="container">
                 <h5 class="text-center">Chat with Admin</h5>
-                @if (@Model.SenderUsername != "Admin")
-                {
-                    <div id="group-name" class="hidden">@Model.SenderUsername</div>
-                }
-                else
-                {
-                    <div id="group-name" class="hidden">@Model.ReceiverUsername</div>
-                }
-
                 <div id="sender-username" class="hidden">@Model.SenderUsername</div>
                 <div id="receiver-username" class="hidden">@Model.ReceiverUsername</div>
+                <div id="group-name" class="hidden">@Model.GroupName</div>
                 <div id="messagesList" style="font-size: 28px;">
                     @if (Model.ChatMessages.ToList().Count() != 0)
                     {
                         foreach (var message in Model.ChatMessages)
                         {
-                            if (Model.SenderUsername == message.SenderUsername)
+                            if (Model.CurrentUserUsername == message.SenderUsername)
                             {
                                 <div class="media">
                                     <div class="media-body">
-                                        <h6 class="mt-0 mb-1 color-black">@message.SenderUsername</h6><p class="small mb-2"> @message.Content</p>
+                                        <h6 class="mt-0 mb-1 color-black">@message.SenderUsername says:</h6><p class="small mb-2"> @message.Content</p>
                                     </div><img id="small-pic" src="@message.SenderPicture" class="ml-3" alt="user-pic">
                                 </div>
                                 <hr />
@@ -49,10 +41,10 @@
                             else
                             {
                                 <div class="media">
-                                    <img id="small-pic" src="@message.ReceiverPicture" class="ml-3" alt="user-pic">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 color-black">@message.ReceiverUsername</h6>
-                                        <p class="small mb-2">@message.Content</p>
+                                    <img id="small-pic" src="@message.SenderPicture" class="ml-3" alt="user-pic">
+                                    <div class="media-body text-right mr-1">
+                                        <h6 class="mt-0 color-black">@message.SenderUsername says:</h6>
+                                        <p class="small">@message.Content</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -109,7 +101,7 @@
 
         connection.on("SendMessage", function (message, username, picture) {
             var date = new Date();
-            var chatInfo = `<div class="media"><div class="media-body"><h6 class="mt-0 mb-1 color-black">${username}</h6><p class="small mb-2"> ${message}</p></div><img id="small-pic" src="${picture}" class="ml-3" alt="user-pic"></div>`;
+            var chatInfo = `<div class="media"><div class="media-body"><h6 class="mt-0 mb-1 color-black">${username} says:</h6><p class="small mb-2"> ${message}</p></div><img id="small-pic" src="${picture}" class="ml-3" alt="user-pic"></div><hr />`;
 
             $("#messagesList").append(chatInfo);
         });
@@ -117,28 +109,13 @@
         connection.on("ReceiveMessage", function (message, username, picture) {
             var date = new Date();
             var chatInfo = `<div class="media">
-                <img id="small-pic" src="${picture}" class="ml-3" alt="user-pic">
-                <div class="media-body">
-                    <h6 class="mt-0 color-black">${username}</h6>
-                    <p class="small mb-2"> ${message}</p>
-                </div>
-</div>`;
+                                    <img id="small-pic" src="${picture}" class="ml-3" alt="user-pic">
+                                    <div class="media-body">
+                                        <h6 class="mt-0 color-black">${username} says:</h6>
+                                        <p class="small text-right mr-1"> ${message}</p>
+                                    </div></div><hr />`;
 
             $("#messagesList").append(chatInfo);
         });
     </script>
 }
-
-@*<div class="media">
-        <img id="small-pic" src="${picture}" class="ml-3" alt="user-pic">
-    </div>class="media-body">
-    <h6 class="mt-0 color-black">${username}</h6>
-    <p class="small mb-2"> ${message}</p>
-
-    <div class="media">
-        <img id="small-pic" src="${picture}" class="ml-3" alt="user-pic">
-        <div class="media-body">
-            <h6 class="mt-0 color-black">${username}</h6>
-            <p class="small mb-2"> ${message}</p>
-        </div>
-    </div>*@

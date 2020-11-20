@@ -1,8 +1,9 @@
 ﻿namespace BeautySalon.Web.ViewModels.Chats.ViewModels
 {
+    using System.Collections.Generic;
+
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
-    using System.Collections.Generic;
 
     public class IndexViewModel
     {

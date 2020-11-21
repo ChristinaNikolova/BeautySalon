@@ -1,5 +1,6 @@
 ﻿@using BeautySalon.Web.ViewModels.Chats.ViewModels;
 @model StartChatViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
 @{
     ViewData["Title"] = "Chat room";
@@ -41,7 +42,7 @@
                             {
                                 <div class="media">
                                     <div class="media-body ml-2">
-                                        <span class="small theme-color-gold">@message.FormattedDate</span>
+                                        <time class="small theme-color-gold">@message.FormattedDate</time>
                                         <h6 class="mt-0 mb-1">@message.SenderUsername says:</h6><p class="small mb-2 color-black"> @message.Content</p>
                                     </div><img id="small-pic" src="@message.SenderPicture" class="mr-2 img-fluid" alt="user-pic">
                                 </div>
@@ -52,7 +53,7 @@
                                 <div class="media">
                                     <img id="small-pic" src="@message.SenderPicture" class="img-fluid mr-2" alt="user-pic">
                                     <div class="media-body text-right mr-2">
-                                        <span class="small theme-color-gold">@message.FormattedDate</span>
+                                        <time class="small theme-color-gold">@message.FormattedDate</time>
                                         <h6 class="mt-0">@message.SenderUsername says:</h6>
                                         <p class="small color-black">@message.Content</p>
                                     </div>
@@ -75,6 +76,14 @@
 </section>
 
 @section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
     <script src="~/js/chat.js"></script>
     <script>chat();</script>
 }

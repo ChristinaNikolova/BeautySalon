@@ -19,7 +19,7 @@
             }
         </div>
         <div class="col-md-9">
-            <div class="container">
+            <div id="test" class="container">
                 <h5 class="text-center">Chat with Admin</h5>
                 <div id="sender-username" class="hidden">@Model.SenderUsername</div>
                 <div id="receiver-username" class="hidden">@Model.ReceiverUsername</div>
@@ -32,19 +32,21 @@
                             if (Model.CurrentUserUsername == message.SenderUsername)
                             {
                                 <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 mb-1 color-black">@message.SenderUsername says:</h6><p class="small mb-2"> @message.Content</p>
-                                    </div><img id="small-pic" src="@message.SenderPicture" class="ml-3" alt="user-pic">
+                                    <div class="media-body ml-2">
+                                        <span class="small theme-color-gold">@message.FormattedDate</span>
+                                        <h6 class="mt-0 mb-1">@message.SenderUsername says:</h6><p class="small mb-2 color-black"> @message.Content</p>
+                                    </div><img id="small-pic" src="@message.SenderPicture" class="mr-2 img-fluid" alt="user-pic">
                                 </div>
                                 <hr />
                             }
                             else
                             {
                                 <div class="media">
-                                    <img id="small-pic" src="@message.SenderPicture" class="ml-3" alt="user-pic">
-                                    <div class="media-body text-right mr-1">
-                                        <h6 class="mt-0 color-black">@message.SenderUsername says:</h6>
-                                        <p class="small">@message.Content</p>
+                                    <img id="small-pic" src="@message.SenderPicture" class="img-fluid mr-2" alt="user-pic">
+                                    <div class="media-body text-right mr-2">
+                                        <span class="small theme-color-gold">@message.FormattedDate</span>
+                                        <h6 class="mt-0">@message.SenderUsername says:</h6>
+                                        <p class="small color-black">@message.Content</p>
                                     </div>
                                 </div>
                                 <hr />
@@ -67,6 +69,13 @@
 
 @section Scripts {
     <script>
+        updateScrollToBottom();
+
+        function updateScrollToBottom() {
+            var messageBody = document.querySelector('#messagesList');
+            messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+        }
+
         var connection =
             new signalR.HubConnectionBuilder()
                 .withUrl("/chat")
@@ -101,21 +110,34 @@
 
         connection.on("SendMessage", function (message, username, picture) {
             var date = new Date();
-            var chatInfo = `<div class="media"><div class="media-body"><h6 class="mt-0 mb-1 color-black">${username} says:</h6><p class="small mb-2"> ${message}</p></div><img id="small-pic" src="${picture}" class="ml-3" alt="user-pic"></div><hr />`;
+            var formattedDate = formatDate(date);
+
+            var chatInfo = `<div class="media"><div class="media-body ml-2"><span class="small theme-color-gold">${formattedDate}</span><h6 class="mt-0 mb-1">${username} says:</h6><p class="small mb-2 color-black"> ${message}</p></div><img id="small-pic" src="${picture}" class="mr-2 img-fluid" alt="user-pic"></div><hr />`;
 
             $("#messagesList").append(chatInfo);
+            updateScrollToBottom();
         });
 
         connection.on("ReceiveMessage", function (message, username, picture) {
             var date = new Date();
-            var chatInfo = `<div class="media">
-                                    <img id="small-pic" src="${picture}" class="ml-3" alt="user-pic">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 color-black">${username} says:</h6>
-                                        <p class="small text-right mr-1"> ${message}</p>
-                                    </div></div><hr />`;
+            var formattedDate = formatDate(date);
+
+            var chatInfo = `<div class="media"><img id="small-pic" src="${picture}" class="img-fluid mr-2" alt="user-pic">
+                                   <div class="media-body mr-2 text-right"><span class="small theme-color-gold">${formattedDate}</span><h6 class="mt-0">${username} says:</h6><p class="small text-right color-black"> ${message}</p></div></div><hr />`;
 
             $("#messagesList").append(chatInfo);
+            updateScrollToBottom();
         });
+
+        function formatDate(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm.toUpperCase();
+            return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
+        }
     </script>
 }

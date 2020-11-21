@@ -371,10 +371,11 @@ div .tooltip-inner {
 }
 
 #messagesList {
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
 }
 
 #small-pic {
     max-width: 9%;
+    max-height: 70px;
 }

@@ -41,7 +41,7 @@
 
             await this.Clients
                 .User(receiver.Id)
-                .SendAsync("ReceiveMessage", message, sender.UserName, sender.Picture);
+                .SendAsync("ReceiveMessage", message, sender.UserName, sender.Picture, input.GroupName);
 
             await this.Clients
                 .Caller

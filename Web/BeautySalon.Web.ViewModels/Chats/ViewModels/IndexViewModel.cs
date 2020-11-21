@@ -4,7 +4,7 @@
 
     public class IndexViewModel
     {
-        public string AdminUsername { get; set; }
+        public string AdminId { get; set; }
 
         public IEnumerable<ClientChatViewModel> Users { get; set; }
     }

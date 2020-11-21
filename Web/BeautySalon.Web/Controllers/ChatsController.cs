@@ -24,19 +24,21 @@
 
         public async Task<IActionResult> Index()
         {
+            var admin = await this.userManager.FindByNameAsync(GlobalConstants.AdminName);
+
             var model = new IndexViewModel()
             {
-                AdminUsername = GlobalConstants.AdminName,
+                AdminId = admin.Id,
                 Users = await this.chatsService.GetWaitingForAnswerClientNamesAsync<ClientChatViewModel>(),
             };
 
             return this.View(model);
         }
 
-        public async Task<IActionResult> StartChat(string username)
+        public async Task<IActionResult> StartChat(string id)
         {
             var client = await this.userManager.GetUserAsync(this.User);
-            var receiver = await this.userManager.FindByNameAsync(username);
+            var receiver = await this.userManager.FindByIdAsync(id);
 
             var groupName = string.Empty;
 

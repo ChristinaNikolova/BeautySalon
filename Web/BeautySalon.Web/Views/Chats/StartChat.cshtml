@@ -9,9 +9,9 @@
 <section>
     <div class="row">
         <div class="col-md-3">
-            @if (this.User.IsInRole("Admin"))
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
             {
-                <partial name="_NavBarAdministrationPartial" />
+                <partial name="~/Areas/Administration/Views/Shared/_NavBarAdministrationPartial.cshtml" />
             }
             else
             {
@@ -20,7 +20,15 @@
         </div>
         <div class="col-md-9">
             <div id="test" class="container">
-                <h5 class="text-center">Chat with Admin</h5>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <h5 class="text-center">Chat with @Model.ReceiverUsername</h5>
+                }
+                else
+                {
+                    <h5 class="text-center">Chat with Admin</h5>
+                }
+
                 <div id="sender-username" class="hidden">@Model.SenderUsername</div>
                 <div id="receiver-username" class="hidden">@Model.ReceiverUsername</div>
                 <div id="group-name" class="hidden">@Model.GroupName</div>

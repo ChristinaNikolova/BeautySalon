@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using BeautySalon.Common;
     using BeautySalon.Data.Common.Models;
 
     public class ChatMessage : BaseDeletableModel<string>
@@ -30,7 +29,6 @@
         public virtual ChatGroup ChatGroup { get; set; }
 
         [Required]
-        [MaxLength(DataValidation.ChatMessageContentMaxLength)]
         public string Content { get; set; }
 
         public bool WaitingForAnswerFromAdmin { get; set; }

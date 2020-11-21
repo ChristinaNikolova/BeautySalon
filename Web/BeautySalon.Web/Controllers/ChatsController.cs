@@ -27,7 +27,7 @@
             var model = new IndexViewModel()
             {
                 AdminUsername = GlobalConstants.AdminName,
-                Clients = await this.chatsService.GetWaitingForAnswerClientNamesAsync<ClientChatViewModel>(),
+                Users = await this.chatsService.GetWaitingForAnswerClientNamesAsync<ClientChatViewModel>(),
             };
 
             return this.View(model);

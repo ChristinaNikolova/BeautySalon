@@ -2,8 +2,10 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.ChatMessages;
+    using BeautySalon.Web.ViewModels.Chats.InputModels;
     using Ganss.XSS;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -22,10 +24,8 @@
             this.chatService = chatService;
         }
 
-        public async Task Send(SendMessageInputModel input)
+        public async Task Send(SendChatMessageInputModel input)
         {
-            //todo validate length
-            //todo sanitizer
             var sanitizer = new HtmlSanitizer();
             var message = sanitizer.Sanitize(input.ChatMessage);
 
@@ -56,16 +56,5 @@
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, groupName);
             await this.chatService.CreateUsersGroup(sender, receiver, groupName);
         }
-    }
-
-    public class SendMessageInputModel
-    {
-        public string ChatMessage { get; set; }
-
-        public string SenderUsername { get; set; }
-
-        public string ReceiverUsername { get; set; }
-
-        public string GroupName { get; set; }
     }
 }

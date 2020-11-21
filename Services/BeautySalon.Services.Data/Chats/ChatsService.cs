@@ -136,12 +136,7 @@
 
             if (sender.UserName == GlobalConstants.AdminName)
             {
-                message.WaitingForAnswerFromAdmin = false;
-
-                foreach (var oldMessage in chatGroup.ChatMessages)
-                {
-                    oldMessage.WaitingForAnswerFromAdmin = false;
-                }
+                await this.SetAllWaitingMessagesOnFalse(groupName, message);
             }
 
             this.chatGroupsRepository.Update(chatGroup);
@@ -149,6 +144,21 @@
 
             await this.chatMessagesRepository.AddAsync(message);
             await this.chatMessagesRepository.SaveChangesAsync();
+        }
+
+        private async Task SetAllWaitingMessagesOnFalse(string groupName, ChatMessage message)
+        {
+            message.WaitingForAnswerFromAdmin = false;
+
+            var chatMessages = await this.chatMessagesRepository
+                .All()
+                .Where(cm => cm.ChatGroup.Name == groupName)
+                .ToListAsync();
+
+            foreach (var oldMessage in chatMessages)
+            {
+                oldMessage.WaitingForAnswerFromAdmin = false;
+            }
         }
     }
 }

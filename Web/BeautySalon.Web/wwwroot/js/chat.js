@@ -9,6 +9,7 @@
     connection.start().then(function () {
         var senderUsername = document.getElementById("sender-username").innerText;
         var receiverUsername = document.getElementById("receiver-username").innerText;
+        var groupName = document.getElementById("group-name").innerText;
 
         connection
             .invoke("CreateGroup", senderUsername, receiverUsername, groupName);

@@ -14,7 +14,7 @@
     </a>
 }
 else
-{
+{<h3 class="text-center">Waiting for answer: </h3>
     <div class="container">
         <div class="row no-gutters">
             @foreach (var client in Model.Users)
@@ -30,7 +30,7 @@ else
                 </div>
             }
 
-            @if(Model.Users.ToList().Count() == 0)
+            @if (Model.Users.ToList().Count() == 0)
             {
                 <p class="offset-5 color-black">There aren't new chat messages!</p>
             }

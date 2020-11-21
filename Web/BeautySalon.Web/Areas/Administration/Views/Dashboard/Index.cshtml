@@ -1,5 +1,5 @@
 ﻿@using BeautySalon.Web.ViewModels.Administration.Dashboard.ViewModels;
-@model AllAppointmentsViewModel;
+@model DashboardViewModel;
 
 @{
     ViewData["Title"] = "Dashboard - Administration";
@@ -12,6 +12,11 @@
             <partial name="_NavBarAdministrationPartial" />
         </div>
         <div class="col-md-8">
+            @if (Model.IsNewChatMessage)
+            {
+                <div class="alert alert-warning text-center" role="alert"> You have new chat messages!</div>
+            }
+
             <h2 class="text-center">Today's Appointments</h2>
             <div class="offset-md-5"><a asp-area="Administration" asp-controller="Appointments" asp-action="GetHistory">History</a></div>
             <hr />

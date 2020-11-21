@@ -120,6 +120,15 @@
             return clientNames;
         }
 
+        public async Task<bool> IsNewMessageAsync()
+        {
+            var isNewMessage = await this.chatMessagesRepository
+                .All()
+                .AnyAsync(cm => cm.WaitingForAnswerFromAdmin == true);
+
+            return isNewMessage;
+        }
+
         public async Task SendMessageAsync(string chatMessage, ApplicationUser sender, ApplicationUser receiver, string groupName)
         {
             var chatGroup = await this.chatGroupsRepository

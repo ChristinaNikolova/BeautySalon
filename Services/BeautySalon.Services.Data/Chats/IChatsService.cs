@@ -18,5 +18,7 @@
         Task SendMessageAsync(string chatMessage, ApplicationUser sender, ApplicationUser receiver, string groupName);
 
         Task<IEnumerable<T>> GetWaitingForAnswerClientNamesAsync<T>();
+
+        Task<bool> IsNewMessageAsync();
     }
 }

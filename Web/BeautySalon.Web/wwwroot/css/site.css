@@ -379,3 +379,11 @@ div .tooltip-inner {
     max-width: 9%;
     max-height: 70px;
 }
+
+#alert-new-chat-message {
+    color: mediumvioletred;
+}
+
+#alert-new-chat-message:hover {
+    color: #d9bf77;
+}

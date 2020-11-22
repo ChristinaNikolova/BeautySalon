@@ -14,7 +14,7 @@
         <div class="col-md-8">
             @if (Model.IsNewChatMessage)
             {
-                <div class="alert alert-warning text-center" role="alert"> You have new chat messages!</div>
+                <div class="alert alert-warning text-center" role="alert"> <a id="alert-new-chat-message" asp-area="" asp-controller="Chats" asp-action="Index">You have new chat messages!</a></div>
             }
 
             <h2 class="text-center">Today's Appointments</h2>

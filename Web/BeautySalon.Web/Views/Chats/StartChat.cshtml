@@ -66,7 +66,7 @@
                 <hr style="height: 5px;" class="bg-primary" />
                 <div class="row">
                     <div id="message-holder" class="mt-3 d-flex justify-content-start col-md-10">
-                        <textarea type="text" cols="90" rows="2" id="messageInput" placeholder="Message..."></textarea>
+                        <textarea id="chat-text-area" type="text" cols="90" rows="2" id="messageInput" placeholder="Message..."></textarea>
                     </div>
                     <button id="sendButton" class="m-4  py-0 btn btn-primary btn-sm col-md-1">Send</button>
                 </div>
@@ -84,6 +84,6 @@
         });
     </script>
 
-    <script src="~/js/chat.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
     <script>chat();</script>
 }

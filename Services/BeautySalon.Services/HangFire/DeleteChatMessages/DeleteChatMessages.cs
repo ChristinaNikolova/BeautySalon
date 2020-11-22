@@ -6,7 +6,7 @@
     using BeautySalon.Data.Models;
     using Microsoft.EntityFrameworkCore;
 
-    public class DeleteChatMessages : IDeleteChatMessages
+    public class DeleteChatMessages
     {
         private readonly IDeletableEntityRepository<ChatMessage> chatMessagesRepository;
 
@@ -20,8 +20,6 @@
             var allChatMessages = await this.chatMessagesRepository
                 .All()
                 .ToListAsync();
-
-
 
             foreach (var chatMessage in allChatMessages)
             {

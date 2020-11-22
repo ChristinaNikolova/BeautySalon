@@ -319,7 +319,7 @@
     <Content Update="wwwroot\images\trainer-4.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\js\owl.carousel.min.js">
+    <Content Update="wwwroot\js\libraries\owl.carousel.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\lib\qrcode\qrcode.js">

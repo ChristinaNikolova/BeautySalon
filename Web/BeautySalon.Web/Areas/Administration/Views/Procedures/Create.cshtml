@@ -91,9 +91,6 @@
 </section>
 
 @section Scripts {
-    <script src="~/js/showSkinTypeOptions.js" asp-append-version="true"></script>
-    <script>showSkinTypeOptions();</script>
-
     <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
     <script>
         grecaptcha.ready(function () {
@@ -101,4 +98,7 @@
             });
         });
     </script>
+
+    <script src="~/js/showSkinTypeOptions.js" asp-append-version="true"></script>
+    <script>showSkinTypeOptions();</script>
 }

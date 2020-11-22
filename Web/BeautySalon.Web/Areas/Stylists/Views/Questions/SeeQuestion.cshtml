@@ -82,16 +82,6 @@
         });
     </script>
 
-    <script>
-        document.getElementById("answer-button").addEventListener("click", showAnswerForm);
-        let answerForm = document.getElementById("form-answer");
-
-        function showAnswerForm() {
-            if (answerForm.style.display === "block") {
-                answerForm.style.display = "none";
-            } else {
-                answerForm.style.display = "block";
-            }
-        }
-    </script>
+    <script src="~/js/showAnswerForm.js" asp-append-version="true"></script>
+    <script>showAnswerForm();</script>
 }

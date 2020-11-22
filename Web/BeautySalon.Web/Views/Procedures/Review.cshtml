@@ -29,8 +29,8 @@
             <div class="col-md-7 ftco-animate">
                 <h2 class="text-center">Review</h2>
                 <hr />
-                @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName) 
-                  && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+                 && !this.User.IsInRole(GlobalConstants.StylistRoleName))
                 {
                     <form asp-area="" asp-controller="Procedures" asp-action="Review" method="post" class="contact-form">
                         <div class="form-group" hidden>
@@ -68,7 +68,6 @@
     <script>
         grecaptcha.ready(function () {
             grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
-
             });
         });
     </script>

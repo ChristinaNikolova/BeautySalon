@@ -22,6 +22,7 @@
                 .ToListAsync();
 
 
+
             foreach (var chatMessage in allChatMessages)
             {
                 this.chatMessagesRepository.HardDelete(chatMessage);

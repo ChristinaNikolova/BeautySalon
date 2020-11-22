@@ -2,12 +2,16 @@
 @using BeautySalon.Common
 @model DetailsAppointmentViewModel;
 
+@{
+    ViewData["Title"] = "Appointment's Details";
+}
+
 <section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">Appointment's Details</h1>
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
                 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
                     <p class="breadcrumbs">
@@ -103,8 +107,8 @@
                     <h2 class="mb-3 offset-4">Feedback</h2>
                     <hr />
                     @if (!Model.IsReview && Model.Status.ToString() == "Done"
-         && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-         && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+&& !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+&& !this.User.IsInRole(GlobalConstants.StylistRoleName))
                     {
                         {
                             <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>

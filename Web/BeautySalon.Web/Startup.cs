@@ -1,7 +1,9 @@
 ﻿namespace BeautySalon.Web
 {
+    using System;
     using System.Reflection;
-
+    using BeautySalon.Common;
+    using BeautySalon.CronJobs;
     using BeautySalon.Data;
     using BeautySalon.Data.Common;
     using BeautySalon.Data.Common.Repositories;
@@ -34,6 +36,9 @@
     using BeautySalon.Web.ViewModels;
     using BeautySalon.Web.ViewModels.MLModels;
     using CloudinaryDotNet;
+    using Hangfire;
+    using Hangfire.Dashboard;
+    using Hangfire.SqlServer;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -58,6 +63,24 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Hangfire
+            services.AddHangfire(
+               config => config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                   .UseSimpleAssemblyNameTypeSerializer()
+                   .UseRecommendedSerializerSettings()
+                   .UseSqlServerStorage(
+                       this.configuration.GetConnectionString("DefaultConnection"),
+                       new SqlServerStorageOptions
+                       {
+                           CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                           SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                           QueuePollInterval = TimeSpan.Zero,
+                           UseRecommendedIsolationLevel = true,
+                           UsePageLocksOnDequeue = true,
+                           DisableGlobalLocks = true,
+                       }));
+
+            // Add Db
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
@@ -108,6 +131,7 @@
             services.AddTransient<IAnswersService, AnswersService>();
             services.AddTransient<IReviewsService, ReviewsService>();
 
+            // Add Antiforgery
             services.AddAntiforgery(options =>
             {
                 options.HeaderName = "X-CSRF-TOKEN";
@@ -157,7 +181,10 @@
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IRecurringJobManager recurringJobManager)
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
@@ -167,6 +194,7 @@
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+                this.SeedHangfireJobs(recurringJobManager, dbContext);
             }
 
             if (env.IsDevelopment())
@@ -189,6 +217,13 @@
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Add Hangfire Dashboard
+            app.UseHangfireServer(new BackgroundJobServerOptions { WorkerCount = 2 });
+            app.UseHangfireDashboard(
+                "/Administration/HangFire",
+                new DashboardOptions { Authorization = new[] { new HangfireAuthorizationFilter() } });
+
+            // Routes
             app.UseEndpoints(
                 endpoints =>
                     {
@@ -198,6 +233,28 @@
                         endpoints.MapControllerRoute("procedureCategory", "{controller=Procedures}/{action=GetProceduresByCategory}/{id?}/{currentPage?}");
                         endpoints.MapRazorPages();
                     });
+        }
+
+        private void SeedHangfireJobs(IRecurringJobManager recurringJobManager, ApplicationDbContext dbContext)
+        {
+            //Have to change - weekly!!!
+            //add requirement to delete
+            recurringJobManager
+                .AddOrUpdate<DeleteChatMessages>(
+                "DeleteChatMessages", x => x.DeleteAsync(), Cron.Weekly);
+
+            //recurringJobManager
+            //   .AddOrUpdate<DeleteOldAppointments>(
+            //   "DeleteOldAppointments", x => x.DeleteOldAppointments(), Cron.Minutely);
+        }
+
+        private class HangfireAuthorizationFilter : IDashboardAuthorizationFilter
+        {
+            public bool Authorize(DashboardContext context)
+            {
+                var httpContext = context.GetHttpContext();
+                return httpContext.User.IsInRole(GlobalConstants.AdministratorRoleName);
+            }
         }
     }
 }

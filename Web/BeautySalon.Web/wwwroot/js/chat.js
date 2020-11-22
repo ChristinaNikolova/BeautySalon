@@ -34,7 +34,6 @@
     });
 
     connection.on("SendMessage", function (message, username, picture) {
-
         var formattedDate = formatDate();
 
         var chatInfo = `<div class="media"><div class="media-body ml-2"><time class="small theme-color-gold">${formattedDate}</time><h6 class="mt-0 mb-1">${username} says:</h6><p class="small mb-2 color-black"> ${escapeHtml(message)}</p></div><img id="small-pic" src="${picture}" class="mr-2 img-fluid" alt="user-pic"></div><hr />`;

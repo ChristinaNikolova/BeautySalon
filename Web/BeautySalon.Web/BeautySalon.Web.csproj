@@ -197,6 +197,8 @@
 
   <ItemGroup>
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.18" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.18" />
     <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.8" />
@@ -221,6 +223,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BeautySalon.CronJobs\BeautySalon.CronJobs.csproj" />
     <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\BeautySalon.Data\BeautySalon.Data.csproj" />
     <ProjectReference Include="..\..\Services\BeautySalon.Services.Data\BeautySalon.Services.Data.csproj" />

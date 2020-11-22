@@ -47,7 +47,6 @@
         [HttpPost]
         public async Task<IActionResult> Book(BookAppointmentInputModel input)
         {
-            ;
             var userId = this.userManager.GetUserId(this.User);
 
             if (!this.ModelState.IsValid)

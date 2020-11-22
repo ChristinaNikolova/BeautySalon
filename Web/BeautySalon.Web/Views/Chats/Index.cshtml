@@ -9,7 +9,7 @@
 
 @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
 {
-    <a asp-area="" asp-controller="Chats" asp-action="StartChat" asp-route-id="@Model.AdminId" class="btn btn-primary p-1 px-3 py-2 mb-4 offset-5">
+    <a asp-area="" asp-controller="Chats" asp-action="StartChat" asp-route-id="@Model.AdminId" class="btn btn-primary p-1 px-3 py-2 mb-4 mt-4 offset-5">
         Start chat with Admin!
     </a>
 }

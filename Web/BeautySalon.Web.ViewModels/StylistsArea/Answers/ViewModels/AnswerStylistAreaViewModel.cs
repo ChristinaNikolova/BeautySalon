@@ -2,6 +2,7 @@
 {
     using System;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -16,6 +17,6 @@
         public DateTime QuestionCreatedOn { get; set; }
 
         public string FormattedQuestionCreatedOn
-            => this.QuestionCreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
+            => string.Format(GlobalConstants.DateTimeFormat, this.QuestionCreatedOn.ToLocalTime());
     }
 }

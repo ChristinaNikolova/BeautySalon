@@ -2,6 +2,7 @@
 {
     using System;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -18,6 +19,6 @@
         public DateTime Date { get; set; }
 
         public string FormattedDate
-            => this.Date.ToString("dd.MM.yyyy hh:mm:ss");
+           => string.Format(GlobalConstants.DateTimeFormat, this.Date.ToLocalTime());
     }
 }

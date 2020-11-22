@@ -6,7 +6,8 @@
             weekStart: 1,
             daysOfWeekDisabled: "0",
             defaultDate: "",
-            autoclose: true
+            autoclose: true,
+            format: 'dd/mm/yyyy',
         });
     });
 

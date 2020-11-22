@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
 
-    using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Reviews;
     using BeautySalon.Web.ViewModels.Reviews.ViewModels;
     using Microsoft.AspNetCore.Mvc;

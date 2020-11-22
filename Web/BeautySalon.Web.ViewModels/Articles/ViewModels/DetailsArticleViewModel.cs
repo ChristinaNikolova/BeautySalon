@@ -4,6 +4,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Web.ViewModels.Comments.ViewModels;
@@ -25,7 +26,7 @@
         }
 
         public string FormattedDate
-            => this.CreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
+            => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
 
         public bool IsFavourite { get; set; }
 

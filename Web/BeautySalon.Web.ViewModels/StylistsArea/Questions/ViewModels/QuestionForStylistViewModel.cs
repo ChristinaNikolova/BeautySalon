@@ -2,6 +2,7 @@
 {
     using System;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -14,7 +15,7 @@
         public DateTime CreatedOn { get; set; }
 
         public string FormattedDate
-            => this.CreatedOn.ToString("dd.MM.yyyy hh:mm:ss");
+           => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
 
         public string ClientUsername { get; set; }
 

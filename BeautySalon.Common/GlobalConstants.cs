@@ -61,5 +61,7 @@
         public const string StartDropDownDefaultMessage = "Please select";
 
         public const int DefaultProductQuantity = 0;
+
+        public const string DateTimeFormat = "{0:g}";
     }
 }

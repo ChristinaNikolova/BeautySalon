@@ -2,6 +2,7 @@
 {
     using System;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -16,6 +17,6 @@
         public DateTime CreatedOn { get; set; }
 
         public string FormattedDate
-            => string.Format("{0:g}", this.CreatedOn);
+             => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
     }
 }

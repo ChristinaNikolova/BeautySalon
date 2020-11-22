@@ -5,7 +5,5 @@
     public interface IDeleteChatMessages
     {
         Task DeleteAsync();
-
-
     }
 }

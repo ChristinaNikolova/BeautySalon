@@ -6,7 +6,7 @@
     using BeautySalon.Data.Models;
     using Microsoft.EntityFrameworkCore;
 
-    public class DeleteChatMessages
+    public class DeleteChatMessages : IDeleteChatMessages
     {
         private readonly IDeletableEntityRepository<ChatMessage> chatMessagesRepository;
 

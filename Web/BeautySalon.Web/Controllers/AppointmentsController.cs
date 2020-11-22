@@ -68,7 +68,6 @@
         [HttpPost]
         public async Task<ActionResult<FreeTimesViewModel>> GetFreeTimes([FromBody] WantedAppointmentInputModel input)
         {
-            ;
             var freeHours = await this.appointmentsService.GetFreeHoursAsync(input.SelectedDate, input.SelectedStylistId);
 
             return new FreeTimesViewModel { FreeHours = freeHours };

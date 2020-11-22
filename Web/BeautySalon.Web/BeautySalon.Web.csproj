@@ -223,7 +223,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BeautySalon.CronJobs\BeautySalon.CronJobs.csproj" />
     <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\BeautySalon.Data\BeautySalon.Data.csproj" />
     <ProjectReference Include="..\..\Services\BeautySalon.Services.Data\BeautySalon.Services.Data.csproj" />

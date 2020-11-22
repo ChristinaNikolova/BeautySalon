@@ -1,13 +1,13 @@
-﻿namespace BeautySalon.CronJobs
+﻿namespace BeautySalon.Services.HangFire.DeleteChatMessages
 {
+    using System.Threading.Tasks;
+
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using Microsoft.EntityFrameworkCore;
-    using System.Threading.Tasks;
 
-    public class DeleteChatMessages
+    public class DeleteChatMessages : IDeleteChatMessages
     {
-        //todo add interface
         private readonly IDeletableEntityRepository<ChatMessage> chatMessagesRepository;
 
         public DeleteChatMessages(IDeletableEntityRepository<ChatMessage> chatMessagesRepository)

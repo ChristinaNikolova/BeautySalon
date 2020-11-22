@@ -2,8 +2,8 @@
 {
     using System;
     using System.Reflection;
+
     using BeautySalon.Common;
-    using BeautySalon.CronJobs;
     using BeautySalon.Data;
     using BeautySalon.Data.Common;
     using BeautySalon.Data.Common.Repositories;
@@ -29,6 +29,7 @@
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Data.Users;
+    using BeautySalon.Services.HangFire.DeleteChatMessages;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
     using BeautySalon.Web.Hubs;
@@ -241,7 +242,7 @@
             //add requirement to delete
             recurringJobManager
                 .AddOrUpdate<DeleteChatMessages>(
-                "DeleteChatMessages", x => x.DeleteAsync(), Cron.Weekly);
+                "DeleteChatMessages", x => x.DeleteAsync(), Cron.Minutely);
 
             //recurringJobManager
             //   .AddOrUpdate<DeleteOldAppointments>(

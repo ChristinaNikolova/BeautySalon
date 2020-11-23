@@ -56,7 +56,9 @@
                 var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.Categories = categories;
                 input.Id = userId;
-                // TODO Fix bug with selectedCategory
+                input.CategoryId = null;
+                input.CategoryId = string.Empty;
+                // TODO Fix bug with selectedCategovaluery
                 return this.View(input);
             }
 

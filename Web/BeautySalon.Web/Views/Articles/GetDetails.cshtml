@@ -3,7 +3,7 @@
 @inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
 
 @{
-    ViewData["Title"] = "Blog";
+    ViewData["Title"] = "Article";
 }
 
 <section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -13,7 +13,9 @@
             <div class="col-md-9 ftco-animate text-center">
                 <h1 class="mb-3 bread">@ViewData["Title"]</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a asp-controller="Home" asp-action="Index">Home</a></span> <span class="mr-2"><a asp-controller="Articles" asp-action="GetAll">Blog</a></span> <span>Article</span>
+                    <span class="mr-2">
+                        <a asp-controller="Articles" asp-action="GetAll">Blog</a>
+                    </span>
                 </p>
             </div>
         </div>

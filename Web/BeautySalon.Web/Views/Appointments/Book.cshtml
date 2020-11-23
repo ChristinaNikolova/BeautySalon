@@ -39,10 +39,7 @@
                         <div class="col-md-12 form-group">
                             <label asp-for="@Model.CategoryId"></label>
                             <select id="category" asp-for="@Model.CategoryId" class="form-control" asp-items="@Model.Categories">
-                                @if (String.IsNullOrWhiteSpace(Model.CategoryId))
-                                {
-                                    <option selected>Please select beauty category</option>
-                                }
+                                <option selected="selected">Please select beauty category</option>
                             </select>
                             <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                         </div>
@@ -79,7 +76,7 @@
                             <span asp-validation-for="@Model.Comment" class="text-danger"></span>
                         </div>
                         <div class="col-mn-6 form-group">
-                            <input type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
+                            <input id="submit" type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
                             <input id="clear-appointment-search" value="Clear" class="btn btn-outline-primary py-3 px-5">
                         </div>
                     </div>

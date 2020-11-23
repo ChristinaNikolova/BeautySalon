@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Models;
@@ -12,7 +11,6 @@
     using BeautySalon.Web.ViewModels.Appoitments.InputModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     public class AppointmentsController : BaseController
     {
@@ -56,9 +54,9 @@
                 var categories = await this.categoriesService.GetAllAsSelectListItemAsync();
                 input.Categories = categories;
                 input.Id = userId;
+                input.CategoryId = null;
 
-                ;
-                // TODO Fix bug with selectedCategovaluery
+                // Bug with default selected category!
                 return this.View(input);
             }
 

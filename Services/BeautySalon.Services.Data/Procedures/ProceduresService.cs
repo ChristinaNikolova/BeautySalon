@@ -377,12 +377,12 @@
 
                 if (skinProblems != null)
                 {
-                    await this.GetSkinProblems(procedure, skinProblems);
+                    await this.GetSkinProblemsAsync(procedure, skinProblems);
                 }
             }
         }
 
-        private async Task GetSkinProblems(Procedure procedure, IList<SelectListItem> skinProblems)
+        private async Task GetSkinProblemsAsync(Procedure procedure, IList<SelectListItem> skinProblems)
         {
             var selectedSkinProblems = skinProblems
                 .Where(sp => sp.Selected == true)

@@ -7,7 +7,7 @@
 
     public interface IChatsService
     {
-        Task<string> CreateUsersGroup(ApplicationUser sender, ApplicationUser receiver, string groupName);
+        Task<string> CreateUsersGroupAsync(ApplicationUser sender, ApplicationUser receiver, string groupName);
 
         Task<IEnumerable<T>> GetOldMessagesAsync<T>(string groupId);
 

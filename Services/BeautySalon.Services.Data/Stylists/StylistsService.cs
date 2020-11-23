@@ -32,7 +32,7 @@
 
         public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
         {
-            var stylistRoleId = this.GetStylistRoleId();
+            var stylistRoleId = await this.GetStylistRoleIdAsync();
 
             var stylists = await this.stylistsRepository
                 .All()
@@ -112,7 +112,7 @@
 
         public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
-            string stylistRoleId = this.GetStylistRoleId();
+            string stylistRoleId = await this.GetStylistRoleIdAsync();
 
             var stylists = await this.stylistsRepository
                 .All()
@@ -138,7 +138,7 @@
 
         public async Task<IEnumerable<T>> SearchByCategoryAsync<T>(string categoryId)
         {
-            string stylistRoleId = this.GetStylistRoleId();
+            string stylistRoleId = await this.GetStylistRoleIdAsync();
 
             var stylists = await this.stylistsRepository
                 .All()
@@ -256,13 +256,13 @@
             await this.procedureStylistsRepository.SaveChangesAsync();
         }
 
-        private string GetStylistRoleId()
+        private async Task<string> GetStylistRoleIdAsync()
         {
-            return this.rolesRepository
+            return await this.rolesRepository
                 .All()
                 .Where(r => r.Name == GlobalConstants.StylistRoleName)
                 .Select(r => r.Id)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
         }
 
         private async Task AddProcedureToStylistByCreatingStylistAsync(string id, string category)

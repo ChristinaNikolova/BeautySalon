@@ -26,7 +26,7 @@
             this.userChatGroupsRepository = userChatGroupsRepository;
         }
 
-        public async Task<string> CreateUsersGroup(ApplicationUser sender, ApplicationUser receiver, string groupName)
+        public async Task<string> CreateUsersGroupAsync(ApplicationUser sender, ApplicationUser receiver, string groupName)
         {
             var isGroupAlreadyCreated = await this.chatGroupsRepository
                 .All()
@@ -145,7 +145,7 @@
 
             if (sender.UserName == GlobalConstants.AdminName)
             {
-                await this.SetAllWaitingMessagesOnFalse(groupName, message);
+                await this.SetAllWaitingMessagesOnFalseAsync(groupName, message);
             }
 
             this.chatGroupsRepository.Update(chatGroup);
@@ -155,7 +155,7 @@
             await this.chatMessagesRepository.SaveChangesAsync();
         }
 
-        private async Task SetAllWaitingMessagesOnFalse(string groupName, ChatMessage message)
+        private async Task SetAllWaitingMessagesOnFalseAsync(string groupName, ChatMessage message)
         {
             message.WaitingForAnswerFromAdmin = false;
 

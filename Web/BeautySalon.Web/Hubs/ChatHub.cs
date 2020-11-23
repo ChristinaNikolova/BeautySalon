@@ -53,7 +53,7 @@
             var receiver = await this.userManager.FindByNameAsync(receiverUsername);
 
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, groupName);
-            await this.chatService.CreateUsersGroup(sender, receiver, groupName);
+            await this.chatService.CreateUsersGroupAsync(sender, receiver, groupName);
         }
     }
 }

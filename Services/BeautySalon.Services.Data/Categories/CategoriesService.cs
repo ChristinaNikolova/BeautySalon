@@ -19,49 +19,6 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public async Task<string> CreateAsync(string name)
-        {
-            var category = new Category()
-            {
-                Name = name,
-            };
-
-            await this.categoriesRepository.AddAsync(category);
-            await this.categoriesRepository.SaveChangesAsync();
-
-            return category.Id;
-        }
-
-        public async Task DeleteAsync(string id)
-        {
-            var category = await this.GetByIdAsync(id);
-
-            category.IsDeleted = true;
-
-            this.categoriesRepository.Update(category);
-            await this.categoriesRepository.SaveChangesAsync();
-        }
-
-        public async Task EditAsync(string name, string id)
-        {
-            var category = await this.GetByIdAsync(id);
-
-            category.Name = name;
-
-            this.categoriesRepository.Update(category);
-            await this.categoriesRepository.SaveChangesAsync();
-        }
-
-        public IEnumerable<T> GetAll<T>()
-        {
-            var categories = this.categoriesRepository
-                .All()
-                .To<T>()
-                .ToList();
-
-            return categories;
-        }
-
         public async Task<IEnumerable<SelectListItem>> GetAllAsSelectListItemAsync()
         {
             var categories = await this.categoriesRepository
@@ -87,18 +44,18 @@
             return categories;
         }
 
-        public async Task<Category> GetByIdAsync(string id)
-        {
-            return await this.categoriesRepository
-               .All()
-               .FirstOrDefaultAsync(c => c.Id == id);
-        }
-
         public async Task<Category> GetByNameAsync(string name)
         {
             return await this.categoriesRepository
                .All()
                .FirstOrDefaultAsync(c => c.Name == name);
+        }
+
+        public async Task<Category> GetByIdAsync(string id)
+        {
+            return await this.categoriesRepository
+               .All()
+               .FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }

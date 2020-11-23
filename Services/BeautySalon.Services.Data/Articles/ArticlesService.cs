@@ -38,7 +38,7 @@
 
         public async Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId)
         {
-            string pictureAsUrl = await this.GetPictureAsUrl(title, picture);
+            string pictureAsUrl = await this.GetPictureAsUrlAsync(title, picture);
 
             var article = new Article()
             {
@@ -216,7 +216,7 @@
 
             if (newPicture != null)
             {
-                string pictureAsUrl = await this.GetPictureAsUrl(title, newPicture);
+                string pictureAsUrl = await this.GetPictureAsUrlAsync(title, newPicture);
                 article.Picture = pictureAsUrl;
             }
 
@@ -236,7 +236,7 @@
             return articles;
         }
 
-        private async Task<string> GetPictureAsUrl(string title, IFormFile picture)
+        private async Task<string> GetPictureAsUrlAsync(string title, IFormFile picture)
         {
             return await this.cloudinaryService.UploudAsync(picture, title);
         }

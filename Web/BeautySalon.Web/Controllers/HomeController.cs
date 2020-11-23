@@ -8,7 +8,6 @@
 
     public class HomeController : BaseController
     {
-        //check if works on HomeComtroller(Attr)
         [AllowAnonymous]
         public IActionResult Index()
         {
@@ -17,12 +16,6 @@
 
         [AllowAnonymous]
         public IActionResult Privacy()
-        {
-            return this.View();
-        }
-
-        [Authorize]
-        public IActionResult Chat()
         {
             return this.View();
         }

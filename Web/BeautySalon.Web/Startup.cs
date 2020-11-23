@@ -29,6 +29,7 @@
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Data.Users;
+    using BeautySalon.Services.HangFire.DeleteAppointments;
     using BeautySalon.Services.HangFire.DeleteChatMessages;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
@@ -238,15 +239,17 @@
 
         private void SeedHangfireJobs(IRecurringJobManager recurringJobManager, ApplicationDbContext dbContext)
         {
-            //Have to change - weekly!!!
-            //add requirement to delete
             recurringJobManager
                 .AddOrUpdate<DeleteChatMessages>(
-                "DeleteChatMessages", x => x.DeleteAsync(), Cron.Minutely);
+                "DeleteChatMessages", x => x.DeleteAsync(), Cron.Daily);
 
-            //recurringJobManager
-            //   .AddOrUpdate<DeleteOldAppointments>(
-            //   "DeleteOldAppointments", x => x.DeleteOldAppointments(), Cron.Minutely);
+            recurringJobManager
+               .AddOrUpdate<DeleteAppointments>(
+               "DeletePastAppointmentsAsync", x => x.DeletePastAppointmentsAsync(), Cron.Daily);
+
+            recurringJobManager
+               .AddOrUpdate<DeleteAppointments>(
+               "DeleteCancelledAppointmentsAsync", x => x.DeleteCancelledAppointmentsAsync(), Cron.Daily);
         }
 
         private class HangfireAuthorizationFilter : IDashboardAuthorizationFilter

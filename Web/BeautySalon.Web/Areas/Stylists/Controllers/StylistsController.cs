@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize(Roles = GlobalConstants.StylistRoleName)]
-    [Area("Stylists")]
+    [Area(GlobalConstants.StylistsArea)]
     public class StylistsController : BaseController
     {
     }

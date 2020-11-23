@@ -1,8 +1,9 @@
 ﻿namespace BeautySalon.Data.Models
 {
-    using BeautySalon.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations;
+
+    using BeautySalon.Data.Common.Models;
 
     public class UserChatGroup : BaseDeletableModel<string>
     {

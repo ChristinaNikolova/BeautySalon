@@ -1,5 +1,7 @@
 ﻿namespace BeautySalon.Services.HangFire.DeleteChatMessages
 {
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Common.Repositories;
@@ -17,11 +19,12 @@
 
         public async Task DeleteAsync()
         {
-            var allChatMessages = await this.chatMessagesRepository
+            var messageToDelete = await this.chatMessagesRepository
                 .All()
+                .Where(m => m.CreatedOn.AddDays(7).Date <= DateTime.Today.Date)
                 .ToListAsync();
 
-            foreach (var chatMessage in allChatMessages)
+            foreach (var chatMessage in messageToDelete)
             {
                 this.chatMessagesRepository.HardDelete(chatMessage);
             }

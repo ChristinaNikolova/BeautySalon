@@ -16,6 +16,8 @@
 
         public const string AdminPicture = "https://res.cloudinary.com/dieu4mste/image/upload/v1600920611/BeautySalonLogo_ulueqn.png";
 
+        public const string StylistsArea = "Stylists";
+
         public const string StylistEmail = "@stylist.com";
 
         public const string BeautySalonEmail = "softuni-beautysalon@abv.bg";

@@ -39,7 +39,10 @@
                         <div class="col-md-12 form-group">
                             <label asp-for="@Model.CategoryId"></label>
                             <select id="category" asp-for="@Model.CategoryId" class="form-control" asp-items="@Model.Categories">
-                                <option selected>Please select beauty category</option>
+                                @if (String.IsNullOrWhiteSpace(Model.CategoryId))
+                                {
+                                    <option selected>Please select beauty category</option>
+                                }
                             </select>
                             <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
                         </div>

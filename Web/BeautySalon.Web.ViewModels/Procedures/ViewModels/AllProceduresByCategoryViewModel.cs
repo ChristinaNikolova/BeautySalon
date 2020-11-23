@@ -12,6 +12,12 @@
 
         public int CurrentPage { get; set; }
 
+        public int NextPage
+        => this.CurrentPage + 1;
+
+        public int PreviousPage
+            => this.CurrentPage - 1;
+
         public int PagesCount { get; set; }
     }
 }

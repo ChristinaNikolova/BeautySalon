@@ -78,6 +78,7 @@
 
             await this.RemoveAllProductsAsync(id);
             await this.RemoveAllSkinProblemsAsync(id);
+            await this.RemoveAllStylistsAsync(id);
 
             this.proceduresRepository.Update(procedure);
             await this.proceduresRepository.SaveChangesAsync();
@@ -486,6 +487,21 @@
             }
 
             await this.skinProblemProceduresRespository.SaveChangesAsync();
+        }
+
+        private async Task RemoveAllStylistsAsync(string id)
+        {
+            var stylists = await this.procedureStylistsRepository
+                .All()
+                .Where(ps => ps.ProcedureId == id)
+                .ToListAsync();
+
+            foreach (var stylist in stylists)
+            {
+                this.procedureStylistsRepository.Delete(stylist);
+            }
+
+            await this.procedureStylistsRepository.SaveChangesAsync();
         }
     }
 }

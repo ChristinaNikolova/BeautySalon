@@ -6,15 +6,7 @@
 }
 
 <partial name="_TitlePageSection" />
-@if (this.TempData["InfoMessage"] != null)
-{
-    <div class="alert alert-success text-center alert-dismissible fade show custom-margin-identity" role="alert">
-        @this.TempData["InfoMessage"]
-        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">OK</span>
-        </button>
-    </div>
-}
+<partial name="_InfoMessagePartial" />
 <section>
     <div class="row">
         <div class="col-md-3">

@@ -93,7 +93,14 @@
             stylist.JobTypeId = jobType;
             stylist.Description = descripion;
 
-            await this.AddProcedureToStylistByCreatingStylistAsync(id, category);
+            var areProceduresAlreadyAdded = await this.procedureStylistsRepository
+                .All()
+                .AnyAsync(ps => ps.StylistId == stylist.Id);
+
+            if (!areProceduresAlreadyAdded)
+            {
+                await this.AddProcedureToStylistByCreatingStylistAsync(id, category);
+            }
 
             this.stylistsRepository.Update(stylist);
             await this.stylistsRepository.SaveChangesAsync();

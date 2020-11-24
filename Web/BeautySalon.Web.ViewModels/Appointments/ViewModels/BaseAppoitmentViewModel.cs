@@ -17,6 +17,8 @@
         public string ClientFullName
             => this.ClientFirstName + " " + this.ClientLastName;
 
+        public string StylistId { get; set; }
+
         public string StylistFirstName { get; set; }
 
         public string StylistLastName { get; set; }

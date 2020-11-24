@@ -150,11 +150,11 @@
             return freeHours;
         }
 
-        public async Task<IEnumerable<T>> GetRequestsAsync<T>()
+        public async Task<IEnumerable<T>> GetRequestsAsync<T>(string stylistId)
         {
             var appoitments = await this.appointmentsRepository
                 .All()
-                .Where(a => a.Status == Status.Processing)
+                .Where(a => a.Status == Status.Processing && a.StylistId == stylistId)
                 .OrderBy(a => a.CreatedOn)
                 .To<T>()
                 .ToListAsync();

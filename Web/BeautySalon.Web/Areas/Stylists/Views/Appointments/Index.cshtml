@@ -1,4 +1,7 @@
-﻿@{
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Appointments.ViewModels
+@model IndexViewModel;
+
+@{
     ViewData["Title"] = "Stylist's dashboard";
 }
 
@@ -11,7 +14,7 @@
         <div class="col-md-9">
             <h2 class="offset-md-4">Requests from clients</h2>
             <div id="requests" class="col-md-12 hidden">
-                <vc:request-appoitment></vc:request-appoitment>
+                <vc:request-appoitment stylist-id="@Model.StylistId"></vc:request-appoitment>
             </div>
             <a id="request-appointment" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 offset-5">Show</a>
             <div class="col-md-12">

@@ -16,12 +16,12 @@
             this.appointmentsService = appointmentsService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string stylistId)
         {
             var model = new AllBaseAppoitmentViewModel()
             {
                 Appoitments = await this.appointmentsService
-                .GetRequestsAsync<BaseAppoitmentViewModel>(),
+                .GetRequestsAsync<BaseAppoitmentViewModel>(stylistId),
             };
 
             return this.View(model);

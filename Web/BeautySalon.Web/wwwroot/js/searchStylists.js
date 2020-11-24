@@ -48,7 +48,7 @@
                 data.stylists.forEach(stylist => {
                     result += '<div class="col-lg-3 d-flex">' + '<div class="coach align-items-stretch">' +
                         `<div class="img" style="background-image: url(${stylist.picture});"></div>` +
-                        '<div class="text bg-white p-4">' + `<h3><a href="/Stylists/GetDetails/${stylist.id}">${stylist.firstName} ${stylist.lastName}</a></h3>` + ` <div class="subheading"><strong>Category:</strong> ${stylist.categoryName}</div>` + `<div class="subheading"><strong>Speciality:</strong> ${stylist.jobTypeName}</div>` + `<div class="subheading"><strong>Raiting:</strong> ${stylist.formattedRaiting}</div>` + `<strong>About me</strong><p class="about-me">${stylist.shortDescription}</p>` + `<a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" href="/Stylists/GetDetails/${stylist.id}">More info</a>` + ' <p></p>' +
+                        '<div class="text bg-white p-4">' + `<h3><a href="/Stylists/GetDetails/${stylist.id}">${stylist.firstName} ${stylist.lastName}</a></h3>` + ` <div class="subheading"><strong>Category:</strong> ${stylist.categoryName}</div>` + `<div class="subheading"><strong>Speciality:</strong> ${stylist.jobTypeName}</div>` + `<strong>About me</strong><p class="about-me">${stylist.shortDescription}</p>` + `<a class="btn btn-primary p-1 px-1 py-1 mr-md-1 log" href="/Stylists/GetDetails/${stylist.id}">More info</a>` + ' <p></p>' +
                         '</div>' + '</div>' + '</div>'
                 });
 

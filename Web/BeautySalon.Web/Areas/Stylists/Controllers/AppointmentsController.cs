@@ -24,7 +24,14 @@
 
         public IActionResult Index()
         {
-            return this.View();
+            var stylistId = this.userManager.GetUserId(this.User);
+
+            var model = new IndexViewModel()
+            {
+                StylistId = stylistId,
+            };
+
+            return this.View(model);
         }
 
         public async Task<IActionResult> GetAppointments()

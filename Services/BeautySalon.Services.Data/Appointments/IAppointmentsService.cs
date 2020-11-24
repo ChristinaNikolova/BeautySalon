@@ -22,7 +22,7 @@
 
         Task ApproveAsync(string id);
 
-        Task<IEnumerable<T>> GetRequestsAsync<T>();
+        Task<IEnumerable<T>> GetRequestsAsync<T>(string stylistId);
 
         Task<IEnumerable<T>> GetHistoryStylistAsync<T>(string stylistId);
 

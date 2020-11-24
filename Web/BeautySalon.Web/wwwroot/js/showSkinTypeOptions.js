@@ -1,4 +1,16 @@
 ﻿function showSkinTypeOptions() {
+
+    window.onload = function () {
+
+        let category = document.getElementById("categoryn");
+
+        [...category.children].forEach(child => {
+            if (child.innerText !== "Please select beauty category") {
+                child.selected = false;
+            }
+        });
+    }
+
     let category = document.getElementById("category");
     category.addEventListener("change", checkCategory);
 

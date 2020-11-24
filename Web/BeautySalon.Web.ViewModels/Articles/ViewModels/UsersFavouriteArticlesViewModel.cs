@@ -4,6 +4,7 @@
     using System.Net;
     using System.Text.RegularExpressions;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using Ganss.XSS;
@@ -24,8 +25,8 @@
             {
                 var content = WebUtility.HtmlDecode(Regex.Replace(this.SanitizedContent, @"<[^>]+>", string.Empty));
 
-                return content.Length > 200
-                        ? content.Substring(0, 200) + "..."
+                return content.Length > GlobalConstants.ArticleShortDescriptionLength
+                        ? content.Substring(0, GlobalConstants.ArticleShortDescriptionLength) + "..."
                         : content;
             }
         }

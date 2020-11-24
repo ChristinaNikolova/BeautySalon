@@ -300,7 +300,7 @@
             var procedures = await this.proceduresRepository
                 .All()
                 .Where(p => p.IsSensitive == isSkinSensitive
-                && p.SkinTypeId == skinTypeId)
+                    && p.SkinTypeId == skinTypeId)
                 .OrderBy(p => p.Name)
                 .To<T>()
                 .ToListAsync();

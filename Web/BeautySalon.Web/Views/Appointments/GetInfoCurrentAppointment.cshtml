@@ -1,5 +1,4 @@
 ﻿@using BeautySalon.Web.ViewModels.Appointments.ViewModels
-@using BeautySalon.Common
 @model DetailsAppointmentViewModel;
 
 @{
@@ -84,15 +83,18 @@
                     @if (this.User.IsInRole(GlobalConstants.StylistRoleName))
                     {
                         <div class="offset-4">
-                            @if (@Model.Status.ToString() == "Processing")
+                            @if (@Model.Status.ToString() == GlobalConstants.StatusProcessing)
                             {
                                 <a asp-area="Stylists" asp-controller="Appointments" asp-action="Approve" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4 mr-2">Approve</a>
                             }
-                            else if (@Model.Status.ToString() != "Done" && @Model.Status.ToString() != "CancelledByStylist")
+                            else if (@Model.Status.ToString() != GlobalConstants.StatusDone 
+                                  && @Model.Status.ToString() != GlobalConstants.StatusCancelledByStylist)
                             {
                                 <a asp-area="Stylists" asp-controller="Appointments" asp-action="Done" asp-route-id="@Model.Id" class="btn btn-outline-primary p-1 px-3 py-2 mb-4">Done</a>
                             }
-                            @if (@Model.Status.ToString() != "CancelledByStylist" && @Model.Status.ToString() != "Done")
+
+                            @if (@Model.Status.ToString() != GlobalConstants.StatusCancelledByStylist
+                             && @Model.Status.ToString() != GlobalConstants.StatusDone)
                             {
                                 <a asp-area="Stylists" asp-controller="Appointments" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Cancel</a>
                             }
@@ -106,9 +108,9 @@
                     <div class="text-center"></div>
                     <h2 class="mb-3 offset-4">Feedback</h2>
                     <hr />
-                    @if (!Model.IsReview && Model.Status.ToString() == "Done"
-&& !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-&& !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                    @if (!Model.IsReview && Model.Status.ToString() == GlobalConstants.StatusDone
+                      && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+                      && !this.User.IsInRole(GlobalConstants.StylistRoleName))
                     {
                         {
                             <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>

@@ -12,6 +12,8 @@
 
     public class SkinTypesService : ISkinTypesService
     {
+        private readonly string sensitiveSkin = "sensitive";
+
         private readonly IRepository<SkinType> skinTypesRepository;
 
         public SkinTypesService(IRepository<SkinType> skinTypesRepository)
@@ -23,7 +25,7 @@
         {
             var skinTypes = await this.skinTypesRepository
                 .All()
-                .Where(st => st.Name.ToLower() != "sensitive")
+                .Where(st => st.Name.ToLower() != this.sensitiveSkin)
                 .OrderBy(st => st.Name)
                 .To<T>()
                 .ToListAsync();
@@ -46,7 +48,7 @@
         {
             var skinTypes = await this.skinTypesRepository
                 .All()
-                .Where(st => st.Name.ToLower() != "sensitive")
+                .Where(st => st.Name.ToLower() != this.sensitiveSkin)
                 .Select(c => new SelectListItem()
                 {
                     Value = c.Id,

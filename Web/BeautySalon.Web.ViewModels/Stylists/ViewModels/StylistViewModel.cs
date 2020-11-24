@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.ViewModels.Stylists.ViewModels
 {
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -23,8 +24,8 @@
         {
             get
             {
-                return this.Description.Length > 50
-                        ? this.Description.Substring(0, 50) + "..."
+                return this.Description.Length > GlobalConstants.StylistShortDescriptionLength
+                        ? this.Description.Substring(0, GlobalConstants.StylistShortDescriptionLength) + "..."
                         : this.Description;
             }
         }

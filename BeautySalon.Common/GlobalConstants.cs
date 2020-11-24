@@ -65,5 +65,23 @@
         public const int DefaultProductQuantity = 0;
 
         public const string DateTimeFormat = "{0:g}";
+
+        public const string StatusProcessing = "Processing";
+
+        public const string StatusDone = "Done";
+
+        public const string StatusCancelledByStylist = "CancelledByStylist";
+
+        public const string StatusApproved = "Approved";
+
+        public const int DefaultLastArticlesCount = 5;
+
+        public const int StylistShortDescriptionLength = 50;
+
+        public const int StylistArticleShortDescriptionLength = 150;
+
+        public const int FavouriteProductShortDescriptionLength = 60;
+
+        public const int ArticleShortDescriptionLength = 200;
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.ViewModels.Products.ViewModels
 {
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
@@ -15,8 +16,8 @@
         {
             get
             {
-                return this.ProductDescription.Length > 60
-                        ? this.ProductDescription.Substring(0, 60) + "..."
+                return this.ProductDescription.Length > GlobalConstants.FavouriteProductShortDescriptionLength
+                        ? this.ProductDescription.Substring(0, GlobalConstants.FavouriteProductShortDescriptionLength) + "..."
                         : this.ProductDescription;
             }
         }

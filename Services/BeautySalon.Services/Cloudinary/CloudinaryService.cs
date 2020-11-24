@@ -11,8 +11,13 @@
 
     public class CloudinaryService : ICloudinaryService
     {
-        private readonly Cloudinary cloudinary;
         private readonly string defaultProfilePicUrl = GlobalConstants.DefaultUserProfilePicture;
+        private readonly string[] validTypes = new string[]
+            {
+                "image/x-png", "image/gif", "image/jpeg", "image/jpg", "image/png", "image/gif", "image/svg",
+            };
+
+        private readonly Cloudinary cloudinary;
 
         public CloudinaryService(Cloudinary cloudinary)
         {
@@ -51,12 +56,7 @@
         {
             bool isImageValid = true;
 
-            string[] validTypes = new string[]
-            {
-                "image/x-png", "image/gif", "image/jpeg", "image/jpg", "image/png", "image/gif", "image/svg",
-            };
-
-            if (validTypes.Contains(image.ContentType) == false)
+            if (this.validTypes.Contains(image.ContentType) == false)
             {
                 isImageValid = false;
             }

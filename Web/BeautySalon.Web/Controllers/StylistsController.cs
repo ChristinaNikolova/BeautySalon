@@ -41,7 +41,7 @@
         {
             if (string.IsNullOrWhiteSpace(input.CategoryId))
             {
-                return this.RedirectToAction("GetAll");
+                return this.RedirectToAction(nameof(this.GetAll));
             }
 
             var stylists = await this.stylistsService.SearchByCategoryAsync<StylistViewModel>(input.CategoryId);

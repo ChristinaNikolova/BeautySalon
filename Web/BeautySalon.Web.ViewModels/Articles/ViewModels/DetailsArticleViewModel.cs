@@ -19,8 +19,8 @@
         {
             get
             {
-                return this.StylistDescription.Length > 150
-                        ? this.StylistDescription.Substring(0, 150) + "..."
+                return this.StylistDescription.Length > GlobalConstants.StylistArticleShortDescriptionLength
+                        ? this.StylistDescription.Substring(0, GlobalConstants.StylistArticleShortDescriptionLength) + "..."
                         : this.StylistDescription;
             }
         }

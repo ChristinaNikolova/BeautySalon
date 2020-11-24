@@ -21,5 +21,8 @@
         public const string InvalidSkinTypeName = "Invalid skin type.";
 
         public const string InvalidCombinationCategoryAndSkinType = "You can choose skin type only when the category name is equal to skin care.";
+
+        // Comment
+        public const string InvalidCommentContentLength = "Content must be between 3 and 1000 characters long!";
     }
 }

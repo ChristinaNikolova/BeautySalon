@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Articles\ViewModels\UsersFavouriteArticlesViewModel.cs~RF8120bf5.TMP" />
     <None Remove="StylistsArea\Articles\ViewModels\ArticleStylistAreaViewModel.cs~RF26d1ece3.TMP" />
   </ItemGroup>
   <ItemGroup>

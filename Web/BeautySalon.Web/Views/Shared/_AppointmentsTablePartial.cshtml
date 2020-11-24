@@ -49,12 +49,12 @@
                     <td>@currentAppoitment.StylistFullName</td>
                 }
 
-                @if (@currentAppoitment.Status.ToString() == "Approved"
-                      || @currentAppoitment.Status.ToString() == "Done")
+                @if (@currentAppoitment.Status.ToString() == GlobalConstants.StatusApproved
+                      || @currentAppoitment.Status.ToString() == GlobalConstants.StatusDone)
                 {
                     <td class="alert-success">@currentAppoitment.Status</td>
                 }
-                else if (@currentAppoitment.Status.ToString() == "Processing")
+                else if (@currentAppoitment.Status.ToString() == GlobalConstants.StatusProcessing)
                 {
                     <td class="alert-warning">@currentAppoitment.Status</td>
                 }

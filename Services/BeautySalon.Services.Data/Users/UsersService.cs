@@ -55,8 +55,6 @@
             return user;
         }
 
-       
-
         public async Task<ApplicationUser> GetUserByIdAsync(string id)
         {
             return await this.usersRepository

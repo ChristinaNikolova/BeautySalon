@@ -4,6 +4,7 @@
     using System.Linq;
 
     using AutoMapper;
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Web.ViewModels.Articles.ViewModels;
@@ -15,7 +16,7 @@
         public IEnumerable<ArticleStylistViewModel> LastArticles
             => this.Articles
             .OrderByDescending(a => a.ArticleCreatedOn)
-            .Take(5)
+            .Take(GlobalConstants.DefaultLastArticlesCount)
             .ToList();
 
         public void CreateMappings(IProfileExpression configuration)

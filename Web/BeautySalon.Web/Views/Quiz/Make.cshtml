@@ -11,51 +11,8 @@
 <div class="comment-form-wrap pt-5">
     <h2 id="make-quiz-heading" class="mb-5" align="center" style="display:block">Make the quiz</h2>
     <div class="bg-light p-4">
-        <section id="parent-element-section">
-            <div class="start-button-quiz">
-                <a id="start-quiz" class="btn btn-primary p-3 px-5 py-4 mr-md-2 justify-content-center quiz">Start quiz</a>
-            </div>
-            @for (var i = 0; i < @Model.Quiz.Count(); i++)
-            {
-                <div class="current-question" style="display:none">
-                    <div id="question">
-                        <div class="question">
-                            <p class="question-wrap">
-                                <h2 align="center">Question #@(i+1): @Model.Quiz.ToList()[i].Text</h2>
-                            </p>
-                        </div>
-                        <ol>
-                            @foreach (var answer in @Model.Quiz.ToList()[i].QuizAnswers)
-                            {
-                                <li class="quiz-answer">
-                                    <div class="answer-wrap">
-                                        <a class="btn btn-outline-primary answer-quiz">@answer.Text</a>
-                                    </div>
-                                </li>
-                            }
-                        </ol>
-                    </div>
-                </div>
-            }
-        </section>
-        <section id="skin-problems-section" style="display:none">
-            <h4 class="mb-5" align="center">Choose your skin problems:</h4>
-            <form id="skin-problems-form" method="post">
-                <div id="skin-problems-elements" class="skin-problems-container">
-                    @foreach (var skinProblem in Model.SkinProblems)
-                    {
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="skinProblem" id="@skinProblem.Id" value="@skinProblem.Name">
-                            <label class="form-check-label theme-color-gold" for="skinProblem">@skinProblem.Name</label>
-                        </div>
-                    }
-                </div>
-                <div class="text-center skin-problems-buttons">
-                    <input id="skin-problems-save-button" type="submit" value="Save" class="btn btn-primary py-3 px-5 skin-problems-button">
-                    <a asp-controller="Quiz" asp-action="Make" class="btn btn-outline-primary py-3 px-5 skin-problems-button">Make quiz again</a>
-                </div>
-            </form>
-        </section>
+        <partial name="_QuizQuestionsPartial" model="Model.Quiz" />
+        <partial name="_SkinProblemsPartial" model="Model.SkinProblems" />
     </div>
 </div>
 

@@ -17,7 +17,9 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IChatsService chatService;
 
-        public ChatHub(UserManager<ApplicationUser> userManager, IChatsService chatService)
+        public ChatHub(
+            UserManager<ApplicationUser> userManager,
+            IChatsService chatService)
         {
             this.userManager = userManager;
             this.chatService = chatService;

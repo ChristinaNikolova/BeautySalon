@@ -16,7 +16,10 @@
         private readonly IStylistsService stylistsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public QuestionsController(IQuestionsService questionsService, IStylistsService stylistsService, UserManager<ApplicationUser> userManager)
+        public QuestionsController(
+            IQuestionsService questionsService,
+            IStylistsService stylistsService,
+            UserManager<ApplicationUser> userManager)
         {
             this.questionsService = questionsService;
             this.stylistsService = stylistsService;

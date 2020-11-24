@@ -14,7 +14,9 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ICommentsService commentsService;
 
-        public CommentsController(UserManager<ApplicationUser> userManager, ICommentsService commentsService)
+        public CommentsController(
+            UserManager<ApplicationUser> userManager,
+            ICommentsService commentsService)
         {
             this.userManager = userManager;
             this.commentsService = commentsService;

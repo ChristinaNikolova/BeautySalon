@@ -17,7 +17,9 @@
         private readonly IArticlesService articlesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public ArticlesController(IArticlesService articlesService, UserManager<ApplicationUser> userManager)
+        public ArticlesController(
+            IArticlesService articlesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.articlesService = articlesService;
             this.userManager = userManager;

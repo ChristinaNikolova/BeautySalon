@@ -9,10 +9,6 @@
     {
         Task<ApplicationUser> UpdateUserProfileAsync(string id, string username, string firstName, string lastName, string address, string phoneNumber, string gender, IFormFile newPicture);
 
-        Task<SkinType> GetUserSkinTypeByIdAsync(string skinTypeId);
-
-        Task<SkinType> GetUserSkinTypeByNameAsync(string skinTypeName);
-
         Task<ApplicationUser> GetUserByIdAsync(string id);
 
         Task<T> GetUserDataAsync<T>(string userId);

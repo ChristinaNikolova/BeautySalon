@@ -55,23 +55,7 @@
             return user;
         }
 
-        public async Task<SkinType> GetUserSkinTypeByIdAsync(string skinTypeId)
-        {
-            var skinType = await this.skinTypesRepository
-                .All()
-                .FirstOrDefaultAsync(st => st.Id == skinTypeId);
-
-            return skinType;
-        }
-
-        public async Task<SkinType> GetUserSkinTypeByNameAsync(string skinTypeName)
-        {
-            var skinType = await this.skinTypesRepository
-                .All()
-                .FirstOrDefaultAsync(st => st.Name == skinTypeName);
-
-            return skinType;
-        }
+       
 
         public async Task<ApplicationUser> GetUserByIdAsync(string id)
         {

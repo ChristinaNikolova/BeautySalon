@@ -19,7 +19,11 @@
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public AppointmentsController(IAppointmentsService appointmentsService, IUsersService usersService, ICategoriesService categoriesService, UserManager<ApplicationUser> userManager)
+        public AppointmentsController(
+            IAppointmentsService appointmentsService,
+            IUsersService usersService,
+            ICategoriesService categoriesService,
+            UserManager<ApplicationUser> userManager)
         {
             this.appointmentsService = appointmentsService;
             this.usersService = usersService;
@@ -56,13 +60,13 @@
                 input.Id = userId;
                 input.CategoryId = null;
 
-                // Bug with default selected category!
+                //Bug with default selected category!
                 return this.View(input);
             }
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
-
-            return this.Redirect("/Users/Index");
+            //check this
+            return this.RedirectToAction("Users", "Index");
         }
 
         [HttpPost]

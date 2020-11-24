@@ -6,6 +6,7 @@
 
     public class CreateCommentInputModel
     {
+        [Required]
         public string ArticleId { get; set; }
 
         [Required]

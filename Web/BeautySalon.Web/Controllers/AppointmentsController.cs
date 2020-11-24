@@ -65,6 +65,8 @@
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
 
+            this.TempData["InfoMessage"] = "Your appointment request is successfully created!";
+
             return this.Redirect("/Users/Index");
         }
 

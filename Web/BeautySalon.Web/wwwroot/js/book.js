@@ -1,4 +1,16 @@
 ﻿function book() {
+
+    window.onload = function () {
+
+        let category = document.getElementById("category");
+
+        [...category.children].forEach(child => {
+            if (child.innerText !== "Please select beauty category") {
+                child.selected = false;
+            }
+        });
+    }
+
     $(function () {
         $("#datepicker").datepicker({
             startDate: "+1d",

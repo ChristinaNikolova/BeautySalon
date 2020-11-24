@@ -97,6 +97,7 @@
 
         public async Task<ActionResult<AllProcedureNamesViewModel>> SmartSearchProcedures([FromBody] ProcedureSmartSeachInputModel input)
         {
+            ;
             var procedureNames = await this.proceduresService.GetSmartSearchProceduresAsync<ProcedureNameViewModel>(input.ClientSkinTypeId, input.IsSkinSensitive, input.StylistId);
 
             return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };

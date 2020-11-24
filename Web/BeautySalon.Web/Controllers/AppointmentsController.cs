@@ -60,13 +60,12 @@
                 input.Id = userId;
                 input.CategoryId = null;
 
-                //Bug with default selected category!
                 return this.View(input);
             }
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
-            //check this
-            return this.RedirectToAction("Users", "Index");
+
+            return this.Redirect("/Users/Index");
         }
 
         [HttpPost]

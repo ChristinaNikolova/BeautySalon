@@ -159,21 +159,11 @@
 
             if (!isFavourite)
             {
-                var clientProductLike = new ClientProductLike()
-                {
-                    ClientId = userId,
-                    ProductId = productId,
-                };
-
-                await this.clientProductLikesRepository.AddAsync(clientProductLike);
+                await this.AddToFavouriteAsync(productId, userId);
             }
             else
             {
-                var clientProductLike = await this.clientProductLikesRepository
-                    .All()
-                    .FirstOrDefaultAsync(cp => cp.ProductId == productId && cp.ClientId == userId);
-
-                this.clientProductLikesRepository.Delete(clientProductLike);
+                await this.RemoveFromFavouriteAsync(productId, userId);
                 isAdded = false;
             }
 
@@ -207,6 +197,26 @@
         private async Task<string> GetPictureAsStringAsync(string name, IFormFile picture)
         {
             return await this.cloudinaryService.UploudAsync(picture, name);
+        }
+
+        private async Task RemoveFromFavouriteAsync(string productId, string userId)
+        {
+            var clientProductLike = await this.clientProductLikesRepository
+                                .All()
+                                .FirstOrDefaultAsync(cp => cp.ProductId == productId && cp.ClientId == userId);
+
+            this.clientProductLikesRepository.Delete(clientProductLike);
+        }
+
+        private async Task AddToFavouriteAsync(string productId, string userId)
+        {
+            var clientProductLike = new ClientProductLike()
+            {
+                ClientId = userId,
+                ProductId = productId,
+            };
+
+            await this.clientProductLikesRepository.AddAsync(clientProductLike);
         }
     }
 }

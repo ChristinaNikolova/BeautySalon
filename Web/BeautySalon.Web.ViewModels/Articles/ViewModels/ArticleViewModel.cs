@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModels
 {
     using System;
+    using System.Globalization;
     using System.Net;
     using System.Text.RegularExpressions;
 
@@ -39,7 +40,7 @@
             => this.CreatedOn.Day;
 
         public string Month
-           => this.CreatedOn.ToString("MMMM");
+           => this.CreatedOn.ToString("MMMM", CultureInfo.CreateSpecificCulture("en"));
 
         public int Year
            => this.CreatedOn.Year;

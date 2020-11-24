@@ -76,7 +76,7 @@
         public async Task<ActionResult<SearchProcedureCriteriaViewModelModel>> SearchBy([FromBody] SearchProcedureCriteriaInputModel input)
         {
             var category = await this.categoriesService.GetByNameAsync(input.CategoryName);
-            //check this
+
             if (string.IsNullOrWhiteSpace(input.SkinTypeId) && string.IsNullOrWhiteSpace(input.Criteria))
             {
                 return this.RedirectToAction(nameof(this.GetProceduresByCategory), new { id = category.Id });
@@ -97,7 +97,6 @@
 
         public async Task<ActionResult<AllProcedureNamesViewModel>> SmartSearchProcedures([FromBody] ProcedureSmartSeachInputModel input)
         {
-            ;
             var procedureNames = await this.proceduresService.GetSmartSearchProceduresAsync<ProcedureNameViewModel>(input.ClientSkinTypeId, input.IsSkinSensitive, input.StylistId);
 
             return new AllProcedureNamesViewModel { ProcedureNames = procedureNames };

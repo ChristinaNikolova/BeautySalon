@@ -168,21 +168,11 @@
 
             if (!isFavourite)
             {
-                var clientArticleLike = new ClientArticleLike()
-                {
-                    ClientId = userId,
-                    ArticleId = articleId,
-                };
-
-                await this.clientArticleLikesRepository.AddAsync(clientArticleLike);
+                await this.AddToFavouriteAsync(articleId, userId);
             }
             else
             {
-                var clientArticleLike = await this.clientArticleLikesRepository
-                    .All()
-                    .FirstOrDefaultAsync(ca => ca.ArticleId == articleId && ca.ClientId == userId);
-
-                this.clientArticleLikesRepository.Delete(clientArticleLike);
+                await this.RemoveFromFavouriteAsync(articleId, userId);
                 isAdded = false;
             }
 
@@ -269,6 +259,26 @@
             }
 
             await this.commentsRepository.SaveChangesAsync();
+        }
+
+        private async Task RemoveFromFavouriteAsync(string articleId, string userId)
+        {
+            var clientArticleLike = await this.clientArticleLikesRepository
+                                .All()
+                                .FirstOrDefaultAsync(ca => ca.ArticleId == articleId && ca.ClientId == userId);
+
+            this.clientArticleLikesRepository.Delete(clientArticleLike);
+        }
+
+        private async Task AddToFavouriteAsync(string articleId, string userId)
+        {
+            var clientArticleLike = new ClientArticleLike()
+            {
+                ClientId = userId,
+                ArticleId = articleId,
+            };
+
+            await this.clientArticleLikesRepository.AddAsync(clientArticleLike);
         }
     }
 }

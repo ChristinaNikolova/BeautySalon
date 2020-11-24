@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Cloudinary
 {
+    using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -41,6 +42,8 @@
 
             using (var ms = new MemoryStream(destinationImage))
             {
+                imageName += DateTime.UtcNow.ToString();
+
                 var uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(imageName, ms),

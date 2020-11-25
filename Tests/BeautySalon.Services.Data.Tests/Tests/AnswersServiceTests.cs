@@ -1,7 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using BeautySalon.Data;
@@ -10,7 +9,6 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Answers;
     using BeautySalon.Services.Mapping;
-    using BeautySalon.Web.ViewModels.Answers.ViewModels;
     using Microsoft.EntityFrameworkCore;
     using Moq;
     using Xunit;
@@ -60,13 +58,8 @@
         [Fact]
         public async Task CheckCreatingNewAnswer()
         {
-            ApplicationDbContext db = GetDb();
+            AnswersService service = await this.ArrangeAnswersService();
 
-            var repository = new EfDeletableEntityRepository<Answer>(db);
-            var questionRepository = new EfDeletableEntityRepository<Question>(db);
-            await this.AddQuestionAsync(questionRepository);
-
-            var service = new AnswersService(repository, questionRepository);
             var answerId = await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
 
             Assert.NotNull(answerId);
@@ -75,14 +68,7 @@
         [Fact]
         public async Task CheckForNewAnswerShoudReturnTrue()
         {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Answer>(db);
-            var questionRepository = new EfDeletableEntityRepository<Question>(db);
-            await this.AddQuestionAsync(questionRepository);
-
-            var service = new AnswersService(repository, questionRepository);
-            await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
+            AnswersService service = await this.ArrangeAnswersService();
 
             var isNewAnswer = await service.CheckNewAnswerAsync(this.client.Id);
 
@@ -90,54 +76,17 @@
         }
 
         [Fact]
-        public async Task CheckGettingAnswersForCurrentUser()
+        public async Task CheckGettingAnswersForUser()
         {
-            ApplicationDbContext db = GetDb();
+            AnswersService service = await this.ArrangeAnswersService();
 
-            var repository = new EfDeletableEntityRepository<Answer>(db);
-            var questionRepository = new EfDeletableEntityRepository<Question>(db);
-            await this.AddQuestionAsync(questionRepository);
+            var resultUserSideOnlyNewAnswers = await service.GetAllNewAnswersForUserAsync<TestExerciseModel>(this.client.Id);
+            var resultUserSide = await service.GetAllAnswersForUserAsync<TestExerciseModel>(this.client.Id);
+            var resultStylistSide = await service.GetAllForStylistAsync<TestExerciseModel>(this.stylist.Id);
 
-            var service = new AnswersService(repository, questionRepository);
-            await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
-
-            var result = await service.GetAllAnswersForUserAsync<TestExerciseModel>(this.client.Id);
-
-            Assert.NotEmpty(result);
-        }
-
-        [Fact]
-        public async Task CheckGettingNewAnswersForCurrentUser()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Answer>(db);
-            var questionRepository = new EfDeletableEntityRepository<Question>(db);
-            await this.AddQuestionAsync(questionRepository);
-
-            var service = new AnswersService(repository, questionRepository);
-            await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
-
-            var result = await service.GetAllNewAnswersForUserAsync<TestExerciseModel>(this.client.Id);
-
-            Assert.NotEmpty(result);
-        }
-
-        [Fact]
-        public async Task CheckGettingAnswersForStylist()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Answer>(db);
-            var questionRepository = new EfDeletableEntityRepository<Question>(db);
-            await this.AddQuestionAsync(questionRepository);
-
-            var service = new AnswersService(repository, questionRepository);
-            await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
-
-            var result = await service.GetAllForStylistAsync<TestExerciseModel>(this.client.Id);
-
-            Assert.NotEmpty(result);
+            Assert.NotEmpty(resultUserSideOnlyNewAnswers);
+            Assert.NotEmpty(resultUserSide);
+            Assert.NotEmpty(resultStylistSide);
         }
 
         [Fact]
@@ -169,6 +118,20 @@
         {
             await questionRepository.AddAsync(this.question);
             await questionRepository.SaveChangesAsync();
+        }
+
+        private async Task<AnswersService> ArrangeAnswersService()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Answer>(db);
+            var questionRepository = new EfDeletableEntityRepository<Question>(db);
+            await this.AddQuestionAsync(questionRepository);
+
+            var service = new AnswersService(repository, questionRepository);
+            await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
+
+            return service;
         }
 
         public class TestExerciseModel : IMapFrom<Answer>

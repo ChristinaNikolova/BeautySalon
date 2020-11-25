@@ -19,7 +19,11 @@
         private readonly IRepository<ClientArticleLike> clientArticleLikesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public ArticlesService(IRepository<Article> articlesRepository, IRepository<Comment> commentsRepository, IRepository<ClientArticleLike> clientArticleLikesRepository, ICloudinaryService cloudinaryService)
+        public ArticlesService(
+            IRepository<Article> articlesRepository,
+            IRepository<Comment> commentsRepository,
+            IRepository<ClientArticleLike> clientArticleLikesRepository,
+            ICloudinaryService cloudinaryService)
         {
             this.articlesRepository = articlesRepository;
             this.commentsRepository = commentsRepository;

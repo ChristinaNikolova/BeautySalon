@@ -15,10 +15,11 @@
 
     public class AnswersServiceTests
     {
-        private readonly Mock<IRepository<Question>> questionsRepository;
         private readonly Question question;
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
+
+        private readonly Mock<IRepository<Question>> questionsRepository;
 
         public AnswersServiceTests()
         {

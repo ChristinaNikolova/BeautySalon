@@ -21,7 +21,7 @@
             this.appointmentsRepository = appointmentsRepository;
         }
 
-        public async Task CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment)
+        public async Task<string> CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment)
         {
             var appointment = new Appointment()
             {
@@ -37,6 +37,8 @@
 
             await this.appointmentsRepository.AddAsync(appointment);
             await this.appointmentsRepository.SaveChangesAsync();
+
+            return appointment.Id;
         }
 
         public async Task CancelAsync(string id)
@@ -124,7 +126,7 @@
 
             var takenHours = await this.appointmentsRepository
                 .All()
-                .Where(a => a.DateTime == selectedDateAsDateTime
+                .Where(a => a.DateTime.Date == selectedDateAsDateTime.Date
                     && a.StylistId == selectedStylistId
                     && a.Status != Status.CancelledByStylist)
                 .Select(a => a.StartTime)

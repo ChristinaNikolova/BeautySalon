@@ -8,7 +8,7 @@
     {
         Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId);
 
-        Task CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment);
+        Task<string> CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment);
 
         Task<IEnumerable<T>> GetAllAppointmentsForTodayAsync<T>();
 

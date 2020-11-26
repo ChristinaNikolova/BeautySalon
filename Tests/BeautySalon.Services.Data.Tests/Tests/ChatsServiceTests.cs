@@ -20,14 +20,12 @@
         private readonly ApplicationUser receiver;
 
         private readonly Mock<IRepository<ChatMessage>> chatMessagesRepository;
-        private readonly Mock<IRepository<ChatGroup>> chatGroupsRepository;
         private readonly Mock<IRepository<UserChatGroup>> userChatGroupsRepository;
 
         public ChatsServiceTests()
         {
             new MapperInitializationProfile();
             this.chatMessagesRepository = new Mock<IRepository<ChatMessage>>();
-            this.chatGroupsRepository = new Mock<IRepository<ChatGroup>>();
             this.userChatGroupsRepository = new Mock<IRepository<UserChatGroup>>();
 
             this.sender = new ApplicationUser()

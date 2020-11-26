@@ -226,7 +226,7 @@
 
         public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
         {
-            var isSkinSensitive = skinSensitive.ToLower().Contains("yes".ToLower()) ? true : false;
+            var isSkinSensitive = skinSensitive.ToLower().Contains("yes".ToLower());
 
             var procedures = await this.procedureStylistsRepository
                 .All()
@@ -373,7 +373,7 @@
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
                 procedure.SkinTypeId = skinTypeId;
-                procedure.IsSensitive = isSensitive == "Yes" ? true : false;
+                procedure.IsSensitive = isSensitive == "Yes";
 
                 if (skinProblems != null)
                 {

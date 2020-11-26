@@ -69,7 +69,7 @@
             var model = new ResultViewModel()
             {
                 SkinType = await this.skinTypesService.GetSkinTypeResultAsync<SkinTypeDescriptionViewModel>(outputML.Prediction),
-                IsSkinSensitive = input.LastAnswer.Contains("Yes") ? true : false,
+                IsSkinSensitive = input.LastAnswer.Contains("Yes"),
             };
 
             return model;

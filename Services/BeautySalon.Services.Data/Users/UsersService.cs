@@ -15,20 +15,17 @@
     public class UsersService : IUsersService
     {
         private readonly IRepository<ApplicationUser> usersRepository;
-        private readonly IRepository<SkinType> skinTypesRepository;
         private readonly IRepository<SkinProblem> skinProblemsRepository;
         private readonly IRepository<ClientSkinProblem> clientSkinProblemsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
         public UsersService(
             IRepository<ApplicationUser> usersRepository,
-            IRepository<SkinType> skinTypesRepository,
             IRepository<SkinProblem> skinProblemsRepository,
             IRepository<ClientSkinProblem> clientSkinProblemsRepository,
             ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
-            this.skinTypesRepository = skinTypesRepository;
             this.skinProblemsRepository = skinProblemsRepository;
             this.clientSkinProblemsRepository = clientSkinProblemsRepository;
             this.cloudinaryService = cloudinaryService;

@@ -5,7 +5,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Mapping;
 
-    public class QuestionQuizViewModel : IMapFrom<Question>
+    public class QuestionQuizViewModel : IMapFrom<QuizQuestion>
     {
         public string Id { get; set; }
 

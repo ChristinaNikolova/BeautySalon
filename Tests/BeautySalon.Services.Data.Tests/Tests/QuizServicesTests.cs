@@ -24,12 +24,12 @@
         {
             ApplicationDbContext db = GetDb();
 
-            var repository = new EfDeletableEntityRepository<Question>(db);
+            var repository = new EfDeletableEntityRepository<QuizQuestion>(db);
             var service = new QuizService(repository);
 
-            var firstQuestion = new Question() { Id = Guid.NewGuid().ToString() };
-            var secondQuestion = new Question() { Id = Guid.NewGuid().ToString() };
-            var thirdQuestion = new Question() { Id = Guid.NewGuid().ToString() };
+            var firstQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
+            var secondQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
+            var thirdQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
 
             await db.QuizQuestions.AddAsync(firstQuestion);
             await db.QuizQuestions.AddAsync(secondQuestion);
@@ -49,7 +49,7 @@
             return db;
         }
 
-        public class TestQuizModel : IMapFrom<Question>
+        public class TestQuizModel : IMapFrom<QuizQuestion>
         {
             public string Id { get; set; }
         }

@@ -14,8 +14,6 @@
 
         public string ProcedureId { get; set; }
 
-        public string StylistId { get; set; }
-
         public string Comment { get; set; }
 
         public bool IsReview { get; set; }

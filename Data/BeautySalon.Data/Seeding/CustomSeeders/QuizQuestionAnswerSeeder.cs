@@ -22,12 +22,12 @@
                     .DeserializeObject<List<QuizQuestionAnswerDto>>(File.ReadAllText(GlobalConstants.QuizQuestionAnswerSeederPath))
                     .ToList();
 
-                List<Question> quizQuestions = new List<Question>();
+                List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
                 List<QuizAnswer> quizAnswers = new List<QuizAnswer>();
 
                 foreach (var currentQuizQuestion in quizQuestionData)
                 {
-                    var quizQuestion = new Question()
+                    var quizQuestion = new QuizQuestion()
                     {
                         Text = currentQuizQuestion.QuestionText,
                     };

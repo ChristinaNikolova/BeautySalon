@@ -12,9 +12,9 @@
 
     public class QuizService : IQuizService
     {
-        private readonly IRepository<Question> quizQuestionRepository;
+        private readonly IRepository<QuizQuestion> quizQuestionRepository;
 
-        public QuizService(IRepository<Question> quizQuestionRepository)
+        public QuizService(IRepository<QuizQuestion> quizQuestionRepository)
         {
             this.quizQuestionRepository = quizQuestionRepository;
         }

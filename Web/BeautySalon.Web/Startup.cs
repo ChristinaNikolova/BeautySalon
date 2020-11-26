@@ -24,7 +24,6 @@
     using BeautySalon.Services.Data.Questions;
     using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Data.Reviews;
-    using BeautySalon.Services.Data.Settings;
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Data.Stylists;
@@ -120,7 +119,6 @@
             services.AddTransient<IJobTypesService, JobTypesService>();
             services.AddTransient<IProceduresService, ProceduresService>();
             services.AddTransient<IProductsService, ProductsService>();
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ISkinProblemsService, SkinProblemsService>();
             services.AddTransient<ISkinTypesService, SkinTypesService>();
             services.AddTransient<IStylistsService, StylistsService>();

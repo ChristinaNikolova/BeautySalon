@@ -27,7 +27,7 @@
             this.questionsRepository = new Mock<IRepository<Question>>();
             this.stylist = new ApplicationUser()
             {
-                Id = "1",
+                Id = "10",
             };
             this.client = new ApplicationUser()
             {

@@ -36,7 +36,7 @@
             this.cloudinaryService = new Mock<ICloudinaryService>();
             this.stylist = new ApplicationUser()
             {
-                Id = "1",
+                Id = "10",
             };
             this.client = new ApplicationUser()
             {

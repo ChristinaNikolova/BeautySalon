@@ -6,9 +6,9 @@
 
     using BeautySalon.Data.Common.Models;
 
-    public class QuizQuestion : BaseDeletableModel<string>
+    public class Question : BaseDeletableModel<string>
     {
-        public QuizQuestion()
+        public Question()
         {
             this.Id = Guid.NewGuid().ToString();
             this.QuizAnswers = new HashSet<QuizAnswer>();

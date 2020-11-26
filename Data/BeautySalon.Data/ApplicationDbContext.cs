@@ -66,7 +66,7 @@
 
         public DbSet<QuizAnswer> QuizAnswers { get; set; }
 
-        public DbSet<QuizQuestion> QuizQuestions { get; set; }
+        public DbSet<Question> QuizQuestions { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
 

@@ -18,6 +18,6 @@
         [Required]
         public string QuizQuestionId { get; set; }
 
-        public virtual QuizQuestion QuizQuestion { get; set; }
+        public virtual Question QuizQuestion { get; set; }
     }
 }

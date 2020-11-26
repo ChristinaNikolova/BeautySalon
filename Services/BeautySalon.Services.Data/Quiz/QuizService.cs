@@ -12,13 +12,11 @@
 
     public class QuizService : IQuizService
     {
-        private readonly IRepository<QuizQuestion> quizQuestionRepository;
-        private readonly ISkinTypesService skinTypesService;
+        private readonly IRepository<Question> quizQuestionRepository;
 
-        public QuizService(IRepository<QuizQuestion> quizQuestionRepository, ISkinTypesService skinTypesService)
+        public QuizService(IRepository<Question> quizQuestionRepository)
         {
             this.quizQuestionRepository = quizQuestionRepository;
-            this.skinTypesService = skinTypesService;
         }
 
         public async Task<IEnumerable<T>> GetQuizAsync<T>()

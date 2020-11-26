@@ -1,19 +1,20 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Data;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
-    using BeautySalon.Services.Data.Questions;
+    using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class QuestionsServiceTests
+    public class QuizServicesTests
     {
-        public QuestionsServiceTests()
+        public QuizServicesTests()
         {
             new MapperInitializationProfile();
         }
@@ -24,20 +25,20 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Question>(db);
-            var service = new QuestionsService(repository);
+            var service = new QuizService(repository);
 
-            //var firstQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
-            //var secondQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
-            //var thirdQuestion = new QuizQuestion() { Id = Guid.NewGuid().ToString() };
+            var firstQuestion = new Question() { Id = Guid.NewGuid().ToString() };
+            var secondQuestion = new Question() { Id = Guid.NewGuid().ToString() };
+            var thirdQuestion = new Question() { Id = Guid.NewGuid().ToString() };
 
-            //await db.QuizQuestions.AddAsync(firstQuestion);
-            //await db.QuizQuestions.AddAsync(secondQuestion);
-            //await db.QuizQuestions.AddAsync(thirdQuestion);
-            //await db.SaveChangesAsync();
+            await db.QuizQuestions.AddAsync(firstQuestion);
+            await db.QuizQuestions.AddAsync(secondQuestion);
+            await db.QuizQuestions.AddAsync(thirdQuestion);
+            await db.SaveChangesAsync();
 
-            //var quiz = await service.GetQuizAsync<TestQuizModel>();
+            var quiz = await service.GetQuizAsync<TestQuizModel>();
 
-            Assert.Equal();
+            Assert.Equal(3, quiz.Count());
         }
 
         private static ApplicationDbContext GetDb()
@@ -48,7 +49,7 @@
             return db;
         }
 
-        public class TestQuestionModel : IMapFrom<Question>
+        public class TestQuizModel : IMapFrom<Question>
         {
             public string Id { get; set; }
         }

@@ -4,9 +4,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class QuizQuestionConfiguration : IEntityTypeConfiguration<QuizQuestion>
+    public class QuizQuestionConfiguration : IEntityTypeConfiguration<Question>
     {
-        public void Configure(EntityTypeBuilder<QuizQuestion> quizQuestion)
+        public void Configure(EntityTypeBuilder<Question> quizQuestion)
         {
             quizQuestion
                 .HasMany(qq => qq.QuizAnswers)

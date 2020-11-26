@@ -81,9 +81,9 @@
         {
             AnswersService service = await this.ArrangeAnswersService();
 
-            var resultUserSideOnlyNewAnswers = await service.GetAllNewAnswersForUserAsync<TestExerciseModel>(this.client.Id);
-            var resultUserSide = await service.GetAllAnswersForUserAsync<TestExerciseModel>(this.client.Id);
-            var resultStylistSide = await service.GetAllForStylistAsync<TestExerciseModel>(this.stylist.Id);
+            var resultUserSideOnlyNewAnswers = await service.GetAllNewAnswersForUserAsync<TestAnswerModel>(this.client.Id);
+            var resultUserSide = await service.GetAllAnswersForUserAsync<TestAnswerModel>(this.client.Id);
+            var resultStylistSide = await service.GetAllForStylistAsync<TestAnswerModel>(this.stylist.Id);
 
             Assert.NotEmpty(resultUserSideOnlyNewAnswers);
             Assert.NotEmpty(resultUserSide);
@@ -102,7 +102,7 @@
             var service = new AnswersService(repository, questionRepository);
             var answerId = await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
 
-            var result = await service.GetAnswerDetailsAsync<TestExerciseModel>(answerId);
+            var result = await service.GetAnswerDetailsAsync<TestAnswerModel>(answerId);
 
             Assert.NotNull(result);
         }
@@ -135,7 +135,7 @@
             return service;
         }
 
-        public class TestExerciseModel : IMapFrom<Answer>
+        public class TestAnswerModel : IMapFrom<Answer>
         {
             public string Id { get; set; }
         }

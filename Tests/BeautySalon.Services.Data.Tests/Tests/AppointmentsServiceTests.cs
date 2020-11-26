@@ -60,8 +60,8 @@
 
             var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
 
-            var resultAppointment = await service.GetDetailsAsync<TestExerciseModel>(appointmentId);
-            var expectedAppointment = await service.GetByIdAsync<TestExerciseModel>(appointmentId);
+            var resultAppointment = await service.GetDetailsAsync<TestAppointmentModel>(appointmentId);
+            var expectedAppointment = await service.GetByIdAsync<TestAppointmentModel>(appointmentId);
 
             Assert.True(resultAppointment.Id.Equals(expectedAppointment.Id));
         }
@@ -129,7 +129,7 @@
             await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
             await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
 
-            var appointments = await service.GetAllAppointmentsForTodayAsync<TestExerciseModel>();
+            var appointments = await service.GetAllAppointmentsForTodayAsync<TestAppointmentModel>();
 
             Assert.Equal(3, appointments.Count());
         }
@@ -172,7 +172,7 @@
             await service.DoneAsync(thirdAppId);
 
             var stylistAppointments = await
-                service.GetAllForStylistAsync<TestExerciseModel>(this.stylist.Id);
+                service.GetAllForStylistAsync<TestAppointmentModel>(this.stylist.Id);
 
             Assert.Equal(3, stylistAppointments.Count());
         }
@@ -193,7 +193,7 @@
             await service.ApproveAsync(secondAppId);
 
             var userAppointments = await
-                service.GetClientsUpcomingAppointmentsAsync<TestExerciseModel>(this.client.Id);
+                service.GetClientsUpcomingAppointmentsAsync<TestAppointmentModel>(this.client.Id);
 
             Assert.Equal(3, userAppointments.Count());
         }
@@ -240,7 +240,7 @@
             await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
 
             var appointments = await
-                service.GetRequestsAsync<TestExerciseModel>(this.stylist.Id);
+                service.GetRequestsAsync<TestAppointmentModel>(this.stylist.Id);
             var count = await
                 service.GetAppointmentsRequestsCountAsync(this.stylist.Id);
 
@@ -265,7 +265,7 @@
             await service.CancelAsync(thirdAppId);
 
             var resultAppointments = await
-                service.GetHistoryStylistAsync<TestExerciseModel>(this.stylist.Id);
+                service.GetHistoryStylistAsync<TestAppointmentModel>(this.stylist.Id);
 
             Assert.Equal(3, resultAppointments.Count());
         }
@@ -289,7 +289,7 @@
             await service.CancelAsync(thirdAppId);
 
             var resultAppointments = await
-                service.GetHistoryAllStylistsAsync<TestExerciseModel>();
+                service.GetHistoryAllStylistsAsync<TestAppointmentModel>();
 
             Assert.Equal(3, resultAppointments.Count());
         }
@@ -317,7 +317,7 @@
             await repository.SaveChangesAsync();
 
             var resultAppointments = await
-                service.GetHistoryUserAsync<TestExerciseModel>(this.client.Id);
+                service.GetHistoryUserAsync<TestAppointmentModel>(this.client.Id);
 
             Assert.Equal(2, resultAppointments.Count());
         }
@@ -347,7 +347,7 @@
             await repository.SaveChangesAsync();
 
             var resultAppointments = await
-                service.GetAppointmentsToReviewAsync<TestExerciseModel>(this.client.Id);
+                service.GetAppointmentsToReviewAsync<TestAppointmentModel>(this.client.Id);
 
             Assert.Single(resultAppointments);
         }
@@ -390,7 +390,7 @@
             return db;
         }
 
-        public class TestExerciseModel : IMapFrom<Appointment>
+        public class TestAppointmentModel : IMapFrom<Appointment>
         {
             public string Id { get; set; }
         }

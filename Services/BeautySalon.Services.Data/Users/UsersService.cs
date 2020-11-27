@@ -59,17 +59,6 @@
                             .FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task<T> GetUserDataAsync<T>(string userId)
-        {
-            var userData = await this.usersRepository
-                .All()
-                .Where(u => u.Id == userId)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return userData;
-        }
-
         public async Task AddSkinTypeDataAsync(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems)
         {
             var user = await this.usersRepository
@@ -88,26 +77,15 @@
             await this.usersRepository.SaveChangesAsync();
         }
 
-        public async Task<T> GetUserSkinDataAsync<T>(string userId)
+        public async Task<T> GetUserDataAsync<T>(string userId)
         {
-            var userSkinData = await this.usersRepository
+            var userData = await this.usersRepository
                 .All()
                 .Where(u => u.Id == userId)
                 .To<T>()
                 .FirstOrDefaultAsync();
 
-            return userSkinData;
-        }
-
-        public async Task<T> GetUsersSkinDataForProfilePageAsync<T>(string userId)
-        {
-            var userSkinData = await this.usersRepository
-               .All()
-               .Where(u => u.Id == userId)
-               .To<T>()
-               .FirstOrDefaultAsync();
-
-            return userSkinData;
+            return userData;
         }
 
         private async Task RemoveExistingClientSkinProblemsAsync(string userId)
@@ -134,6 +112,8 @@
 
         private async Task AddSkinProblemsAsync(string userId, string[] skinProblems, ApplicationUser user)
         {
+            await this.RemoveExistingClientSkinProblemsAsync(userId);
+
             foreach (var skinProblemName in skinProblems)
             {
                 var skinProblem = await this.skinProblemsRepository
@@ -144,12 +124,10 @@
                     .All()
                     .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id);
 
-                if (isUserSkinProblemAlreadyAddedAsync)
-                {
-                    continue;
-                }
-
-                await this.RemoveExistingClientSkinProblemsAsync(userId);
+                //if (isUserSkinProblemAlreadyAddedAsync)
+                //{
+                //    continue;
+                //}
 
                 var clientSkinProblem = new ClientSkinProblem()
                 {

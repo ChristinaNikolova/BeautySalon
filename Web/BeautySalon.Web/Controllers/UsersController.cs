@@ -49,7 +49,7 @@
             var userId = this.userManager.GetUserId(this.User);
 
             var model = await
-                this.usersService.GetUsersSkinDataForProfilePageAsync<UsersSkinTypeInfoViewModel>(userId);
+                this.usersService.GetUserDataAsync<UsersSkinTypeInfoViewModel>(userId);
 
             return this.View(model);
         }

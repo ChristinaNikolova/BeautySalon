@@ -20,7 +20,7 @@
 
         Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
 
-        Task<T> GetProductDataForUpdateAsync<T>(string id);
+        //Task<T> GetProductDataForUpdateAsync<T>(string id);
 
         Task<string> GetPictureUrlAsync(string id);
 

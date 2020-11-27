@@ -110,17 +110,6 @@
             return product;
         }
 
-        public async Task<T> GetProductDataForUpdateAsync<T>(string id)
-        {
-            var product = await this.productsRepository
-                 .All()
-                 .Where(p => p.Id == id)
-                 .To<T>()
-                 .FirstOrDefaultAsync();
-
-            return product;
-        }
-
         public async Task<string> GetPictureUrlAsync(string id)
         {
             var pictureUrl = await this.productsRepository

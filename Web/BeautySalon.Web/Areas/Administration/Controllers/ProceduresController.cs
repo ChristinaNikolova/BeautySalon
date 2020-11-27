@@ -75,7 +75,8 @@
 
         public async Task<IActionResult> Update(string id)
         {
-            var model = await this.proceduresService.GetProcedureDataForUpdateAsync<UpdateProcedureInputModel>(id);
+            //test
+            var model = await this.proceduresService.GetProcedureDetailsAsync<UpdateProcedureInputModel>(id);
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
             model.SkinTypes = await this.skinTypesService.GetAllAsSelectListItemAsync();
@@ -108,8 +109,9 @@
 
         public async Task<IActionResult> ManageProducts(string id)
         {
+            //test
             var model = await this.proceduresService
-                .GetProcedureProductsAdministrationAsync<ManageProcedureProductsViewModel>(id);
+                .GetProcedureDetailsAsync<ManageProcedureProductsViewModel>(id);
 
             return this.View(model);
         }
@@ -143,9 +145,9 @@
         public async Task<ActionResult<ManageProcedureProductsViewModel>> DeleteProcedureProduct([FromBody] DeleteProductProcedureInputModel input)
         {
             await this.proceduresService.RemoveProductAsync(input.ProductId, input.ProcedureId);
-
+            //test
             var procedureProducts = await this.proceduresService
-                .GetProcedureProductsAdministrationAsync<ManageProcedureProductsViewModel>(input.ProcedureId);
+                .GetProcedureDetailsAsync<ManageProcedureProductsViewModel>(input.ProcedureId);
 
             return procedureProducts;
         }

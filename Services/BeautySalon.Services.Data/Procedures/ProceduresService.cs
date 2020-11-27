@@ -59,17 +59,6 @@
             return procedure.Id;
         }
 
-        public async Task<T> GetProcedureDataForUpdateAsync<T>(string id)
-        {
-            var procedure = await this.proceduresRepository
-                .All()
-                .Where(p => p.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return procedure;
-        }
-
         public async Task DeleteAsync(string id)
         {
             var procedure = await this.GetByIdAsync(id);
@@ -251,17 +240,6 @@
             return procedureId;
         }
 
-        public async Task<T> GetProcedureProductsAdministrationAsync<T>(string id)
-        {
-            var procedure = await this.proceduresRepository
-                .All()
-                .Where(p => p.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return procedure;
-        }
-
         public async Task<bool> AddProductToProcedureAsync(string id, string productId)
         {
             var isAlreadyAdded = await this.procedureProductsRepository
@@ -372,8 +350,9 @@
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
+                //check this
                 procedure.SkinTypeId = skinTypeId;
-                procedure.IsSensitive = isSensitive == "Yes";
+                procedure.IsSensitive = isSensitive.ToLower() == "Yes".ToLower();
 
                 if (skinProblems != null)
                 {
@@ -391,12 +370,12 @@
 
             foreach (var skinProblem in selectedSkinProblems)
             {
-                if (await this.skinProblemProceduresRespository
-                    .All()
-                    .AnyAsync(spp => spp.SkinProblemId == skinProblem && spp.ProcedureId == procedure.Id))
-                {
-                    continue;
-                }
+                //if (await this.skinProblemProceduresRespository
+                //    .All()
+                //    .AnyAsync(spp => spp.SkinProblemId == skinProblem && spp.ProcedureId == procedure.Id))
+                //{
+                //    continue;
+                //}
 
                 var skinProblemProcedure = new SkinProblemProcedure()
                 {

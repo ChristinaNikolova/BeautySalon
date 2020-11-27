@@ -31,7 +31,7 @@
             var model = new CreateQuestionInputModel()
             {
                 StylistId = id,
-                Stylist = await this.stylistsService.GetStylistNamesAsync<StylistNamesViewModel>(id),
+                Stylist = await this.stylistsService.GetStylistDetailsAsync<StylistNamesViewModel>(id),
             };
 
             return this.View(model);

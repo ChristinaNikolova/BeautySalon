@@ -30,21 +30,6 @@
             this.cloudinaryService = cloudinaryService;
         }
 
-        public async Task<IEnumerable<T>> GetAllAdministrationAsync<T>()
-        {
-            var stylistRoleId = await this.GetStylistRoleIdAsync();
-
-            var stylists = await this.stylistsRepository
-                .All()
-                .Where(s => s.Roles.Any(r => r.RoleId == stylistRoleId))
-                .OrderBy(s => s.FirstName)
-                .ThenBy(s => s.LastName)
-                .To<T>()
-                .ToListAsync();
-
-            return stylists;
-        }
-
         public async Task<string> AddRoleStylistAsync(string email)
         {
             var stylist = await this.stylistsRepository
@@ -117,6 +102,17 @@
             return stylist;
         }
 
+        public async Task<T> GetStylistDetailsAsync<T>(string id)
+        {
+            var stylist = await this.stylistsRepository
+                 .All()
+                 .Where(s => s.Id == id)
+                 .To<T>()
+                 .FirstOrDefaultAsync();
+
+            return stylist;
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync<T>()
         {
             string stylistRoleId = await this.GetStylistRoleIdAsync();
@@ -128,17 +124,6 @@
                 .ThenBy(s => s.LastName)
                 .To<T>()
                 .ToListAsync();
-
-            return stylists;
-        }
-
-        public async Task<T> GetStylistDetailsAsync<T>(string id)
-        {
-            var stylists = await this.stylistsRepository
-                 .All()
-                 .Where(s => s.Id == id)
-                 .To<T>()
-                 .FirstOrDefaultAsync();
 
             return stylists;
         }
@@ -158,41 +143,6 @@
             return stylists;
         }
 
-        public async Task<T> GetStylistNamesAsync<T>(string id)
-        {
-            var stylist = await this.stylistsRepository
-                .All()
-                .Where(s => s.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return stylist;
-        }
-
-        public async Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId)
-        {
-            var stylistNames = await this.stylistsRepository
-                .All()
-                .Where(s => s.CategoryId == categoryId)
-                .OrderBy(s => s.FirstName)
-                .ThenBy(s => s.LastName)
-                .To<T>()
-                .ToListAsync();
-
-            return stylistNames;
-        }
-
-        public async Task<T> GetStylistDataForUpdateAsync<T>(string id)
-        {
-            var stylist = await this.stylistsRepository
-                .All()
-                .Where(s => s.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return stylist;
-        }
-
         public async Task<string> GetPictureUrlAsync(string id)
         {
             var pictureUrl = await this.stylistsRepository
@@ -202,27 +152,6 @@
                 .FirstOrDefaultAsync();
 
             return pictureUrl;
-        }
-
-        public async Task<T> GetStylistProceduresAsync<T>(string id)
-        {
-            var stylist = await this.stylistsRepository
-                .All()
-                .Where(s => s.Id == id)
-                .To<T>()
-                .FirstOrDefaultAsync();
-
-            return stylist;
-        }
-
-        public async Task RemoveProcedureAsync(string stylistId, string procedureId)
-        {
-            var stylistProcedure = await this.procedureStylistsRepository
-                .All()
-                .FirstOrDefaultAsync(ps => ps.StylistId == stylistId && ps.ProcedureId == procedureId);
-
-            this.procedureStylistsRepository.Delete(stylistProcedure);
-            await this.procedureStylistsRepository.SaveChangesAsync();
         }
 
         public async Task<bool> AddProcedureToStylistAsync(string id, string procedureId)
@@ -246,6 +175,16 @@
             await this.procedureStylistsRepository.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task RemoveProcedureAsync(string stylistId, string procedureId)
+        {
+            var stylistProcedure = await this.procedureStylistsRepository
+                .All()
+                .FirstOrDefaultAsync(ps => ps.StylistId == stylistId && ps.ProcedureId == procedureId);
+
+            this.procedureStylistsRepository.Delete(stylistProcedure);
+            await this.procedureStylistsRepository.SaveChangesAsync();
         }
 
         public async Task RemoveAllProceduresAsync(string id)

@@ -39,7 +39,7 @@
         {
             var model = new AllStylistsAdministrationViewModel()
             {
-                Stylists = await this.stylistsService.GetAllAdministrationAsync<StylistAdministrationViewModel>(),
+                Stylists = await this.stylistsService.GetAllAsync<StylistAdministrationViewModel>(),
             };
 
             return this.View(model);
@@ -47,7 +47,7 @@
 
         public async Task<IActionResult> Update(string id)
         {
-            var model = await this.stylistsService.GetStylistDataForUpdateAsync<UpdateStylistInputModel>(id);
+            var model = await this.stylistsService.GetStylistDetailsAsync<UpdateStylistInputModel>(id);
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
             model.JobTypes = await this.jobTypesService.GetAllAsSelectListItemAsync();
@@ -102,7 +102,7 @@
 
         public async Task<IActionResult> ManageProcedures(string id)
         {
-            var model = await this.stylistsService.GetStylistProceduresAsync<ManageStylistProceduresViewModel>(id);
+            var model = await this.stylistsService.GetStylistDetailsAsync<ManageStylistProceduresViewModel>(id);
 
             return this.View(model);
         }
@@ -136,8 +136,8 @@
         public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] DeleteProcedureStylistInputModel input)
         {
             await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
-
-            var stylistProcedures = await this.stylistsService.GetStylistProceduresAsync<ManageStylistProceduresViewModel>(input.StylistId);
+            //test
+            var stylistProcedures = await this.stylistsService.GetStylistDetailsAsync<ManageStylistProceduresViewModel>(input.StylistId);
 
             return stylistProcedures;
         }

@@ -32,75 +32,38 @@
             this.commentsRepository = new Mock<IRepository<Comment>>();
             this.clientArticleLikesRepository = new Mock<IRepository<ClientArticleLike>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
-            this.stylist = new ApplicationUser()
-            {
-                Id = "10",
-            };
-            this.client = new ApplicationUser()
-            {
-                Id = "1",
-            };
-            this.category = new Category()
-            {
-                Id = "1",
-            };
-            this.comment = new Comment()
-            {
-                Id = "1",
-            };
+
+            this.stylist = new ApplicationUser() { Id = "10" };
+            this.client = new ApplicationUser() { Id = "1" };
+            this.category = new Category() { Id = "1" };
+            this.comment = new Comment() { Id = "1" };
             this.mockPicture = new Mock<IFormFile>();
         }
 
         [Fact]
         public async Task CheckCreatingArticle()
         {
-            ApplicationDbContext db = GetDb();
+            var service = this.PrepereService();
 
-            var repository = new EfDeletableEntityRepository<Article>(db);
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            string articleId = await this.GetArticleAsync(service);
 
             Assert.NotNull(articleId);
         }
 
         [Fact]
-        public async Task CheckGettingArticleDetailsAndDataForUpdate()
+        public async Task CheckGettingArticleDetails()
         {
-            ApplicationDbContext db = GetDb();
+            var service = this.PrepereService();
 
-            var repository = new EfDeletableEntityRepository<Article>(db);
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            string articleId = await this.GetArticleAsync(service);
 
             var articleDetails = await service.GetArticleDetailsAsync<TestArticleModel>(articleId);
-            var articleUpdataDate = await service.GetDataForUpdateAsync<TestArticleModel>(articleId);
 
-            var expected = await repository
-                .All()
-                .Where(a => a.Id == articleId)
-                .To<TestArticleModel>()
-                .FirstOrDefaultAsync();
-
-            Assert.True(expected.Id.Equals(articleDetails.Id));
-            Assert.True(expected.Id.Equals(articleUpdataDate.Id));
+            Assert.True(articleId.Equals(articleDetails.Id));
         }
 
         [Fact]
-        public async Task CheckUpdatingArticleWithoutNewPicture()
+        public async Task CheckUpdatingArticle()
         {
             ApplicationDbContext db = GetDb();
 
@@ -112,52 +75,7 @@
                 this.clientArticleLikesRepository.Object,
                 this.cloudinaryService.Object);
 
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            await service.UpdateAsync("new title", "content test article", "2", null, articleId);
-
-            var updatedResult = await repository
-                .All()
-                .FirstOrDefaultAsync(a => a.Id == articleId);
-
-            var getPictureUrl = await service.GetPictureUrlAsync(articleId);
-
-            var expectedResult = new Article()
-            {
-                Id = articleId,
-                Title = "new title",
-                Content = "content test article",
-                CategoryId = "2",
-                Picture = getPictureUrl,
-                StylistId = this.stylist.Id,
-            };
-
-            Assert.Same(expectedResult.Id, updatedResult.Id);
-            Assert.Same(expectedResult.Title, updatedResult.Title);
-            Assert.Same(expectedResult.Content, updatedResult.Content);
-            Assert.Same(expectedResult.CategoryId, updatedResult.CategoryId);
-            Assert.Same(expectedResult.Picture, updatedResult.Picture);
-            Assert.Same(expectedResult.StylistId, updatedResult.StylistId);
-        }
-
-        [Fact]
-        public async Task CheckUpdatingArticleWithNewPicture()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Article>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            string articleId = await this.GetArticleAsync(service);
 
             var pictureNew = this.mockPicture.Object;
 
@@ -169,22 +87,11 @@
 
             var getPictureUrl = await service.GetPictureUrlAsync(articleId);
 
-            var expectedResult = new Article()
-            {
-                Id = articleId,
-                Title = "new title",
-                Content = "content test article",
-                CategoryId = "2",
-                Picture = getPictureUrl,
-                StylistId = this.stylist.Id,
-            };
-
-            Assert.Same(expectedResult.Id, updatedResult.Id);
-            Assert.Same(expectedResult.Title, updatedResult.Title);
-            Assert.Same(expectedResult.Content, updatedResult.Content);
-            Assert.Same(expectedResult.CategoryId, updatedResult.CategoryId);
-            Assert.Same(expectedResult.Picture, updatedResult.Picture);
-            Assert.Same(expectedResult.StylistId, updatedResult.StylistId);
+            Assert.Same("new title", updatedResult.Title);
+            Assert.Same("content test article", updatedResult.Content);
+            Assert.Same("2", updatedResult.CategoryId);
+            Assert.Same(getPictureUrl, updatedResult.Picture);
+            Assert.Same(this.stylist.Id, updatedResult.StylistId);
         }
 
         [Fact]
@@ -202,11 +109,10 @@
                 clientArticleLikesRepository,
                 this.cloudinaryService.Object);
 
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            string articleId = await this.GetArticleAsync(service);
 
             var article = await repository.All().FirstOrDefaultAsync(a => a.Id == articleId);
+
             article.Comments.Add(this.comment);
 
             var articleLike = new ClientArticleLike()
@@ -226,7 +132,7 @@
         }
 
         [Fact]
-        public async Task CheckIfClientLikeCurrentArticle()
+        public async Task CheckingIfClientLikeTheArticle()
         {
             ApplicationDbContext db = GetDb();
 
@@ -239,26 +145,19 @@
                 clientArticleLikesRepository,
                 this.cloudinaryService.Object);
 
-            var picture = this.mockPicture.Object;
+            string articleId = await this.GetArticleAsync(service);
 
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            var likeCase = await service.LikeArticleAsync(articleId, this.client.Id);
+            var isFavourite = await service.CheckFavouriteArticlesAsync(articleId, this.client.Id);
+            var dislikeCase = await service.LikeArticleAsync(articleId, this.client.Id);
 
-            var articleLike = new ClientArticleLike()
-            {
-                ClientId = this.client.Id,
-                ArticleId = articleId,
-            };
-
-            await clientArticleLikesRepository.AddAsync(articleLike);
-            await clientArticleLikesRepository.SaveChangesAsync();
-
-            var result = await service.CheckFavouriteArticlesAsync(articleId, this.client.Id);
-
-            Assert.True(result);
+            Assert.True(likeCase);
+            Assert.True(isFavourite);
+            Assert.True(!dislikeCase);
         }
 
         [Fact]
-        public async Task CheckCalculatingAricleLikes()
+        public async Task CheckGettingClientsFavouriteArtilcesAndCount()
         {
             ApplicationDbContext db = GetDb();
 
@@ -271,104 +170,8 @@
                 clientArticleLikesRepository,
                 this.cloudinaryService.Object);
 
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            var articleLike = new ClientArticleLike()
-            {
-                ClientId = this.client.Id,
-                ArticleId = articleId,
-            };
-            var articleLikeSecond = new ClientArticleLike()
-            {
-                ClientId = "2",
-                ArticleId = articleId,
-            };
-
-            await clientArticleLikesRepository.AddAsync(articleLike);
-            await clientArticleLikesRepository.AddAsync(articleLikeSecond);
-            await clientArticleLikesRepository.SaveChangesAsync();
-
-            var count = await service.GetLikesCountAsync(articleId);
-
-            Assert.Equal(2, count);
-        }
-
-        [Fact]
-        public async Task CheckingIfClientLikeTheArticleRemovingFromLikesCase()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Article>(db);
-            var clientArticleLikesRepository = new EfRepository<ClientArticleLike>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                clientArticleLikesRepository,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            var articleLike = new ClientArticleLike()
-            {
-                ClientId = this.client.Id,
-                ArticleId = articleId,
-            };
-
-            await clientArticleLikesRepository.AddAsync(articleLike);
-            await clientArticleLikesRepository.SaveChangesAsync();
-
-            var result = await service.LikeArticleAsync(articleId, this.client.Id);
-
-            Assert.True(!result);
-        }
-
-        [Fact]
-        public async Task CheckingIfClientLikeTheArticleAddingToLikesCase()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Article>(db);
-            var clientArticleLikesRepository = new EfRepository<ClientArticleLike>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                clientArticleLikesRepository,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            var result = await service.LikeArticleAsync(articleId, this.client.Id);
-
-            Assert.True(result);
-        }
-
-        [Fact]
-        public async Task CheckGettingClientsFavouriteArtilces()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Article>(db);
-            var clientArticleLikesRepository = new EfRepository<ClientArticleLike>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                clientArticleLikesRepository,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var firstArticleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            var secondArticleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+            var firstArticleId = await this.GetArticleAsync(service);
+            var secondArticleId = await this.GetArticleAsync(service);
 
             var articleLike = new ClientArticleLike()
             {
@@ -386,28 +189,21 @@
             await clientArticleLikesRepository.SaveChangesAsync();
 
             var articles = await service.GetUsersFavouriteArticlesAsync<TestClientArticleLikesModel>(this.client.Id);
+            var count = await service.GetLikesCountAsync(firstArticleId);
 
             Assert.Equal(2, articles.Count());
+            Assert.Equal(1, count);
         }
 
         [Fact]
         public async Task CheckGettingAllArtcles()
         {
-            ApplicationDbContext db = GetDb();
+            var service = this.PrepereService();
 
-            var repository = new EfDeletableEntityRepository<Article>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title1", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title2", "content test article", this.category.Id, picture, this.stylist.Id);
+            for (int i = 0; i < 3; i++)
+            {
+                await this.GetArticleAsync(service);
+            }
 
             var articles = await service.GetAllAsync<TestArticleModel>(3, 0);
             var articlesCount = await service.GetTotalCountArticlesAsync();
@@ -419,21 +215,12 @@
         [Fact]
         public async Task CheckGettingAllArtclesForCurrentStylist()
         {
-            ApplicationDbContext db = GetDb();
+            var service = this.PrepereService();
 
-            var repository = new EfDeletableEntityRepository<Article>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title1", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title2", "content test article", this.category.Id, picture, this.stylist.Id);
+            for (int i = 0; i < 3; i++)
+            {
+                await this.GetArticleAsync(service);
+            }
 
             var articlesResult = await service.GetAllForStylistAsync<TestArticleModel>(this.stylist.Id);
 
@@ -441,54 +228,14 @@
         }
 
         [Fact]
-        public async Task CheckGettingArticlePictureUrl()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Article>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
-
-            var pictureUrl = await service.GetPictureUrlAsync(articleId);
-
-            var expectedPictureUrl = await repository
-                .All()
-                .Where(a => a.Id == articleId)
-                .Select(a => a.Picture)
-                .FirstOrDefaultAsync();
-
-            Assert.Same(expectedPictureUrl, pictureUrl);
-        }
-
-        [Fact]
         public async Task CheckGettingRecentArticles()
         {
-            ApplicationDbContext db = GetDb();
+            var service = this.PrepereService();
 
-            var repository = new EfDeletableEntityRepository<Article>(db);
-
-            var service = new ArticlesService(
-                repository,
-                this.commentsRepository.Object,
-                this.clientArticleLikesRepository.Object,
-                this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            await service.CreateAsync("title1", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title2", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title3", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title4", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title5", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title6", "content test article", this.category.Id, picture, this.stylist.Id);
+            for (int i = 0; i < 6; i++)
+            {
+                await this.GetArticleAsync(service);
+            }
 
             var articles = await service.GetRecentArticlesAsync<TestArticleModel>();
 
@@ -498,28 +245,45 @@
         [Fact]
         public async Task CheckSearchingArticleByGivenCategory()
         {
+            var service = this.PrepereService();
+
+            for (int i = 0; i < 3; i++)
+            {
+                await this.GetArticleAsync(service);
+            }
+
+            var picture = this.mockPicture.Object;
+
+            for (int i = 0; i < 3; i++)
+            {
+                await service.CreateAsync("title", "content test article", "2", picture, this.stylist.Id);
+            }
+
+            var articles = await service.SearchByAsync<TestArticleModel>(this.category.Id);
+
+            Assert.Equal(3, articles.Count());
+        }
+
+        private async Task<string> GetArticleAsync(ArticlesService service)
+        {
+            var picture = this.mockPicture.Object;
+
+            var articleId = await service.CreateAsync("title", "content test article", this.category.Id, picture, this.stylist.Id);
+
+            return articleId;
+        }
+
+        private ArticlesService PrepereService()
+        {
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Article>(db);
-
             var service = new ArticlesService(
                 repository,
                 this.commentsRepository.Object,
                 this.clientArticleLikesRepository.Object,
                 this.cloudinaryService.Object);
-
-            var picture = this.mockPicture.Object;
-
-            await service.CreateAsync("title1", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title2", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title3", "content test article", this.category.Id, picture, this.stylist.Id);
-            await service.CreateAsync("title4", "content test article", "2", picture, this.stylist.Id);
-            await service.CreateAsync("title5", "content test article", "2", picture, this.stylist.Id);
-            await service.CreateAsync("title6", "content test article", "2", picture, this.stylist.Id);
-
-            var articles = await service.SearchByAsync<TestArticleModel>(this.category.Id);
-
-            Assert.Equal(3, articles.Count());
+            return service;
         }
 
         public class TestArticleModel : IMapFrom<Article>

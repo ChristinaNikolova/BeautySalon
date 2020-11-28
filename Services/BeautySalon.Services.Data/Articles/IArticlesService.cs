@@ -9,8 +9,6 @@
     {
         Task<string> CreateAsync(string title, string content, string categoryId, IFormFile picture, string stylistId);
 
-        Task<T> GetDataForUpdateAsync<T>(string id);
-
         Task UpdateAsync(string title, string content, string categoryId, IFormFile newPicture, string id);
 
         Task<string> GetPictureUrlAsync(string id);

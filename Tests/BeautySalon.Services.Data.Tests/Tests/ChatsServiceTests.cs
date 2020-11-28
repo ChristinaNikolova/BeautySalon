@@ -14,7 +14,7 @@
     using Moq;
     using Xunit;
 
-    public class ChatsServiceTests
+    public class ChatsServiceTests : BaseServiceTests
     {
         private readonly ApplicationUser sender;
         private readonly ApplicationUser receiver;
@@ -24,7 +24,6 @@
 
         public ChatsServiceTests()
         {
-            new MapperInitializationProfile();
             this.chatMessagesRepository = new Mock<IRepository<ChatMessage>>();
             this.userChatGroupsRepository = new Mock<IRepository<UserChatGroup>>();
 
@@ -358,14 +357,6 @@
 
             Assert.NotNull(repository);
             Assert.True(!message.WaitingForAnswerFromAdmin);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestChatModel : IMapFrom<ChatMessage>

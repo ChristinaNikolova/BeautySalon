@@ -9,14 +9,12 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class SkinProblemsServiceTests
+    public class SkinProblemsServiceTests : BaseServiceTests
     {
         public SkinProblemsServiceTests()
         {
-            new MapperInitializationProfile();
         }
 
         [Fact]
@@ -41,14 +39,6 @@
 
             Assert.Equal(3, skinProblemsAsSelectListItems.Count());
             Assert.Equal(3, skinProblems.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestSkinProblemModel : IMapFrom<SkinProblem>

@@ -9,14 +9,12 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class SkinTypesServiceTests
+    public class SkinTypesServiceTests : BaseServiceTests
     {
         public SkinTypesServiceTests()
         {
-            new MapperInitializationProfile();
         }
 
         [Fact]
@@ -64,14 +62,6 @@
 
             Assert.NotNull(skinType);
             Assert.Same(firstSkinType.Id, skinType.Id);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestSkinTypeModel : IMapFrom<SkinType>

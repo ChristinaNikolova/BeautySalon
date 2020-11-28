@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -13,11 +12,10 @@
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using Moq;
     using Xunit;
 
-    public class UsersServiceTests
+    public class UsersServiceTests : BaseServiceTests
     {
         private readonly Mock<IFormFile> mockPicture;
         private readonly ApplicationUser client;
@@ -28,7 +26,6 @@
 
         public UsersServiceTests()
         {
-            new MapperInitializationProfile();
             this.skinProblemsRepository = new Mock<IRepository<SkinProblem>>();
             this.clientSkinProblemsRepository = new Mock<IRepository<ClientSkinProblem>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
@@ -223,14 +220,6 @@
 
             Assert.True(this.client.IsSkinSensitive);
             Assert.Equal(3, this.client.ClientSkinProblems.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestUserModel : IMapFrom<ApplicationUser>

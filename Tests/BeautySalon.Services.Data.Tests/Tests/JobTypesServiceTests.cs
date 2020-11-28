@@ -8,10 +8,9 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.JobTypes;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class JobTypesServiceTests
+    public class JobTypesServiceTests : BaseServiceTests
     {
         public JobTypesServiceTests()
         {
@@ -37,14 +36,6 @@
             var jobTypes = await service.GetAllAsSelectListItemAsync();
 
             Assert.Equal(3, jobTypes.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
     }
 }

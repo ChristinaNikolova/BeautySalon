@@ -9,14 +9,12 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class CategoriesServiceTests
+    public class CategoriesServiceTests : BaseServiceTests
     {
         public CategoriesServiceTests()
         {
-            new MapperInitializationProfile();
         }
 
         [Fact]
@@ -69,14 +67,6 @@
 
             Assert.True(categoryByName.Equals(expectedCategory));
             Assert.True(categoryById.Equals(expectedCategory));
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestCategoryModel : IMapFrom<Category>

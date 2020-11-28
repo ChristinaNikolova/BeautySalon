@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -16,7 +15,7 @@
     using Moq;
     using Xunit;
 
-    public class ArticlesServiceTests
+    public class ArticlesServiceTests : BaseServiceTests
     {
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
@@ -30,7 +29,6 @@
 
         public ArticlesServiceTests()
         {
-            new MapperInitializationProfile();
             this.commentsRepository = new Mock<IRepository<Comment>>();
             this.clientArticleLikesRepository = new Mock<IRepository<ClientArticleLike>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
@@ -522,14 +520,6 @@
             var articles = await service.SearchByAsync<TestArticleModel>(this.category.Id);
 
             Assert.Equal(3, articles.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestArticleModel : IMapFrom<Article>

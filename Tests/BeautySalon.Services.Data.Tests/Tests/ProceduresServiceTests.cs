@@ -17,7 +17,7 @@
     using Moq;
     using Xunit;
 
-    public class ProceduresServiceTests
+    public class ProceduresServiceTests : BaseServiceTests
     {
         private readonly Mock<IRepository<Review>> procedureReviewsRepository;
         private readonly Mock<IRepository<ProcedureProduct>> procedureProductsRepository;
@@ -28,7 +28,6 @@
 
         public ProceduresServiceTests()
         {
-            new MapperInitializationProfile();
             this.procedureReviewsRepository = new Mock<IRepository<Review>>();
             this.procedureProductsRepository = new Mock<IRepository<ProcedureProduct>>();
             this.procedureStylistsRepository = new Mock<IRepository<ProcedureStylist>>();
@@ -855,14 +854,6 @@
             var procedureId = await service.GetProcedureIdByNameAsync(procedure.Name);
 
             Assert.Equal(procedure.Id, procedureId);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestProcedureModel : IMapFrom<Procedure>

@@ -9,17 +9,15 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Questions;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class QuestionsServiceTests
+    public class QuestionsServiceTests : BaseServiceTests
     {
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
 
         public QuestionsServiceTests()
         {
-            new MapperInitializationProfile();
             this.stylist = new ApplicationUser()
             {
                 Id = "10",
@@ -84,14 +82,6 @@
 
             Assert.Equal(2, questions.Count());
             Assert.Equal(2, questionCount);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestQuestionModel : IMapFrom<Question>

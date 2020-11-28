@@ -9,14 +9,12 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class QuizServicesTests
+    public class QuizServicesTests : BaseServiceTests
     {
         public QuizServicesTests()
         {
-            new MapperInitializationProfile();
         }
 
         [Fact]
@@ -39,14 +37,6 @@
             var quiz = await service.GetQuizAsync<TestQuizModel>();
 
             Assert.Equal(3, quiz.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestQuizModel : IMapFrom<QuizQuestion>

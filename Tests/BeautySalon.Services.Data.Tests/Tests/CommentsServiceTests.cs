@@ -12,14 +12,13 @@
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class CommentsServiceTests
+    public class CommentsServiceTests : BaseServiceTests
     {
         private readonly Article article;
         private readonly ApplicationUser client;
 
         public CommentsServiceTests()
         {
-            new MapperInitializationProfile();
             this.article = new Article()
             {
                 Id = "1",
@@ -127,14 +126,6 @@
             var comments = await service.GetAllFromPreviousDayAsync<TestCommentModel>();
 
             Assert.Equal(2, comments.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestCommentModel : IMapFrom<Comment>

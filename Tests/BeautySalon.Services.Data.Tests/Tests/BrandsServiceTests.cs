@@ -8,10 +8,9 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Brands;
-    using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class BrandsServiceTests
+    public class BrandsServiceTests : BaseServiceTests
     {
         public BrandsServiceTests()
         {
@@ -37,14 +36,6 @@
             var brands = await service.GetAllAsSelectListItemAsync();
 
             Assert.Equal(3, brands.Count());
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
     }
 }

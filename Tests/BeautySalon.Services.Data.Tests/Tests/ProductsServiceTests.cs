@@ -12,11 +12,10 @@
     using BeautySalon.Services.Data.Products;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using Moq;
     using Xunit;
 
-    public class ProductsServiceTests
+    public class ProductsServiceTests : BaseServiceTests
     {
         private readonly Mock<IFormFile> mockPicture;
 
@@ -25,7 +24,6 @@
 
         public ProductsServiceTests()
         {
-            new MapperInitializationProfile();
             this.clientProductLikesRepository = new Mock<IRepository<ClientProductLike>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
             this.mockPicture = new Mock<IFormFile>();
@@ -355,14 +353,6 @@
 
             Assert.Equal(1, count);
             Assert.Single(products);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestProductModel : IMapFrom<Product>

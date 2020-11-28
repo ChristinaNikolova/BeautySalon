@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -13,11 +12,10 @@
     using BeautySalon.Services.Data.Stylists;
     using BeautySalon.Services.Mapping;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using Moq;
     using Xunit;
 
-    public class StylistsServiceTests
+    public class StylistsServiceTests : BaseServiceTests
     {
         private readonly Mock<IFormFile> mockPicture;
 
@@ -28,7 +26,6 @@
 
         public StylistsServiceTests()
         {
-            new MapperInitializationProfile();
             this.rolesRepository = new Mock<IRepository<ApplicationRole>>();
             this.procedureStylistsRepository = new Mock<IRepository<ProcedureStylist>>();
             this.proceduresRepository = new Mock<IRepository<Procedure>>();
@@ -363,14 +360,6 @@
 
             Assert.Empty(firstStylist.StylistProcedures);
             Assert.Empty(secondStylist.StylistProcedures);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         public class TestStylistModel : IMapFrom<ApplicationUser>

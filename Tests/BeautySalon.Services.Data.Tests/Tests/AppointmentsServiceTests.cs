@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingAppointment()
+        public async Task CheckCreatingAppointmentAsync()
         {
             var service = this.PrepareService();
 
@@ -38,7 +38,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingDetailsAppointment()
+        public async Task CheckGettingDetailsAppointmentAsync()
         {
             var service = this.PrepareService();
 
@@ -51,7 +51,7 @@
         }
 
         [Fact]
-        public async Task CheckCancelingAppointment()
+        public async Task CheckCancelingAppointmentAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -68,7 +68,7 @@
         }
 
         [Fact]
-        public async Task CheckDoingAppointment()
+        public async Task CheckDoingAppointmentAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -85,7 +85,7 @@
         }
 
         [Fact]
-        public async Task CheckApprovingAppointment()
+        public async Task CheckApprovingAppointmentAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -102,7 +102,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsForToday()
+        public async Task CheckGettingAppointmentsForTodayAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -123,7 +123,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllAppointmentsForCurrentStylistAndAppointmentsForToday()
+        public async Task CheckGettingAllAppointmentsForCurrentStylistAndAppointmentsForTodayAsync()
         {
             var service = this.PrepareService();
 
@@ -145,7 +145,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingUpcommingAppointmentsForCurrentClient()
+        public async Task CheckGettingUpcommingAppointmentsForCurrentClientAsync()
         {
             var service = this.PrepareService();
 
@@ -163,7 +163,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingStylistFreeHours()
+        public async Task CheckGettingStylistFreeHoursAsync()
         {
             var service = this.PrepareService();
 
@@ -187,7 +187,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsRequestsForCurrentStylist()
+        public async Task CheckGettingAppointmentsRequestsForCurrentStylistAsync()
         {
             var service = this.PrepareService();
 
@@ -203,7 +203,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsHistoryForCurrentStylist()
+        public async Task CheckGettingAppointmentsHistoryForCurrentStylistAsync()
         {
             var service = this.PrepareService();
 
@@ -216,7 +216,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsHistoryAllStylists()
+        public async Task CheckGettingAppointmentsHistoryAllStylistsAsync()
         {
             var service = this.PrepareService();
 
@@ -229,7 +229,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsHistoryUser()
+        public async Task CheckGettingAppointmentsHistoryUserAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -253,7 +253,7 @@
         }
 
         [Fact]
-        public async Task CheckingAppointmentsForReview()
+        public async Task CheckingAppointmentsForReviewAsync()
         {
             AppointmentsService service = await this.PrepareAppointmentReviewAsync();
 

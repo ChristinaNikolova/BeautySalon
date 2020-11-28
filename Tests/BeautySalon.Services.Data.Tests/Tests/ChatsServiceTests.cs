@@ -32,7 +32,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingUsersGroup()
+        public async Task CheckCreatingUsersGroupAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -54,7 +54,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingGroupId()
+        public async Task CheckGettingGroupIdAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -75,7 +75,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingGroupsOldMessages()
+        public async Task CheckGettingGroupsOldMessagesAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -118,7 +118,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingTheReceiver()
+        public async Task CheckGettingTheReceiverAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -154,7 +154,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingWaitingForAnswerMessages()
+        public async Task CheckGettingWaitingForAnswerMessagesAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -198,7 +198,7 @@
         }
 
         [Fact]
-        public async Task CheckIfThereAreNewMessage()
+        public async Task CheckIfThereAreNewMessageAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -232,7 +232,7 @@
         }
 
         [Fact]
-        public async Task CheckSendingMessageSenderClient()
+        public async Task CheckSendingMessageSenderClientAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -268,7 +268,7 @@
         }
 
         [Fact]
-        public async Task CheckSendingMessageSenderAdmin()
+        public async Task CheckSendingMessageSenderAdminAsync()
         {
             ApplicationDbContext db = GetDb();
 

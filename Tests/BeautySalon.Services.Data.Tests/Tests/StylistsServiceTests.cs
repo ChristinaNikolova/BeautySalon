@@ -34,7 +34,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingRoleToExistingNonStylist()
+        public async Task CheckAddingRoleToExistingNonStylistAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -63,7 +63,7 @@
         }
 
         [Fact]
-        public async Task CheckUpdatingStylist()
+        public async Task CheckUpdatingStylistAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -144,7 +144,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllUsersWithRoleStylist()
+        public async Task CheckGettingAllUsersWithRoleStylistAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -187,7 +187,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingStylistsDetails()
+        public async Task CheckGettingStylistsDetailsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -212,7 +212,7 @@
         }
 
         [Fact]
-        public async Task CheckSearchingStylistByCategory()
+        public async Task CheckSearchingStylistByCategoryAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -266,7 +266,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingProcedureToStylist()
+        public async Task CheckAddingProcedureToStylistAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -295,7 +295,7 @@
         }
 
         [Fact]
-        public async Task CheckRemovingProcedure()
+        public async Task CheckRemovingProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 

@@ -41,7 +41,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingArticle()
+        public async Task CheckCreatingArticleAsync()
         {
             var service = this.PrepareService();
 
@@ -51,7 +51,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingArticleDetails()
+        public async Task CheckGettingArticleDetailsAsync()
         {
             var service = this.PrepareService();
 
@@ -63,7 +63,7 @@
         }
 
         [Fact]
-        public async Task CheckUpdatingArticle()
+        public async Task CheckUpdatingArticleAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -95,7 +95,7 @@
         }
 
         [Fact]
-        public async Task CheckDeletingArticle()
+        public async Task CheckDeletingArticleAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -132,7 +132,7 @@
         }
 
         [Fact]
-        public async Task CheckingIfClientLikeTheArticle()
+        public async Task CheckingIfClientLikeTheArticleAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -157,7 +157,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingClientsFavouriteArtilcesAndCount()
+        public async Task CheckGettingClientsFavouriteArtilcesAndCountAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -196,7 +196,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllArtcles()
+        public async Task CheckGettingAllArtclesAsync()
         {
             var service = this.PrepareService();
 
@@ -213,7 +213,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllArtclesForCurrentStylist()
+        public async Task CheckGettingAllArtclesForCurrentStylistAsync()
         {
             var service = this.PrepareService();
 
@@ -228,7 +228,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingRecentArticles()
+        public async Task CheckGettingRecentArticlesAsync()
         {
             var service = this.PrepareService();
 
@@ -243,7 +243,7 @@
         }
 
         [Fact]
-        public async Task CheckSearchingArticleByGivenCategory()
+        public async Task CheckSearchingArticleByGivenCategoryAsync()
         {
             var service = this.PrepareService();
 

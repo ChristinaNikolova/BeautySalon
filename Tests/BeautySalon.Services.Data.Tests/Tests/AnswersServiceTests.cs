@@ -32,7 +32,7 @@
         }
 
         [Fact]
-        public async Task AnswerIsRedPropertyShoudChangeToTrue()
+        public async Task AnswerIsRedAsyncPropertyShoudChangeToTrue()
         {
             ApplicationDbContext db = GetDb();
 
@@ -50,7 +50,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingNewAnswer()
+        public async Task CheckCreatingNewAnswerAsync()
         {
             var service = await this.ArrangeServiceAsync();
 
@@ -60,7 +60,7 @@
         }
 
         [Fact]
-        public async Task CheckForNewAnswerShoudReturnTrue()
+        public async Task CheckForNewAnswerAsyncShoudReturnTrue()
         {
             var service = await this.ArrangeServiceAsync();
 
@@ -70,7 +70,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAnswersForUser()
+        public async Task CheckGettingAnswersForUserAsync()
         {
             var service = await this.ArrangeServiceAsync();
 
@@ -84,7 +84,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAnswersDetails()
+        public async Task CheckGettingAnswersDetailsAsync()
         {
             ApplicationDbContext db = GetDb();
 

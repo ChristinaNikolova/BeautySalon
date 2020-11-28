@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllAndGettingAllAsSelectListItem()
+        public async Task CheckGettingAllAndGettingAllAsSelectListItemAsync()
         {
             ApplicationDbContext db = GetDb();
 

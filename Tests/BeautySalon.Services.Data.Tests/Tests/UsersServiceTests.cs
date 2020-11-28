@@ -34,7 +34,7 @@
         }
 
         [Fact]
-        public async Task CheckUpdatingUserProfile()
+        public async Task CheckUpdatingUserProfileAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -56,7 +56,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingUserData()
+        public async Task CheckGettingUserDataAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -75,7 +75,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingSkinTypeAndNonExistingSkinProblemsToUser()
+        public async Task CheckAddingSkinTypeAndNonExistingSkinProblemsToUserAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -147,6 +147,7 @@
 
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
+
             return user;
         }
 

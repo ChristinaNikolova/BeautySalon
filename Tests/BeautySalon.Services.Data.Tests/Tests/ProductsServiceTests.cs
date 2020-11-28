@@ -29,7 +29,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingProduct()
+        public async Task CheckCreatingProductAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -45,7 +45,7 @@
         }
 
         [Fact]
-        public async Task CheckDeletingProduct()
+        public async Task CheckDeletingProductAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -63,7 +63,7 @@
         }
 
         [Fact]
-        public async Task CheckUpdatingProduct()
+        public async Task CheckUpdatingProductAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -115,7 +115,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllProducts()
+        public async Task CheckGettingAllProductsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -147,7 +147,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProductsDetails()
+        public async Task CheckGettingProductsDetailsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -170,7 +170,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProductIdByName()
+        public async Task CheckGettingProductIdByNameAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -202,7 +202,7 @@
         }
 
         [Fact]
-        public async Task CheckFavouriteProductFalseCase()
+        public async Task CheckFavouriteProductFalseCaseAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -235,7 +235,7 @@
         }
 
         [Fact]
-        public async Task CheckLikingProductAdd()
+        public async Task CheckLikingProductAddAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -270,7 +270,7 @@
         }
 
         [Fact]
-        public async Task CheckLikesProductsCountAndGetingLikesProducts()
+        public async Task CheckLikesProductsCountAndGetingLikesProductsAsync()
         {
             ApplicationDbContext db = GetDb();
 

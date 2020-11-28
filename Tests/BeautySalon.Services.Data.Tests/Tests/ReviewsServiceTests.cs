@@ -17,7 +17,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingReview()
+        public async Task CheckGettingReviewAsync()
         {
             ApplicationDbContext db = GetDb();
 

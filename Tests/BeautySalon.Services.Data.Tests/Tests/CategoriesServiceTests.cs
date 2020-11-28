@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllAndAllAsSelectListItem()
+        public async Task CheckGettingAllAndAllAsSelectListItemAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -42,7 +42,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingCategoryByNameAndById()
+        public async Task CheckGettingCategoryByNameAndByIdAsync()
         {
             ApplicationDbContext db = GetDb();
 

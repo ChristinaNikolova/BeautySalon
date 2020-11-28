@@ -33,7 +33,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingComment()
+        public async Task CheckCreatingCommentAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -46,7 +46,7 @@
         }
 
         [Fact]
-        public async Task CheckDeletingComment()
+        public async Task CheckDeletingCommentAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -65,7 +65,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllComments()
+        public async Task CheckGettingAllCommentsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -85,7 +85,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllCommentsFromPreviuosDay()
+        public async Task CheckGettingAllCommentsFromPreviuosDayAsync()
         {
             ApplicationDbContext db = GetDb();
 

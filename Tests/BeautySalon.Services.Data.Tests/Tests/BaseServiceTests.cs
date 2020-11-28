@@ -17,6 +17,7 @@
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var db = new ApplicationDbContext(options);
+
             return db;
         }
     }

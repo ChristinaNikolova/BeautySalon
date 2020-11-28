@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllAndGettingAllAsSelectListItem()
+        public async Task CheckGettingAllAndGettingAllAsSelectListItemAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -35,7 +35,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingSkinTypeResult()
+        public async Task CheckGettingSkinTypeResultAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -60,6 +60,7 @@
             await db.SkinTypes.AddAsync(secondSkinType);
             await db.SkinTypes.AddAsync(thirdSkinType);
             await db.SaveChangesAsync();
+
             return firstSkinType;
         }
 

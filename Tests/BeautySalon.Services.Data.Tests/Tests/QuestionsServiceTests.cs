@@ -24,7 +24,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingQuestion()
+        public async Task CheckCreatingQuestionAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -37,7 +37,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingQuestionDetails()
+        public async Task CheckGettingQuestionDetailsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -53,7 +53,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingNewQuestionForStylist()
+        public async Task CheckGettingNewQuestionForStylistAsync()
         {
             ApplicationDbContext db = GetDb();
 

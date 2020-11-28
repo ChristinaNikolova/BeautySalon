@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingTheSkinQuiz()
+        public async Task CheckGettingTheSkinQuizAsync()
         {
             ApplicationDbContext db = GetDb();
 

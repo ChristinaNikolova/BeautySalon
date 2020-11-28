@@ -37,7 +37,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingProcedure()
+        public async Task CheckCreatingProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -61,7 +61,7 @@
         }
 
         [Fact]
-        public async Task CheckDeletingProcedure()
+        public async Task CheckDeletingProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -121,7 +121,7 @@
         }
 
         [Fact]
-        public async Task CheckUpdatingProcedure()
+        public async Task CheckUpdatingProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -161,7 +161,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingAllAndGettingAllByCategoryProcedures()
+        public async Task CheckGettingAllAndGettingAllByCategoryProceduresAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -203,7 +203,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProcedureDetails()
+        public async Task CheckGettingProcedureDetailsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -231,7 +231,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProcedureProducts()
+        public async Task CheckGettingProcedureProductsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -279,7 +279,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProcedureReviews()
+        public async Task CheckGettingProcedureReviewsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -313,7 +313,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProcedureStylists()
+        public async Task CheckGettingProcedureStylistsAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -361,7 +361,7 @@
         }
 
         [Fact]
-        public async Task CheckSmartSearchPerfectProcedures()
+        public async Task CheckSmartSearchPerfectProceduresAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -453,7 +453,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingProductToProcedure()
+        public async Task CheckAddingProductToProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -480,7 +480,7 @@
         }
 
         [Fact]
-        public async Task CheckRemovingProductToProcedure()
+        public async Task CheckRemovingProductToProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -506,7 +506,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingReviewToProcedure()
+        public async Task CheckAddingReviewToProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -562,7 +562,7 @@
         }
 
         [Fact]
-        public async Task CheckProductUseProcedures()
+        public async Task CheckProductUseProceduresAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -613,7 +613,7 @@
         }
 
         [Fact]
-        public async Task CheckProcedureSearchBy()
+        public async Task CheckProcedureSearchByAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -733,7 +733,7 @@
         }
 
         [Fact]
-        public async Task CheckGettingProcedureIdByProcedureName()
+        public async Task CheckGettingProcedureIdByProcedureNameAsync()
         {
             ApplicationDbContext db = GetDb();
 

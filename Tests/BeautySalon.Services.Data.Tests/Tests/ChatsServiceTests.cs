@@ -27,14 +27,8 @@
             this.chatMessagesRepository = new Mock<IRepository<ChatMessage>>();
             this.userChatGroupsRepository = new Mock<IRepository<UserChatGroup>>();
 
-            this.sender = new ApplicationUser()
-            {
-                Id = "1",
-            };
-            this.receiver = new ApplicationUser()
-            {
-                Id = "2",
-            };
+            this.sender = new ApplicationUser() { Id = "1" };
+            this.receiver = new ApplicationUser() { Id = "2" };
         }
 
         [Fact]

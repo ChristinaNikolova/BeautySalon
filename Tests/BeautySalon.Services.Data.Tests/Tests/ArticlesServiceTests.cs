@@ -43,7 +43,7 @@
         [Fact]
         public async Task CheckCreatingArticle()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             string articleId = await this.GetArticleAsync(service);
 
@@ -53,7 +53,7 @@
         [Fact]
         public async Task CheckGettingArticleDetails()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             string articleId = await this.GetArticleAsync(service);
 
@@ -198,7 +198,7 @@
         [Fact]
         public async Task CheckGettingAllArtcles()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             for (int i = 0; i < 3; i++)
             {
@@ -215,7 +215,7 @@
         [Fact]
         public async Task CheckGettingAllArtclesForCurrentStylist()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             for (int i = 0; i < 3; i++)
             {
@@ -230,7 +230,7 @@
         [Fact]
         public async Task CheckGettingRecentArticles()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             for (int i = 0; i < 6; i++)
             {
@@ -245,7 +245,7 @@
         [Fact]
         public async Task CheckSearchingArticleByGivenCategory()
         {
-            var service = this.PrepereService();
+            var service = this.PrepareService();
 
             for (int i = 0; i < 3; i++)
             {
@@ -273,7 +273,7 @@
             return articleId;
         }
 
-        private ArticlesService PrepereService()
+        private ArticlesService PrepareService()
         {
             ApplicationDbContext db = GetDb();
 
@@ -283,6 +283,7 @@
                 this.commentsRepository.Object,
                 this.clientArticleLikesRepository.Object,
                 this.cloudinaryService.Object);
+
             return service;
         }
 

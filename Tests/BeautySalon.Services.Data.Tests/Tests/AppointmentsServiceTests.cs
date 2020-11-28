@@ -30,8 +30,7 @@
         [Fact]
         public async Task CheckCreatingAppointment()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             string appointmentId = await this.GetAppointmentIdAsync(service);
 
@@ -41,8 +40,7 @@
         [Fact]
         public async Task CheckGettingDetailsAppointment()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             string appointmentId = await this.GetAppointmentIdAsync(service);
 
@@ -127,8 +125,7 @@
         [Fact]
         public async Task CheckGettingAllAppointmentsForCurrentStylistAndAppointmentsForToday()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             var firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
             var secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
@@ -150,8 +147,7 @@
         [Fact]
         public async Task CheckGettingUpcommingAppointmentsForCurrentClient()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             var firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
             var secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
@@ -169,8 +165,7 @@
         [Fact]
         public async Task CheckGettingStylistFreeHours()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             await this.PrepareAppointmentsAsync(service);
 
@@ -194,8 +189,7 @@
         [Fact]
         public async Task CheckGettingAppointmentsRequestsForCurrentStylist()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             await this.PrepareAppointmentsAsync(service);
 
@@ -211,8 +205,7 @@
         [Fact]
         public async Task CheckGettingAppointmentsHistoryForCurrentStylist()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             await this.PrepareAppointmentsAndStatusAsync(service);
 
@@ -225,8 +218,7 @@
         [Fact]
         public async Task CheckGettingAppointmentsHistoryAllStylists()
         {
-            ApplicationDbContext db = GetDb();
-            AppointmentsService service = PrepareService(db);
+            var service = this.PrepareService();
 
             await this.PrepareAppointmentsAndStatusAsync(service);
 
@@ -272,13 +264,6 @@
 
             Assert.True(hasToReview);
             Assert.Single(resultAppointments);
-        }
-
-        private static AppointmentsService PrepareService(ApplicationDbContext db)
-        {
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-            return service;
         }
 
         private static async Task<Appointment> GetAppointmentAsync(EfDeletableEntityRepository<Appointment> repository, string firstAppId)
@@ -332,6 +317,15 @@
         private async Task<string> GetAppointmentIdAsync(AppointmentsService service)
         {
             return await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+        }
+
+        private AppointmentsService PrepareService()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Appointment>(db);
+            var service = new AppointmentsService(repository);
+            return service;
         }
 
         public class TestAppointmentModel : IMapFrom<Appointment>

@@ -97,9 +97,9 @@
 
             var answerId = await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
 
-            var result = await service.GetAnswerDetailsAsync<TestAnswerModel>(answerId);
+            var answerResult = await service.GetAnswerDetailsAsync<TestAnswerModel>(answerId);
 
-            Assert.NotNull(result);
+            Assert.Equal(answerId, answerResult.Id);
         }
 
         private async Task AddQuestionAsync(EfDeletableEntityRepository<Question> questionRepository)

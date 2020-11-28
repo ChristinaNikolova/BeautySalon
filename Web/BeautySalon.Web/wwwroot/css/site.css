@@ -384,6 +384,12 @@ div .tooltip-inner {
     color: mediumvioletred;
 }
 
-#alert-new-chat-message:hover {
-    color: #d9bf77;
+    #alert-new-chat-message:hover {
+        color: #d9bf77;
+    }
+
+#notification {
+    background-color: #d9bf77;
+    border-color: #d9bf77;
+    color: #555555
 }

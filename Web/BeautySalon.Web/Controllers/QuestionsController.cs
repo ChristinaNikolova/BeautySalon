@@ -49,6 +49,8 @@
 
             await this.questionsService.CreateAsync(input.Title, input.Content, input.StylistId, userId);
 
+            this.TempData["InfoMessage"] = "Your question was successfully send!";
+
             return this.RedirectToAction("GetDetails", "Stylists", new { id = input.StylistId });
         }
     }

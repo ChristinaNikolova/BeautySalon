@@ -82,6 +82,8 @@
 
             await this.usersService.AddSkinTypeDataAsync(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
 
+            this.TempData["InfoMessage"] = "Your skin data was successfully saved!";
+
             return this.Json(new RedirectResult("/Users/GetUsersSkinInfo"));
         }
     }

@@ -54,7 +54,7 @@
                 QuestionId = questionId,
             };
 
-            await this.ChangeQuestionIsAnseredPropertyAsync(questionId);
+            await this.ChangeQuestionIsAnsweredPropertyAsync(questionId);
 
             await this.answersRepository.AddAsync(answer);
             await this.answersRepository.SaveChangesAsync();
@@ -109,7 +109,7 @@
             return answer;
         }
 
-        private async Task ChangeQuestionIsAnseredPropertyAsync(string questionId)
+        private async Task ChangeQuestionIsAnsweredPropertyAsync(string questionId)
         {
             var question = await this.questionsRepository
                 .All()

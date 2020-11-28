@@ -64,6 +64,8 @@
         {
             await this.appointmentsService.ApproveAsync(id);
 
+            this.TempData["InfoMessage"] = "New appontment was successfully added to your calender!";
+
             return this.RedirectToAction(nameof(this.Index));
         }
 

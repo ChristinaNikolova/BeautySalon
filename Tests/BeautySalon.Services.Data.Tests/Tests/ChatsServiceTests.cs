@@ -32,7 +32,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingUsersGroupNonExistingYet()
+        public async Task CheckCreatingUsersGroup()
         {
             ApplicationDbContext db = GetDb();
 
@@ -45,37 +45,16 @@
                 chatGroupRepository,
                 userChatGroupsRepository);
 
-            var chatGroupId = await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
+            var firstChatGroupId = await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
+            var secondChatGroupId = await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
 
-            Assert.NotNull(chatGroupId);
+            Assert.NotNull(firstChatGroupId);
+            Assert.NotNull(secondChatGroupId);
+            Assert.EndsWith(firstChatGroupId, secondChatGroupId);
         }
 
         [Fact]
-        public async Task CheckCreatingUsersGroupAlreadyExisting()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<ChatMessage>(db);
-            var chatGroupRepository = new EfDeletableEntityRepository<ChatGroup>(db);
-            var userChatGroupsRepository = new EfDeletableEntityRepository<UserChatGroup>(db);
-
-            var service = new ChatsService(
-                repository,
-                chatGroupRepository,
-                userChatGroupsRepository);
-
-            var chatGroupIdFirst = await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
-
-            var chatGroupIdSecond = await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
-
-            var expectedId = chatGroupIdFirst;
-
-            Assert.NotNull(chatGroupIdSecond);
-            Assert.Same(expectedId, chatGroupIdSecond);
-        }
-
-        [Fact]
-        public async Task CheckGettingGroupIdExistCase()
+        public async Task CheckGettingGroupId()
         {
             ApplicationDbContext db = GetDb();
 
@@ -85,29 +64,14 @@
                 this.chatMessagesRepository.Object,
                 chatGroupRepository,
                 this.userChatGroupsRepository.Object);
+
+            var firstGroupId = await service.GetGroupIdAsync("chat name");
 
             await service.CreateUsersGroupAsync(this.sender, this.receiver, "chat name");
+            var secondGroupId = await service.GetGroupIdAsync("chat name");
 
-            var groupId = await service.GetGroupIdAsync("chat name");
-
-            Assert.NotNull(groupId);
-        }
-
-        [Fact]
-        public async Task CheckGettingGroupIdNonExistCase()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var chatGroupRepository = new EfDeletableEntityRepository<ChatGroup>(db);
-
-            var service = new ChatsService(
-                this.chatMessagesRepository.Object,
-                chatGroupRepository,
-                this.userChatGroupsRepository.Object);
-
-            var groupId = await service.GetGroupIdAsync("chat name");
-
-            Assert.Null(groupId);
+            Assert.Null(firstGroupId);
+            Assert.NotNull(secondGroupId);
         }
 
         [Fact]

@@ -53,48 +53,9 @@
                 this.appointmentsRepository.Object,
                 this.categoriesService.Object);
 
-            var firstSkinProblem = new SkinProblem()
-            {
-                Id = "1",
-                Name = "firstSkinProblemName",
-            };
+            var procedure = await PrepareProcedureAsync(db, service);
 
-            var secondSkinProblem = new SkinProblem()
-            {
-                Id = "2",
-                Name = "secondSkinProblemName",
-            };
-
-            var thirdSkinProblem = new SkinProblem()
-            {
-                Id = "3",
-                Name = "thirdSkinProblemName",
-            };
-
-            SkinProblem[] skinProblems = new SkinProblem[]
-            {
-                firstSkinProblem,
-                secondSkinProblem,
-                thirdSkinProblem,
-            };
-
-            await db.SkinProblems.AddRangeAsync(skinProblems);
-            await db.SaveChangesAsync();
-
-            var skinProblemsAsSelectListItemt = skinProblems
-                .Select(sp => new SelectListItem()
-                {
-                    Value = sp.Id,
-                    Text = sp.Name,
-                    Selected = true,
-                })
-                .ToList();
-
-            var procedureId = await service.CreateAsync("procedureName", "procedureDEscription", 12, "1", "1", "Yes", skinProblemsAsSelectListItemt);
-
-            var procedure = await service.GetByIdAsync(procedureId);
-
-            Assert.NotNull(procedureId);
+            Assert.NotNull(procedure);
             Assert.True(procedure.IsSensitive);
             Assert.Equal(3, procedure.SkinProblemProcedures.Count());
         }
@@ -118,59 +79,20 @@
                 this.appointmentsRepository.Object,
                 this.categoriesService.Object);
 
-            var firstSkinProblem = new SkinProblem()
-            {
-                Id = "1",
-                Name = "firstSkinProblemName",
-            };
-
-            var secondSkinProblem = new SkinProblem()
-            {
-                Id = "2",
-                Name = "secondSkinProblemName",
-            };
-
-            var thirdSkinProblem = new SkinProblem()
-            {
-                Id = "3",
-                Name = "thirdSkinProblemName",
-            };
-
-            SkinProblem[] skinProblems = new SkinProblem[]
-            {
-                firstSkinProblem,
-                secondSkinProblem,
-                thirdSkinProblem,
-            };
-
-            await db.SkinProblems.AddRangeAsync(skinProblems);
-            await db.SaveChangesAsync();
-
-            var skinProblemsAsSelectListItemt = skinProblems
-                .Select(sp => new SelectListItem()
-                {
-                    Value = sp.Id,
-                    Text = sp.Name,
-                    Selected = true,
-                })
-                .ToList();
-
-            var procedureId = await service.CreateAsync("procedureName", "procedureDEscription", 12, "1", "1", "Yes", skinProblemsAsSelectListItemt);
-
-            var procedure = await service.GetByIdAsync(procedureId);
+            var procedure = await PrepareProcedureAsync(db, service);
 
             var firstStylist = new ApplicationUser() { Id = "1" };
             var secondStylist = new ApplicationUser() { Id = "2" };
 
             var firstStylistProcedure = new ProcedureStylist()
             {
-                ProcedureId = procedureId,
+                ProcedureId = procedure.Id,
                 StylistId = firstStylist.Id,
             };
 
             var secondStylistProcedure = new ProcedureStylist()
             {
-                ProcedureId = procedureId,
+                ProcedureId = procedure.Id,
                 StylistId = secondStylist.Id,
             };
 
@@ -178,7 +100,7 @@
 
             var procedureProduct = new ProcedureProduct()
             {
-                ProcedureId = procedureId,
+                ProcedureId = procedure.Id,
                 ProductId = product.Id,
             };
 
@@ -190,7 +112,7 @@
             await db.ProcedureProducts.AddAsync(procedureProduct);
             await db.SaveChangesAsync();
 
-            await service.DeleteAsync(procedureId);
+            await service.DeleteAsync(procedure.Id);
 
             Assert.True(procedure.IsDeleted);
             Assert.Empty(procedureProductsRepository.All());
@@ -254,23 +176,10 @@
                 this.appointmentsRepository.Object,
                 this.categoriesService.Object);
 
-            var firstCategory = new Category()
-            {
-                Id = "1",
-                Name = "firstCategoryName",
-            };
+            var firstCategory = new Category() { Id = "1", Name = "firstCategoryName", };
+            var secondCategory = new Category() { Id = "2", Name = "secondCategoryName", };
 
-            var secondCategory = new Category()
-            {
-                Id = "2",
-                Name = "secondCategoryName",
-            };
-
-            var skinType = new SkinType()
-            {
-                Id = "1",
-                Name = "skinTypeName",
-            };
+            var skinType = new SkinType() { Id = "1", Name = "skinTypeName", };
 
             var firstProcedure = new Procedure() { Id = "1", CategoryId = firstCategory.Id, SkinTypeId = skinType.Id };
             var secondProcedure = new Procedure() { Id = "2", CategoryId = firstCategory.Id, SkinTypeId = skinType.Id };
@@ -468,10 +377,7 @@
                 this.appointmentsRepository.Object,
                 this.categoriesService.Object);
 
-            var skinType = new SkinType()
-            {
-                Id = "1",
-            };
+            var skinType = new SkinType() { Id = "1", };
 
             var firstProcedure = new Procedure()
             {
@@ -854,6 +760,52 @@
             var procedureId = await service.GetProcedureIdByNameAsync(procedure.Name);
 
             Assert.Equal(procedure.Id, procedureId);
+        }
+
+        private static async Task<Procedure> PrepareProcedureAsync(ApplicationDbContext db, ProceduresService service)
+        {
+            var firstSkinProblem = new SkinProblem()
+            {
+                Id = "1",
+                Name = "firstSkinProblemName",
+            };
+
+            var secondSkinProblem = new SkinProblem()
+            {
+                Id = "2",
+                Name = "secondSkinProblemName",
+            };
+
+            var thirdSkinProblem = new SkinProblem()
+            {
+                Id = "3",
+                Name = "thirdSkinProblemName",
+            };
+
+            SkinProblem[] skinProblems = new SkinProblem[]
+            {
+                firstSkinProblem,
+                secondSkinProblem,
+                thirdSkinProblem,
+            };
+
+            await db.SkinProblems.AddRangeAsync(skinProblems);
+            await db.SaveChangesAsync();
+
+            var skinProblemsAsSelectListItemt = skinProblems
+                .Select(sp => new SelectListItem()
+                {
+                    Value = sp.Id,
+                    Text = sp.Name,
+                    Selected = true,
+                })
+                .ToList();
+
+            var procedureId = await service.CreateAsync("procedureName", "procedureDEscription", 12, "1", "1", "Yes", skinProblemsAsSelectListItemt);
+
+            var procedure = await service.GetByIdAsync(procedureId);
+
+            return procedure;
         }
 
         public class TestProcedureModel : IMapFrom<Procedure>

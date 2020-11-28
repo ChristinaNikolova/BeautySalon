@@ -23,14 +23,8 @@
         public AnswersServiceTests()
         {
             this.questionsRepository = new Mock<IRepository<Question>>();
-            this.stylist = new ApplicationUser()
-            {
-                Id = "10",
-            };
-            this.client = new ApplicationUser()
-            {
-                Id = "1",
-            };
+            this.stylist = new ApplicationUser() { Id = "10" };
+            this.client = new ApplicationUser() { Id = "1" };
             this.question = new Question()
             {
                 Id = "1",
@@ -44,6 +38,7 @@
 
             var repository = new EfDeletableEntityRepository<Answer>(db);
             var service = new AnswersService(repository, this.questionsRepository.Object);
+
             var answer = new Answer() { Id = Guid.NewGuid().ToString() };
 
             await db.Answers.AddAsync(answer);
@@ -57,7 +52,7 @@
         [Fact]
         public async Task CheckCreatingNewAnswer()
         {
-            AnswersService service = await this.ArrangeAnswersService();
+            var service = await this.ArrangeServiceAsync();
 
             var answerId = await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
 
@@ -67,7 +62,7 @@
         [Fact]
         public async Task CheckForNewAnswerShoudReturnTrue()
         {
-            AnswersService service = await this.ArrangeAnswersService();
+            var service = await this.ArrangeServiceAsync();
 
             var isNewAnswer = await service.CheckNewAnswerAsync(this.client.Id);
 
@@ -77,7 +72,7 @@
         [Fact]
         public async Task CheckGettingAnswersForUser()
         {
-            AnswersService service = await this.ArrangeAnswersService();
+            var service = await this.ArrangeServiceAsync();
 
             var resultUserSideOnlyNewAnswers = await service.GetAllNewAnswersForUserAsync<TestAnswerModel>(this.client.Id);
             var resultUserSide = await service.GetAllAnswersForUserAsync<TestAnswerModel>(this.client.Id);
@@ -95,9 +90,11 @@
 
             var repository = new EfDeletableEntityRepository<Answer>(db);
             var questionRepository = new EfDeletableEntityRepository<Question>(db);
+
             await this.AddQuestionAsync(questionRepository);
 
             var service = new AnswersService(repository, questionRepository);
+
             var answerId = await service.CreateAsync("title", "content", this.stylist.Id, this.client.Id, this.question.Id);
 
             var result = await service.GetAnswerDetailsAsync<TestAnswerModel>(answerId);
@@ -111,7 +108,7 @@
             await questionRepository.SaveChangesAsync();
         }
 
-        private async Task<AnswersService> ArrangeAnswersService()
+        private async Task<AnswersService> ArrangeServiceAsync()
         {
             ApplicationDbContext db = GetDb();
 

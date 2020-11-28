@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -15,17 +14,13 @@
     {
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
+        private readonly Question question;
 
         public QuestionsServiceTests()
         {
-            this.stylist = new ApplicationUser()
-            {
-                Id = "10",
-            };
-            this.client = new ApplicationUser()
-            {
-                Id = "1",
-            };
+            this.stylist = new ApplicationUser() { Id = "10", };
+            this.client = new ApplicationUser() { Id = "1", };
+            this.question = new Question() { Id = "1", };
         }
 
         [Fact]
@@ -36,7 +31,7 @@
             var repository = new EfDeletableEntityRepository<Question>(db);
             var service = new QuestionsService(repository);
 
-            await service.CreateAsync("test title", "test content", this.stylist.Id, this.client.Id);
+            await this.PrepareQuestionAsync(service);
 
             Assert.Equal(1, repository.All().Count());
         }
@@ -49,21 +44,12 @@
             var repository = new EfDeletableEntityRepository<Question>(db);
             var service = new QuestionsService(repository);
 
-            var question = new Question()
-            {
-                Id = "1",
-                Title = "title",
-                Content = "Content",
-                ClientId = this.client.Id,
-                StylistId = this.stylist.Id,
-            };
-
-            await repository.AddAsync(question);
+            await repository.AddAsync(this.question);
             await repository.SaveChangesAsync();
 
-            var questionResult = await service.GetQuestionDetailsAsync<TestQuestionModel>(question.Id);
+            var questionResult = await service.GetQuestionDetailsAsync<TestQuestionModel>(this.question.Id);
 
-            Assert.Equal(question.Id, questionResult.Id);
+            Assert.Equal(this.question.Id, questionResult.Id);
         }
 
         [Fact]
@@ -74,14 +60,19 @@
             var repository = new EfDeletableEntityRepository<Question>(db);
             var service = new QuestionsService(repository);
 
-            await service.CreateAsync("test title", "test content", this.stylist.Id, this.client.Id);
-            await service.CreateAsync("test title 2", "test content 2", this.stylist.Id, this.client.Id);
+            await this.PrepareQuestionAsync(service);
+            await this.PrepareQuestionAsync(service);
 
             var questions = await service.GetAllNewQuestionsForStylistAsync<TestQuestionModel>(this.stylist.Id);
             var questionCount = await service.GetNewQuestionsCountAsync(this.stylist.Id);
 
             Assert.Equal(2, questions.Count());
             Assert.Equal(2, questionCount);
+        }
+
+        private async Task PrepareQuestionAsync(QuestionsService service)
+        {
+            await service.CreateAsync("test title", "test content", this.stylist.Id, this.client.Id);
         }
 
         public class TestQuestionModel : IMapFrom<Question>

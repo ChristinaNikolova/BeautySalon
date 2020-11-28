@@ -120,9 +120,9 @@
                     .All()
                     .FirstOrDefaultAsync(sp => sp.Name == skinProblemName);
 
-                var isUserSkinProblemAlreadyAddedAsync = await this.clientSkinProblemsRepository
-                    .All()
-                    .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id);
+                //var isUserSkinProblemAlreadyAddedAsync = await this.clientSkinProblemsRepository
+                //    .All()
+                //    .AnyAsync(csp => csp.ClientId == userId && csp.SkinProblemId == skinProblem.Id);
 
                 //if (isUserSkinProblemAlreadyAddedAsync)
                 //{

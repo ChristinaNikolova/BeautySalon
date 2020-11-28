@@ -30,10 +30,7 @@
             this.clientSkinProblemsRepository = new Mock<IRepository<ClientSkinProblem>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
             this.mockPicture = new Mock<IFormFile>();
-            this.client = new ApplicationUser()
-            {
-                Id = "1",
-            };
+            this.client = new ApplicationUser() { Id = "1", };
         }
 
         [Fact]
@@ -48,16 +45,7 @@
                 this.clientSkinProblemsRepository.Object,
                 this.cloudinaryService.Object);
 
-            var user = new ApplicationUser()
-            {
-                Id = "1",
-                FirstName = "firstName",
-                LastName = "lastName",
-                UserName = "username",
-            };
-
-            await db.Users.AddAsync(user);
-            await db.SaveChangesAsync();
+            var user = await AddUserToDbAsync(db);
 
             var picture = this.mockPicture.Object;
 
@@ -79,16 +67,7 @@
                 this.clientSkinProblemsRepository.Object,
                 this.cloudinaryService.Object);
 
-            var user = new ApplicationUser()
-            {
-                Id = "1",
-                FirstName = "firstName",
-                LastName = "lastName",
-                UserName = "username",
-            };
-
-            await db.Users.AddAsync(user);
-            await db.SaveChangesAsync();
+            var user = await AddUserToDbAsync(db);
 
             var userData = await service.GetUserDataAsync<TestUserModel>(user.Id);
 
@@ -150,76 +129,25 @@
           };
 
             await service.AddSkinTypeDataAsync(this.client.Id, true, skinType.Id, skinProblemsNames);
+            await service.AddSkinTypeDataAsync(this.client.Id, true, skinType.Id, skinProblemsNames);
 
             Assert.True(this.client.IsSkinSensitive);
             Assert.Equal(3, this.client.ClientSkinProblems.Count());
         }
 
-        [Fact]
-        public async Task CheckAddingSkinTypeAndExistingSkinProblemsToUser()
+        private static async Task<ApplicationUser> AddUserToDbAsync(ApplicationDbContext db)
         {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<ApplicationUser>(db);
-            var skinProblemsRepository = new EfDeletableEntityRepository<SkinProblem>(db);
-            var clientSkinProblemsRepository = new EfRepository<ClientSkinProblem>(db);
-
-            var service = new UsersService(
-                repository,
-                skinProblemsRepository,
-                clientSkinProblemsRepository,
-                this.cloudinaryService.Object);
-
-            var skinType = new SkinType() { Id = "1" };
-
-            var firstSkinProblem = new SkinProblem()
+            var user = new ApplicationUser()
             {
                 Id = "1",
-                Name = "first problem",
+                FirstName = "firstName",
+                LastName = "lastName",
+                UserName = "username",
             };
 
-            var secondSkinProblem = new SkinProblem()
-            {
-                Id = "2",
-                Name = "second problem",
-            };
-
-            var thirdSkinProblem = new SkinProblem()
-            {
-                Id = "3",
-                Name = "third problem",
-            };
-
-            SkinProblem[] skinProblems = new SkinProblem[]
-            {
-                firstSkinProblem,
-                secondSkinProblem,
-                thirdSkinProblem,
-            };
-
-            var clientSkinProblem = new ClientSkinProblem()
-            {
-                ClientId = this.client.Id,
-                SkinProblemId = firstSkinProblem.Id,
-            };
-
-            await db.SkinProblems.AddRangeAsync(skinProblems);
-            await db.Users.AddAsync(this.client);
-            await db.ClientSkinProblems.AddAsync(clientSkinProblem);
-            await db.SkinTypes.AddAsync(skinType);
+            await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
-
-            string[] skinProblemsNames = new string[]
-          {
-                firstSkinProblem.Name,
-                secondSkinProblem.Name,
-                thirdSkinProblem.Name,
-          };
-
-            await service.AddSkinTypeDataAsync(this.client.Id, true, skinType.Id, skinProblemsNames);
-
-            Assert.True(this.client.IsSkinSensitive);
-            Assert.Equal(3, this.client.ClientSkinProblems.Count());
+            return user;
         }
 
         public class TestUserModel : IMapFrom<ApplicationUser>

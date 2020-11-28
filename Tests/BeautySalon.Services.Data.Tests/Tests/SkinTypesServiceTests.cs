@@ -25,14 +25,7 @@
             var repository = new EfDeletableEntityRepository<SkinType>(db);
             var service = new SkinTypesService(repository);
 
-            var firstSkinType = new SkinType() { Id = Guid.NewGuid().ToString() };
-            var secondSkinType = new SkinType() { Id = Guid.NewGuid().ToString() };
-            var thirdSkinType = new SkinType() { Id = Guid.NewGuid().ToString(), Name = "Sensitive" };
-
-            await db.SkinTypes.AddAsync(firstSkinType);
-            await db.SkinTypes.AddAsync(secondSkinType);
-            await db.SkinTypes.AddAsync(thirdSkinType);
-            await db.SaveChangesAsync();
+            await AddSkinTypesToDbAsync(db);
 
             var skinTypesAsSelectListItems = await service.GetAllAsSelectListItemAsync();
             var skinTypes = await service.GetAllAsync<TestSkinTypeModel>();
@@ -49,6 +42,16 @@
             var repository = new EfDeletableEntityRepository<SkinType>(db);
             var service = new SkinTypesService(repository);
 
+            var firstSkinType = await AddSkinTypesToDbAsync(db);
+
+            var skinType = await service.GetSkinTypeResultAsync<TestSkinTypeModel>(firstSkinType.Name);
+
+            Assert.NotNull(skinType);
+            Assert.Same(firstSkinType.Id, skinType.Id);
+        }
+
+        private static async Task<SkinType> AddSkinTypesToDbAsync(ApplicationDbContext db)
+        {
             var firstSkinType = new SkinType() { Id = Guid.NewGuid().ToString(), Name = "Dry" };
             var secondSkinType = new SkinType() { Id = Guid.NewGuid().ToString(), Name = "Oily" };
             var thirdSkinType = new SkinType() { Id = Guid.NewGuid().ToString(), Name = "Sensitive" };
@@ -57,11 +60,7 @@
             await db.SkinTypes.AddAsync(secondSkinType);
             await db.SkinTypes.AddAsync(thirdSkinType);
             await db.SaveChangesAsync();
-
-            var skinType = await service.GetSkinTypeResultAsync<TestSkinTypeModel>(firstSkinType.Name);
-
-            Assert.NotNull(skinType);
-            Assert.Same(firstSkinType.Id, skinType.Id);
+            return firstSkinType;
         }
 
         public class TestSkinTypeModel : IMapFrom<SkinType>

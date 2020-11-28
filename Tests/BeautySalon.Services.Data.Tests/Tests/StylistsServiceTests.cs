@@ -40,6 +40,7 @@
 
             var repository = new EfDeletableEntityRepository<ApplicationUser>(db);
             var rolesRepository = new EfDeletableEntityRepository<ApplicationRole>(db);
+
             var service = new StylistsService(
                 repository,
                 rolesRepository,
@@ -265,41 +266,7 @@
         }
 
         [Fact]
-        public async Task CheckAddingExistingProcedureStyToStylist()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<ApplicationUser>(db);
-            var procedureStylistsRepository = new EfRepository<ProcedureStylist>(db);
-
-            var service = new StylistsService(
-                repository,
-                this.rolesRepository.Object,
-                procedureStylistsRepository,
-                this.proceduresRepository.Object,
-                this.cloudinaryService.Object);
-
-            var stylist = new ApplicationUser() { Id = "1" };
-            var procedure = new Procedure() { Id = "1" };
-
-            var stylistProcedure = new ProcedureStylist()
-            {
-                StylistId = stylist.Id,
-                ProcedureId = procedure.Id,
-            };
-
-            await db.Users.AddAsync(stylist);
-            await db.Procedures.AddAsync(procedure);
-            await db.ProcedureStylists.AddAsync(stylistProcedure);
-            await db.SaveChangesAsync();
-
-            var isAdded = await service.AddProcedureToStylistAsync(stylist.Id, procedure.Id);
-
-            Assert.True(!isAdded);
-        }
-
-        [Fact]
-        public async Task CheckAddingNonExistingProcedureStyToStylist()
+        public async Task CheckAddingProcedureToStylist()
         {
             ApplicationDbContext db = GetDb();
 
@@ -320,9 +287,11 @@
             await db.Procedures.AddAsync(procedure);
             await db.SaveChangesAsync();
 
-            var isAdded = await service.AddProcedureToStylistAsync(stylist.Id, procedure.Id);
+            var isAddedTrueCase = await service.AddProcedureToStylistAsync(stylist.Id, procedure.Id);
+            var isAddedFalseCase = await service.AddProcedureToStylistAsync(stylist.Id, procedure.Id);
 
-            Assert.True(isAdded);
+            Assert.True(isAddedTrueCase);
+            Assert.True(!isAddedFalseCase);
         }
 
         [Fact]

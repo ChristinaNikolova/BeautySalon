@@ -24,6 +24,7 @@
                 Id = "1",
                 Title = "test Title",
             };
+
             this.client = new ApplicationUser()
             {
                 Id = "1",
@@ -39,7 +40,7 @@
             var repository = new EfDeletableEntityRepository<Comment>(db);
             var service = new CommentsService(repository);
 
-            await service.CreateAsync("test content", this.article.Id, this.client.Id);
+            await this.PrepareCommentAsync(service);
 
             Assert.Equal(1, repository.All().Count());
         }
@@ -52,7 +53,7 @@
             var repository = new EfDeletableEntityRepository<Comment>(db);
             var service = new CommentsService(repository);
 
-            await service.CreateAsync("test content", this.article.Id, this.client.Id);
+            await this.PrepareCommentAsync(service);
 
             var comment = await repository
                 .All()
@@ -71,10 +72,12 @@
             var repository = new EfDeletableEntityRepository<Comment>(db);
             var service = new CommentsService(repository);
 
-            await service.CreateAsync("test content", this.article.Id, this.client.Id);
-            await service.CreateAsync("test content 1", this.article.Id, this.client.Id);
-            await service.CreateAsync("test content 2", this.article.Id, this.client.Id);
-            await service.CreateAsync("test content 3", "2", this.client.Id);
+            for (int i = 0; i < 3; i++)
+            {
+                await this.PrepareCommentAsync(service);
+            }
+
+            await service.CreateAsync("test content", "2", this.client.Id);
 
             var comments = await service.GetAllAsync<TestCommentModel>(this.article.Id);
 
@@ -126,6 +129,11 @@
             var comments = await service.GetAllFromPreviousDayAsync<TestCommentModel>();
 
             Assert.Equal(2, comments.Count());
+        }
+
+        private async Task PrepareCommentAsync(CommentsService service)
+        {
+            await service.CreateAsync("test content", this.article.Id, this.client.Id);
         }
 
         public class TestCommentModel : IMapFrom<Comment>

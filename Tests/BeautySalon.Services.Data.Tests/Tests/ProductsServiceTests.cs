@@ -1,6 +1,5 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -40,9 +39,7 @@
                 this.clientProductLikesRepository.Object,
                 this.cloudinaryService.Object);
 
-            var picture = this.mockPicture.Object;
-
-            var productId = await service.CreateAsync("productName", "productDescription", 12, picture, "1", "1");
+            string productId = await this.PrepareProductAsync(service);
 
             Assert.NotNull(productId);
         }
@@ -58,16 +55,9 @@
                 this.clientProductLikesRepository.Object,
                 this.cloudinaryService.Object);
 
-            var product = new Product()
-            {
-                Id = "1",
-                Name = "productName",
-            };
+            string productId = await this.PrepareProductAsync(service);
 
-            await db.Products.AddAsync(product);
-            await db.SaveChangesAsync();
-
-            await service.DeleteAsync(product.Id);
+            await service.DeleteAsync(productId);
 
             Assert.Empty(repository.All());
         }
@@ -245,7 +235,7 @@
         }
 
         [Fact]
-        public async Task CheckLikingProductAddLikeCase()
+        public async Task CheckLikingProductAdd()
         {
             ApplicationDbContext db = GetDb();
 
@@ -272,43 +262,11 @@
             await db.Users.AddAsync(client);
             await db.SaveChangesAsync();
 
-            var isAdded = await service.LikeProductAsync(product.Id, client.Id);
+            var isAddedTrueCase = await service.LikeProductAsync(product.Id, client.Id);
+            var isAddedFalseCase = await service.LikeProductAsync(product.Id, client.Id);
 
-            Assert.True(isAdded);
-        }
-
-        [Fact]
-        public async Task CheckLikingProductRemoveLikeCase()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Product>(db);
-            var clientProductLikesRepository = new EfRepository<ClientProductLike>(db);
-
-            var service = new ProductsService(
-                repository,
-                clientProductLikesRepository,
-                this.cloudinaryService.Object);
-
-            var product = new Product()
-            {
-                Id = "1",
-                Name = "firstProductName",
-            };
-
-            var client = new ApplicationUser()
-            {
-                Id = "1",
-            };
-
-            await db.Products.AddAsync(product);
-            await db.Users.AddAsync(client);
-            await db.SaveChangesAsync();
-
-            await service.LikeProductAsync(product.Id, client.Id);
-            var isAdded = await service.LikeProductAsync(product.Id, client.Id);
-
-            Assert.True(!isAdded);
+            Assert.True(isAddedTrueCase);
+            Assert.True(!isAddedFalseCase);
         }
 
         [Fact]
@@ -353,6 +311,15 @@
 
             Assert.Equal(1, count);
             Assert.Single(products);
+        }
+
+        private async Task<string> PrepareProductAsync(ProductsService service)
+        {
+            var picture = this.mockPicture.Object;
+
+            var productId = await service.CreateAsync("productName", "productDescription", 12, picture, "1", "1");
+
+            return productId;
         }
 
         public class TestProductModel : IMapFrom<Product>

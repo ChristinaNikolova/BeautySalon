@@ -1,7 +1,7 @@
 ﻿namespace BeautySalon.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-
+    using BeautySalon.Common;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
     using BeautySalon.Services.Data.Products;
@@ -70,7 +70,9 @@
 
             var id = await this.proceduresService.CreateAsync(input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive, input.SkinProblems);
 
-            return this.RedirectToAction(nameof(this.Update), new { Id = id });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Update(string id)
@@ -97,12 +99,16 @@
 
             await this.proceduresService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.CategoryId, input.SkinTypeId, input.IsSensitive);
 
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessUpdateMessage;
+
             return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Delete(string id)
         {
             await this.proceduresService.DeleteAsync(id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return this.RedirectToAction(nameof(this.GetAll));
         }
@@ -138,7 +144,9 @@
                 return this.RedirectToAction(nameof(this.ManageProducts), new { input.Id });
             }
 
-            return this.RedirectToAction(nameof(this.Update), new { input.Id });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.ManageProducts), new { input.Id });
         }
 
         [HttpPost]
@@ -148,6 +156,8 @@
             //test
             var procedureProducts = await this.proceduresService
                 .GetProcedureDetailsAsync<ManageProcedureProductsViewModel>(input.ProcedureId);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return procedureProducts;
         }

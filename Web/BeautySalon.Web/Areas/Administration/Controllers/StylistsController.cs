@@ -69,6 +69,8 @@
 
             await this.stylistsService.UpdateStylistProfileAsync(input.Id, input.FirstName, input.LastName, input.PhoneNumber, input.CategoryId, input.JobTypeId, input.Description, input.NewPicture);
 
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessUpdateMessage;
+
             return this.RedirectToAction(nameof(this.GetAll));
         }
 
@@ -87,7 +89,9 @@
                 return this.RedirectToAction(nameof(this.GetAll));
             }
 
-            return this.RedirectToAction(nameof(this.Update), new { Id = stylistId });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Delete(string id)
@@ -96,6 +100,8 @@
 
             await this.userManager.RemoveFromRoleAsync(stylist, GlobalConstants.StylistRoleName);
             await this.stylistsService.RemoveAllProceduresAsync(id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return this.RedirectToAction(nameof(this.GetAll));
         }
@@ -129,15 +135,19 @@
                 return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
             }
 
-            return this.RedirectToAction(nameof(this.Update), new { input.Id });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
         }
 
         [HttpPost]
         public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] DeleteProcedureStylistInputModel input)
         {
             await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
-            //test
+
             var stylistProcedures = await this.stylistsService.GetStylistDetailsAsync<ManageStylistProceduresViewModel>(input.StylistId);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return stylistProcedures;
         }

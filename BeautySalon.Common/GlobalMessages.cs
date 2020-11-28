@@ -11,5 +11,12 @@
         public const string ForgotPasswordTitleMessage = "Reset Password";
 
         public const string ForgotPasswordMessage = "Please reset your password by <a href='{0}'>clicking here</a>.";
+
+        // Notification Messages
+        public const string SuccessCreateMessage = "Successfully added!";
+
+        public const string SuccessUpdateMessage = "Successfully updated!";
+
+        public const string SuccessDeleteMessage = "Successfully deleted!";
     }
 }

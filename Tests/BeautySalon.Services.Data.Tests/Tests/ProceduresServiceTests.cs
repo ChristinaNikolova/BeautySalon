@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
@@ -24,7 +25,6 @@
         private readonly Mock<IRepository<SkinProblemProcedure>> skinProblemProceduresRepository;
         private readonly Mock<IRepository<Appointment>> appointmentsRepository;
         private readonly Mock<ICategoriesService> categoriesService;
-
 
         public ProceduresServiceTests()
         {
@@ -450,6 +450,411 @@
             var procedures = await service.GetProceduresByStylistAsync<TestProcedureStylistModel>(firstStylist.Id);
 
             Assert.Single(procedures);
+        }
+
+        [Fact]
+        public async Task CheckSmartSearchPerfectProcedures()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureStylistsRepository = new EfRepository<ProcedureStylist>(db);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                this.procedureProductsRepository.Object,
+                procedureStylistsRepository,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                this.categoriesService.Object);
+
+            var skinType = new SkinType()
+            {
+                Id = "1",
+            };
+
+            var firstProcedure = new Procedure()
+            {
+                Id = "1",
+                IsSensitive = true,
+                SkinTypeId = skinType.Id,
+            };
+
+            var secondProcedure = new Procedure()
+            {
+                Id = "2",
+                IsSensitive = true,
+                SkinTypeId = skinType.Id,
+            };
+
+            var thirdProcedure = new Procedure()
+            {
+                Id = "3",
+                IsSensitive = false,
+                SkinTypeId = skinType.Id,
+            };
+
+            var fourthProcedure = new Procedure()
+            {
+                Id = "4",
+                IsSensitive = true,
+                SkinTypeId = "2",
+            };
+
+            var stylist = new ApplicationUser() { Id = "1" };
+
+            var firstStylistProcedure = new ProcedureStylist()
+            {
+                ProcedureId = firstProcedure.Id,
+                StylistId = stylist.Id,
+            };
+
+            var secondStylistProcedure = new ProcedureStylist()
+            {
+                ProcedureId = secondProcedure.Id,
+                StylistId = stylist.Id,
+            };
+
+            var thirdStylistProcedure = new ProcedureStylist()
+            {
+                ProcedureId = thirdProcedure.Id,
+                StylistId = stylist.Id,
+            };
+
+            var fourthStylistProcedure = new ProcedureStylist()
+            {
+                ProcedureId = fourthProcedure.Id,
+                StylistId = stylist.Id,
+            };
+
+            await db.Procedures.AddAsync(firstProcedure);
+            await db.Procedures.AddAsync(secondProcedure);
+            await db.Procedures.AddAsync(thirdProcedure);
+            await db.Procedures.AddAsync(fourthProcedure);
+            await db.Users.AddAsync(stylist);
+            await db.SkinTypes.AddAsync(skinType);
+            await db.ProcedureStylists.AddAsync(firstStylistProcedure);
+            await db.ProcedureStylists.AddAsync(secondStylistProcedure);
+            await db.ProcedureStylists.AddAsync(thirdStylistProcedure);
+            await db.ProcedureStylists.AddAsync(fourthStylistProcedure);
+            await db.SaveChangesAsync();
+
+            var proceduresSmartSearch = await service.GetSmartSearchProceduresAsync<TestProcedureStylistModel>(skinType.Id, "yes", stylist.Id);
+            var perfectProcedures = await service.GetPerfectProceduresForSkinTypeAsync<TestProcedureModel>(true, skinType.Id);
+
+            Assert.Equal(2, proceduresSmartSearch.Count());
+            Assert.Equal(2, perfectProcedures.Count());
+        }
+
+        [Fact]
+        public async Task CheckAddingProductToProcedure()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                procedureProductsRepository,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                this.categoriesService.Object);
+
+            var procedure = new Procedure() { Id = "1", };
+            var product = new Product() { Id = "1" };
+
+            var isAddedTrueCase = await service.AddProductToProcedureAsync(procedure.Id, product.Id);
+            var isAddedFalseCase = await service.AddProductToProcedureAsync(procedure.Id, product.Id);
+
+            Assert.True(isAddedTrueCase);
+            Assert.True(!isAddedFalseCase);
+        }
+
+        [Fact]
+        public async Task CheckRemovingProductToProcedure()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                procedureProductsRepository,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                this.categoriesService.Object);
+
+            var procedure = new Procedure() { Id = "1", };
+            var product = new Product() { Id = "1" };
+
+            await service.AddProductToProcedureAsync(procedure.Id, product.Id);
+            await service.RemoveProductAsync(product.Id, procedure.Id);
+
+            Assert.Empty(procedureProductsRepository.All());
+        }
+
+        [Fact]
+        public async Task CheckAddingReviewToProcedure()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var appointmentsRepository = new EfRepository<Appointment>(db);
+            var procedureReviewsRepository = new EfRepository<Review>(db);
+
+            var service = new ProceduresService(
+                repository,
+                procedureReviewsRepository,
+                this.procedureProductsRepository.Object,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                appointmentsRepository,
+                this.categoriesService.Object);
+
+            var procedure = new Procedure()
+            {
+                Id = "1",
+            };
+
+            var firstAppointment = new Appointment()
+            {
+                Id = "1",
+                ProcedureId = procedure.Id,
+            };
+
+            var secondAppointment = new Appointment()
+            {
+                Id = "2",
+                ProcedureId = procedure.Id,
+            };
+
+            var review = new Review()
+            {
+                Id = "1",
+                AppointmentId = firstAppointment.Id,
+                ProcedureId = procedure.Id,
+                Points = 5,
+                Content = "test first content",
+            };
+
+            await db.Appointments.AddAsync(firstAppointment);
+            await db.Appointments.AddAsync(secondAppointment);
+            await db.Procedures.AddAsync(procedure);
+            await db.Reviews.AddAsync(review);
+            await db.SaveChangesAsync();
+
+            await service.AddProcedureReviewsAsync(secondAppointment.Id, "second test content", 3);
+
+            Assert.Equal(4, procedure.AverageRating);
+            Assert.Equal(2, procedure.Reviews.Count());
+        }
+
+        [Fact]
+        public async Task CheckProductUseProcedures()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                procedureProductsRepository,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                this.categoriesService.Object);
+
+            var firstProcedure = new Procedure()
+            {
+                Id = "1",
+            };
+
+            var secondProcedure = new Procedure()
+            {
+                Id = "2",
+            };
+
+            var thirdProcedure = new Procedure()
+            {
+                Id = "3",
+            };
+
+            var product = new Product()
+            {
+                Id = "1",
+            };
+
+            await db.Procedures.AddAsync(firstProcedure);
+            await db.Procedures.AddAsync(secondProcedure);
+            await db.Procedures.AddAsync(thirdProcedure);
+            await db.Products.AddAsync(product);
+            await db.SaveChangesAsync();
+
+            await service.AddProductToProcedureAsync(firstProcedure.Id, product.Id);
+            await service.AddProductToProcedureAsync(secondProcedure.Id, product.Id);
+
+            var procedures = await service.GetProceduresUseProductAsync<TestProcedureModel>(product.Id);
+
+            Assert.Equal(2, procedures.Count());
+        }
+
+        [Fact]
+        public async Task CheckProcedureSearchBy()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+            var categoriesRepository = new EfDeletableEntityRepository<Category>(db);
+            var categoriesService = new Mock<CategoriesService>(categoriesRepository);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                this.procedureProductsRepository.Object,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                categoriesService.Object);
+
+            var skinCareCategory = new Category()
+            {
+                Id = "1",
+                Name = GlobalConstants.CategorySkinName,
+            };
+
+            var firstSkinType = new SkinType()
+            {
+                Id = "1",
+            };
+
+            var secondSkinType = new SkinType()
+            {
+                Id = "2",
+            };
+
+            var firstProcedure = new Procedure()
+            {
+                Id = "1",
+                CategoryId = skinCareCategory.Id,
+                SkinTypeId = firstSkinType.Id,
+                Price = 1,
+                AverageRating = 1,
+            };
+
+            var secondProcedure = new Procedure()
+            {
+                Id = "2",
+                CategoryId = skinCareCategory.Id,
+                SkinTypeId = secondSkinType.Id,
+                Price = 2,
+                AverageRating = 2,
+            };
+
+            var thirdProcedure = new Procedure()
+            {
+                Id = "3",
+                CategoryId = "2",
+                Price = 3,
+                AverageRating = 4,
+            };
+
+            var fourthProcedure = new Procedure()
+            {
+                Id = "4",
+                CategoryId = skinCareCategory.Id,
+                SkinTypeId = firstSkinType.Id,
+                Price = 4,
+                AverageRating = 4,
+            };
+
+            await categoriesRepository.AddAsync(skinCareCategory);
+            await db.Procedures.AddAsync(firstProcedure);
+            await db.Procedures.AddAsync(secondProcedure);
+            await db.Procedures.AddAsync(thirdProcedure);
+            await db.Procedures.AddAsync(fourthProcedure);
+            await db.SkinTypes.AddAsync(firstSkinType);
+            await db.SkinTypes.AddAsync(secondSkinType);
+            await db.SaveChangesAsync();
+
+            var proceduresSearchWithoutCriteria = await service.SearchByAsync<TestProcedureModel>(firstSkinType.Id, string.Empty);
+
+            var proceduresOrderByPriceWithoutSkinType = await service.SearchByAsync<TestProcedureModel>(string.Empty, "price");
+            var proceduresOrderByRatingWithoutSkinType = await service.SearchByAsync<TestProcedureModel>(string.Empty, "rating");
+            var proceduresOrderByPriceWithSkinType = await service.SearchByAsync<TestProcedureModel>(firstSkinType.Id, "price");
+            var proceduresOrderByRatingWithSkinType = await service.SearchByAsync<TestProcedureModel>(firstSkinType.Id, "rating");
+
+            var proceduresOrderByPriceWithoutSkinTypeExpected = await repository
+                .All()
+                .Where(p => p.CategoryId == skinCareCategory.Id)
+                .OrderBy(p => p.Price)
+                .To<TestProcedureModel>()
+                .ToListAsync();
+
+            var proceduresOrderByRatingWithoutSkinTypeExpected = await repository
+               .All()
+               .Where(p => p.CategoryId == skinCareCategory.Id)
+               .OrderByDescending(p => p.AverageRating)
+               .To<TestProcedureModel>()
+               .ToListAsync();
+
+            var proceduresOrderByPriceWithSkinTypeExpected = await repository
+              .All()
+              .Where(p => p.CategoryId == skinCareCategory.Id && p.SkinTypeId == firstSkinType.Id)
+              .OrderBy(p => p.Price)
+              .To<TestProcedureModel>()
+              .ToListAsync();
+
+            var proceduresOrderByRatingWithSkinTypeExpected = await repository
+             .All()
+             .Where(p => p.CategoryId == skinCareCategory.Id && p.SkinTypeId == firstSkinType.Id)
+             .OrderByDescending(p => p.AverageRating)
+             .To<TestProcedureModel>()
+             .ToListAsync();
+
+            Assert.Equal(2, proceduresSearchWithoutCriteria.Count());
+            proceduresOrderByPriceWithoutSkinType.SequenceEqual(proceduresOrderByPriceWithoutSkinTypeExpected);
+            proceduresOrderByRatingWithoutSkinType.SequenceEqual(proceduresOrderByRatingWithoutSkinTypeExpected);
+            proceduresOrderByPriceWithSkinType.SequenceEqual(proceduresOrderByPriceWithSkinTypeExpected);
+            proceduresOrderByRatingWithSkinType.SequenceEqual(proceduresOrderByRatingWithSkinTypeExpected);
+        }
+
+        [Fact]
+        public async Task CheckGettingProcedureIdByProcedureName()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<Procedure>(db);
+
+            var service = new ProceduresService(
+                repository,
+                this.procedureReviewsRepository.Object,
+                this.procedureProductsRepository.Object,
+                this.procedureStylistsRepository.Object,
+                this.skinProblemProceduresRepository.Object,
+                this.appointmentsRepository.Object,
+                this.categoriesService.Object);
+
+            var procedure = new Procedure()
+            {
+                Id = "1",
+                Name = "first procedure",
+            };
+
+            await db.Procedures.AddAsync(procedure);
+            await db.SaveChangesAsync();
+
+            var procedureId = await service.GetProcedureIdByNameAsync(procedure.Name);
+
+            Assert.Equal(procedure.Id, procedureId);
         }
 
         private static ApplicationDbContext GetDb()

@@ -164,7 +164,7 @@
 
             if (string.IsNullOrWhiteSpace(criteria))
             {
-                return await this.FilterByCriteriaAsync<T>(skinTypeId, skinCategory.Id);
+                return await this.FilterByWithoutCriteriaAsync<T>(skinTypeId, skinCategory.Id);
             }
 
             var criteriaToLower = criteria.ToLower();
@@ -213,22 +213,6 @@
             return procedureNames;
         }
 
-        public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
-        {
-            var isSkinSensitive = skinSensitive.ToLower().Contains("yes".ToLower());
-
-            var procedures = await this.procedureStylistsRepository
-                .All()
-                .Where(ps => ps.StylistId == stylistId
-                && ps.Procedure.SkinTypeId == clientSkinTypeId
-                && ps.Procedure.IsSensitive == isSkinSensitive)
-                .OrderBy(ps => ps.Procedure.Name)
-                .To<T>()
-                .ToListAsync();
-
-            return procedures;
-        }
-
         public async Task<string> GetProcedureIdByNameAsync(string procedureName)
         {
             var procedureId = await this.proceduresRepository
@@ -271,6 +255,22 @@
 
             this.procedureProductsRepository.Delete(procedureProduct);
             await this.procedureProductsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetSmartSearchProceduresAsync<T>(string clientSkinTypeId, string skinSensitive, string stylistId)
+        {
+            var isSkinSensitive = skinSensitive.ToLower().Contains("yes".ToLower());
+
+            var procedures = await this.procedureStylistsRepository
+                .All()
+                .Where(ps => ps.StylistId == stylistId
+                && ps.Procedure.SkinTypeId == clientSkinTypeId
+                && ps.Procedure.IsSensitive == isSkinSensitive)
+                .OrderBy(ps => ps.Procedure.Name)
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
         }
 
         public async Task<IEnumerable<T>> GetPerfectProceduresForSkinTypeAsync<T>(bool isSkinSensitive, string skinTypeId)
@@ -350,7 +350,6 @@
         {
             if (!skinTypeId.StartsWith(GlobalConstants.StartDropDownDefaultMessage))
             {
-                //check this
                 procedure.SkinTypeId = skinTypeId;
                 procedure.IsSensitive = isSensitive.ToLower() == "Yes".ToLower();
 
@@ -370,13 +369,6 @@
 
             foreach (var skinProblem in selectedSkinProblems)
             {
-                //if (await this.skinProblemProceduresRespository
-                //    .All()
-                //    .AnyAsync(spp => spp.SkinProblemId == skinProblem && spp.ProcedureId == procedure.Id))
-                //{
-                //    continue;
-                //}
-
                 var skinProblemProcedure = new SkinProblemProcedure()
                 {
                     SkinProblemId = skinProblem,
@@ -429,7 +421,7 @@
              .ToListAsync();
         }
 
-        private async Task<IEnumerable<T>> FilterByCriteriaAsync<T>(string skinTypeId, string categoryId)
+        private async Task<IEnumerable<T>> FilterByWithoutCriteriaAsync<T>(string skinTypeId, string categoryId)
         {
             return await this.proceduresRepository
                  .All()

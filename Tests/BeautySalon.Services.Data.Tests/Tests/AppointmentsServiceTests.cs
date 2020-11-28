@@ -14,7 +14,7 @@
     using Microsoft.EntityFrameworkCore;
     using Xunit;
 
-    public class AppointmentsServiceTests
+    public class AppointmentsServiceTests : BaseServiceTests
     {
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
@@ -22,30 +22,18 @@
 
         public AppointmentsServiceTests()
         {
-            new MapperInitializationProfile();
-            this.stylist = new ApplicationUser()
-            {
-                Id = "10",
-            };
-            this.client = new ApplicationUser()
-            {
-                Id = "1",
-            };
-            this.procedure = new Procedure()
-            {
-                Id = "1",
-            };
+            this.stylist = new ApplicationUser() { Id = "10" };
+            this.client = new ApplicationUser() { Id = "1" };
+            this.procedure = new Procedure() { Id = "1" };
         }
 
         [Fact]
         public async Task CheckCreatingAppointment()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string appointmentId = await this.GetAppointmentIdForCRUDOperations(service);
 
             Assert.NotNull(appointmentId);
         }
@@ -54,11 +42,9 @@
         public async Task CheckGettingDetailsAppointment()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string appointmentId = await this.GetAppointmentIdForCRUDOperations(service);
 
             var resultAppointment = await service.GetDetailsAsync<TestAppointmentModel>(appointmentId);
             var expectedAppointment = await service.GetByIdAsync<TestAppointmentModel>(appointmentId);
@@ -74,11 +60,11 @@
             var repository = new EfDeletableEntityRepository<Appointment>(db);
             var service = new AppointmentsService(repository);
 
-            var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string appointmentId = await this.GetAppointmentIdForCRUDOperations(service);
 
             await service.CancelAsync(appointmentId);
 
-            var appointment = await repository.All().FirstOrDefaultAsync(a => a.Id == appointmentId);
+            var appointment = await GetAppointment(repository, appointmentId);
 
             Assert.Equal(Status.CancelledByStylist, appointment.Status);
         }
@@ -91,11 +77,11 @@
             var repository = new EfDeletableEntityRepository<Appointment>(db);
             var service = new AppointmentsService(repository);
 
-            var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string appointmentId = await this.GetAppointmentIdForCRUDOperations(service);
 
             await service.DoneAsync(appointmentId);
 
-            var appointment = await repository.All().FirstOrDefaultAsync(a => a.Id == appointmentId);
+            var appointment = await GetAppointment(repository, appointmentId);
 
             Assert.Equal(Status.Done, appointment.Status);
         }
@@ -108,11 +94,11 @@
             var repository = new EfDeletableEntityRepository<Appointment>(db);
             var service = new AppointmentsService(repository);
 
-            var appointmentId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string appointmentId = await this.GetAppointmentIdForCRUDOperations(service);
 
             await service.ApproveAsync(appointmentId);
 
-            var appointment = await repository.All().FirstOrDefaultAsync(a => a.Id == appointmentId);
+            var appointment = await GetAppointment(repository, appointmentId);
 
             Assert.Equal(Status.Approved, appointment.Status);
         }
@@ -125,43 +111,24 @@
             var repository = new EfDeletableEntityRepository<Appointment>(db);
             var service = new AppointmentsService(repository);
 
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+            await this.PrepareAppointments(service);
 
             var appointments = await service.GetAllAppointmentsForTodayAsync<TestAppointmentModel>();
+            var appointmentsExpected = await repository
+                .All()
+                .Where(a => a.DateTime == DateTime.UtcNow.Date)
+                .To<TestAppointmentModel>()
+                .ToListAsync();
 
             Assert.Equal(3, appointments.Count());
+            appointments.SequenceEqual(appointmentsExpected);
         }
 
         [Fact]
-        public async Task CheckGettingAppointmentsCountForTodayCurrentStylist()
+        public async Task CheckGettingAllAppointmentsForCurrentStylistAndAppointmentsForToday()
         {
             ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
-
-            await service.ApproveAsync(firstAppId);
-            await service.ApproveAsync(secondAppId);
-
-            var appointmentsCount = await
-                service.GetAppointmentsForTodayCountAsync(this.stylist.Id);
-
-            Assert.Equal(2, appointmentsCount);
-        }
-
-        [Fact]
-        public async Task CheckGettingAppointmentsForCurrentStylist()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            AppointmentsService service = PrepareService(db);
 
             var firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
             var secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
@@ -173,17 +140,18 @@
 
             var stylistAppointments = await
                 service.GetAllForStylistAsync<TestAppointmentModel>(this.stylist.Id);
+            var appointmentsCount = await
+               service.GetAppointmentsForTodayCountAsync(this.stylist.Id);
 
             Assert.Equal(3, stylistAppointments.Count());
+            Assert.Equal(2, appointmentsCount);
         }
 
         [Fact]
         public async Task CheckGettingUpcommingAppointmentsForCurrentClient()
         {
             ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            AppointmentsService service = PrepareService(db);
 
             var firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
             var secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
@@ -202,13 +170,9 @@
         public async Task CheckGettingStylistFreeHours()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+            await this.PrepareAppointments(service);
 
             var selectedDate = DateTime.UtcNow.ToString("dd'/'MM'/'yyyy");
             var result = await
@@ -231,13 +195,9 @@
         public async Task CheckGettingAppointmentsRequestsForCurrentStylist()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+            await this.PrepareAppointments(service);
 
             var appointments = await
                 service.GetRequestsAsync<TestAppointmentModel>(this.stylist.Id);
@@ -252,17 +212,9 @@
         public async Task CheckGettingAppointmentsHistoryForCurrentStylist()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            string thirdAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
-
-            await service.DoneAsync(firstAppId);
-            await service.DoneAsync(secondAppId);
-            await service.CancelAsync(thirdAppId);
+            await this.PrepareAppointmentsAndStatus(service);
 
             var resultAppointments = await
                 service.GetHistoryStylistAsync<TestAppointmentModel>(this.stylist.Id);
@@ -274,19 +226,9 @@
         public async Task CheckGettingAppointmentsHistoryAllStylists()
         {
             ApplicationDbContext db = GetDb();
+            AppointmentsService service = PrepareService(db);
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            var secondStylist = new ApplicationUser() { Id = "2" };
-
-            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            string thirdAppId = await service.CreateAsync(this.client.Id, secondStylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
-
-            await service.DoneAsync(firstAppId);
-            await service.DoneAsync(secondAppId);
-            await service.CancelAsync(thirdAppId);
+            await this.PrepareAppointmentsAndStatus(service);
 
             var resultAppointments = await
                 service.GetHistoryAllStylistsAsync<TestAppointmentModel>();
@@ -302,15 +244,11 @@
             var repository = new EfDeletableEntityRepository<Appointment>(db);
             var service = new AppointmentsService(repository);
 
-            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
-            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
-            string thirdAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+            string appId = await this.GetAppointmentIdForCRUDOperations(service);
 
-            await service.DoneAsync(firstAppId);
-            await service.DoneAsync(secondAppId);
-            await service.CancelAsync(thirdAppId);
+            await service.DoneAsync(appId);
 
-            var firstApp = await repository.All().FirstOrDefaultAsync(a => a.Id == firstAppId);
+            var firstApp = await GetAppointment(repository, appId);
             firstApp.IsReview = true;
 
             repository.Update(firstApp);
@@ -319,42 +257,37 @@
             var resultAppointments = await
                 service.GetHistoryUserAsync<TestAppointmentModel>(this.client.Id);
 
-            Assert.Equal(2, resultAppointments.Count());
-        }
-
-        [Fact]
-        public async Task CheckGettingAppointmentsForReview()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
-
-            var pastDate = DateTime.ParseExact("12/10/2020", "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
-            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, pastDate, "11:00", "test comment");
-            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, pastDate, "12:00", "test comment");
-            string thirdAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
-
-            await service.DoneAsync(firstAppId);
-            await service.DoneAsync(secondAppId);
-            await service.DoneAsync(thirdAppId);
-
-            var firstApp = await repository.All().FirstOrDefaultAsync(a => a.Id == firstAppId);
-            firstApp.IsReview = true;
-
-            repository.Update(firstApp);
-            await repository.SaveChangesAsync();
-
-            var resultAppointments = await
-                service.GetAppointmentsToReviewAsync<TestAppointmentModel>(this.client.Id);
-
             Assert.Single(resultAppointments);
         }
 
         [Fact]
         public async Task CheckingAppointmentsForReview()
         {
+            AppointmentsService service = await this.PrepareAppointmentReview();
+
+            var hasToReview = await
+                service.CheckPastProceduresAsync(this.client.Id);
+            var resultAppointments = await
+                service.GetAppointmentsToReviewAsync<TestAppointmentModel>(this.client.Id);
+
+            Assert.True(hasToReview);
+            Assert.Single(resultAppointments);
+        }
+
+        private static AppointmentsService PrepareService(ApplicationDbContext db)
+        {
+            var repository = new EfDeletableEntityRepository<Appointment>(db);
+            var service = new AppointmentsService(repository);
+            return service;
+        }
+
+        private static async Task<Appointment> GetAppointment(EfDeletableEntityRepository<Appointment> repository, string firstAppId)
+        {
+            return await repository.All().FirstOrDefaultAsync(a => a.Id == firstAppId);
+        }
+
+        private async Task<AppointmentsService> PrepareAppointmentReview()
+        {
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
@@ -370,24 +303,35 @@
             await service.DoneAsync(secondAppId);
             await service.DoneAsync(thirdAppId);
 
-            var firstApp = await repository.All().FirstOrDefaultAsync(a => a.Id == firstAppId);
+            var firstApp = await GetAppointment(repository, firstAppId);
             firstApp.IsReview = true;
 
             repository.Update(firstApp);
             await repository.SaveChangesAsync();
-
-            var hasToReview = await
-                service.CheckPastProceduresAsync(this.client.Id);
-
-            Assert.True(hasToReview);
+            return service;
         }
 
-        private static ApplicationDbContext GetDb()
+        private async Task PrepareAppointmentsAndStatus(AppointmentsService service)
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
+            string firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            string secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
+            string thirdAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+
+            await service.DoneAsync(firstAppId);
+            await service.DoneAsync(secondAppId);
+            await service.CancelAsync(thirdAppId);
+        }
+
+        private async Task PrepareAppointments(AppointmentsService service)
+        {
+            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
+            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
+            await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "13:00", "test comment");
+        }
+
+        private async Task<string> GetAppointmentIdForCRUDOperations(AppointmentsService service)
+        {
+            return await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
         }
 
         public class TestAppointmentModel : IMapFrom<Appointment>

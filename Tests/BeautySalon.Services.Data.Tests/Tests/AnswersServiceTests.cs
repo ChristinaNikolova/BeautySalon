@@ -9,11 +9,10 @@
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Answers;
     using BeautySalon.Services.Mapping;
-    using Microsoft.EntityFrameworkCore;
     using Moq;
     using Xunit;
 
-    public class AnswersServiceTests
+    public class AnswersServiceTests : BaseServiceTests
     {
         private readonly Question question;
         private readonly ApplicationUser stylist;
@@ -23,7 +22,6 @@
 
         public AnswersServiceTests()
         {
-            new MapperInitializationProfile();
             this.questionsRepository = new Mock<IRepository<Question>>();
             this.stylist = new ApplicationUser()
             {
@@ -105,14 +103,6 @@
             var result = await service.GetAnswerDetailsAsync<TestAnswerModel>(answerId);
 
             Assert.NotNull(result);
-        }
-
-        private static ApplicationDbContext GetDb()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
-            var db = new ApplicationDbContext(options);
-            return db;
         }
 
         private async Task AddQuestionAsync(EfDeletableEntityRepository<Question> questionRepository)

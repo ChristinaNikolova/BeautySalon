@@ -10,8 +10,6 @@
     {
         Task<string> AddRoleStylistAsync(string email);
 
-        //Task<T> GetStylistDataForUpdateAsync<T>(string id);
-
         Task<ApplicationUser> UpdateStylistProfileAsync(string id, string firstName, string lastName, string phoneNumber, string category, string jobType, string descripion, IFormFile newPicture);
 
         Task<ApplicationUser> GetByIdAsync(string id);

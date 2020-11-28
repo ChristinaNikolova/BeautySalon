@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Procedures;
@@ -77,7 +78,6 @@
 
         public async Task<IActionResult> Update(string id)
         {
-            //test
             var model = await this.proceduresService.GetProcedureDetailsAsync<UpdateProcedureInputModel>(id);
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
@@ -115,7 +115,6 @@
 
         public async Task<IActionResult> ManageProducts(string id)
         {
-            //test
             var model = await this.proceduresService
                 .GetProcedureDetailsAsync<ManageProcedureProductsViewModel>(id);
 
@@ -153,7 +152,7 @@
         public async Task<ActionResult<ManageProcedureProductsViewModel>> DeleteProcedureProduct([FromBody] DeleteProductProcedureInputModel input)
         {
             await this.proceduresService.RemoveProductAsync(input.ProductId, input.ProcedureId);
-            //test
+
             var procedureProducts = await this.proceduresService
                 .GetProcedureDetailsAsync<ManageProcedureProductsViewModel>(input.ProcedureId);
 

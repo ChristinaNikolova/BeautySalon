@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Services.Data.Comments;
     using BeautySalon.Web.ViewModels.Administration.Comments.ViewModels;
     using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,8 @@
         public async Task<IActionResult> Delete(string id)
         {
             await this.commentsService.DeleteAsync(id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return this.RedirectToAction(nameof(this.GetAllFromPreviousDay));
         }

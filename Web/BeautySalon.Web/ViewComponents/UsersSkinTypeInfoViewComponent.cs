@@ -18,7 +18,6 @@
 
         public async Task<IViewComponentResult> InvokeAsync(string userId)
         {
-            //test
             var model = await this.usersService.GetUserDataAsync<UsersSkinTypeInfoViewModel>(userId);
 
             return this.View(model);

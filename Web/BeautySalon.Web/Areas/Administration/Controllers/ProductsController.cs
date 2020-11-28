@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Services.Data.Brands;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.Products;
@@ -59,12 +60,13 @@
 
             var id = await this.productsService.CreateAsync(input.Name, input.Description, input.Price, input.Picture, input.BrandId, input.CategoryId);
 
-            return this.RedirectToAction(nameof(this.Update), new { Id = id });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Update(string id)
         {
-            //test
             var model = await this.productsService.GetDetailsAsync<UpdateProductInputModel>(id);
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
@@ -87,12 +89,16 @@
 
             await this.productsService.UpdateAsync(input.Id, input.Name, input.Description, input.Price, input.NewPicture, input.BrandId, input.CategoryId);
 
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessUpdateMessage;
+
             return this.RedirectToAction(nameof(this.GetAll));
         }
 
         public async Task<IActionResult> Delete(string id)
         {
             await this.productsService.DeleteAsync(id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return this.RedirectToAction(nameof(this.GetAll));
         }

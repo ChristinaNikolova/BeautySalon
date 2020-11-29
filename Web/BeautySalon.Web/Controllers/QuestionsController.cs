@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Questions;
     using BeautySalon.Services.Data.Stylists;
@@ -49,7 +50,7 @@
 
             await this.questionsService.CreateAsync(input.Title, input.Content, input.StylistId, userId);
 
-            this.TempData["InfoMessage"] = "Your question was successfully send!";
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessSendMessage;
 
             return this.RedirectToAction("GetDetails", "Stylists", new { id = input.StylistId });
         }

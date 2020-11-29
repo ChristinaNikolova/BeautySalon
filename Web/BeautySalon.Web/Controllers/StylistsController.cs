@@ -52,7 +52,6 @@
         [HttpPost]
         public async Task<ActionResult<AllStylistNamesViewModel>> GetStylistsByCategory([FromBody] string categoryId)
         {
-            //Test
             var stylistNames = await this.stylistsService.SearchByCategoryAsync<StylistNamesViewModel>(categoryId);
 
             return new AllStylistNamesViewModel { StylistNames = stylistNames };

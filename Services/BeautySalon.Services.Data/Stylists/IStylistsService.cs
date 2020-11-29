@@ -20,15 +20,7 @@
 
         Task<IEnumerable<T>> SearchByCategoryAsync<T>(string categoryId);
 
-        //Task<IEnumerable<T>> GetStylistsByCategoryAsync<T>(string categoryId);
-
-        //Task<T> GetStylistDataAsync<T>(string id);
-
-        //Task<IEnumerable<T>> GetAllAdministrationAsync<T>();
-
         Task<string> GetPictureUrlAsync(string id);
-
-        //Task<T> GetStylistProceduresAsync<T>(string id);
 
         Task RemoveProcedureAsync(string stylistId, string procedureId);
 

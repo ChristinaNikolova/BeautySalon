@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Services.Data.Categories;
@@ -60,12 +61,13 @@
 
             string articleId = await this.articlesService.CreateAsync(input.Title, input.Content, input.CategoryId, input.Picture, stylistId);
 
-            return this.RedirectToAction(nameof(this.Update), new { id = articleId });
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
+            return this.RedirectToAction(nameof(this.GetAllForStylist));
         }
 
         public async Task<IActionResult> Update(string id)
         {
-            //test
             var model = await this.articlesService.GetArticleDetailsAsync<UpdateArticleInputModel>(id);
 
             model.Categories = await this.categoriesService.GetAllAsSelectListItemAsync();
@@ -86,12 +88,16 @@
 
             await this.articlesService.UpdateAsync(input.Title, input.Content, input.CategoryId, input.NewPicture, input.Id);
 
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessUpdateMessage;
+
             return this.RedirectToAction(nameof(this.GetAllForStylist));
         }
 
         public async Task<IActionResult> Delete(string id)
         {
             await this.articlesService.DeleteAsync(id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessDeleteMessage;
 
             return this.RedirectToAction(nameof(this.GetAllForStylist));
         }

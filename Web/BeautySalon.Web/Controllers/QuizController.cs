@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Quiz;
     using BeautySalon.Services.Data.SkinProblems;
@@ -82,7 +83,7 @@
 
             await this.usersService.AddSkinTypeDataAsync(userId, input.IsSkinSensitive, input.SkinTypeId, input.SkinProblemNames);
 
-            this.TempData["InfoMessage"] = "Your skin data was successfully saved!";
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessSaveSkinDataMessage;
 
             return this.Json(new RedirectResult("/Users/GetUsersSkinInfo"));
         }

@@ -1,7 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
-
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Categories;
@@ -65,7 +65,7 @@
 
             await this.appointmentsService.CreateAsync(userId, input.StylistId, input.ProcedureId, input.Date, input.Time, input.Comment);
 
-            this.TempData["InfoMessage"] = "Your appointment request is successfully created!";
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessSendAppointmentRequestMessage;
 
             return this.Redirect("/Users/Index");
         }

@@ -18,5 +18,11 @@
         public const string SuccessUpdateMessage = "Successfully updated!";
 
         public const string SuccessDeleteMessage = "Successfully deleted!";
+
+        public const string SuccessSendMessage = "Successfully send!";
+
+        public const string SuccessSaveSkinDataMessage = "Your skin data was successfully saved!";
+
+        public const string SuccessSendAppointmentRequestMessage = "Your appointment request is successfully created!";
     }
 }

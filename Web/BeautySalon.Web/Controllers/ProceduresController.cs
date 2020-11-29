@@ -125,6 +125,8 @@
 
             await this.proceduresService.AddProcedureReviewsAsync(input.AppoitmentId, input.Content, input.Points);
 
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
+
             return this.RedirectToAction("GetUsersHistory", "Appointments", new { Id = input.AppoitmentId });
         }
     }

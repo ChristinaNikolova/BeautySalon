@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Answers;
     using BeautySalon.Web.ViewModels.Answers.ViewModels;
@@ -32,6 +33,8 @@
             }
 
             var answerId = await this.answersService.CreateAsync(input.Title, input.Content, input.Question.StylistId, input.Question.ClientId, input.Question.Id);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessSendMessage;
 
             return this.RedirectToAction(nameof(this.SeeDetails), new { Id = answerId });
         }

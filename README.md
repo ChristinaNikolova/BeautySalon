@@ -77,6 +77,8 @@ ASP.NET CORE areas
 
 ASP.NET CORE Identity System
 
+Custom Validation Attributes
+
 MSSQL Server 
 
 Entity Framework Core 3.1
@@ -129,7 +131,7 @@ FullCalendar
 
 Moment.js
 
-Custom Validation Attributes
+
 
 Responsive Design
 

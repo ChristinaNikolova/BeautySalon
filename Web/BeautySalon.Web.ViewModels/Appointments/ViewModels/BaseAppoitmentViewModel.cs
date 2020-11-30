@@ -36,5 +36,7 @@
         public string StartTime { get; set; }
 
         public Status Status { get; set; }
+
+        public bool IsReview { get; set; }
     }
 }

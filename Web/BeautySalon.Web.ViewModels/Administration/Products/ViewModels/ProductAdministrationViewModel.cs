@@ -14,11 +14,6 @@
         public string FormattedPrice
             => this.Price.ToString("F2");
 
-        public double AverageRating { get; set; }
-
-        public string FormattedRating
-           => this.AverageRating.ToString("F2");
-
         public string BrandName { get; set; }
 
         public string CategoryName { get; set; }

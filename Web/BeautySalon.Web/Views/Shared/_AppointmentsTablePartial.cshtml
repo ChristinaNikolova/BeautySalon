@@ -22,6 +22,7 @@
                 <th scope="col">Stylist</th>
             }
             <th scope="col">Status</th>
+            <th scope="col">Review</th>
             <th scope="col">Details</th>
         </tr>
     </thead>
@@ -50,7 +51,7 @@
                 }
 
                 @if (@currentAppoitment.Status.ToString() == GlobalConstants.StatusApproved
-                      || @currentAppoitment.Status.ToString() == GlobalConstants.StatusDone)
+                   || @currentAppoitment.Status.ToString() == GlobalConstants.StatusDone)
                 {
                     <td class="alert-success">@currentAppoitment.Status</td>
                 }
@@ -61,6 +62,14 @@
                 else
                 {
                     <td class="alert-danger">@currentAppoitment.Status</td>
+                }
+                @if (currentAppoitment.IsReview)
+                {
+                    <td class="alert-success">@currentAppoitment.IsReview</td>
+                }
+                else
+                {
+                    <td class="alert-danger">@currentAppoitment.IsReview</td>
                 }
                 <td><a asp-area="" asp-controller="Appointments" asp-action="GetInfoCurrentAppointment" asp-route-id="@currentAppoitment.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Details</a></td>
             </tr>

@@ -28,6 +28,7 @@
                     Value = c.Id,
                     Text = c.Name,
                 })
+                .OrderBy(c => c.Text)
                 .ToListAsync();
 
             return skinProblems;

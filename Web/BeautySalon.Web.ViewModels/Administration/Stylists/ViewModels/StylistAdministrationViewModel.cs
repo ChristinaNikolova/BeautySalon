@@ -9,10 +9,5 @@
         public string CategoryName { get; set; }
 
         public string JobTypeName { get; set; }
-
-        public double AverageRating { get; set; }
-
-        public string FormattedRaiting
-          => this.AverageRating.ToString("F2");
     }
 }

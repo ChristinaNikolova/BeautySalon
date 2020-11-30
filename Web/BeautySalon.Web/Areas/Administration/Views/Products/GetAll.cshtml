@@ -29,7 +29,6 @@
                         <th scope="col">Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Brand Name</th>
-                        <th scope="col">Rating</th>
                         <th scope="col">Price</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
@@ -45,7 +44,6 @@
                             <td><a asp-area="" asp-controller="Products" asp-action="GetDetails" asp-route-id="@currentProduct.Id">@currentProduct.Name</a></td>
                             <td>@currentProduct.CategoryName</td>
                             <td>@currentProduct.BrandName</td>
-                            <td>@currentProduct.FormattedRating</td>
                             <td>@currentProduct.FormattedPrice</td>
                             <td><a asp-area="Administration" asp-controller="Products" asp-action="Update" asp-route-id="@currentProduct.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
                             <td><a asp-area="Administration" asp-controller="Products" asp-action="Delete" asp-route-id="@currentProduct.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>

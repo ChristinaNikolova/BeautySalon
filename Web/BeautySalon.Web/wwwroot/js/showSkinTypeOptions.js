@@ -2,7 +2,7 @@
 
     window.onload = function () {
 
-        let category = document.getElementById("categoryn");
+        let category = document.getElementById("category");
 
         [...category.children].forEach(child => {
             if (child.innerText !== "Please select beauty category") {

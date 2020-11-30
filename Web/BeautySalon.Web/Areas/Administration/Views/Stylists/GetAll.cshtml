@@ -36,7 +36,6 @@
                         <th scope="col">Full Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Job Type</th>
-                        <th scope="col">Rating</th>
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -51,7 +50,6 @@
                             <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@currentStylist.Id">@currentStylist.FullName</a></td>
                             <td>@currentStylist.CategoryName</td>
                             <td>@currentStylist.JobTypeName</td>
-                            <td>@currentStylist.FormattedRaiting</td>
                             <td><a asp-area="Administration" asp-controller="Stylists" asp-action="Update" asp-route-id="@currentStylist.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
                             <td><a asp-area="Administration" asp-controller="Stylists" asp-action="Delete" asp-route-id="@currentStylist.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
                         </tr>

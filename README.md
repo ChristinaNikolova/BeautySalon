@@ -23,7 +23,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 	- see product's details page.
 	- like products.
 	- see the beauty blog and filter the articles by diffrent beauty categories.
-  - see article's details page.
+        - see article's details page.
 	- like article and write comments.
 	- chat with admin in real-time.
 	- after appointment write a review for the procedure and give a grade????   

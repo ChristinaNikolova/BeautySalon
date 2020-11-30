@@ -77,48 +77,64 @@ ASP.NET CORE areas
 
 ASP.NET CORE Identity System
 
-AutoMapper
-
 MSSQL Server 
+
 Entity Framework Core 3.1
 
+AutoMapper
 
+Newtonsoft.Json
 
-SignalR
-ML.NET
 Moq
-InMemory
+
 xUnit
 
+SignalR
+
+ML.NET
+
 HangFire 
+
 SendGrid 
+
 Cloudinary 
 
-
 Facebook for developers 
+
 Google+ for developers 
 
 JavaScript
+
 AJAX real-time Requests 
+
 jQuery
 
-Bootstrap 
+Bootstrap 4
+
 FontAwesome
+
 CSS
-HTML 5
+
+HTML5
 
 TinyMCE
+
 HtmlSanitizer
 
 Google ReCaptcha
+
 QRCode.js
 
 FullCalendar
-Newtonsoft.Json
+
 Moment.js
+
 Custom Validation Attributes
+
 Responsive Design
+
 Dependency Injection
+
 Repository Pattern
 
 

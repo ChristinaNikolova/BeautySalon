@@ -2,7 +2,6 @@
 
     window.onload = function () {
 
-
         let category = document.getElementById("category");
 
         [...category.children].forEach(child => {

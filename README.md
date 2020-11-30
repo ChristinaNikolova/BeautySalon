@@ -64,3 +64,72 @@ BeautySalon is a web application, that can be used to present particular beauty 
 Admin: username: admin / password: 123456
 
 Stylist: !!!!!!!!!!!!!!!!!!!!!!!!!
+
+## Build with
+
+.NET Core 3.1
+
+ASP.NET CORE 3.1
+
+ASP.NET CORE view components 
+
+ASP.NET CORE areas
+
+ASP.NET CORE Identity System
+
+AutoMapper
+
+MSSQL Server 
+Entity Framework Core 3.1
+
+
+
+SignalR
+ML.NET
+Moq
+InMemory
+xUnit
+
+HangFire 
+SendGrid 
+Cloudinary 
+
+
+Facebook for developers 
+Google+ for developers 
+
+JavaScript
+AJAX real-time Requests 
+jQuery
+
+Bootstrap 
+FontAwesome
+CSS
+HTML 5
+
+TinyMCE
+HtmlSanitizer
+
+Google ReCaptcha
+QRCode.js
+
+FullCalendar
+Newtonsoft.Json
+Moment.js
+Custom Validation Attributes
+Responsive Design
+Dependency Injection
+Repository Pattern
+
+
+##Screen Shoots
+!!!
+
+
+## Credits
+
+- [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-Core-Template) originally developed by:
+   * [Nikolay Kostov](https://github.com/NikolayIT)
+   * [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+
+- Bootstrap template : https://colorlib.com/wp/template/energen/

@@ -134,6 +134,9 @@
         // StylistReview
         public const int StylistReviewContentMaxLenght = 1000;
 
+        // TypeCard
+        public const int TypeCardNameMaxLength = 20;
+
         // Verification Code
         public const int VerificationCodeMinLenght = 6;
 

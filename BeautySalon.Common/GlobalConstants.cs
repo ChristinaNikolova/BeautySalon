@@ -46,6 +46,8 @@
 
         public const string ArticleSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/Articles.json";
 
+        public const string TypeCardSeederPath = @"../../Data/BeautySalon.Data/Seeding/Data/TypeCards.json";
+
         public const string CategorySkinName = "Skin Care";
 
         public const string NameCriteria = "name";

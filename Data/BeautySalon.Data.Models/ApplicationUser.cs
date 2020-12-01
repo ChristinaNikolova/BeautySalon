@@ -65,6 +65,10 @@ namespace BeautySalon.Data.Models
 
         public bool? IsSkinSensitive { get; set; }
 
+        public string CardId { get; set; }
+
+        public virtual Card Card { get; set; }
+
         // Stylist
         public string CategoryId { get; set; }
 

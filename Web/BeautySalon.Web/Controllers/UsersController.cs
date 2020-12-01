@@ -53,5 +53,15 @@
 
             return this.View(model);
         }
+
+        public async Task<IActionResult> MyCard()
+        {
+            var userId = this.userManager.GetUserId(this.User);
+
+            var model = await
+                this.usersService.GetUserCardAsync<UserCardViewModel>(userId);
+
+            return this.View(model);
+        }
     }
 }

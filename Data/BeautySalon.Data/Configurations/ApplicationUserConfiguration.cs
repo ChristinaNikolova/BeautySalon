@@ -9,6 +9,11 @@
         public void Configure(EntityTypeBuilder<ApplicationUser> appUser)
         {
             appUser
+                .HasOne(c => c.Card)
+                .WithOne(ca => ca.Client)
+                .HasForeignKey<ApplicationUser>(c => c.CardId);
+
+            appUser
                  .HasMany(c => c.Questions)
                  .WithOne(q => q.Client)
                  .HasForeignKey(q => q.ClientId);

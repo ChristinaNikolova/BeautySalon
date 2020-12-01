@@ -32,6 +32,8 @@
 
         public DbSet<Brand> Brands { get; set; }
 
+        public DbSet<Card> Cards { get; set; }
+
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<ChatGroup> ChatGroups { get; set; }
@@ -77,6 +79,8 @@
         public DbSet<SkinProblemProcedure> SkinProblemProcedures { get; set; }
 
         public DbSet<SkinType> SkinTypes { get; set; }
+
+        public DbSet<TypeCard> TypeCards { get; set; }
 
         public DbSet<UserChatGroup> UserChatGroups { get; set; }
 

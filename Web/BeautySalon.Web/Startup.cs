@@ -15,6 +15,7 @@
     using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Articles;
     using BeautySalon.Services.Data.Brands;
+    using BeautySalon.Services.Data.Cards;
     using BeautySalon.Services.Data.Categories;
     using BeautySalon.Services.Data.ChatMessages;
     using BeautySalon.Services.Data.Comments;
@@ -27,11 +28,13 @@
     using BeautySalon.Services.Data.SkinProblems;
     using BeautySalon.Services.Data.SkinTypes;
     using BeautySalon.Services.Data.Stylists;
+    using BeautySalon.Services.Data.TypeCards;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.HangFire.DeleteAppointments;
     using BeautySalon.Services.HangFire.DeleteChatMessages;
     using BeautySalon.Services.Mapping;
     using BeautySalon.Services.Messaging;
+    using BeautySalon.Services.Paypal;
     using BeautySalon.Web.Hubs;
     using BeautySalon.Web.SecurityModels;
     using BeautySalon.Web.ViewModels;
@@ -112,6 +115,7 @@
             // Application services
             services.AddTransient<IEmailSender, SendGridEmailSender>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IPaypalService, PaypalService>();
 
             services.AddTransient<IBrandsService, BrandsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
@@ -130,6 +134,8 @@
             services.AddTransient<IQuizService, QuizService>();
             services.AddTransient<IAnswersService, AnswersService>();
             services.AddTransient<IReviewsService, ReviewsService>();
+            services.AddTransient<ICardsService, CardsService>();
+            services.AddTransient<ITypeCardsService, TypeCardsService>();
 
             // Add Antiforgery
             services.AddAntiforgery(options =>

@@ -4,14 +4,16 @@ using BeautySalon.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeautySalon.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201130134644_AddCardEntity")]
+    partial class AddCardEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -403,7 +405,6 @@ namespace BeautySalon.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ClientId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -424,18 +425,18 @@ namespace BeautySalon.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TypeCardId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("TypeCardId");
 
                     b.ToTable("Cards");
                 });
@@ -1166,38 +1167,6 @@ namespace BeautySalon.Data.Migrations
                     b.ToTable("SkinTypes");
                 });
 
-            modelBuilder.Entity("BeautySalon.Data.Models.TypeCard", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("TypeCards");
-                });
-
             modelBuilder.Entity("BeautySalon.Data.Models.UserChatGroup", b =>
                 {
                     b.Property<string>("Id")
@@ -1420,15 +1389,6 @@ namespace BeautySalon.Data.Migrations
                     b.HasOne("BeautySalon.Data.Models.ApplicationUser", "Stylist")
                         .WithMany("Articles")
                         .HasForeignKey("StylistId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BeautySalon.Data.Models.Card", b =>
-                {
-                    b.HasOne("BeautySalon.Data.Models.TypeCard", "TypeCard")
-                        .WithMany("Cards")
-                        .HasForeignKey("TypeCardId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

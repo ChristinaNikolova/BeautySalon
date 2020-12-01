@@ -1,0 +1,43 @@
+﻿@using BeautySalon.Web.ViewModels.TypeCards.ViewModels;
+@model AllTypeCardsViewModel;
+
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<partial name="_TitlePageSection" />
+<div class="row">
+    @if (Model.HasCard)
+    {
+        <h3>You already has a subscription card!</h3>
+    }
+    else
+    {
+        <div class="col-md-12 text-center">
+            <h3>Buy a subscription card</h3>
+            <hr />
+        </div>
+        @foreach (var typeCard in Model.TypeCards)
+        {
+            <div class="col-md-4 mb-5 ftco-animate">
+                <div class="block-7">
+                    <div class="text-center">
+                        <h2 class="heading">@typeCard.Name Card</h2>
+                        <span class="price"><sup>€</sup> <span class="number">@typeCard.FormattedPrice</span></span>
+                        <span class="excerpt d-block">For 1 @typeCard.Name</span>
+
+                        <h4 class="heading-2 my-4">Enjoy All The Features</h4>
+
+                        <ul class="pricing-text mb-5">
+                            <li>Face Treatments</li>
+                            <li>Nail Treatments</li>
+                            <li>Haircuts</li>
+                        </ul>
+
+                        <a asp-area="" asp-controller="Cards" asp-action="Buy" asp-route-id="@typeCard.Id" class="btn btn-primary d-block px-2 py-4">Buy it now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

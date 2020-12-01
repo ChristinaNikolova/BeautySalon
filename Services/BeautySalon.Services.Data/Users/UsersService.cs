@@ -17,17 +17,20 @@
         private readonly IRepository<ApplicationUser> usersRepository;
         private readonly IRepository<SkinProblem> skinProblemsRepository;
         private readonly IRepository<ClientSkinProblem> clientSkinProblemsRepository;
+        private readonly IRepository<Card> cardsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
         public UsersService(
             IRepository<ApplicationUser> usersRepository,
             IRepository<SkinProblem> skinProblemsRepository,
             IRepository<ClientSkinProblem> clientSkinProblemsRepository,
+            IRepository<Card> cardsRepository,
             ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
             this.skinProblemsRepository = skinProblemsRepository;
             this.clientSkinProblemsRepository = clientSkinProblemsRepository;
+            this.cardsRepository = cardsRepository;
             this.cloudinaryService = cloudinaryService;
         }
 
@@ -86,6 +89,28 @@
                 .FirstOrDefaultAsync();
 
             return userData;
+        }
+
+        public async Task<bool> HasSubscriptionCard(string userId)
+        {
+            //chech this
+            var hasAlreadyCard = await this.usersRepository
+                 .All()
+                 .Where(u => u.Id == userId)
+                 .AnyAsync(u => u.CardId != null);
+
+            return hasAlreadyCard;
+        }
+
+        public async Task<T> GetUserCardAsync<T>(string userId)
+        {
+            var card = await this.cardsRepository
+                .All()
+                .Where(c => c.ClientId == userId)
+                .To<T>()
+                .FirstOrDefaultAsync();
+
+            return card;
         }
 
         private async Task RemoveExistingClientSkinProblemsAsync(string userId)

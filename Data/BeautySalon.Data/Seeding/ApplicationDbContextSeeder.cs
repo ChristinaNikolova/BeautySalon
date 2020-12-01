@@ -41,6 +41,7 @@
                               new UsersToRolesSeeder(),
                               new QuizQuestionAnswerSeeder(),
                               new ArticleSeeder(),
+                              new TypeCardSeeder(),
                           };
 
             foreach (var seeder in seeders)

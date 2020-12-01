@@ -1,0 +1,76 @@
+﻿@using BeautySalon.Web.ViewModels.Users.ViewModels;
+@model UserCardViewModel;
+
+@{
+    ViewData["Title"] = "My Card";
+}
+
+<partial name="_UserTitlePageSection" />
+<section>
+    @if (Model == null)
+    {
+        <h1>NO CARD</h1>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_NavBarUserPartial" />
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-10 ftco-animate">
+                    <div class="block-7">
+                        <div class="text-center">
+                            <h2 class="heading">@Model.TypeCardName Card</h2>
+                            <span class="price"><sup>€</sup> <span class="number">@Model.TypeCardPrice</span></span>
+                            <a id="show-card" class="btn btn-white px-2 py-3 mb-5">Show Card</a>
+                            <div id="qrCode" class="offset-4 mb-5 hidden"></div>
+                            <span class="excerpt d-block">For 1 @Model.TypeCardName</span>
+                            <ul class="pricing-text-gold-li mb-5">
+                                <li class="theme-color-gold"><span>Start Date: </span>@Model.FormattedStartDate</li>
+                                <li class="theme-color-gold"><span>End Date: </span>@Model.FormattedEndDate</li>
+                            </ul>
+
+                            <h4 class="heading-2 my-4">Enjoy All The Features</h4>
+
+                            <ul class="pricing-text mb-5">
+                                <li>Face Treatments</li>
+                                <li>Nail Treatments</li>
+                                <li>Haircuts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+@section Scripts {
+    <script>
+        new QRCode(document.getElementById("qrCode"), {
+            text: "http://jindo.dev.naver.com/collie",
+            width: 250,
+            height: 250,
+            colorDark: "#d9bf77",
+            colorLight: "#ffffff",
+        })
+    </script>
+
+    <script>
+        var cardButton = document.getElementById("show-card");
+        cardButton.addEventListener("click", showCard);
+
+        function showCard() {
+            let card = document.getElementById("qrCode");
+
+            if (card.style.display === "block") {
+                card.style.display = "none";
+                cardButton.innerText = "Show card";
+            } else {
+                card.style.display = "block";
+                cardButton.innerText = "Hide card";
+            }
+        }
+    </script>
+}

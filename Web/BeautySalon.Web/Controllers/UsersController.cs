@@ -5,6 +5,7 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Answers;
     using BeautySalon.Services.Data.Appointments;
+    using BeautySalon.Services.Data.Cards;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Web.ViewModels.Appointments.ViewModels;
     using BeautySalon.Web.ViewModels.Users.ViewModels;
@@ -16,17 +17,20 @@
         private readonly IAppointmentsService appointmentsService;
         private readonly IAnswersService answersService;
         private readonly IUsersService usersService;
+        private readonly ICardsService cardsService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public UsersController(
             IAppointmentsService appointmentsService,
             IAnswersService answersService,
             IUsersService usersService,
+            ICardsService cardsService,
             UserManager<ApplicationUser> userManager)
         {
             this.appointmentsService = appointmentsService;
             this.answersService = answersService;
             this.usersService = usersService;
+            this.cardsService = cardsService;
             this.userManager = userManager;
         }
 

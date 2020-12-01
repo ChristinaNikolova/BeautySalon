@@ -35,7 +35,7 @@
             var model = new AllTypeCardsViewModel()
             {
                 TypeCards = await this.typeCardsService.GetAllAsync<TypeCardViewModel>(),
-                HasCard = await this.usersService.HasSubscriptionCard(userId),
+                HasCard = await this.usersService.HasSubscriptionCardAsync(userId),
             };
 
             return this.View(model);

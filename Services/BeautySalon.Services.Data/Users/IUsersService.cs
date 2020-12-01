@@ -15,7 +15,7 @@
 
         Task AddSkinTypeDataAsync(string userId, bool isSkinSensitive, string skinTypeId, string[] skinProblems);
 
-        Task<bool> HasSubscriptionCard(string userId);
+        Task<bool> HasSubscriptionCardAsync(string userId);
 
         Task<T> GetUserCardAsync<T>(string userId);
     }

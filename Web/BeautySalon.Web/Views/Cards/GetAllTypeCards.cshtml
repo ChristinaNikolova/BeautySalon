@@ -9,12 +9,17 @@
 <div class="row">
     @if (Model.HasCard)
     {
-        <h3>You already has a subscription card!</h3>
+        <div class="col-md-12 text-center">
+            <h3 class="text-center">You already have a subscription card</h3>
+            <hr />
+            <a asp-area="" asp-controller="Users" asp-action="MyCard" class="btn btn-white px-2 py-3 mb-5">See card</a>
+        </div>
     }
     else
     {
         <div class="col-md-12 text-center">
             <h3>Buy a subscription card</h3>
+            <h6 class="theme-color-gold">Save money and enjoy all the procedures!</h6>
             <hr />
         </div>
         @foreach (var typeCard in Model.TypeCards)
@@ -23,7 +28,7 @@
                 <div class="block-7">
                     <div class="text-center">
                         <h2 class="heading">@typeCard.Name Card</h2>
-                        <span class="price"><sup>€</sup> <span class="number">@typeCard.FormattedPrice</span></span>
+                        <span class="price"><sup>€</sup> <span class="number">@typeCard.Price</span></span>
                         <span class="excerpt d-block">For 1 @typeCard.Name</span>
 
                         <h4 class="heading-2 my-4">Enjoy All The Features</h4>

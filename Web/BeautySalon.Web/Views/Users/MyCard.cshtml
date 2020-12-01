@@ -7,18 +7,23 @@
 
 <partial name="_UserTitlePageSection" />
 <section>
-    @if (Model == null)
-    {
-        <h1>NO CARD</h1>
-    }
-    else
-    {
-        <div class="row">
-            <div class="col-md-3">
-                <partial name="_NavBarUserPartial" />
-            </div>
-            <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-9">
+            @if (Model == null)
+            {
+                <h2 class="offset-3">You don't have any active cards!</h2>
+                <hr />
+                <a asp-area="" asp-controller="Cards" asp-action="GetAllTypeCards" class="btn btn-white offset-5 px-2 py-3 mb-5">See cards</a>
+            }
+            else
+            {
+                <h2 class="offset-4">@ViewData["Title"]</h2>
+                <hr />
                 <div class="col-md-10 ftco-animate">
+                    <div id="client-id" class="hidden">@Model.ClientId</div>
                     <div class="block-7">
                         <div class="text-center">
                             <h2 class="heading">@Model.TypeCardName Card</h2>
@@ -27,8 +32,8 @@
                             <div id="qrCode" class="offset-4 mb-5 hidden"></div>
                             <span class="excerpt d-block">For 1 @Model.TypeCardName</span>
                             <ul class="pricing-text-gold-li mb-5">
-                                <li class="theme-color-gold"><span>Start Date: </span>@Model.FormattedStartDate</li>
-                                <li class="theme-color-gold"><span>End Date: </span>@Model.FormattedEndDate</li>
+                                <li id="start-date" class="theme-color-gold"><span>Start Date: </span>@Model.FormattedStartDate</li>
+                                <li id="end-date" class="theme-color-gold"><span>End Date: </span>@Model.FormattedEndDate</li>
                             </ul>
 
                             <h4 class="heading-2 my-4">Enjoy All The Features</h4>
@@ -41,36 +46,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </section>
 
 @section Scripts {
-    <script>
-        new QRCode(document.getElementById("qrCode"), {
-            text: "http://jindo.dev.naver.com/collie",
-            width: 250,
-            height: 250,
-            colorDark: "#d9bf77",
-            colorLight: "#ffffff",
-        })
-    </script>
+    <script src="~/js/generateQRCodeForSubstriptionCard.js"></script>
+    <script src="~/js/showSubstriptionCard.js"></script>
 
-    <script>
-        var cardButton = document.getElementById("show-card");
-        cardButton.addEventListener("click", showCard);
-
-        function showCard() {
-            let card = document.getElementById("qrCode");
-
-            if (card.style.display === "block") {
-                card.style.display = "none";
-                cardButton.innerText = "Show card";
-            } else {
-                card.style.display = "block";
-                cardButton.innerText = "Hide card";
-            }
-        }
-    </script>
+    <script>generateQRCodeForSubstriptionCard();</script>
+    <script>showSubstriptionCard();</script>
 }

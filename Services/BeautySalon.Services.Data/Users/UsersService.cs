@@ -91,13 +91,11 @@
             return userData;
         }
 
-        public async Task<bool> HasSubscriptionCard(string userId)
+        public async Task<bool> HasSubscriptionCardAsync(string userId)
         {
-            //chech this
-            var hasAlreadyCard = await this.usersRepository
+            var hasAlreadyCard = await this.cardsRepository
                  .All()
-                 .Where(u => u.Id == userId)
-                 .AnyAsync(u => u.CardId != null);
+                 .AnyAsync(c => c.ClientId == userId && c.EndEnd >= DateTime.UtcNow);
 
             return hasAlreadyCard;
         }
@@ -106,7 +104,7 @@
         {
             var card = await this.cardsRepository
                 .All()
-                .Where(c => c.ClientId == userId)
+                .Where(c => c.ClientId == userId && c.EndEnd >= DateTime.UtcNow)
                 .To<T>()
                 .FirstOrDefaultAsync();
 

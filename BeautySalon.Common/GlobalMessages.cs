@@ -24,5 +24,7 @@
         public const string SuccessSaveSkinDataMessage = "Your skin data was successfully saved!";
 
         public const string SuccessSendAppointmentRequestMessage = "Your appointment request is successfully created!";
+
+        public const string SuccessBoughtCard = "Your successfully bought a subscription card for BeautySalon!";
     }
 }

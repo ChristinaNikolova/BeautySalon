@@ -1,7 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
-
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Cards;
     using BeautySalon.Services.Paypal;
@@ -46,6 +46,8 @@
             var userId = this.userManager.GetUserId(this.User);
 
             await this.cardsService.CreateCardAsync(userId, price);
+
+            this.TempData["InfoMessage"] = GlobalMessages.SuccessBoughtCard;
 
             return this.Redirect("/Users/MyCard");
         }

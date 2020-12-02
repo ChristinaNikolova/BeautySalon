@@ -17,10 +17,10 @@
         public string FormattedStartDate
             => this.StartDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("en"));
 
-        public DateTime EndEnd { get; set; }
+        public DateTime EndDate { get; set; }
 
         public string FormattedEndEnd
-           => this.EndEnd.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("en"));
+           => this.EndDate.ToString("dd MMMM yyyy", CultureInfo.CreateSpecificCulture("en"));
 
         public string TypeCardName { get; set; }
     }

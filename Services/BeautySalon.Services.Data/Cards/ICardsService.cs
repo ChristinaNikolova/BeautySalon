@@ -10,5 +10,7 @@
         Task<IEnumerable<T>> GetActiveCardsAsync<T>();
 
         Task<IEnumerable<T>> GetExpiredCardsAsync<T>();
+
+        Task ChangeCardCounterAsync(string userId, decimal price);
     }
 }

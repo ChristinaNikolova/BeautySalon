@@ -48,8 +48,8 @@
         {
             var activeCards = await this.cardsRepository
                 .All()
-                .Where(c => c.EndEnd >= DateTime.UtcNow)
-                .OrderBy(c => c.EndEnd)
+                .Where(c => c.EndDate >= DateTime.UtcNow)
+                .OrderBy(c => c.EndDate)
                 .To<T>()
                 .ToListAsync();
 
@@ -60,27 +60,41 @@
         {
             var expiredCards = await this.cardsRepository
                .All()
-               .Where(c => c.EndEnd < DateTime.UtcNow)
-               .OrderByDescending(c => c.EndEnd)
+               .Where(c => c.EndDate < DateTime.UtcNow)
+               .OrderByDescending(c => c.EndDate)
                .To<T>()
                .ToListAsync();
 
             return expiredCards;
         }
 
+        public async Task ChangeCardCounterAsync(string userId, decimal price)
+        {
+            var card = await this.cardsRepository
+                .All()
+                .Where(c => c.ClientId == userId && c.EndDate >= DateTime.UtcNow)
+                .FirstOrDefaultAsync();
+
+            card.CounterUsed++;
+            card.TotalSumUsedProcedures += (int)price;
+
+            this.cardsRepository.Update(card);
+            await this.cardsRepository.SaveChangesAsync();
+        }
+
         private static void GetCardPeriod(TypeCard typeCard, Card card)
         {
             if (typeCard.Name.ToLower() == GlobalConstants.YearNamePeriod)
             {
-                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneYear);
+                card.EndDate = card.StartDate.AddDays(GlobalConstants.DaysOneYear);
             }
             else if (typeCard.Name.ToLower() == GlobalConstants.MonthNamePeriod)
             {
-                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneMonth);
+                card.EndDate = card.StartDate.AddDays(GlobalConstants.DaysOneMonth);
             }
             else
             {
-                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneWeek);
+                card.EndDate = card.StartDate.AddDays(GlobalConstants.DaysOneWeek);
             }
         }
     }

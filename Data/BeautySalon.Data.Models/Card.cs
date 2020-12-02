@@ -12,6 +12,8 @@
             this.Id = Guid.NewGuid().ToString();
             this.StartDate = DateTime.UtcNow.AddDays(1);
             this.IsPaid = false;
+            this.CounterUsed = 0;
+            this.TotalSumUsedProcedures = 0;
         }
 
         [Required]
@@ -21,7 +23,7 @@
 
         public DateTime StartDate { get; set; }
 
-        public DateTime EndEnd { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Required]
         public string TypeCardId { get; set; }
@@ -29,5 +31,9 @@
         public virtual TypeCard TypeCard { get; set; }
 
         public bool IsPaid { get; set; }
+
+        public int CounterUsed { get; set; }
+
+        public int TotalSumUsedProcedures { get; set; }
     }
 }

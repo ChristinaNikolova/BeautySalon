@@ -95,7 +95,7 @@
         {
             var hasAlreadyCard = await this.cardsRepository
                  .All()
-                 .AnyAsync(c => c.ClientId == userId && c.EndEnd >= DateTime.UtcNow);
+                 .AnyAsync(c => c.ClientId == userId && c.EndDate >= DateTime.UtcNow);
 
             return hasAlreadyCard;
         }
@@ -104,7 +104,7 @@
         {
             var card = await this.cardsRepository
                 .All()
-                .Where(c => c.ClientId == userId && c.EndEnd >= DateTime.UtcNow)
+                .Where(c => c.ClientId == userId && c.EndDate >= DateTime.UtcNow)
                 .To<T>()
                 .FirstOrDefaultAsync();
 

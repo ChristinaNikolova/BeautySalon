@@ -6,19 +6,37 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
+    using BeautySalon.Services.Data.Cards;
+    using BeautySalon.Services.Data.Categories;
+    using BeautySalon.Services.Data.Procedures;
+    using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class AppointmentsService : IAppointmentsService
     {
         private readonly IRepository<Appointment> appointmentsRepository;
+        private readonly IUsersService usersService;
+        private readonly ICardsService cardsService;
+        private readonly IProceduresService proceduresService;
+        private readonly ICategoriesService categoriesService;
 
-        public AppointmentsService(IRepository<Appointment> appointmentsRepository)
+        public AppointmentsService(
+            IRepository<Appointment> appointmentsRepository,
+            IUsersService usersService,
+            ICardsService cardsService,
+            IProceduresService proceduresService,
+            ICategoriesService categoriesService)
         {
             this.appointmentsRepository = appointmentsRepository;
+            this.usersService = usersService;
+            this.cardsService = cardsService;
+            this.proceduresService = proceduresService;
+            this.categoriesService = categoriesService;
         }
 
         public async Task<string> CreateAsync(string userId, string stylistId, string procedureId, DateTime date, string time, string comment)
@@ -56,6 +74,8 @@
             var appointment = await this.GetByIdAsync(id);
 
             appointment.Status = Status.Done;
+
+            await this.CheckUsersSubscriptionCardAsync(appointment);
 
             this.appointmentsRepository.Update(appointment);
             await this.appointmentsRepository.SaveChangesAsync();
@@ -272,6 +292,23 @@
             return await this.appointmentsRepository
                 .All()
                 .FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        private async Task CheckUsersSubscriptionCardAsync(Appointment appointment)
+        {
+            var hasSubcriptionCard = await this.usersService.HasSubscriptionCardAsync(appointment.ClientId);
+
+            var procedure = await this.proceduresService.GetByIdAsync(appointment.ProcedureId);
+            var category = await this.categoriesService.GetByIdAsync(procedure.CategoryId);
+
+            var hasToChangeCounterSubcriptionCard = category.Name == GlobalConstants.CategorySkinName
+                || category.Name == GlobalConstants.CategoryNailsName
+                || procedure.Name == GlobalConstants.ProcedureHairCutName;
+
+            if (hasSubcriptionCard && hasToChangeCounterSubcriptionCard)
+            {
+                await this.cardsService.ChangeCardCounterAsync(appointment.ClientId, appointment.Procedure.Price);
+            }
         }
     }
 }

@@ -57,5 +57,16 @@
                .All()
                .FirstOrDefaultAsync(c => c.Id == id);
         }
+
+        public async Task<string> GetIdByNameAsync(string name)
+        {
+            var id = await this.categoriesRepository
+                 .All()
+                 .Where(c => c.Name == name)
+                 .Select(c => c.Id)
+                 .FirstOrDefaultAsync();
+
+            return id;
+        }
     }
 }

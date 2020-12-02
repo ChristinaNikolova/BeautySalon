@@ -324,6 +324,17 @@
             return procedures;
         }
 
+        public async Task<string> GetIdByNameAsync(string name)
+        {
+            var id = await this.proceduresRepository
+                .All()
+                .Where(p => p.Name == name)
+                .Select(p => p.Id)
+                .FirstOrDefaultAsync();
+
+            return id;
+        }
+
         private async Task CalculateAverageRaitingAsync(int points, Appointment appointment)
         {
             var procedure = await this.proceduresRepository

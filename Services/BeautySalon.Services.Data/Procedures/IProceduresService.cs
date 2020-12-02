@@ -45,5 +45,7 @@
         Task AddProcedureReviewsAsync(string appoitmentId, string content, int points);
 
         Task<IEnumerable<T>> GetProceduresUseProductAsync<T>(string productId);
+
+        Task<string> GetIdByNameAsync(string name);
     }
 }

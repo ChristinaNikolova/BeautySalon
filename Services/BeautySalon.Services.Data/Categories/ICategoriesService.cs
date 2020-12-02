@@ -15,5 +15,7 @@
         Task<Category> GetByNameAsync(string name);
 
         Task<Category> GetByIdAsync(string id);
+
+        Task<string> GetIdByNameAsync(string name);
     }
 }

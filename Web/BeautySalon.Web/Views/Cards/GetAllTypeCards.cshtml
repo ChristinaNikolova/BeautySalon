@@ -34,9 +34,9 @@
                         <h4 class="heading-2 my-4">Enjoy All The Features</h4>
 
                         <ul class="pricing-text mb-5">
-                            <li>Face Treatments</li>
-                            <li>Nail Treatments</li>
-                            <li>Haircuts</li>
+                            <li><a asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@Model.SkinCareCategoryId">Face Treatments</a></li>
+                            <li><a asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@Model.NailsCategoryId">Nail Treatments</a></li>
+                            <li><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@Model.HaircutsProcedureId">Haircuts</a></li>
                         </ul>
 
                         <a asp-area="" asp-controller="Cards" asp-action="Buy" asp-route-id="@typeCard.Id" class="btn btn-primary d-block px-2 py-4">Buy it now with <i class="fab fa-paypal"></i></a>

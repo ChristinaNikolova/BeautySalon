@@ -50,6 +50,10 @@
 
         public const string CategorySkinName = "Skin Care";
 
+        public const string CategoryNailsName = "Nails";
+
+        public const string ProcedureHairCutName = "Haircut";
+
         public const string NameCriteria = "name";
 
         public const string PriceCriteria = "price";

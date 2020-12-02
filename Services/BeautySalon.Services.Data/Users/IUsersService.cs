@@ -18,5 +18,7 @@
         Task<bool> HasSubscriptionCardAsync(string userId);
 
         Task<T> GetUserCardAsync<T>(string userId);
+
+        Task<string> GetUsernameByIdAsync(string clientId);
     }
 }

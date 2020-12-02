@@ -1,11 +1,14 @@
 ﻿namespace BeautySalon.Services.Data.Cards
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
+    using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class CardsService : ICardsService
@@ -39,6 +42,30 @@
 
             await this.cardsRepository.AddAsync(card);
             await this.cardsRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetActiveCardsAsync<T>()
+        {
+            var activeCards = await this.cardsRepository
+                .All()
+                .Where(c => c.EndEnd >= DateTime.UtcNow)
+                .OrderBy(c => c.EndEnd)
+                .To<T>()
+                .ToListAsync();
+
+            return activeCards;
+        }
+
+        public async Task<IEnumerable<T>> GetExpiredCardsAsync<T>()
+        {
+            var expiredCards = await this.cardsRepository
+               .All()
+               .Where(c => c.EndEnd < DateTime.UtcNow)
+               .OrderByDescending(c => c.EndEnd)
+               .To<T>()
+               .ToListAsync();
+
+            return expiredCards;
         }
 
         private static void GetCardPeriod(TypeCard typeCard, Card card)

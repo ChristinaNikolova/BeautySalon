@@ -111,6 +111,17 @@
             return card;
         }
 
+        public async Task<string> GetUsernameByIdAsync(string clientId)
+        {
+            var username = await this.usersRepository
+                .All()
+                .Where(u => u.Id == clientId)
+                .Select(u => u.UserName)
+                .FirstOrDefaultAsync();
+
+            return username;
+        }
+
         private async Task RemoveExistingClientSkinProblemsAsync(string userId)
         {
             var hasClientAlreadySkinProblemsAsync = await this.clientSkinProblemsRepository

@@ -1,0 +1,82 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Cards.ViewModels;
+@model AllCardsViewModel;
+
+@{
+    ViewData["Title"] = "Cards";
+}
+
+<partial name="_TitlePageSection" />
+
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministrationPartial" />
+        </div>
+        <div class="col-md-8">
+            <div class="nav nav-tabs">
+                <a id="active" class="nav-link active">Active Cards</a>
+                <a id="expired" class="nav-link">Expired Cards</a>
+            </div>
+
+            <div id="active-cards" style="display:block">
+                <h3 class="text-center">Active Cards</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Client Username</th>
+                            <th scope="col">Card Type</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.ActiveCards.ToList().Count; i++)
+                        {
+                            var card = Model.ActiveCards.ToList()[i];
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@card.ClientUsername</td>
+                                <td>@card.TypeCardName</td>
+                                <td>@card.FormattedStartDate</td>
+                                <td>@card.FormattedEndEnd</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="expired-cards" style="display:none">
+                <h3 class="text-center">Expired Cards</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Client Username</th>
+                            <th scope="col">Card Type</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.ExpiredCards.ToList().Count; i++)
+                        {
+                            var card = Model.ExpiredCards.ToList()[i];
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@card.ClientUsername</td>
+                                <td>@card.TypeCardName</td>
+                                <td>@card.FormattedStartDate</td>
+                                <td>@card.FormattedEndEnd</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/changeCardsInfomation.js"></script>
+    <script>changeCardsInformation();</script>
+}

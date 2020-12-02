@@ -5,7 +5,6 @@
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.TypeCards;
     using BeautySalon.Services.Data.Users;
-    using BeautySalon.Services.Paypal;
     using BeautySalon.Web.ViewModels.TypeCards.ViewModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -14,18 +13,15 @@
     {
         private readonly ITypeCardsService typeCardsService;
         private readonly IUsersService usersService;
-        private readonly IPaypalService paypalService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public CardsController(
             ITypeCardsService typeCardsService,
             IUsersService usersService,
-            IPaypalService paypalService,
             UserManager<ApplicationUser> userManager)
         {
             this.typeCardsService = typeCardsService;
             this.usersService = usersService;
-            this.paypalService = paypalService;
             this.userManager = userManager;
         }
 

@@ -31,7 +31,7 @@
 
         public async Task<decimal> GetPriceAsync(string id)
         {
-            var price = (int)await this.typeCardsRepository
+            var price = await this.typeCardsRepository
                 .All()
                 .Where(tc => tc.Id == id)
                 .Select(tc => tc.Price)

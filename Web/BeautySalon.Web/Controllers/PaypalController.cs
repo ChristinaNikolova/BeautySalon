@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Services.Data.Cards;

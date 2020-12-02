@@ -85,5 +85,15 @@
         public const int FavouriteProductShortDescriptionLength = 60;
 
         public const int ArticleShortDescriptionLength = 200;
+
+        public const string YearNamePeriod = "year";
+
+        public const string MonthNamePeriod = "month";
+
+        public const int DaysOneYear = 365;
+
+        public const int DaysOneMonth = 30;
+
+        public const int DaysOneWeek = 7;
     }
 }

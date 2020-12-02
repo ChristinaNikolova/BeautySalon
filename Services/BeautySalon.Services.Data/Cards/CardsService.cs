@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using Microsoft.EntityFrameworkCore;
@@ -34,21 +35,26 @@
                 TypeCardId = typeCard.Id,
             };
 
-            if (typeCard.Name.ToLower() == "year")
-            {
-                card.EndEnd = card.StartDate.AddDays(365);
-            }
-            else if (typeCard.Name.ToLower() == "month")
-            {
-                card.EndEnd = card.StartDate.AddDays(30);
-            }
-            else
-            {
-                card.EndEnd = card.StartDate.AddDays(7);
-            }
+            GetCardPeriod(typeCard, card);
 
             await this.cardsRepository.AddAsync(card);
             await this.cardsRepository.SaveChangesAsync();
+        }
+
+        private static void GetCardPeriod(TypeCard typeCard, Card card)
+        {
+            if (typeCard.Name.ToLower() == GlobalConstants.YearNamePeriod)
+            {
+                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneYear);
+            }
+            else if (typeCard.Name.ToLower() == GlobalConstants.MonthNamePeriod)
+            {
+                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneMonth);
+            }
+            else
+            {
+                card.EndEnd = card.StartDate.AddDays(GlobalConstants.DaysOneWeek);
+            }
         }
     }
 }

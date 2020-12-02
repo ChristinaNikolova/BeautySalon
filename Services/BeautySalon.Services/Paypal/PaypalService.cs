@@ -21,7 +21,7 @@
 
             try
             {
-                Payment payment = new Payment
+                var payment = new Payment
                 {
                     intent = "sale",
                     payer = new Payer { payment_method = "paypal" },
@@ -38,7 +38,7 @@
                                 currency = "EUR",
                                 total = price.ToString(),
                             },
-                            description = "Buying card subscription card for BeautySalon.",
+                            description = "Buying subscription card for BeautySalon.",
                         },
                     },
                     redirect_urls = new RedirectUrls
@@ -49,6 +49,7 @@
                 };
 
                 var createdPayment = await Task.Run(() => payment.Create(apiContext));
+
                 return createdPayment;
             }
             catch
@@ -61,19 +62,22 @@
         {
             var apiContext = this.PreparePaypalConfigurations();
 
-            PaymentExecution paymentExecution = new PaymentExecution() { payer_id = payerId };
-            Payment payment = new Payment() { id = paymentId };
-            Payment executedPayment = await Task.Run(() => payment.Execute(apiContext, paymentExecution));
+            var paymentExecution = new PaymentExecution() { payer_id = payerId };
+            var payment = new Payment() { id = paymentId };
+
+            var executedPayment = await Task.Run(() => payment.Execute(apiContext, paymentExecution));
 
             return executedPayment;
         }
 
         private APIContext PreparePaypalConfigurations()
         {
-            var paypalConfugurations = new Dictionary<string, string>();
-            paypalConfugurations.Add("mode", this.configuration["Paypal:Mode"]);
-            paypalConfugurations.Add("clientId", this.configuration["Paypal:ClientId"]);
-            paypalConfugurations.Add("clientSecret", this.configuration["Paypal:ClientSecret"]);
+            var paypalConfugurations = new Dictionary<string, string>
+            {
+                { "mode", this.configuration["Paypal:Mode"] },
+                { "clientId", this.configuration["Paypal:ClientId"] },
+                { "clientSecret", this.configuration["Paypal:ClientSecret"] },
+            };
 
             var accessToken = new OAuthTokenCredential(paypalConfugurations).GetAccessToken();
 

@@ -99,5 +99,9 @@
         public const int DaysOneMonth = 30;
 
         public const int DaysOneWeek = 7;
+
+        public const int CacheDay = 1;
+
+        public const int CacheMinutesRecentArticles = 30;
     }
 }

@@ -9,7 +9,9 @@
 <section class="ftco-section bg-light">
     <div class="row justify-content-center mb-5">
         <div class="col-md-12 heading-section text-center ftco-animate">
-            <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
+            <cache expires-after="@TimeSpan.FromDays(GlobalConstants.CacheDay)">
+                <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
+            </cache>
         </div>
     </div>
 

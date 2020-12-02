@@ -20,7 +20,9 @@
                 <div class="col-md-7 best-procedure">
                     <h3>Best Procedure for me: </h3>
                     <hr />
-                    <vc:best-skin-procedures-for-user is-skin-sensitive="@Model.IsSkinSensitive" skin-type-id="@Model.SkinTypeId"></vc:best-skin-procedures-for-user>
+                    <cache expires-after="@TimeSpan.FromDays(GlobalConstants.CacheDay)">
+                        <vc:best-skin-procedures-for-user is-skin-sensitive="@Model.IsSkinSensitive" skin-type-id="@Model.SkinTypeId"></vc:best-skin-procedures-for-user>
+                    </cache>
                 </div>
             </div>
         </div>

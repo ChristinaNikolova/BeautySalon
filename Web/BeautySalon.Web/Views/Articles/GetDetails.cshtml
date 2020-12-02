@@ -72,7 +72,9 @@
                     <partial name="_CommentArticlePartial" model="@Model.OrderedComments" />
                 </div>
             </div>
-            <vc:recent-articles-side-bar></vc:recent-articles-side-bar>
+            <cache expires-after="@TimeSpan.FromMinutes(GlobalConstants.CacheMinutesRecentArticles)">
+                <vc:recent-articles-side-bar></vc:recent-articles-side-bar>
+            </cache>
         </div>
     </div>
 </section>

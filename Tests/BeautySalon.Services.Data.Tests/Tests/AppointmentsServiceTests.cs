@@ -5,10 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Data.Repositories;
+    using BeautySalon.Services.Cloudinary;
     using BeautySalon.Services.Data.Appointments;
     using BeautySalon.Services.Data.Cards;
     using BeautySalon.Services.Data.Categories;
@@ -41,7 +43,7 @@
             this.stylist = new ApplicationUser() { Id = "10" };
             this.client = new ApplicationUser() { Id = "1" };
             this.category = new Category() { Id = "1" };
-            this.procedure = new Procedure() { Id = "1", Name = "Procedure Name", CategoryId = this.category.Id };
+            this.procedure = new Procedure() { Id = "1", Name = GlobalConstants.ProcedureHairCutName, CategoryId = this.category.Id, Price = 50 };
         }
 
         [Fact]
@@ -90,11 +92,19 @@
         }
 
         [Fact]
-        public async Task CheckDoingAppointmentAsync()
+        public async Task CheckDoingAppointmentHaircutProcedureAsync()
         {
             ApplicationDbContext db = GetDb();
 
             var service = PreperaAppointmentServiceWithAllDependencies(db);
+
+            var card = new Card()
+            {
+                Id = "1",
+                EndDate = DateTime.UtcNow.AddDays(1),
+                IsPaid = true,
+                ClientId = this.client.Id,
+            };
 
             var appointment = new Appointment()
             {
@@ -103,8 +113,59 @@
                 ClientId = this.client.Id,
             };
 
+            await db.Cards.AddAsync(card);
+            await db.Users.AddAsync(this.client);
             await db.Procedures.AddAsync(this.procedure);
             await db.Categories.AddAsync(this.category);
+            await db.Appointments.AddAsync(appointment);
+            await db.SaveChangesAsync();
+
+            await service.DoneAsync(appointment.Id);
+
+            Assert.Equal(Status.Done, appointment.Status);
+            Assert.Equal(1, card.CounterUsed);
+            Assert.Equal(50, card.TotalSumUsedProcedures);
+        }
+
+        [Fact]
+        public async Task CheckDoingAppointmentSkinCareCategoryAsync()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var service = PreperaAppointmentServiceWithAllDependencies(db);
+
+            var card = new Card()
+            {
+                Id = "1",
+                EndDate = DateTime.UtcNow.AddDays(1),
+                IsPaid = true,
+                ClientId = this.client.Id,
+            };
+
+            var skinCareCategory = new Category()
+            {
+                Id = "2",
+                Name = "Skin Care",
+            };
+
+            var procedureSkinCareCategory = new Procedure()
+            {
+                Id = "2",
+                Name = "Test Skin Care",
+                CategoryId = skinCareCategory.Id,
+            };
+
+            var appointment = new Appointment()
+            {
+                Id = "1",
+                ProcedureId = procedureSkinCareCategory.Id,
+                ClientId = this.client.Id,
+            };
+
+            await db.Cards.AddAsync(card);
+            await db.Users.AddAsync(this.client);
+            await db.Procedures.AddAsync(procedureSkinCareCategory);
+            await db.Categories.AddAsync(skinCareCategory);
             await db.Appointments.AddAsync(appointment);
             await db.SaveChangesAsync();
 
@@ -358,8 +419,25 @@
         private static AppointmentsService PreperaAppointmentServiceWithAllDependencies(ApplicationDbContext db)
         {
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var usersService = new Mock<IUsersService>();
-            var cardsService = new Mock<ICardsService>();
+
+            var usersRepository = new EfDeletableEntityRepository<ApplicationUser>(db);
+            var skinProblemsRepository = new EfDeletableEntityRepository<SkinProblem>(db);
+            var clientSkinProblemRepository = new EfRepository<ClientSkinProblem>(db);
+            var cardsRepository = new EfDeletableEntityRepository<Card>(db);
+            var cloudinaryService = new Mock<ICloudinaryService>();
+
+            var usersService = new UsersService(
+                usersRepository,
+                skinProblemsRepository,
+                clientSkinProblemRepository,
+                cardsRepository,
+                cloudinaryService.Object);
+
+            var cardTypesRepository = new EfDeletableEntityRepository<TypeCard>(db);
+
+            var cardsService = new CardsService(
+                cardTypesRepository,
+                cardsRepository);
 
             var categoriesRepository = new EfDeletableEntityRepository<Category>(db);
 
@@ -382,8 +460,8 @@
 
             var service = new AppointmentsService(
                 repository,
-                usersService.Object,
-                cardsService.Object,
+                usersService,
+                cardsService,
                 proceduresService,
                 categoryService);
 

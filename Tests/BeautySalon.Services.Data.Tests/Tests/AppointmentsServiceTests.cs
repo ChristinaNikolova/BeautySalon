@@ -252,6 +252,7 @@
         {
             ApplicationDbContext db = GetDb();
 
+
             var service = PreperaAppointmentServiceWithAllDependencies(db);
 
             await db.Procedures.AddAsync(this.procedure);

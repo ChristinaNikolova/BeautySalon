@@ -22,12 +22,14 @@
 
         private readonly Mock<IRepository<SkinProblem>> skinProblemsRepository;
         private readonly Mock<IRepository<ClientSkinProblem>> clientSkinProblemsRepository;
+        private readonly Mock<IRepository<Card>> cardsRepository;
         private readonly Mock<ICloudinaryService> cloudinaryService;
 
         public UsersServiceTests()
         {
             this.skinProblemsRepository = new Mock<IRepository<SkinProblem>>();
             this.clientSkinProblemsRepository = new Mock<IRepository<ClientSkinProblem>>();
+            this.cardsRepository = new Mock<IRepository<Card>>();
             this.cloudinaryService = new Mock<ICloudinaryService>();
             this.mockPicture = new Mock<IFormFile>();
             this.client = new ApplicationUser() { Id = "1", };
@@ -43,6 +45,7 @@
                 repository,
                 this.skinProblemsRepository.Object,
                 this.clientSkinProblemsRepository.Object,
+                this.cardsRepository.Object,
                 this.cloudinaryService.Object);
 
             var user = await AddUserToDbAsync(db);
@@ -65,6 +68,7 @@
                 repository,
                 this.skinProblemsRepository.Object,
                 this.clientSkinProblemsRepository.Object,
+                this.cardsRepository.Object,
                 this.cloudinaryService.Object);
 
             var user = await AddUserToDbAsync(db);
@@ -87,6 +91,7 @@
                 repository,
                 skinProblemsRepository,
                 clientSkinProblemsRepository,
+                this.cardsRepository.Object,
                 this.cloudinaryService.Object);
 
             var skinType = new SkinType() { Id = "1" };

@@ -10,8 +10,13 @@
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Appointments;
+    using BeautySalon.Services.Data.Cards;
+    using BeautySalon.Services.Data.Categories;
+    using BeautySalon.Services.Data.Procedures;
+    using BeautySalon.Services.Data.Users;
     using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
+    using Moq;
     using Xunit;
 
     public class AppointmentsServiceTests : BaseServiceTests
@@ -19,12 +24,24 @@
         private readonly ApplicationUser stylist;
         private readonly ApplicationUser client;
         private readonly Procedure procedure;
+        private readonly Category category;
+
+        private readonly Mock<IUsersService> usersService;
+        private readonly Mock<ICardsService> cardsService;
+        private readonly Mock<IProceduresService> proceduresService;
+        private readonly Mock<ICategoriesService> categoriesService;
 
         public AppointmentsServiceTests()
         {
+            this.usersService = new Mock<IUsersService>();
+            this.cardsService = new Mock<ICardsService>();
+            this.proceduresService = new Mock<IProceduresService>();
+            this.categoriesService = new Mock<ICategoriesService>();
+
             this.stylist = new ApplicationUser() { Id = "10" };
             this.client = new ApplicationUser() { Id = "1" };
-            this.procedure = new Procedure() { Id = "1" };
+            this.category = new Category() { Id = "1" };
+            this.procedure = new Procedure() { Id = "1", Name = "Procedure Name", CategoryId = this.category.Id };
         }
 
         [Fact]
@@ -56,7 +73,12 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            var service = new AppointmentsService(
+                repository,
+                this.usersService.Object,
+                this.cardsService.Object,
+                this.proceduresService.Object,
+                this.categoriesService.Object);
 
             string appointmentId = await this.GetAppointmentIdAsync(service);
 
@@ -72,14 +94,21 @@
         {
             ApplicationDbContext db = GetDb();
 
-            var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            var service = PreperaAppointmentServiceWithAllDependencies(db);
 
-            string appointmentId = await this.GetAppointmentIdAsync(service);
+            var appointment = new Appointment()
+            {
+                Id = "1",
+                ProcedureId = this.procedure.Id,
+                ClientId = this.client.Id,
+            };
 
-            await service.DoneAsync(appointmentId);
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.Appointments.AddAsync(appointment);
+            await db.SaveChangesAsync();
 
-            var appointment = await GetAppointmentAsync(repository, appointmentId);
+            await service.DoneAsync(appointment.Id);
 
             Assert.Equal(Status.Done, appointment.Status);
         }
@@ -90,7 +119,12 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            var service = new AppointmentsService(
+                 repository,
+                 this.usersService.Object,
+                 this.cardsService.Object,
+                 this.proceduresService.Object,
+                 this.categoriesService.Object);
 
             string appointmentId = await this.GetAppointmentIdAsync(service);
 
@@ -107,7 +141,12 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            var service = new AppointmentsService(
+                repository,
+                this.usersService.Object,
+                this.cardsService.Object,
+                this.proceduresService.Object,
+                this.categoriesService.Object);
 
             await this.PrepareAppointmentsAsync(service);
 
@@ -125,7 +164,13 @@
         [Fact]
         public async Task CheckGettingAllAppointmentsForCurrentStylistAndAppointmentsForTodayAsync()
         {
-            var service = this.PrepareService();
+            ApplicationDbContext db = GetDb();
+
+            var service = PreperaAppointmentServiceWithAllDependencies(db);
+
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.SaveChangesAsync();
 
             var firstAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "11:00", "test comment");
             var secondAppId = await service.CreateAsync(this.client.Id, this.stylist.Id, this.procedure.Id, DateTime.UtcNow, "12:00", "test comment");
@@ -205,7 +250,13 @@
         [Fact]
         public async Task CheckGettingAppointmentsHistoryForCurrentStylistAsync()
         {
-            var service = this.PrepareService();
+            ApplicationDbContext db = GetDb();
+
+            var service = PreperaAppointmentServiceWithAllDependencies(db);
+
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.SaveChangesAsync();
 
             await this.PrepareAppointmentsAndStatusAsync(service);
 
@@ -218,7 +269,13 @@
         [Fact]
         public async Task CheckGettingAppointmentsHistoryAllStylistsAsync()
         {
-            var service = this.PrepareService();
+            ApplicationDbContext db = GetDb();
+
+            var service = PreperaAppointmentServiceWithAllDependencies(db);
+
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.SaveChangesAsync();
 
             await this.PrepareAppointmentsAndStatusAsync(service);
 
@@ -234,7 +291,39 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+
+            var usersService = new Mock<IUsersService>();
+            var cardsService = new Mock<ICardsService>();
+
+            var categoriesRepository = new EfDeletableEntityRepository<Category>(db);
+
+            var categoryService = new CategoriesService(categoriesRepository);
+
+            var proceduresRepository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureReviewsRepository = new EfDeletableEntityRepository<Review>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+            var procedureStylistsRepository = new EfRepository<ProcedureStylist>(db);
+            var skinProblemProcedureRepository = new EfRepository<SkinProblemProcedure>(db);
+
+            var proceduresService = new ProceduresService(
+                proceduresRepository,
+                procedureReviewsRepository,
+                procedureProductsRepository,
+                procedureStylistsRepository,
+                skinProblemProcedureRepository,
+                repository,
+                categoryService);
+
+            var service = new AppointmentsService(
+                repository,
+                usersService.Object,
+                cardsService.Object,
+                proceduresService,
+                categoryService);
+
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.SaveChangesAsync();
 
             string appId = await this.GetAppointmentIdAsync(service);
 
@@ -266,6 +355,41 @@
             Assert.Single(resultAppointments);
         }
 
+        private static AppointmentsService PreperaAppointmentServiceWithAllDependencies(ApplicationDbContext db)
+        {
+            var repository = new EfDeletableEntityRepository<Appointment>(db);
+            var usersService = new Mock<IUsersService>();
+            var cardsService = new Mock<ICardsService>();
+
+            var categoriesRepository = new EfDeletableEntityRepository<Category>(db);
+
+            var categoryService = new CategoriesService(categoriesRepository);
+
+            var proceduresRepository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureReviewsRepository = new EfDeletableEntityRepository<Review>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+            var procedureStylistsRepository = new EfRepository<ProcedureStylist>(db);
+            var skinProblemProcedureRepository = new EfRepository<SkinProblemProcedure>(db);
+
+            var proceduresService = new ProceduresService(
+                proceduresRepository,
+                procedureReviewsRepository,
+                procedureProductsRepository,
+                procedureStylistsRepository,
+                skinProblemProcedureRepository,
+                repository,
+                categoryService);
+
+            var service = new AppointmentsService(
+                repository,
+                usersService.Object,
+                cardsService.Object,
+                proceduresService,
+                categoryService);
+
+            return service;
+        }
+
         private static async Task<Appointment> GetAppointmentAsync(EfDeletableEntityRepository<Appointment> repository, string firstAppId)
         {
             return await repository.All().FirstOrDefaultAsync(a => a.Id == firstAppId);
@@ -276,7 +400,39 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+
+            var usersService = new Mock<IUsersService>();
+            var cardsService = new Mock<ICardsService>();
+
+            var categoriesRepository = new EfDeletableEntityRepository<Category>(db);
+
+            var categoryService = new CategoriesService(categoriesRepository);
+
+            var proceduresRepository = new EfDeletableEntityRepository<Procedure>(db);
+            var procedureReviewsRepository = new EfDeletableEntityRepository<Review>(db);
+            var procedureProductsRepository = new EfRepository<ProcedureProduct>(db);
+            var procedureStylistsRepository = new EfRepository<ProcedureStylist>(db);
+            var skinProblemProcedureRepository = new EfRepository<SkinProblemProcedure>(db);
+
+            var proceduresService = new ProceduresService(
+                proceduresRepository,
+                procedureReviewsRepository,
+                procedureProductsRepository,
+                procedureStylistsRepository,
+                skinProblemProcedureRepository,
+                repository,
+                categoryService);
+
+            var service = new AppointmentsService(
+                repository,
+                usersService.Object,
+                cardsService.Object,
+                proceduresService,
+                categoryService);
+
+            await db.Procedures.AddAsync(this.procedure);
+            await db.Categories.AddAsync(this.category);
+            await db.SaveChangesAsync();
 
             var pastDate = DateTime.ParseExact("12/10/2020", "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
@@ -324,7 +480,13 @@
             ApplicationDbContext db = GetDb();
 
             var repository = new EfDeletableEntityRepository<Appointment>(db);
-            var service = new AppointmentsService(repository);
+            var service = new AppointmentsService(
+                repository,
+                this.usersService.Object,
+                this.cardsService.Object,
+                this.proceduresService.Object,
+                this.categoriesService.Object);
+
             return service;
         }
 

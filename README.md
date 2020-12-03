@@ -26,14 +26,15 @@ BeautySalon is a web application, that can be used to present particular beauty 
         - see article's details page.
 	- like article and write comments.
 	- chat with admin in real-time.
-	- after appointment write a review for the procedure and give a grade????   
+	- after appointment write a review for the procedure and give a grade????
+	- can buy subscription cards with PayPal
 	- has user's dashboard with all infomation about: 
 	   * appointments status
 	   * appointments history
 	   * mail box with his own questions and answers.
 	   * information about his skin type and best procedures for him
 	   * all his favourite articles and products
-
+	   * infomation about his subscription card and card's statistic
 
 #### Stylists futures:
 	- all user's futures
@@ -57,6 +58,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 	   * add/delete products to current procedure
 	   * add products, edit and delete them
 	   * see all the comments from beauty blog from previous day and can delete comments
+	   * see all Active and Expired subscription cards and their information
 	   * see HangFire Dashboard
 	   
 ## Test accounts:
@@ -100,6 +102,8 @@ HangFire
 SendGrid 
 
 Cloudinary 
+
+Paypal for developers
 
 Facebook for developers 
 

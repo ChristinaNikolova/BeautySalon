@@ -1,0 +1,31 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Cards.ViewModels;
+@model IEnumerable<CardViewModel>;
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Card</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Use</th>
+            <th scope="col">Save Money</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.ToList().Count; i++)
+        {
+            var card = Model.ToList()[i];
+            <tr>
+                <th scope="row">@(i+1)</th>
+                <td>@card.ClientUsername</td>
+                <td>@card.TypeCardName</td>
+                <td>@card.FormattedStartDate</td>
+                <td>@card.FormattedEndDate</td>
+                <td>@card.CounterUsed</td>
+                <td>@card.SavedMoney €</td>
+            </tr>
+        }
+    </tbody>
+</table>

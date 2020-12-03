@@ -20,57 +20,11 @@
 
             <div id="active-cards" style="display:block">
                 <h3 class="text-center">Active Cards</h3>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Client Username</th>
-                            <th scope="col">Card Type</th>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">End Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 0; i < Model.ActiveCards.ToList().Count; i++)
-                        {
-                            var card = Model.ActiveCards.ToList()[i];
-                            <tr>
-                                <th scope="row">@(i+1)</th>
-                                <td>@card.ClientUsername</td>
-                                <td>@card.TypeCardName</td>
-                                <td>@card.FormattedStartDate</td>
-                                <td>@card.FormattedEndEnd</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <partial name="_CardsListPartial" model="Model.ActiveCards" />
             </div>
             <div id="expired-cards" style="display:none">
                 <h3 class="text-center">Expired Cards</h3>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Client Username</th>
-                            <th scope="col">Card Type</th>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">End Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (var i = 0; i < Model.ExpiredCards.ToList().Count; i++)
-                        {
-                            var card = Model.ExpiredCards.ToList()[i];
-                            <tr>
-                                <th scope="row">@(i+1)</th>
-                                <td>@card.ClientUsername</td>
-                                <td>@card.TypeCardName</td>
-                                <td>@card.FormattedStartDate</td>
-                                <td>@card.FormattedEndEnd</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <partial name="_CardsListPartial" model="Model.ExpiredCards" />
             </div>
         </div>
     </div>

@@ -60,6 +60,7 @@
 
             var categoryByName = await service.GetByNameAsync("Test Category");
             var categoryById = await service.GetByIdAsync(firstCategory.Id);
+            var categoryIdByName = await service.GetIdByNameAsync("Test Category");
 
             var expectedCategory = repository
                 .All()
@@ -67,6 +68,7 @@
 
             Assert.True(categoryByName.Equals(expectedCategory));
             Assert.True(categoryById.Equals(expectedCategory));
+            Assert.True(categoryIdByName.Equals(expectedCategory.Id));
         }
 
         public class TestCategoryModel : IMapFrom<Category>

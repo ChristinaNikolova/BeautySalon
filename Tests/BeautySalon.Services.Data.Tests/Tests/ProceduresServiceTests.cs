@@ -152,6 +152,9 @@
 
             await service.UpdateAsync(procedure.Id, "newName", procedure.Description, 13, "2", "2", "No");
 
+            var procedureId = await service.GetIdByNameAsync(procedure.Name);
+
+            Assert.Equal(procedure.Id, procedureId);
             Assert.Equal("newName", procedure.Name);
             Assert.Equal("procedureDEscription", procedure.Description);
             Assert.Equal(13, procedure.Price);
@@ -540,24 +543,25 @@
                 ProcedureId = procedure.Id,
             };
 
-            var review = new Review()
+            var thirdAppointment = new Appointment()
             {
-                Id = "1",
-                AppointmentId = firstAppointment.Id,
+                Id = "3",
                 ProcedureId = procedure.Id,
-                Points = 5,
-                Content = "test first content",
             };
 
             await db.Appointments.AddAsync(firstAppointment);
             await db.Appointments.AddAsync(secondAppointment);
+            await db.Appointments.AddAsync(thirdAppointment);
             await db.Procedures.AddAsync(procedure);
-            await db.Reviews.AddAsync(review);
             await db.SaveChangesAsync();
 
-            await service.AddProcedureReviewsAsync(secondAppointment.Id, "second test content", 3);
+            var firstRaiting = procedure.AverageRating;
 
-            Assert.Equal(4, procedure.AverageRating);
+            await service.AddProcedureReviewsAsync(secondAppointment.Id, "second test content", 3);
+            await service.AddProcedureReviewsAsync(thirdAppointment.Id, "second test content", 1);
+
+            Assert.Equal(0, firstRaiting);
+            Assert.Equal(2, procedure.AverageRating);
             Assert.Equal(2, procedure.Reviews.Count());
         }
 

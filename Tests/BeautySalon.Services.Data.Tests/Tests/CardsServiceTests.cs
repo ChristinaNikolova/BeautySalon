@@ -6,13 +6,11 @@
 
     using BeautySalon.Common;
     using BeautySalon.Data;
-    using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Repositories;
     using BeautySalon.Services.Data.Cards;
     using BeautySalon.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
-    using Moq;
     using Xunit;
 
     public class CardsServiceTests : BaseServiceTests
@@ -22,7 +20,7 @@
         }
 
         [Fact]
-        public async Task CheckCreatingCardForOneYearAsync()
+        public async Task CheckCreatingCardAsync()
         {
             ApplicationDbContext db = GetDb();
 
@@ -33,112 +31,76 @@
                 typeCardRespository,
                 repository);
 
-            var user = new ApplicationUser()
+            var firstUser = new ApplicationUser()
             {
                 Id = "1",
             };
 
-            var typeCard = new TypeCard()
+            var secondUser = new ApplicationUser()
             {
-                Id = "1",
-                Price = 50,
-                Name = "Year",
+                Id = "2",
             };
 
-            await db.TypeCards.AddAsync(typeCard);
-            await db.SaveChangesAsync();
-
-            await service.CreateCardAsync(user.Id, typeCard.Price);
-
-            var card = await repository
-                .All()
-                .FirstOrDefaultAsync();
-
-            var expectedEndDate = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneYear + 1).Date;
-            var actualEndDate = card.EndDate.Date;
-
-            Assert.NotNull(card);
-            Assert.Equal(expectedEndDate, actualEndDate);
-        }
-
-        [Fact]
-        public async Task CheckCreatingCardForOneMonthAsync()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Card>(db);
-            var typeCardRespository = new EfDeletableEntityRepository<TypeCard>(db);
-
-            var service = new CardsService(
-                typeCardRespository,
-                repository);
-
-            var user = new ApplicationUser()
+            var thirdUser = new ApplicationUser()
             {
-                Id = "1",
+                Id = "3",
             };
 
-            var typeCard = new TypeCard()
+            var firstTypeCard = new TypeCard()
             {
                 Id = "1",
                 Price = 50,
                 Name = "Month",
             };
 
-            await db.TypeCards.AddAsync(typeCard);
-            await db.SaveChangesAsync();
-
-            await service.CreateCardAsync(user.Id, typeCard.Price);
-
-            var card = await repository
-                .All()
-                .FirstOrDefaultAsync();
-
-            var expectedEndDate = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneMonth + 1).Date;
-            var actualEndDate = card.EndDate.Date;
-
-            Assert.NotNull(card);
-            Assert.Equal(expectedEndDate, actualEndDate);
-        }
-
-        [Fact]
-        public async Task CheckCreatingCardForOneWeekAsync()
-        {
-            ApplicationDbContext db = GetDb();
-
-            var repository = new EfDeletableEntityRepository<Card>(db);
-            var typeCardRespository = new EfDeletableEntityRepository<TypeCard>(db);
-
-            var service = new CardsService(
-                typeCardRespository,
-                repository);
-
-            var user = new ApplicationUser()
+            var secondTypeCard = new TypeCard()
             {
-                Id = "1",
-            };
-
-            var typeCard = new TypeCard()
-            {
-                Id = "1",
-                Price = 50,
+                Id = "2",
+                Price = 20,
                 Name = "Week",
             };
 
-            await db.TypeCards.AddAsync(typeCard);
+            var thirdTypeCard = new TypeCard()
+            {
+                Id = "3",
+                Price = 100,
+                Name = "Year",
+            };
+
+            await db.TypeCards.AddAsync(firstTypeCard);
+            await db.TypeCards.AddAsync(secondTypeCard);
+            await db.TypeCards.AddAsync(thirdTypeCard);
             await db.SaveChangesAsync();
 
-            await service.CreateCardAsync(user.Id, typeCard.Price);
+            await service.CreateCardAsync(firstUser.Id, firstTypeCard.Price);
+            await service.CreateCardAsync(secondUser.Id, secondTypeCard.Price);
+            await service.CreateCardAsync(thirdUser.Id, thirdTypeCard.Price);
 
-            var card = await repository
+            var firstCard = await repository
                 .All()
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(c => c.ClientId == firstUser.Id);
 
-            var expectedEndDate = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneWeek + 1).Date;
-            var actualEndDate = card.EndDate.Date;
+            var secondCard = await repository
+               .All()
+               .FirstOrDefaultAsync(c => c.ClientId == secondUser.Id);
 
-            Assert.NotNull(card);
-            Assert.Equal(expectedEndDate, actualEndDate);
+            var thirdCard = await repository
+               .All()
+               .FirstOrDefaultAsync(c => c.ClientId == thirdUser.Id);
+
+            var expectedEndDateFirstCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneMonth + 1).Date;
+            var actualEndDateFirstCard = firstCard.EndDate.Date;
+
+            var expectedEndDateSecondCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneWeek + 1).Date;
+            var actualEndDateSecondCard = secondCard.EndDate.Date;
+
+            var expectedEndDateThirdCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneYear + 1).Date;
+            var actualEndDateThirdCard = thirdCard.EndDate.Date;
+
+            Assert.NotNull(firstCard);
+            Assert.Equal(expectedEndDateFirstCard, actualEndDateFirstCard);
+            Assert.Equal(expectedEndDateSecondCard, actualEndDateSecondCard);
+            Assert.Equal(expectedEndDateThirdCard, actualEndDateThirdCard);
         }
 
         [Fact]

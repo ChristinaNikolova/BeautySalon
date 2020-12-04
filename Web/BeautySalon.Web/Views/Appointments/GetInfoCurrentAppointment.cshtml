@@ -95,7 +95,7 @@
                             }
 
                             @if (@Model.Status.ToString() != GlobalConstants.StatusCancelledByStylist
-                           && @Model.Status.ToString() != GlobalConstants.StatusDone)
+                         && @Model.Status.ToString() != GlobalConstants.StatusDone)
                             {
                                 <a asp-area="Stylists" asp-controller="Appointments" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-outline-danger p-1 px-3 py-2 mb-4">Cancel</a>
                             }
@@ -110,8 +110,8 @@
                     <h2 class="mb-3 offset-4">Feedback</h2>
                     <hr />
                     @if (!Model.IsReview && Model.Status.ToString() == GlobalConstants.StatusDone
-                    && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
-                    && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                  && !this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+                  && !this.User.IsInRole(GlobalConstants.StylistRoleName))
                     {
                         {
                             <a asp-area="" asp-controller="Procedures" asp-action="Review" asp-route-appointmentId="@Model.Id" class="btn btn-primary p-1 px-3 py-2 mb-4">Review</a>

@@ -9,11 +9,11 @@ BeautySalon is a web application, that can be used to present particular beauty 
 	- option to register and login with Facebook or Google+.
 	- receive emails after successful register or to recover forgotten password.
 	- opportunity to use Two-factor authentication with QR code.
-	- update their profile info.
+	- update profile info.
 	- make appointments choosing between different beauty categories, stylists and procedures.
 	- real-time checking for stylist's free hours for target day.
-	- have a smart search procedure option button by booking appointment, that shows the clients only the 
-    procedures that are for client's skin type.
+	- have a smart search procedure option button by booking appointment, that shows the cliens only the 
+    procedures that are for his skin type.
 	- make skin quiz to find out more about their skin and receive information about the best procedures for their skin.
 	- see all stylists, filter and order them by diffrent criteries.
 	- see stylist's detail information.

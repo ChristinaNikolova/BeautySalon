@@ -56,12 +56,12 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * information about today's appointments, appointments history and new chat messages. 
       * add stylists, edit and delete them.
       * add/delete procedures to current stylist.
-     * add procedures, edit and delete them.
-     * add/delete products to current procedure.
-     * add products, edit and delete them.
-     * see all the previous day comments from beauty blog and delete comments.
-     * see all active and expired subscription cards and their information. 
-     * see HangFire Dashboard.
+      * add procedures, edit and delete them.
+      * add/delete products to current procedure.
+      * add products, edit and delete them.
+      * see all the previous day comments from beauty blog and delete comments.
+      * see all active and expired subscription cards and their information. 
+      * see HangFire Dashboard.
 	   
 ## Test accounts:
 
@@ -71,79 +71,79 @@ BeautySalon is a web application, that can be used to present particular beauty 
 
 ## Build with
 
-.NET Core 3.1
+ - .NET Core 3.1
 
-ASP.NET CORE 3.1
+ - ASP.NET CORE 3.1
 
-ASP.NET CORE View Components 
+ - ASP.NET CORE View Components 
 
-ASP.NET CORE Areas
+ - ASP.NET CORE Areas
 
-ASP.NET CORE Identity System
+ - ASP.NET CORE Identity System
 
-Custom Validation Attributes
+ - Custom Validation Attributes
 
-PartialViews
+ - PartialViews
 
-MSSQL Server 
+ - MSSQL Server 
 
-Entity Framework Core 3.1
+ - Entity Framework Core 3.1
 
-AutoMapper
+ - AutoMapper
 
-Newtonsoft.Json
+ - Newtonsoft.Json
 
-Moq
+ - Moq
 
-xUnit
+ - xUnit
 
-SignalR
+ - SignalR
 
-ML.NET
+ - ML.NET
 
-HangFire 
+ - HangFire 
 
-SendGrid 
+ - SendGrid 
 
-Cloudinary 
+ - Cloudinary 
 
-Paypal for developers
+ - Paypal for developers
 
-Facebook for developers 
+ - Facebook for developers 
 
-Google+ for developers 
+ - Google+ for developers 
 
-JavaScript
+ - JavaScript
 
-AJAX 
+ - AJAX 
 
-jQuery
+ - jQuery
 
-Bootstrap 4
+ - Bootstrap 4
 
-FontAwesome
+ - FontAwesome
 
-CSS
+ - CSS
 
-HTML5
+ - HTML5
 
-TinyMCE
+ - TinyMCE
 
-HtmlSanitizer
+ - HtmlSanitizer
 
-Google ReCaptcha
+ - Google ReCaptcha
 
-QRCode.js
+ - QRCode.js
 
-FullCalendar.js
+ - FullCalendar.js
 
-Moment.js
+ - Moment.js
 
-Responsive Design
+ - Responsive Design
 
-Dependency Injection
+ - Dependency Injection
 
-Repository Pattern
+ - Repository Pattern
 
 
 ## Screen Shoots

@@ -73,13 +73,15 @@ Stylist: !!!!!!!!!!!!!!!!!!!!!!!!!
 
 ASP.NET CORE 3.1
 
-ASP.NET CORE view components 
+ASP.NET CORE View Components 
 
-ASP.NET CORE areas
+ASP.NET CORE Areas
 
 ASP.NET CORE Identity System
 
 Custom Validation Attributes
+
+PartialViews
 
 MSSQL Server 
 
@@ -111,7 +113,7 @@ Google+ for developers
 
 JavaScript
 
-AJAX real-time Requests 
+AJAX 
 
 jQuery
 
@@ -131,11 +133,9 @@ Google ReCaptcha
 
 QRCode.js
 
-FullCalendar
+FullCalendar.js
 
 Moment.js
-
-
 
 Responsive Design
 
@@ -145,6 +145,7 @@ Repository Pattern
 
 
 ##Screen Shoots
+
 ![Home Page](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/HomePageLoggedUser_sqzud3.png)
 ![Quiz](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTest_zctknt.png)
 ![Quiz Result](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTestResult_w9jnud.png)

@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Services.Data.Tests.Tests
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -140,6 +141,60 @@
             Assert.Equal(3, this.client.ClientSkinProblems.Count());
         }
 
+        [Fact]
+        public async Task CheckGettingUserCardAsync()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<ApplicationUser>(db);
+            var cardRepository = new EfDeletableEntityRepository<Card>(db);
+
+            var service = new UsersService(
+                repository,
+                this.skinProblemsRepository.Object,
+                this.clientSkinProblemsRepository.Object,
+                cardRepository,
+                this.cloudinaryService.Object);
+
+            var user = await AddUserToDbAsync(db);
+
+            var card = new Card()
+            {
+                Id = "1",
+                ClientId = user.Id,
+                IsPaid = true,
+                EndDate = DateTime.UtcNow.AddDays(2),
+            };
+
+            await db.Cards.AddAsync(card);
+            await db.SaveChangesAsync();
+
+            var cardData = await service.GetUserCardAsync<TestUserCardModel>(user.Id);
+
+            Assert.Equal(card.Id, cardData.Id);
+        }
+
+        [Fact]
+        public async Task CheckGettingUsernameByIdAsync()
+        {
+            ApplicationDbContext db = GetDb();
+
+            var repository = new EfDeletableEntityRepository<ApplicationUser>(db);
+
+            var service = new UsersService(
+                repository,
+                this.skinProblemsRepository.Object,
+                this.clientSkinProblemsRepository.Object,
+                this.cardsRepository.Object,
+                this.cloudinaryService.Object);
+
+            var user = await AddUserToDbAsync(db);
+
+            var username = await service.GetUsernameByIdAsync(user.Id);
+
+            Assert.Equal(user.UserName, username);
+        }
+
         private static async Task<ApplicationUser> AddUserToDbAsync(ApplicationDbContext db)
         {
             var user = new ApplicationUser()
@@ -157,6 +212,11 @@
         }
 
         public class TestUserModel : IMapFrom<ApplicationUser>
+        {
+            public string Id { get; set; }
+        }
+
+        public class TestUserCardModel : IMapFrom<Card>
         {
             public string Id { get; set; }
         }

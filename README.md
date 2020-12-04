@@ -145,7 +145,14 @@ Repository Pattern
 
 
 ##Screen Shoots
-!!!
+![Home Page](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/HomePageLoggedUser_sqzud3.png)
+![Quiz](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTest_zctknt.png)
+![Quiz Result](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTestResult_w9jnud.png)
+![Skin Info](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/MySkinInfo_eqxltb.png)
+![Admin Area](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/adminArea_qr3ice.png)
+![Stylist Area](https://res.cloudinary.com/dieu4mste/image/upload/v1607070126/stylistCalendar_wcrbuo.png)
+![Chat](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/chatPage_sdzlvp.png)
+![QuestionAnswerViewModel](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/questionAnswerView_cbcspu.png)
 
 
 ## Credits

@@ -51,7 +51,7 @@
                             <td>@currentStylist.CategoryName</td>
                             <td>@currentStylist.JobTypeName</td>
                             <td><a asp-area="Administration" asp-controller="Stylists" asp-action="Update" asp-route-id="@currentStylist.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
-                            <td><a asp-area="Administration" asp-controller="Stylists" asp-action="Delete" asp-route-id="@currentStylist.Id" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</a></td>
+                            <td><form method="post" asp-area="Administration" asp-controller="Stylists" asp-action="Delete" asp-route-id="@currentStylist.Id"><button type="submit" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</button></form></td>
                         </tr>
                     }
                 </tbody>

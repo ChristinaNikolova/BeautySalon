@@ -556,11 +556,13 @@
             await db.SaveChangesAsync();
 
             var firstRaiting = procedure.AverageRating;
+            var firstReviewsCount = procedure.Reviews.Count();
 
             await service.AddProcedureReviewsAsync(secondAppointment.Id, "second test content", 3);
             await service.AddProcedureReviewsAsync(thirdAppointment.Id, "second test content", 1);
 
             Assert.Equal(0, firstRaiting);
+            Assert.Equal(0, firstReviewsCount);
             Assert.Equal(2, procedure.AverageRating);
             Assert.Equal(2, procedure.Reviews.Count());
         }

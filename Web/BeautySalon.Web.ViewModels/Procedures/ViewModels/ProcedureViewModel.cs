@@ -16,7 +16,7 @@
 
         public double AverageRating { get; set; }
 
-        public string FormattedRaiting
+        public string FormattedRating
             => this.AverageRating.ToString("F2").Replace(",", ".");
 
         public string CategoryId { get; set; }

@@ -58,6 +58,8 @@
 
         public const string PriceCriteria = "price";
 
+        public const string RatingCriteria = "rating";
+
         public const int ProceduresPerPage = 12;
 
         public const int ArticlesPerPage = 6;

@@ -162,33 +162,32 @@
             var skinCategory = await this.categoriesService
                 .GetByNameAsync(GlobalConstants.CategorySkinName);
 
-            if (string.IsNullOrWhiteSpace(criteria))
+            var query = this.proceduresRepository
+                              .All()
+                              .Where(p => p.CategoryId == skinCategory.Id)
+                              .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(skinTypeId))
             {
-                return await this.FilterByWithoutCriteriaAsync<T>(skinTypeId, skinCategory.Id);
+                query = query.Where(p => p.SkinTypeId == skinTypeId);
             }
 
             var criteriaToLower = criteria.ToLower();
 
-            if (string.IsNullOrWhiteSpace(skinTypeId))
-            {
-                if (criteriaToLower == GlobalConstants.PriceCriteria)
-                {
-                    return await this.OrderByPriceAsync<T>(skinCategory.Id);
-                }
-                else
-                {
-                    return await this.OrderByRaitingAsync<T>(skinCategory.Id);
-                }
-            }
-
             if (criteriaToLower == GlobalConstants.PriceCriteria)
             {
-                return await this.FilterAndOrderByPriceAsync<T>(skinTypeId, skinCategory.Id);
+                query = query.OrderBy(p => p.Price);
             }
-            else
+            else if (criteriaToLower == GlobalConstants.RatingCriteria)
             {
-                return await this.FilterAndOrderByRaitingAsync<T>(skinTypeId, skinCategory.Id);
+                query = query.OrderByDescending(p => p.AverageRating);
             }
+
+            var procedures = await query
+                .To<T>()
+                .ToListAsync();
+
+            return procedures;
         }
 
         public async Task<int> GetTotalCountProceduresByCategoryAsync(string categoryId)
@@ -388,57 +387,6 @@
 
                 await this.skinProblemProceduresRespository.AddAsync(skinProblemProcedure);
             }
-        }
-
-        private async Task<IEnumerable<T>> FilterAndOrderByRaitingAsync<T>(string skinTypeId, string categoryId)
-        {
-            return
-            await this.proceduresRepository
-            .All()
-            .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
-            .OrderByDescending(p => p.AverageRating)
-            .To<T>()
-            .ToListAsync();
-        }
-
-        private async Task<IEnumerable<T>> FilterAndOrderByPriceAsync<T>(string skinTypeId, string categoryId)
-        {
-            return
-                await this.proceduresRepository
-                .All()
-                .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
-                .OrderBy(p => p.Price)
-                .To<T>()
-                .ToListAsync();
-        }
-
-        private async Task<IEnumerable<T>> OrderByRaitingAsync<T>(string categoryId)
-        {
-            return await this.proceduresRepository
-            .All()
-            .Where(p => p.CategoryId == categoryId)
-            .OrderByDescending(p => p.AverageRating)
-            .To<T>()
-            .ToListAsync();
-        }
-
-        private async Task<IEnumerable<T>> OrderByPriceAsync<T>(string categoryId)
-        {
-            return await this.proceduresRepository
-             .All()
-             .Where(p => p.CategoryId == categoryId)
-             .OrderBy(p => p.Price)
-             .To<T>()
-             .ToListAsync();
-        }
-
-        private async Task<IEnumerable<T>> FilterByWithoutCriteriaAsync<T>(string skinTypeId, string categoryId)
-        {
-            return await this.proceduresRepository
-                 .All()
-                 .Where(p => p.SkinTypeId == skinTypeId && p.CategoryId == categoryId)
-                 .To<T>()
-                 .ToListAsync();
         }
 
         private async Task RemoveAllProductsAsync(string id)

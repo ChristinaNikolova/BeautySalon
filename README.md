@@ -4,148 +4,158 @@ BeautySalon is my defense project for ASP.NET Core course, part of the C# Web Mo
 ## Description
 BeautySalon is a web application, that can be used to present particular beauty salon.
 
-#### Users futures:
-	- register as regular user, login and logout.
-	- option to register and login with Facebook or Google+.
-	- receive emails after successful register or to recover forgotten password.
-	- opportunity to use Two-factor authentication with QR code.
-	- update their profile info.
-	- make appointments choosing between different beauty categories, stylists and procedures.
-	- real-time checking for stylist's free hours for target day.
-	- have a smart search procedure option button by booking appointment, that shows the clients only the 
-    procedures that are for client's skin type.
-	- make skin quiz to find out more about their skin and receive information about the best procedures for their skin.
-	- see all stylists, filter and order them by diffrent criteries.
-	- see stylist's detail information.
-	- send question to stylist.
-	- see all procedures, filter and order them by diffrent criterias.
-	- see procedure's details page, see the products for the procedure and all the reviews for it.
-	- see product's details page.
-	- like products.
-	- see the beauty blog and filter the articles by diffrent beauty categories.
-        - see article's details page.
-	- like article and write comments.
-	- chat with admin in real-time.
-	- after appointment write a review for the procedure and give a grade????
-	- can buy subscription cards with PayPal
-	- has user's dashboard with all infomation about: 
-	   * appointments status
-	   * appointments history
-	   * mail box with his own questions and answers.
-	   * information about his skin type and best procedures for him
-	   * all his favourite articles and products
-	   * infomation about his subscription card and card's statistic
+#### Users futures: 
 
-#### Stylists futures:
-	- all user's futures
-	- can send answers to client's questions
-	- stylist's dashboard: 
-	   * information about new appointment's requests, new client's questions and today's appointments
-	   * can change the status on appointments
-	   * has his own schedule calender with all aproved and done appointmens
-	   * has appointment's history
-	   * can create article, edit and delete his own articles
-	   * has mail box with client's questions and his answers to them
-	   
-#### Admin futures:
-	- all user's futures
-	- chat with clients
-	- admin's dashboard: 
-	   * information about today's appointments, appointmens history and new chat messages
-	   * add stylists, edit and delete them
-	   * add/delete procedures to current stylist
-	   * add procedures, edit and delete them
-	   * add/delete products to current procedure
-	   * add products, edit and delete them
-	   * see all the comments from beauty blog from previous day and can delete comments
-	   * see all Active and Expired subscription cards and their information
-	   * see HangFire Dashboard
+    - register as regular user, login and logout. 
+    - option to register and login with Facebook or Google+. 
+    - receive emails after successful register or recover forgotten password. 
+    - opportunity to use Two-factor authentication with QR code. 
+    - update profile info. 
+    - make appointments choosing between different beauty categories, stylists and procedures. 
+    - real-time checking for stylist's free hours for target day. 
+    - have a smart search procedure option button for booking appointments, that shows the client just the procedures that are suitable for their skin type. 
+    - do skin quiz to find out more about their skin and receive information about the best procedures for their skin. 
+    - see all stylists, filter and order them by different criteria.
+    - see stylist's detail information. 
+    - send question to stylist. 
+    - see all procedures, filter and order them by diffErent criteria.
+    - see procedure's details page, see the products for the procedure and all the reviews for it. 
+    - see product's details page. 
+    - like particular products.  
+    - see the beauty blog and filter the articles by different beauty categories. 
+    - see article's details page.  
+    - like articleS and write comments. 
+    - chat with admin in real-time. 
+    - after appointment write a review about the procedure and give an assessment.
+    - can buy subscription cards with PayPal 
+    - has user's own dashboard with all information about:  
+      * appointments status. 
+      * appointments history.
+      * mail box with their own questions and answers. 
+      * information about their skin type and best procedures for them. 
+      * all their favourite articles and products.
+      * information about their subscription card and card's statistics. 
+   
+#### Stylists futures: 
+
+    - all user's futures.
+    - can send answers to client's questions.
+    - stylist's dashboard:  
+      * information about new appointment requests, new clients’ questions and today's appointments.
+      * can change the status on appointment status. 
+      * has their own schedule calendar with all approved and held appointments.
+      * has appointments’ history.
+      * can create article, edit and delete their own articles. 
+      * has mail box with client's questions and their answers to them.
+   
+#### Admin futures: 
+
+    - all user's futures.
+    - chat with clients.
+    - admin's dashboard:  
+      * information about today's appointments, appointments history and new chat messages. 
+      * add stylists, edit and delete them.
+      * add/delete procedures to current stylist.
+      * add procedures, edit and delete them.
+      * add/delete products to current procedure.
+      * add products, edit and delete them.
+      * see all the previous day comments from beauty blog and delete comments.
+      * see all active and expired subscription cards and their information. 
+      * see HangFire Dashboard.
 	   
 ## Test accounts:
 
-Admin: username: admin / password: 123456
+#### Admin: username: admin / password: 123456
 
-Stylist: !!!!!!!!!!!!!!!!!!!!!!!!!
+#### Stylist: !!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Build with
 
-.NET Core 3.1
+ - .NET Core 3.1
 
-ASP.NET CORE 3.1
+ - ASP.NET CORE 3.1
 
-ASP.NET CORE view components 
+ - ASP.NET CORE View Components 
 
-ASP.NET CORE areas
+ - ASP.NET CORE Areas
 
-ASP.NET CORE Identity System
+ - ASP.NET CORE Identity System
 
-Custom Validation Attributes
+ - Custom Validation Attributes
 
-MSSQL Server 
+ - PartialViews
 
-Entity Framework Core 3.1
+ - MSSQL Server 
 
-AutoMapper
+ - Entity Framework Core 3.1
 
-Newtonsoft.Json
+ - AutoMapper
 
-Moq
+ - Newtonsoft.Json
 
-xUnit
+ - Moq
 
-SignalR
+ - xUnit
 
-ML.NET
+ - SignalR
 
-HangFire 
+ - ML.NET
 
-SendGrid 
+ - HangFire 
 
-Cloudinary 
+ - SendGrid 
 
-Paypal for developers
+ - Cloudinary 
 
-Facebook for developers 
+ - Paypal for developers
 
-Google+ for developers 
+ - Facebook for developers 
 
-JavaScript
+ - Google+ for developers 
 
-AJAX real-time Requests 
+ - JavaScript
 
-jQuery
+ - AJAX 
 
-Bootstrap 4
+ - jQuery
 
-FontAwesome
+ - Bootstrap 4
 
-CSS
+ - FontAwesome
 
-HTML5
+ - CSS
 
-TinyMCE
+ - HTML5
 
-HtmlSanitizer
+ - TinyMCE
 
-Google ReCaptcha
+ - HtmlSanitizer
 
-QRCode.js
+ - Google ReCaptcha
 
-FullCalendar
+ - QRCode.js
 
-Moment.js
+ - FullCalendar.js
+
+ - Moment.js
+
+ - Responsive Design
+
+ - Dependency Injection
+
+ - Repository Pattern
 
 
+## Screen Shoots
 
-Responsive Design
-
-Dependency Injection
-
-Repository Pattern
-
-
-##Screen Shoots
-!!!
+![Home Page](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/HomePageLoggedUser_sqzud3.png)
+![Quiz](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTest_zctknt.png)
+![Quiz Result](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTestResult_w9jnud.png)
+![Skin Info](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/MySkinInfo_eqxltb.png)
+![Admin Area](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/adminArea_qr3ice.png)
+![Stylist Area](https://res.cloudinary.com/dieu4mste/image/upload/v1607070126/stylistCalendar_wcrbuo.png)
+![Chat](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/chatPage_sdzlvp.png)
+![QuestionAnswerViewModel](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/questionAnswerView_cbcspu.png)
 
 
 ## Credits

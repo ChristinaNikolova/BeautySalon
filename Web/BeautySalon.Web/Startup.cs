@@ -200,7 +200,7 @@
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
-                this.SeedHangfireJobs(recurringJobManager, dbContext);
+                this.SeedHangfireJobs(recurringJobManager);
             }
 
             if (env.IsDevelopment())
@@ -241,7 +241,7 @@
                     });
         }
 
-        private void SeedHangfireJobs(IRecurringJobManager recurringJobManager, ApplicationDbContext dbContext)
+        private void SeedHangfireJobs(IRecurringJobManager recurringJobManager)
         {
             recurringJobManager
                 .AddOrUpdate<DeleteChatMessages>(

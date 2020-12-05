@@ -9,6 +9,7 @@
     using BeautySalon.Services.Data.TypeCards;
     using BeautySalon.Services.Data.Users;
     using BeautySalon.Web.ViewModels.TypeCards.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,7 @@
             this.userManager = userManager;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllTypeCards()
         {
             var userId = this.userManager.GetUserId(this.User);

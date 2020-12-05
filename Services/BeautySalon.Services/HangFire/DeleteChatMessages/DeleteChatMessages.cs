@@ -4,14 +4,13 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using BeautySalon.Common;
     using BeautySalon.Data.Common.Repositories;
     using BeautySalon.Data.Models;
     using Microsoft.EntityFrameworkCore;
 
     public class DeleteChatMessages : IDeleteChatMessages
     {
-        private readonly int days = 7;
-
         private readonly IDeletableEntityRepository<ChatMessage> chatMessagesRepository;
 
         public DeleteChatMessages(IDeletableEntityRepository<ChatMessage> chatMessagesRepository)
@@ -23,7 +22,7 @@
         {
             var messageToDelete = await this.chatMessagesRepository
                 .All()
-                .Where(m => m.CreatedOn.AddDays(this.days).Date <= DateTime.Today.Date)
+                .Where(m => m.CreatedOn.AddDays(GlobalConstants.DaysOneWeek).Date <= DateTime.Today.Date)
                 .ToListAsync();
 
             foreach (var chatMessage in messageToDelete)

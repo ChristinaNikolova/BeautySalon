@@ -25,8 +25,6 @@
             }
         });
 
-        console.log(categoryId)
-
         var token = $(".search-bar input[name=__RequestVerificationToken]").val();
 
         $.ajax({
@@ -38,7 +36,7 @@
             dataType: "json",
             success: function (data) {
                 let result = '';
-                debugger;
+
                 data.articles.forEach(article => {
                     result += '<div class="col-md-4 d-flex"> <div class="blog-entry justify-content-end">' + `<a class="block-20" style="background-image: url('${article.picture}');"></a>` + '<div class="text p-4 float-right d-block">' + '<div class="d-flex align-items-center pt-2 mb-4">' + '<div class="one">' + `<span class="day">${article.day}</span>` + '</div>' + '<div class="two">' + `<span class="yr">${article.year}</span>` + `<span class="mos">${article.month}</span>` + '</div> </div >' + `<h3 class="heading mt-2"><a href="/Articles/GetDetails/${article.id}">${article.title}</a></h3>` + `<p class="small">${article.shortContent}</p>` + '<ul class="subheading article-category d-inline">' + `<li class="theme-color-gold small article-category"><strong>Category: </strong>${article.categoryName}</li>` +
                         `<li class="theme-color-gold small article-category"><strong>Author: </strong><a href="/Stylists/GetDetails/${article.stylistId}">${article.stylistFullName}</a></li>` +

@@ -34,7 +34,7 @@
         });
 
         var token = $(".search-bar input[name=__RequestVerificationToken]").val();
-        debugger;
+
         $.ajax({
             url: "/Stylists/SearchBy/",
             type: "POST",

@@ -71,9 +71,9 @@ BeautySalon is a web application, that can be used to present particular beauty 
 
 ## Build with
 
- - .NET Core 3.1
+ - .NET Core 5.0
 
- - ASP.NET CORE 3.1
+ - ASP.NET CORE 5.0 MVC
 
  - ASP.NET CORE View Components 
 
@@ -87,7 +87,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 
  - MSSQL Server 
 
- - Entity Framework Core 3.1
+ - Entity Framework Core 5.0
 
  - AutoMapper
 

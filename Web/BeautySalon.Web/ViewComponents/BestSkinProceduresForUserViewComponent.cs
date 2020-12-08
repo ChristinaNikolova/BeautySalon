@@ -18,11 +18,6 @@
 
         public async Task<IViewComponentResult> InvokeAsync(bool isSkinSensitive, string skinTypeId)
         {
-            if (skinTypeId == null)
-            {
-                return null;
-            }
-
             var model = new AllProcedurePrimaryViewModel()
             {
                 Procedures = await this.proceduresService

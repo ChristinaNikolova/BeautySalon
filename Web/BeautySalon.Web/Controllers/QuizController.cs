@@ -58,7 +58,7 @@
         [HttpPost]
         public async Task<ActionResult<ResultViewModel>> Make([FromBody] AnswerQuizInputModel input)
         {
-            string result = string.Join(" ", input.Answers);
+            var result = string.Join(" ", input.Answers);
 
             var inputML = new SkinTypeModelInput()
             {

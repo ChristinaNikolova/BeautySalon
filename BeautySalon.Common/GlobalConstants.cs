@@ -66,7 +66,7 @@
 
         public const int RecentArticlesCount = 5;
 
-        public const string CategorySkinCareId = "5c18b9b0-edf7-4257-89d4-9000f2c1d0c3";
+        public const string CategorySkinCareId = "c17ea54d-c0b7-49f2-9c05-8edadc59357d";
 
         public const string StartDropDownDefaultMessage = "Please select";
 
@@ -78,13 +78,15 @@
 
         public const string StatusDone = "Done";
 
-        public const string StatusCancelledByStylist = "CancelledByStylist";
+        public const string StatusCancelledByStylist = "Cancelled";
 
         public const string StatusApproved = "Approved";
 
         public const int DefaultLastArticlesCount = 5;
 
         public const int StylistShortDescriptionLength = 50;
+
+        public const int ProcedureNameShort = 15;
 
         public const int StylistArticleShortDescriptionLength = 150;
 

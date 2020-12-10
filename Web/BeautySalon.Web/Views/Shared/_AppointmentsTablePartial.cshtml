@@ -35,7 +35,7 @@
                 <th scope="row">@(i+1)</th>
                 <td>@currentAppoitment.FormattedDate</td>
                 <td>@currentAppoitment.StartTime</td>
-                <td>@currentAppoitment.ProcedureName</td>
+                <td>@currentAppoitment.ShortProcedureName</td>
                 @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
                     <td>@currentAppoitment.ClientFullName</td>

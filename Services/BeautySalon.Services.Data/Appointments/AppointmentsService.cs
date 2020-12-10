@@ -63,7 +63,7 @@
         {
             var appointment = await this.GetByIdAsync(id);
 
-            appointment.Status = Status.CancelledByStylist;
+            appointment.Status = Status.Cancelled;
 
             this.appointmentsRepository.Update(appointment);
             await this.appointmentsRepository.SaveChangesAsync();
@@ -148,7 +148,7 @@
                 .All()
                 .Where(a => a.DateTime.Date == selectedDateAsDateTime.Date
                     && a.StylistId == selectedStylistId
-                    && a.Status != Status.CancelledByStylist)
+                    && a.Status != Status.Cancelled)
                 .Select(a => a.StartTime)
                 .ToListAsync();
 
@@ -189,7 +189,7 @@
             var appointments = await this.appointmentsRepository
                 .All()
                 .Where(a => a.StylistId == stylistId
-                   && (a.Status == Status.Done || a.Status == Status.CancelledByStylist))
+                   && (a.Status == Status.Done || a.Status == Status.Cancelled))
                 .OrderByDescending(a => a.DateTime)
                 .ThenBy(a => a.StartTime)
                 .To<T>()
@@ -202,7 +202,7 @@
         {
             var appointments = await this.appointmentsRepository
                 .All()
-                .Where(a => a.Status == Status.Done || a.Status == Status.CancelledByStylist)
+                .Where(a => a.Status == Status.Done || a.Status == Status.Cancelled)
                 .OrderByDescending(a => a.DateTime)
                 .ThenBy(a => a.StartTime)
                 .To<T>()
@@ -216,7 +216,7 @@
             var appointments = await this.appointmentsRepository
                .All()
                .Where(a => a.ClientId == userId
-                && ((a.Status == Status.Done && a.IsReview) || (a.Status == Status.CancelledByStylist && !a.IsReview)))
+                && ((a.Status == Status.Done && a.IsReview) || (a.Status == Status.Cancelled && !a.IsReview)))
                .OrderByDescending(a => a.DateTime)
                .ThenBy(a => a.StartTime)
                .To<T>()

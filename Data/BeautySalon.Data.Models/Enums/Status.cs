@@ -4,7 +4,7 @@
     {
         Default = 0,
         Processing = 1,
-        CancelledByStylist = 2,
+        Cancelled = 2,
         CancelledByClient = 3,
         Approved = 4,
         Done = 5,

@@ -88,7 +88,7 @@
 
             var appointment = await GetAppointmentAsync(repository, appointmentId);
 
-            Assert.Equal(Status.CancelledByStylist, appointment.Status);
+            Assert.Equal(Status.Cancelled, appointment.Status);
         }
 
         [Fact]

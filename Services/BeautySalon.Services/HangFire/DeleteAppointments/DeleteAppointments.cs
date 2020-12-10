@@ -24,7 +24,7 @@
             var appointmentsToDelete = await this.appointmentsRepository
                .All()
                .Where(m => m.DateTime.AddDays(GlobalConstants.DaysOneMonth).Date <= DateTime.Today.Date
-                   && m.Status == Status.CancelledByStylist)
+                   && m.Status == Status.Cancelled)
                .ToListAsync();
 
             foreach (var appointment in appointmentsToDelete)

@@ -74,7 +74,7 @@
 
     function loadProcedures(event) {
         clearData();
-        if (categoryId === '5c18b9b0-edf7-4257-89d4-9000f2c1d0c3' && clientSkinTypeId !== "") {
+        if (categoryId === 'c17ea54d-c0b7-49f2-9c05-8edadc59357d' && clientSkinTypeId !== "") {
             document.getElementById("smart-search-message").style.display = "block";
         } else {
             document.getElementById("smart-search-message").style.display = "none";

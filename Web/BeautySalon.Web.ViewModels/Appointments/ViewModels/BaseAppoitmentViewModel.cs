@@ -1,7 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewModels.Appointments.ViewModels
 {
     using System;
-
+    using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;
     using BeautySalon.Services.Mapping;
@@ -27,6 +27,16 @@
             => this.StylistFirstName + " " + this.StylistLastName;
 
         public string ProcedureName { get; set; }
+
+        public string ShortProcedureName
+        {
+            get
+            {
+                return this.ProcedureName.Length > GlobalConstants.ProcedureNameShort
+                        ? this.ProcedureName.Substring(0, GlobalConstants.ProcedureNameShort) + "..."
+                        : this.ProcedureName;
+            }
+        }
 
         public DateTime DateTime { get; set; }
 

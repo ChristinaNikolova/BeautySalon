@@ -218,7 +218,7 @@
                 .To<TestAppointmentModel>()
                 .ToListAsync();
 
-            Assert.Equal(3, appointments.Count());
+            Assert.Empty(appointments);
             appointments.SequenceEqual(appointmentsExpected);
         }
 

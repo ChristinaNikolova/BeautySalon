@@ -12,6 +12,7 @@
 
     public class UpdateArticleInputModel : IMapFrom<Article>
     {
+        [Required]
         public string Id { get; set; }
 
         [Required]

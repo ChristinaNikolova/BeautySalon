@@ -6,8 +6,11 @@
 
     public class AddProcedureStylistInputModel
     {
+        [Required]
         public string Id { get; set; }
 
+        [Required]
+        [Display(Name = "Procedure Name")]
         [StringLength(DataValidation.ProcedureNameMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.ProcedureNameMinLenght)]
         public string ProcedureName { get; set; }
     }

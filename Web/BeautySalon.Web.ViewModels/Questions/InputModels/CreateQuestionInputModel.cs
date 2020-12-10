@@ -15,6 +15,7 @@
         [StringLength(DataValidation.QuestionContentMaxLenght, ErrorMessage = ErrorMessages.InputModel, MinimumLength = DataValidation.QuestionContentMinLenght)]
         public string Content { get; set; }
 
+        [Required]
         public string StylistId { get; set; }
 
         public StylistNamesViewModel Stylist { get; set; }

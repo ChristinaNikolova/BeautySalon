@@ -97,7 +97,7 @@
 
             var appointments = await this.appointmentsRepository
                 .AllAsNoTracking()
-                .Where(a => a.DateTime.Date == currentDate)
+                .Where(a => a.DateTime.Date == currentDate && a.Status == Status.Approved)
                 .OrderBy(a => a.StartTime)
                 .To<T>()
                 .ToListAsync();

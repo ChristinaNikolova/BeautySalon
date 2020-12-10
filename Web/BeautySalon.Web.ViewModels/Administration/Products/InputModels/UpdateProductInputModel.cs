@@ -12,6 +12,7 @@
 
     public class UpdateProductInputModel : IMapFrom<Product>
     {
+        [Required]
         public string Id { get; set; }
 
         [Required]

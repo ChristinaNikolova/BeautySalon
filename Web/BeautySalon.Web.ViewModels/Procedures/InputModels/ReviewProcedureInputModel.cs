@@ -9,6 +9,7 @@
     {
         public AppointmentViewModel Appointment { get; set; }
 
+        [Required]
         public string AppoitmentId { get; set; }
 
         [Required]

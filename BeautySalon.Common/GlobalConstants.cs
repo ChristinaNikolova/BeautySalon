@@ -106,6 +106,6 @@
 
         public const int CacheDay = 1;
 
-        public const int CacheMinutesRecentArticles = 30;
+        public const int CacheMinutesRecentArticles = 10;
     }
 }

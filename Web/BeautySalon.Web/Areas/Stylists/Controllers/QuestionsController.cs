@@ -38,6 +38,7 @@
         public async Task<IActionResult> SeeQuestion(string id)
         {
             var question = await this.questionsService.GetQuestionDetailsAsync<SeeQuestionViewModel>(id);
+
             var model = new CreateAnswerInputModel()
             {
                 Question = question,

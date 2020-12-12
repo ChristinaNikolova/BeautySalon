@@ -49,6 +49,7 @@
                     document.getElementById("make-quiz-heading").style.display = "none";
 
                     $("#parent-element-section").html(result);
+
                     document.getElementById("skin-problems-button").addEventListener("click", showProblems);
 
                     function showProblems() {

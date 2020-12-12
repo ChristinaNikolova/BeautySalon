@@ -88,13 +88,13 @@
                .All()
                .FirstOrDefaultAsync(c => c.ClientId == thirdUser.Id);
 
-            var expectedEndDateFirstCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneMonth + 1).Date;
+            var expectedEndDateFirstCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneMonth).Date;
             var actualEndDateFirstCard = firstCard.EndDate.Date;
 
-            var expectedEndDateSecondCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneWeek + 1).Date;
+            var expectedEndDateSecondCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneWeek).Date;
             var actualEndDateSecondCard = secondCard.EndDate.Date;
 
-            var expectedEndDateThirdCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneYear + 1).Date;
+            var expectedEndDateThirdCard = DateTime.UtcNow.AddDays(GlobalConstants.DaysOneYear).Date;
             var actualEndDateThirdCard = thirdCard.EndDate.Date;
 
             Assert.NotNull(firstCard);

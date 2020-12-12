@@ -9,9 +9,7 @@
                 <h2 class="mb-1 category-name">@Model.CategoryName</h2>
                 @if (Model.CategoryName == GlobalConstants.CategorySkinName)
                 {
-                    <cache expires-after="@TimeSpan.FromDays(GlobalConstants.CacheDay)">
-                        <vc:skin-type-option-bar has-to-add-second-criteria="true"></vc:skin-type-option-bar>
-                    </cache>
+                    <vc:skin-type-option-bar has-to-add-second-criteria="true"></vc:skin-type-option-bar>
                 }
             </div>
         </div>

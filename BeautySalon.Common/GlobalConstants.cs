@@ -66,7 +66,7 @@
 
         public const int RecentArticlesCount = 5;
 
-        public const string CategorySkinCareId = "c17ea54d-c0b7-49f2-9c05-8edadc59357d";
+        public const string CategorySkinCareId = "de40850e-10a5-4a36-a545-8477e2ea44e6";
 
         public const string StartDropDownDefaultMessage = "Please select";
 
@@ -103,8 +103,6 @@
         public const int DaysOneMonth = 30;
 
         public const int DaysOneWeek = 7;
-
-        public const int CacheDay = 1;
 
         public const int CacheMinutesRecentArticles = 10;
     }

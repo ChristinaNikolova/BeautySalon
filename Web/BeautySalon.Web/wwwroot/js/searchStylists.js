@@ -1,4 +1,5 @@
 ﻿function searchStylists() {
+    console.log("in");
     let searchButton = document.getElementById("searchBy");
     searchButton.addEventListener("click", SearchBy);
 
@@ -11,25 +12,15 @@
 
     function SearchBy(event) {
         let parentElementSkinType = Array.from(event.target.parentElement.children[0].children);
-
         parentElementSkinType.shift();
+
         let categoryId = "";
 
         parentElementSkinType.forEach(option => {
 
             if (option.children[0].checked === true) {
                 categoryId = option.children[0].value;
-            }
-        });
-
-        let parentElementCriteria = Array.from(event.target.parentElement.children[1].children);
-
-        parentElementCriteria.shift();
-        var criteria = "";
-
-        parentElementCriteria.forEach(option => {
-            if (option.children[0].checked === true) {
-                criteria = option.children[0].value;
+                console.log(categoryId);
             }
         });
 
@@ -38,7 +29,7 @@
         $.ajax({
             url: "/Stylists/SearchBy/",
             type: "POST",
-            data: JSON.stringify({ categoryId, criteria }),
+            data: JSON.stringify(categoryId),
             contentType: "application/json; charset=utf-8",
             headers: { 'X-CSRF-TOKEN': token },
             dataType: "json",

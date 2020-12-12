@@ -10,7 +10,7 @@
         public Card()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.StartDate = DateTime.UtcNow.AddDays(1);
+            this.StartDate = DateTime.UtcNow;
             this.IsPaid = false;
             this.CounterUsed = 0;
             this.TotalSumUsedProcedures = 0;

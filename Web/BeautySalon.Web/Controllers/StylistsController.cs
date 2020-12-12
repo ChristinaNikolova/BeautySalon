@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Services.Data.Stylists;
-    using BeautySalon.Web.ViewModels.Stylists.InputModels;
     using BeautySalon.Web.ViewModels.Stylists.ViewModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -37,14 +36,14 @@
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<AllStylistsViewModel>> SearchBy([FromBody] SearchStylistCriteriaInputModel input)
+        public async Task<ActionResult<AllStylistsViewModel>> SearchBy([FromBody] string categoryId)
         {
-            if (string.IsNullOrWhiteSpace(input.CategoryId))
+            if (string.IsNullOrWhiteSpace(categoryId))
             {
                 return this.RedirectToAction(nameof(this.GetAll));
             }
 
-            var stylists = await this.stylistsService.SearchByCategoryAsync<StylistViewModel>(input.CategoryId);
+            var stylists = await this.stylistsService.SearchByCategoryAsync<StylistViewModel>(categoryId);
 
             return new AllStylistsViewModel { Stylists = stylists };
         }

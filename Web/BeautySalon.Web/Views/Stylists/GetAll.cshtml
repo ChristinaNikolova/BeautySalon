@@ -12,9 +12,7 @@
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <h3 class="subheading">@ViewData["Title"]</h3>
                 <h2 class="mb-1">Meet Our Stylists</h2>
-                <cache expires-after="@TimeSpan.FromDays(GlobalConstants.CacheDay)">
-                    <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
-                </cache>
+                <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
             </div>
         </div>
         <div id="showResult" class="row">

@@ -1,6 +1,7 @@
 ﻿namespace BeautySalon.Web.ViewModels.Appointments.ViewModels
 {
     using System;
+
     using BeautySalon.Common;
     using BeautySalon.Data.Models;
     using BeautySalon.Data.Models.Enums;

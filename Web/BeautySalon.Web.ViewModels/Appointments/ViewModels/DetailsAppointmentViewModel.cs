@@ -14,6 +14,8 @@
 
         public string ProcedureId { get; set; }
 
+        public decimal ProcedurePrice { get; set; }
+
         public string Comment { get; set; }
     }
 }

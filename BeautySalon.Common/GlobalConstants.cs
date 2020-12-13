@@ -74,6 +74,8 @@
 
         public const string DateTimeFormat = "{0:g}";
 
+        public const string LocalTimeZone = "E. Europe Standard Time";
+
         public const string StatusProcessing = "Processing";
 
         public const string StatusDone = "Done";

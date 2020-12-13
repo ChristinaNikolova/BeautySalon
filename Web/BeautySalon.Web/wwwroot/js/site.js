@@ -1,3 +1,3 @@
 ﻿$(function () {
-    moment.locale("bg");
+    moment.locale("en");
 });

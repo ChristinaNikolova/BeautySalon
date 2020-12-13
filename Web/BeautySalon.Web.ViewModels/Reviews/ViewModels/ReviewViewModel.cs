@@ -15,7 +15,9 @@
         public DateTime Date { get; set; }
 
         public string FormattedDate
-            => string.Format(GlobalConstants.DateTimeFormat, this.Date.ToLocalTime());
+             => string.Format(
+                 GlobalConstants.DateTimeFormat,
+                 TimeZoneInfo.ConvertTimeFromUtc(this.Date, TimeZoneInfo.FindSystemTimeZoneById(GlobalConstants.LocalTimeZone)));
 
         public string ClientPicture { get; set; }
 

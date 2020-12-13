@@ -17,6 +17,8 @@
         public DateTime QuestionCreatedOn { get; set; }
 
         public string FormattedQuestionCreatedOn
-            => string.Format(GlobalConstants.DateTimeFormat, this.QuestionCreatedOn.ToLocalTime());
+             => string.Format(
+                 GlobalConstants.DateTimeFormat,
+                 TimeZoneInfo.ConvertTimeFromUtc(this.QuestionCreatedOn, TimeZoneInfo.FindSystemTimeZoneById(GlobalConstants.LocalTimeZone)));
     }
 }

@@ -59,7 +59,7 @@
     });
 
     function formatDate() {
-        return moment().format('L LT');
+        return moment().local().format('L LT');
     }
 
     function updateScrollToBottom() {

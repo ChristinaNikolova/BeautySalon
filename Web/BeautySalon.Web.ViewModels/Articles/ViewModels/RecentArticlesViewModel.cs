@@ -17,7 +17,9 @@
         public DateTime CreatedOn { get; set; }
 
         public string FormattedDate
-            => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
+             => string.Format(
+                 GlobalConstants.DateTimeFormat,
+                 TimeZoneInfo.ConvertTimeFromUtc(this.CreatedOn, TimeZoneInfo.FindSystemTimeZoneById(GlobalConstants.LocalTimeZone)));
 
         public string StylistId { get; set; }
 

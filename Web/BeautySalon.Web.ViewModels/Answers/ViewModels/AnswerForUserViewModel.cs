@@ -24,6 +24,8 @@
         public DateTime CreatedOn { get; set; }
 
         public string FormattedCreatedOn
-            => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
+             => string.Format(
+                 GlobalConstants.DateTimeFormat,
+                 TimeZoneInfo.ConvertTimeFromUtc(this.CreatedOn, TimeZoneInfo.FindSystemTimeZoneById(GlobalConstants.LocalTimeZone)));
     }
 }

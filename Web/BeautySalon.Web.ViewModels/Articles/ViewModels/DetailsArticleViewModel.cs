@@ -1,5 +1,6 @@
 ﻿namespace BeautySalon.Web.ViewModels.Articles.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -26,7 +27,9 @@
         }
 
         public string FormattedDate
-            => string.Format(GlobalConstants.DateTimeFormat, this.CreatedOn.ToLocalTime());
+             => string.Format(
+                 GlobalConstants.DateTimeFormat,
+                 TimeZoneInfo.ConvertTimeFromUtc(this.CreatedOn, TimeZoneInfo.FindSystemTimeZoneById(GlobalConstants.LocalTimeZone)));
 
         public bool IsFavourite { get; set; }
 

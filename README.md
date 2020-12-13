@@ -65,7 +65,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * see all active and expired subscription cards and their information. 
       * see HangFire Dashboard.
 	   
-## Test accounts:
+## :heavy_exclamation_mark: Test accounts:
 
 #### Admin: username: admin / password: 123456
 

@@ -1,10 +1,10 @@
 # BeautySalon
 BeautySalon is my defense project for ASP.NET Core course, part of the C# Web Module at Software University, placed in Sofia, Bulgaria.
 
-## Description
+## :memo: Description
 BeautySalon is a web application, that can be used to present particular beauty salon.
 
-#### Users futures: 
+#### :white_check_mark: Users futures: 
 
     - register as regular user, login and logout. 
     - option to register and login with Facebook or Google+. 
@@ -36,7 +36,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * all their favourite articles and products.
       * information about their subscription card and card's statistics. 
    
-#### Stylists futures: 
+#### :white_check_mark: Stylists futures: 
 
     - all user's futures.
     - can send answers to client's questions.
@@ -48,7 +48,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * can create article, edit and delete their own articles. 
       * has mail box with client's questions and their answers to them.
    
-#### Admin futures: 
+#### :white_check_mark: Admin futures: 
 
     - all user's futures.
     - chat with clients.
@@ -69,7 +69,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 
 #### Stylist: username: Nicole.Devis / password: 123456
 
-## Build with
+## :hammer_and_pick: Build with
 
  - .NET Core 5.0
 

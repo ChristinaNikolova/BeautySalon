@@ -19,7 +19,7 @@
             daysOfWeekDisabled: "0",
             defaultDate: "",
             autoclose: true,
-            format: 'dd/mm/yyyy',
+            format: 'mm/dd/yyyy',
         });
     });
 
@@ -74,7 +74,7 @@
 
     function loadProcedures(event) {
         clearData();
-        if (categoryId === 'c17ea54d-c0b7-49f2-9c05-8edadc59357d' && clientSkinTypeId !== "") {
+        if (categoryId === 'de40850e-10a5-4a36-a545-8477e2ea44e6' && clientSkinTypeId !== "") {
             document.getElementById("smart-search-message").style.display = "block";
         } else {
             document.getElementById("smart-search-message").style.display = "none";

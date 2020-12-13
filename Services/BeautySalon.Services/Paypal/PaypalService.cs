@@ -43,8 +43,10 @@
                     },
                     redirect_urls = new RedirectUrls
                     {
-                        cancel_url = @"https://localhost:44319/Paypal/FailedPayment",
-                        return_url = $@"https://localhost:44319/Paypal/SuccessedPayment?price={price}",
+                        // cancel_url = @"https:/localhost:44319/Paypal/FailedPayment",
+                        // return_url = $@"https:/localhost:44319/Paypal/SuccessedPayment?price={price}",
+                        cancel_url = @"https://mybeautysalon.azurewebsites.net/Paypal/FailedPayment",
+                        return_url = $@"https://mybeautysalon.azurewebsites.net/Paypal/SuccessedPayment?price={price}",
                     },
                 };
 

@@ -1,4 +1,4 @@
-# BeautySalon
+# BeautySalon :nail_care::lips:
 BeautySalon is my defense project for ASP.NET Core course, part of the C# Web Module at Software University, placed in Sofia, Bulgaria.
 
 ## :memo: Description

@@ -160,7 +160,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 ![QuestionAnswerViewModel](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/questionAnswerView_cbcspu.png)
 
 
-## Credits
+## :handshake: Credits
 
 - [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-Core-Template) originally developed by:
    * [Nikolay Kostov](https://github.com/NikolayIT)

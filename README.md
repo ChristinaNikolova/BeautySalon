@@ -146,7 +146,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
  - Repository Pattern
 
 
-## Screen Shoots
+## :framed_picture: Screen Shoots
 
 ![Home Page](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/HomePageLoggedUser_sqzud3.png)
 ![Quiz](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTest_zctknt.png)

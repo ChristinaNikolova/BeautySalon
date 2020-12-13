@@ -142,8 +142,9 @@
 
         public async Task<IEnumerable<string>> GetFreeHoursAsync(string selectedDate, string selectedStylistId)
         {
-            var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
+            // var selectedDateAsDateTime = DateTime.ParseExact(selectedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             var takenHours = await this.appointmentsRepository
                 .All()
                 .Where(a => a.DateTime.Date == selectedDateAsDateTime.Date

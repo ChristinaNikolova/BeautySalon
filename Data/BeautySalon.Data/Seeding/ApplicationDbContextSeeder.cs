@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
 
     using BeautySalon.Data.Seeding.CustomSeeders;
-    using BeautySalon.Data.Seeding.Dtos;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
 
@@ -24,24 +23,24 @@
             }
 
             var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(typeof(ApplicationDbContextSeeder));
-
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
-                              new BrandSeeder(),
-                              new CategorySeeder(),
-                              new JobTypeSeeder(),
-                              new SkinTypeSeeder(),
-                              new SkinProblemSeeder(),
-                              new ProductSeeder(),
-                              new ProcedureSeeder(),
-                              new StylistSeeder(),
-                              new UsersSeeder(),
-                              new UsersToRolesSeeder(),
-                              new QuizQuestionAnswerSeeder(),
-                              new ArticleSeeder(),
-                              new TypeCardSeeder(),
+
+                              // new BrandSeeder(),
+                              // new CategorySeeder(),
+                              // new JobTypeSeeder(),
+                              // new SkinTypeSeeder(),
+                              // new SkinProblemSeeder(),
+                              // new ProductSeeder(),
+                              // new ProcedureSeeder(),
+                              // new StylistSeeder(),
+                              // new UsersSeeder(),
+                              // new UsersToRolesSeeder(),
+                              // new QuizQuestionAnswerSeeder(),
+                              // new ArticleSeeder(),
+                              // new TypeCardSeeder(),
                           };
 
             foreach (var seeder in seeders)

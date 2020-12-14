@@ -275,7 +275,7 @@
 
             await this.PrepareAppointmentsAsync(service);
 
-            var selectedDate = DateTime.UtcNow.ToString("dd'/'MM'/'yyyy");
+            var selectedDate = DateTime.UtcNow.ToString("MM'/'dd'/'yyyy");
             var result = await
                 service.GetFreeHoursAsync(selectedDate, this.stylist.Id);
 

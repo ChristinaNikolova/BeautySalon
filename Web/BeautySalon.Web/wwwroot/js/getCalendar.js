@@ -32,8 +32,8 @@
                 initialDate: new Date(),
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
-                selectMirror: true,
-                editable: true,
+                //selectMirror: true,
+                //editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
                 hiddenDays: [0],
                 events: events,

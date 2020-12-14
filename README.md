@@ -1,10 +1,12 @@
-# BeautySalon
+# :nail_care::lipstick: BeautySalon 
 BeautySalon is my defense project for ASP.NET Core course, part of the C# Web Module at Software University, placed in Sofia, Bulgaria.
 
-## Description
+## :memo: Description
 BeautySalon is a web application, that can be used to present particular beauty salon.
 
-#### Users futures: 
+###### :trophy: Link: https://mybeautysalon.azurewebsites.net/
+
+#### :white_check_mark: Users futures: 
 
     - register as regular user, login and logout. 
     - option to register and login with Facebook or Google+. 
@@ -36,7 +38,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * all their favourite articles and products.
       * information about their subscription card and card's statistics. 
    
-#### Stylists futures: 
+#### :white_check_mark: Stylists futures: 
 
     - all user's futures.
     - can send answers to client's questions.
@@ -48,7 +50,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * can create article, edit and delete their own articles. 
       * has mail box with client's questions and their answers to them.
    
-#### Admin futures: 
+#### :white_check_mark: Admin futures: 
 
     - all user's futures.
     - chat with clients.
@@ -63,13 +65,13 @@ BeautySalon is a web application, that can be used to present particular beauty 
       * see all active and expired subscription cards and their information. 
       * see HangFire Dashboard.
 	   
-## Test accounts:
+## :heavy_exclamation_mark: Test accounts:
 
 #### Admin: username: admin / password: 123456
 
 #### Stylist: username: Nicole.Devis / password: 123456
 
-## Build with
+## :hammer_and_pick: Build with
 
  - .NET Core 5.0
 
@@ -146,7 +148,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
  - Repository Pattern
 
 
-## Screen Shoots
+## :framed_picture: Screen Shoots
 
 ![Home Page](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/HomePageLoggedUser_sqzud3.png)
 ![Quiz](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/SkinQuizTest_zctknt.png)
@@ -158,7 +160,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
 ![QuestionAnswerViewModel](https://res.cloudinary.com/dieu4mste/image/upload/v1607070125/questionAnswerView_cbcspu.png)
 
 
-## Credits
+## :handshake: Credits
 
 - [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-Core-Template) originally developed by:
    * [Nikolay Kostov](https://github.com/NikolayIT)

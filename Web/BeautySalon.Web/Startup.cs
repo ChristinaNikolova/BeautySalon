@@ -107,6 +107,9 @@
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Add ApplicationInsights
+            services.AddApplicationInsightsTelemetry();
+
             services.AddSingleton(this.configuration);
 
             // Data repositories

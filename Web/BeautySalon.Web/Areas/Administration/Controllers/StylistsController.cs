@@ -130,12 +130,10 @@
 
             var isSuccess = await this.stylistsService.AddProcedureToStylistAsync(input.Id, procedureId);
 
-            if (!isSuccess)
+            if (isSuccess)
             {
-                return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
+                this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
             }
-
-            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
 
             return this.RedirectToAction(nameof(this.ManageProcedures), new { input.Id });
         }

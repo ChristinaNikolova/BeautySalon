@@ -4,7 +4,6 @@
 
     public class ProcedureSmartSeachInputModel
     {
-        //test!!!!!!!!!!!!
         [Required]
         public string ClientSkinTypeId { get; set; }
 

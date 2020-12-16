@@ -138,12 +138,10 @@
 
             var isSuccess = await this.proceduresService.AddProductToProcedureAsync(input.Id, productId);
 
-            if (!isSuccess)
+            if (isSuccess)
             {
-                return this.RedirectToAction(nameof(this.ManageProducts), new { input.Id });
+                this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
             }
-
-            this.TempData["InfoMessage"] = GlobalMessages.SuccessCreateMessage;
 
             return this.RedirectToAction(nameof(this.ManageProducts), new { input.Id });
         }

@@ -6,7 +6,6 @@
         let statistic = document.getElementById("statistic");
 
         if (statistic.style.display === "block") {
-            console.log("in");
             statistic.style.display = "none"
             statisticButton.innerText = "Show Statistic";
         } else {

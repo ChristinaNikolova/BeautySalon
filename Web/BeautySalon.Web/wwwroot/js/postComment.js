@@ -16,7 +16,6 @@
     postComment.addEventListener("click", comment);
 
     function comment(event) {
-        console.log(event);
         event.preventDefault();
         let content = document.getElementById("content").value;
         let articleId = document.getElementById("articleId").innerText;

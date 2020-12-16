@@ -4,7 +4,6 @@
 
     public class SendChatMessageInputModel
     {
-        //test!!!!!!!!
         [Required]
         public string ChatMessage { get; set; }
 

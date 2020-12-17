@@ -149,6 +149,11 @@
         [HttpPost]
         public async Task<ActionResult<ManageProcedureProductsViewModel>> DeleteProcedureProduct([FromBody] DeleteProductProcedureInputModel input)
         {
+            if (string.IsNullOrWhiteSpace(input.ProcedureId) || string.IsNullOrWhiteSpace(input.ProductId))
+            {
+                return this.RedirectToAction(nameof(this.ManageProducts), input.ProcedureId);
+            }
+
             await this.proceduresService.RemoveProductAsync(input.ProductId, input.ProcedureId);
 
             var procedureProducts = await this.proceduresService

@@ -32,6 +32,11 @@
         [HttpPost]
         public async Task<ActionResult<LikeProductViewModel>> Like([FromBody] string productId)
         {
+            if (string.IsNullOrWhiteSpace(productId))
+            {
+                return this.RedirectToAction(nameof(this.GetDetails), productId);
+            }
+
             var userId = this.userManager.GetUserId(this.User);
 
             var isAdded = await this.productsService.LikeProductAsync(productId, userId);

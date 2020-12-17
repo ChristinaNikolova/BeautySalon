@@ -141,6 +141,11 @@
         [HttpPost]
         public async Task<ActionResult<ManageStylistProceduresViewModel>> DeleteStylistProcedure([FromBody] DeleteProcedureStylistInputModel input)
         {
+            if (string.IsNullOrWhiteSpace(input.ProcedureId) || string.IsNullOrWhiteSpace(input.StylistId))
+            {
+                return this.RedirectToAction(nameof(this.ManageProcedures), input.StylistId);
+            }
+
             await this.stylistsService.RemoveProcedureAsync(input.StylistId, input.ProcedureId);
 
             var stylistProcedures = await this.stylistsService.GetStylistDetailsAsync<ManageStylistProceduresViewModel>(input.StylistId);

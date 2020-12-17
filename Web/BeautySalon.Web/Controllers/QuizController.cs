@@ -58,6 +58,11 @@
         [HttpPost]
         public async Task<ActionResult<ResultViewModel>> Make([FromBody] AnswerQuizInputModel input)
         {
+            if (input.Answers == null || string.IsNullOrWhiteSpace(input.LastAnswer))
+            {
+                return this.RedirectToAction(nameof(this.Make));
+            }
+
             var result = string.Join(" ", input.Answers);
 
             var inputML = new SkinTypeModelInput()

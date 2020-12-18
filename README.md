@@ -146,6 +146,8 @@ BeautySalon is a web application, that can be used to present particular beauty 
  - Dependency Injection
 
  - Repository Pattern
+ 
+ - Microsoft Azure
 
 
 ## :framed_picture: Screen Shoots

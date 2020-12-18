@@ -10,7 +10,7 @@
         public IsDateBeforeTodayAttribute()
         {
             this.currentDate = DateTime.UtcNow;
-            this.ErrorMessage = $"Date must be greater than {this.currentDate.ToString("dd/MM/yyyy")}!";
+            this.ErrorMessage = $"Date must be greater than {this.currentDate:dd/MM/yyyy}!";
         }
 
         public override bool IsValid(object value)

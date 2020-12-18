@@ -74,6 +74,7 @@
 
     function loadProcedures(event) {
         clearData();
+
         if (categoryId === 'de40850e-10a5-4a36-a545-8477e2ea44e6' && clientSkinTypeId !== "") {
             document.getElementById("smart-search-message").style.display = "block";
         } else {

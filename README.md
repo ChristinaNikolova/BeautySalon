@@ -67,8 +67,6 @@ BeautySalon is a web application, that can be used to present particular beauty 
       
 ## :heavy_exclamation_mark: Test accounts:
 
-#### Admin: username: admin / password: 123456
-
 #### Stylist: username: Nicole.Devis / password: 123456
 
 ## :hammer_and_pick: Build with

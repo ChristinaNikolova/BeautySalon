@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.1" />
     <PackageReference Include="PayPal" Version="1.9.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>

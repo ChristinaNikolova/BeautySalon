@@ -138,6 +138,8 @@ BeautySalon is a web application, that can be used to present particular beauty 
  - FullCalendar.js
 
  - Moment.js
+ 
+ - Popper.js
 
  - Responsive Design
 

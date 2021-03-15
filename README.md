@@ -4,8 +4,6 @@ BeautySalon is my defense project for ASP.NET Core course, part of the C# Web Mo
 ## :memo: Description
 BeautySalon is a web application, that can be used to present particular beauty salon.
 
-###### :trophy: Link: https://mybeautysalon.azurewebsites.net/
-
 #### :white_check_mark: Users futures: 
 
     - register as regular user, login and logout. 

@@ -18,7 +18,7 @@ BeautySalon is a web application, that can be used to present particular beauty 
     - see all stylists, filter and order them by different criteria.
     - see stylist's detail information. 
     - send question to stylist. 
-    - see all procedures, filter and order them by diffErent criteria.
+    - see all procedures, filter and order them by different criteria.
     - see procedure's details page, see the products for the procedure and all the reviews for it. 
     - see product's details page. 
     - like particular products.  

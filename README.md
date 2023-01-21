@@ -69,6 +69,8 @@ BeautySalon is a web application, that can be used to present particular beauty 
 
 ## :hammer_and_pick: Build with
 
+ - CSharp
+ 
  - .NET Core 5.0
 
  - ASP.NET CORE 5.0 MVC

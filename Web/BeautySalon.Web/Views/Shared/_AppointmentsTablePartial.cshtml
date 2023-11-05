@@ -1,0 +1,78 @@
+﻿@using BeautySalon.Web.ViewModels.Appointments.ViewModels;
+@model IEnumerable<BaseAppoitmentViewModel>;
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Hour</th>
+            <th scope="col">Procedure</th>
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <th scope="col">Client</th>
+                <th scope="col">Stylist</th>
+            }
+            else if (this.User.IsInRole(GlobalConstants.StylistRoleName))
+            {
+                <th scope="col">Client</th>
+            }
+            else
+            {
+                <th scope="col">Stylist</th>
+            }
+            <th scope="col">Status</th>
+            <th scope="col">Review</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            var currentAppoitment = Model.ToList()[i];
+
+            <tr>
+                <th scope="row">@(i+1)</th>
+                <td>@currentAppoitment.FormattedDate</td>
+                <td>@currentAppoitment.StartTime</td>
+                <td>@currentAppoitment.ShortProcedureName</td>
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <td>@currentAppoitment.ClientFullName</td>
+                    <td>@currentAppoitment.StylistFullName</td>
+                }
+                else if (this.User.IsInRole(GlobalConstants.StylistRoleName))
+                {
+                    <td>@currentAppoitment.ClientFullName</td>
+                }
+                else
+                {
+                    <td>@currentAppoitment.StylistFullName</td>
+                }
+
+                @if (@currentAppoitment.Status.ToString() == GlobalConstants.StatusApproved
+                   || @currentAppoitment.Status.ToString() == GlobalConstants.StatusDone)
+                {
+                    <td class="alert-success">@currentAppoitment.Status</td>
+                }
+                else if (@currentAppoitment.Status.ToString() == GlobalConstants.StatusProcessing)
+                {
+                    <td class="alert-warning">@currentAppoitment.Status</td>
+                }
+                else
+                {
+                    <td class="alert-danger">@currentAppoitment.Status</td>
+                }
+                @if (currentAppoitment.IsReview)
+                {
+                    <td class="alert-success">@currentAppoitment.IsReview</td>
+                }
+                else
+                {
+                    <td class="alert-danger">@currentAppoitment.IsReview</td>
+                }
+                <td><a asp-area="" asp-controller="Appointments" asp-action="GetInfoCurrentAppointment" asp-route-id="@currentAppoitment.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

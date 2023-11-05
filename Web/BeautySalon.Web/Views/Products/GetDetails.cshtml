@@ -1,0 +1,75 @@
+﻿@using BeautySalon.Web.ViewModels.Products.ViewModels;
+@model DetailsProductViewModel;
+
+@{
+    ViewData["Title"] = "Product's Details";
+}
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2">
+                        <a asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@Model.CategoryId">Procedures</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="custom-margin-identity">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate text-center mb-lg-4">
+                    <h4 class="product-name theme-color-gold">@Model.Name</h4>
+                    <div id="productId" hidden>@Model.Id</div>
+                </div>
+                <div class="offer-deal text-center px-2 px-lg-5">
+                    <a href="@Model.Picture" class="gallery image-popup img d-flex align-items-center" style="background-image: url(@Model.Picture);"></a>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <p><span class="flaticon-lotus theme-color-gold"> Product's Description: </span>@Model.Description</p>
+                <span class="flaticon-lotus theme-color-gold"> Category: </span><a class="theme-color-gold">@Model.CategoryName</a>
+                <br />
+                <span class="flaticon-lotus theme-color-gold"> Brand: </span><a id="brand-name" class="theme-color-gold">@Model.BrandName</a>
+                <p id="brand-description" style="display:none">
+                    <span class="flaticon-lotus theme-color-gold"> Brand's Description: </span>@Model.BrandDescription
+                </p>
+                <hr />
+                <div class="d-inline">
+                    <i class="fas fa-hashtag theme-color-gold"><span class="tag-cloud-link d-inline thin">@Model.CategoryName</span></i>
+                    <form id="likes" class="tag-cloud-link d-inline" method="post"></form>
+                    <span id="likeProduct" class="tag-cloud-link d-inline theme-color-gold thin-heart">
+                        @if (Model.IsFavourite)
+                        {
+                            <a>
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        }
+                        else
+                        {
+                            <a>
+                                <i class="far fa-heart"></i>
+                            </a>
+                        }
+                    </span>
+                    <span id="likesCount" class="tag-cloud-link d-inline thin">@Model.LikesCount Likes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<vc:procedures-use-product product-id="@Model.Id"></vc:procedures-use-product>
+
+@section Scripts {
+    <script src="~/js/showProductsBrandDescription.js" asp-append-version="true"></script>
+    <script src="~/js/likeProduct.js" asp-append-version="true"></script>
+
+    <script>showProductsBrandDescription();</script>
+    <script>likeProduct();</script>
+}

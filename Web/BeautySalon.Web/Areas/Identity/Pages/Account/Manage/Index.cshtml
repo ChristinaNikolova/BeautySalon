@@ -1,0 +1,69 @@
+﻿@page
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+@model IndexModel
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Address"></label>
+                <input asp-for="Input.Address" class="form-control" />
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-check">
+                <label asp-for="Input.Gender"></label><br />
+                <input asp-for="Input.Gender" type="radio" value="Male" /> Male<br />
+                <input asp-for="Input.Gender" type="radio" value="Female" /> Female<br />
+                <span asp-validation-for="Input.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.NewPicture">New Profile Picture</label>
+                <input type="file" asp-for="Input.NewPicture" />
+                <span asp-validation-for="Input.NewPicture" class="text-danger"></span>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

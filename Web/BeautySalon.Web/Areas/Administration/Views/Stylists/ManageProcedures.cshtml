@@ -1,0 +1,80 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Stylists.ViewModels;
+@model ManageStylistProceduresViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
+
+@{
+    ViewData["Title"] = "Manage Procedures";
+}
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a asp-area="Administration" asp-controller="Stylists" asp-action="Update" asp-route-id="@Model.Id">Stylist</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <partial name="_InfoMessagePartial" />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministrationPartial" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Manage Procedures</h2>
+            <h3 class="text-center theme-color-gold">@Model.FirstName @Model.LastName</h3>
+            <div id="stylist-id" hidden>@Model.Id</div>
+            <hr />
+            <form asp-area="Administration" asp-controller="Stylists" asp-action="AddProcedure" method="post">
+                <input asp-for="@Model.Id" type="hidden" />
+                <div class="px-3 pb-0 pt-4">
+                    <div class="input-group">
+                        <input asp-for="@Model.ProcedureName" class="form-control col-8 ml-2 p-2" placeholder="Procedure Name">
+                        <input type="submit" value="Add Procedure" class="btn btn-primary py-3 px-5">
+                    </div>
+                </div>
+                <span asp-validation-for="@Model.ProcedureName" class="text-danger ml-5"></span>
+            </form>
+            <form id="form-delete-procedure" method="post"></form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-stylist-procedures">
+                    @for (var i = 0; i < Model.Procedures.Count(); i++)
+                    {
+                        var currentProcedure = Model.Procedures.ToList()[i];
+
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td><a id="@currentProcedure.Id">@currentProcedure.Name</a></td>
+                            <td><a class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 delete-button">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
+    <script src="~/js/deleteStylistProcedure.js" asp-append-version="true"></script>
+    <script>deleteStylistProcedure();</script>
+}

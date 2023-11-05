@@ -1,0 +1,42 @@
+﻿[
+  {
+    "Name": "VERSED",
+    "Description": "Versed is proof that when it comes to skincare, better-for-you doesn’t have to be expensive. Their cruelty-free, vegan, and clean ingredients have become beauty-editor favorites—namely the Hydration Station Booster with Hyaluronic Acid.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1600489183/nk4nqemar7x7o9bnl3qk_aka4nz.png"
+  },
+  {
+    "Name": "CLINIQUE",
+    "Description": "Perhaps the only moisturizer ubiquitous enough to be recognized by it's shorthand nickname DDML, Clinique's pale yellow cream is touted as one of the best skincare products of all time. The brand prides itself in not just creating effective and accessible products for all skin types, but also in  making sure those products are easy to use as part of an entire skin-perfecting routine.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1600489591/a2fbe58d411a870dc80dd51e0080274d_hypvjh.png"
+  },
+  {
+    "Name": "ESTĒE LAUDER",
+    "Description": "Estēe Lauder solidified itself as a skincare juggernaut when it released the Advanced Night Repair formula (then just called Night Repair) way back in 1982—and has since become a staple in our makeup bags. In fact, it's credited as the first-ever serum, the first product to use skin-plumping hyaluronic acid, and the first product to recognize and repair the link between DNA-damaged skin and aging skin.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1585980829/Est%C3%A9e%20Lauder.png"
+  },
+  {
+    "Name": "CHANEL",
+    "Description": "Chanel introduced its anti-aging hero called Sublimage back in 2006. Like all of Chanel's skincare products, it's centered around an ingredient the R&D scientists discovered and use exclusively: vanilla planifolia PFA. Die-hard fans can attest to the fact that the claims of smoother, brighter, and more supple skin are undoubtedly true.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1585980702/Chanel.jpg"
+  },
+  {
+    "Name": "DIOR",
+    "Description": "It's no surprise that one of our favorite fashion, makeup, and perfume companies also makes some of our favorite skincare products. This primer-serum hybrid is the best-selling skin product from the entire brand. Layered under foundation as the last step in your skin routine, Dream Skin blurs fine lines, mattifies, and Facetunes skin right away and then continues to work harder over time.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1585980413/Dior.png"
+  },
+  {
+    "Name": "SHISEIDO",
+    "Description": "There is no Japanese skincare brand more well-known and trusted than Shiseido. With over 140 years creating skincare, there are hundreds of products that have become hits with beauty gurus all over the world. It's hard to choose a favorite, but if you're going to splurge on just one product from the brand, try the Pure Retinol Express Smoothing Eye Masks.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1585980773/Shiseido.png"
+  },
+  {
+    "Name": "LANCÔME",
+    "Description": "Though Lancôme's messaging suggests an effortless approach to Parisian beauty, we all know that looking naturally ageless takes some serious commitment to a skincare routine. Though their anti-aging serums are some of the best-selling in the world, we also love this two-phase nightly peel that helps skin get desensitized to the otherwise irritating exfoliators.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1600489859/Lancome_logo_cgiqem.jpg"
+  },
+  {
+    "Name": "SKINCEUTICALS",
+    "Description": "One of the leaders in antioxidant-based skincare, the brand’s science-first philosophy makes it one of the most trusted brands by dermatologists. Their serums are potent (and pricey), but ultra-effective.",
+    "Logo": "https://res.cloudinary.com/dieu4mste/image/upload/v1600489947/skin-ceuticals-logo_iy5mp0.png"
+  }
+]

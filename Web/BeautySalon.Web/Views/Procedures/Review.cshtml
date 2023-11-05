@@ -1,0 +1,87 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.InputModels;
+@model ReviewProcedureInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Procedure's Review";
+}
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a asp-area="" asp-controller="Appointments" asp-action="GetUsersHistory">Appointments history</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+    <div class="col-md-12 ftco-animate">
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-4 ftco-animate bg-light">
+                <h2 class="text-center">Procedure's Info</h2>
+                <div>
+                    <p><span class="color-black">Procedure Name:</span><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@Model.Appointment.ProcedureId"> @Model.Appointment.ProcedureName</a></p>
+                </div>
+                <div>
+                    <p><span class="color-black">Stylist Name:</span><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@Model.Appointment.StylistId"> @Model.Appointment.StylistFullName</a></p>
+                </div>
+                <div>
+                    <p><span class="color-black">Date:</span> @Model.Appointment.FormattedDateTime</p>
+                </div>
+                <div>
+                    <p><span class="color-black">Time:</span> @Model.Appointment.StartTime</p>
+                </div>
+            </div>
+            <div class="col-md-7 ftco-animate">
+                <h2 class="text-center">Review</h2>
+                <hr />
+                @if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName)
+               && !this.User.IsInRole(GlobalConstants.StylistRoleName))
+                {
+                    <form asp-area="" asp-controller="Procedures" asp-action="Review" method="post" class="contact-form">
+                        <div class="form-group" hidden>
+                            <input asp-for="@Model.AppoitmentId" type="text" class="form-control" value="@Model.Appointment.Id">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-black" asp-for="@Model.Content"></label>
+                            <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Review"></textarea>
+                            <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Points" class="color-black"></label>
+                            <select asp-for="@Model.Points" class="form-control">
+                                <option selected>Please select points</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                            <span asp-validation-for="@Model.Points" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Send Review" class="btn btn-primary py-3 px-5 offset-4">
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

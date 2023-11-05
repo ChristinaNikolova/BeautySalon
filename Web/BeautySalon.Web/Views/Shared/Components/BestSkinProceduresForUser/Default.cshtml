@@ -1,0 +1,10 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model AllProcedurePrimaryViewModel;
+
+
+<partial name="_ListOfProceduresPartial" model="@Model.Procedures" />
+
+@if (Model.Procedures.ToList().Count() == 0)
+{
+    <p>Please make our Skin <a asp-area="" asp-controller="Quiz" asp-action="Make">Quiz</a> to find out, which procedures are best for you!</p>
+}

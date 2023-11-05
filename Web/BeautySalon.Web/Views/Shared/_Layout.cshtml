@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/favicon.png" rel="icon" type="image/png">
+    <title>@GlobalConstants.SystemName</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prata&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/animate.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/magnific-popup.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/aos.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/ionicons.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/flaticon.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/icomoon.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+
+    <link href='~/lib/fullcalender/main.css' rel='stylesheet' asp-append-version="true" />
+    <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
+    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span class="flaticon-lotus ml-2"></span>@GlobalConstants.SystemName</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Salon</a>
+                            <div id="div-dropdown-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Stylists" asp-action="GetAll">Stylists</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Cards" asp-action="GetAllTypeCards">Cards</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Articles" asp-action="GetAll">Blog</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Appointments" asp-action="Book">Appointments</a></li>
+                            <li class="nav-item active"><a class="nav-link" asp-area="" asp-controller="Quiz" asp-action="Make">Skin Quiz</a></li>
+                            <li class="nav-item active"><a class="nav-link" asp-area="" asp-controller="Chats" asp-action="Index">Chat Room</a></li>
+                            <li class="nav-item"><a asp-area="" asp-controller="Users" asp-action="Index" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">My Profile</a></li>
+                        }
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @this.RenderBody()
+        </main>
+    </div>
+    <footer class="ftco-footer ftco-section">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2 theme-color-gold">Taking care of all of your needs!</h2>
+                        <ul class="list-unstyled">
+                            <li class="theme-color-gold small"><i class="fas fa-heart theme-color-gold"></i> Face Care </li>
+                            <li class="theme-color-gold small"><i class="fas fa-heart theme-color-gold"></i> Hair Care </li>
+                            <li class="theme-color-gold small"><i class="fas fa-heart theme-color-gold"></i> Makeup </li>
+                            <li class="theme-color-gold small"><i class="fas fa-heart theme-color-gold"></i> Nails Care </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">@GlobalConstants.SystemName</h2>
+                        <ul class="list-unstyled">
+                            <li><a asp-area="" asp-controller="Stylists" asp-action="GetAll">Stylists</a></li>
+                            <li><a asp-area="" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a></li>
+                            <li><a asp-area="" asp-controller="Appointments" asp-action="Book">Appointments</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">For You <i class="fas fa-heart theme-color-gold"></i></h2>
+                        <ul class="list-unstyled">
+                            <li><a asp-area="" asp-controller="Quiz" asp-action="Make">Skin Quiz</a></li>
+                            <li><a asp-area="" asp-controller="Articles" asp-action="GetAll">Blog</a></li>
+                            <li><a asp-area="" asp-controller="Chats" asp-action="Index">Chat</a></li>
+                            <li><a asp-area="" asp-controller="Users" asp-action="Index">Your Profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Have a question?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">19 Kopenhagener str, 18107 Rostock, MV, Germany</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 111 1111 111</span></a></li>
+                                <li><a asp-area="" asp-controller="Chats" asp-action="Index"><span class="icon icon-envelope"></span><span class="text">@GlobalConstants.SystemName</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p class="mb-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="container">
+                            @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="~/js/libraries/popper.min.js" asp-append-version="true"></script>
+
+    <script src="~/lib/qrcode/qrcode.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/signalr/dist/browser/signalr.min.js" asp-append-version="true"></script>
+
+    <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/libraries/jquery-migrate-3.0.1.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.easing.1.3.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.waypoints.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.stellar.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/owl.carousel.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.magnific-popup.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/aos.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.animateNumber.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/bootstrap-datepicker.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/jquery.timepicker.min.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/scrollax.min.js" asp-append-version="true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/js/libraries/google-map.js" asp-append-version="true"></script>
+    <script src="~/js/libraries/main.js" asp-append-version="true"></script>
+
+    <script src='~/lib/fullcalender/main.js' asp-append-version="true"></script>
+
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+
+    @this.RenderSection("Scripts", required: false)
+</body>
+</html>

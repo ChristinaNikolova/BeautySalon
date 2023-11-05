@@ -1,0 +1,31 @@
+﻿@using BeautySalon.Web.ViewModels.Appointments.ViewModels;
+@model AllBaseAppoitmentViewModel;
+
+@{
+    ViewData["Title"] = "Appointment's History";
+}
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Dashboard</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministrationPartial" />
+        </div>
+        <div class="col-md-9">
+            <h2 class="offset-md-4">History</h2>
+            <partial name="_AppointmentsTablePartial" model="@Model.Appoitments" />
+        </div>
+    </div>
+</section>

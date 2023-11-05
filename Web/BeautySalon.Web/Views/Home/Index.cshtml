@@ -1,0 +1,47 @@
+﻿@{
+    this.ViewData["Title"] = "Home Page"; 
+}
+
+<section class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-10 ftco-animate text-center">
+                <div class="icon">
+                    <span class="flaticon-lotus"></span>
+                </div>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <h1>Welcome, @(this.User.Identity.Name)!</h1>
+                }
+                else
+                {
+                    <h1>Welcome to Beauty Salon!</h1>
+                }
+
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">
+                        Administration Area
+                    </a>
+                }
+                else if (this.User.IsInRole(GlobalConstants.StylistRoleName))
+                {
+                    <a class="btn btn-primary p-3 px-5 py-4 mr-md-2" asp-area="Stylists" asp-controller="Dashboard" asp-action="Index" title="Stylists">
+                        Stylist's Area
+                    </a>
+                }
+                <div class="row justify-content-center">
+                    <div class="col-md-7 mb-3">
+                        <p>Because you need time for yourself! Relax... and enjoy the treat!</p>
+                        <p>Have a question? Go to the  <a asp-area="" asp-controller="Chats" asp-action="Index" class="btn btn-primary">Chat Room</a>!</p>
+                    </div>
+                </div>
+                <p>
+                    <a asp-controller="Appointments" asp-action="Book" class="btn btn-primary p-3 px-5 py-4 mr-md-2">Book an Appointment!</a>
+                    <a asp-controller="Quiz" asp-action="Make" class="btn btn-outline-primary p-3 px-5 py-4 ml-md-2">Do Skin Quiz</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+﻿@using BeautySalon.Web.ViewModels.Users.ViewModels;
+@model UsersSkinTypeInfoViewModel;
+
+@{
+    ViewData["Title"] = "User's Skin Info";
+}
+
+<partial name="_UserTitlePageSection" />
+<partial name="_InfoMessagePartial" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-9">
+            <h2 class="text-center">My Skin Info</h2>
+            <hr />
+            <div class="row col-md-12">
+                <vc:users-skin-type-info user-id="@Model.Id"></vc:users-skin-type-info>
+                <div class="col-md-7 best-procedure">
+                    <h3>Best Procedure for me: </h3>
+                    <hr />
+                    <vc:best-skin-procedures-for-user is-skin-sensitive="@Model.IsSkinSensitive" skin-type-id="@Model.SkinTypeId"></vc:best-skin-procedures-for-user>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

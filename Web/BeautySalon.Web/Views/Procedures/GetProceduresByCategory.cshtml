@@ -1,0 +1,29 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model AllProceduresByCategoryViewModel;
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <a class="subheading" asp-area="" asp-controller="Procedures" asp-action="ProceduresByCategories">Procedures</a>
+                <h2 class="mb-1 category-name">@Model.CategoryName</h2>
+                @if (Model.CategoryName == GlobalConstants.CategorySkinName)
+                {
+                    <vc:skin-type-option-bar has-to-add-second-criteria="true"></vc:skin-type-option-bar>
+                }
+            </div>
+        </div>
+        <div id="showByCategories">
+            <div class="row">
+                <partial name="_CurrentProcedurePartial" model="@Model.Procedures" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="_ProceduresPaginationPartial" model="@Model" />
+
+@section Scripts{
+    <script src="~/js/searchProcedures.js" asp-append-version="true"></script>
+    <script>searchProcedures();</script>
+}

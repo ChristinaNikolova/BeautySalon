@@ -1,0 +1,97 @@
+﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
+@model DetailsArticleViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Article";
+}
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2">
+                        <a asp-controller="Articles" asp-action="GetAll">Blog</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 ftco-animate">
+                <h2 class="mb-3 theme-color-gold">@Model.Title</h2>
+                <div id="articleId" hidden>@Model.Id</div>
+                <p>
+                    <img src="@Model.Picture" alt="article-picture" class="img-fluid">
+                </p>
+                <article>
+                    @Html.Raw(@Model.SanitizedContent)
+                </article>
+
+                <div class="mb-5 mt-5 d-inline">
+                    <div class="d-inline">
+                        <i class="fas fa-hashtag theme-color-gold"><span class="tag-cloud-link d-inline thin"> @Model.CategoryName</span></i>
+                        <i class="fas fa-comments theme-color-gold"><span class="tag-cloud-link d-inline thin"> @Model.CommentsCount</span></i>
+                        <i class="fas fa-calendar-alt theme-color-gold"><span class="tag-cloud-link d-inline thin">@Model.FormattedDate</span></i>
+                        <i class="fas fa-user-edit theme-color-gold"><span class="tag-cloud-link d-inline thin"> @Model.StylistFullName</span></i>
+                        <form id="likes" class="tag-cloud-link d-inline" method="post"></form>
+                        <span id="likeArticle" class="tag-cloud-link d-inline theme-color-gold thin-heart">
+                            @if (Model.IsFavourite)
+                            {
+                                <a>
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a>
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            }
+                        </span>
+                        <span id="likesCount" class="tag-cloud-link d-inline thin">@Model.LikesCount</span>
+                    </div>
+
+
+                    <div class="about-author d-flex">
+                        <div class="bio align-self-md-center mr-5">
+                            <img src="@Model.StylistPicture" alt="picty" class="img-fluid mb-4 author-pic">
+                        </div>
+                        <div class="desc align-self-md-center">
+                            <h3><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@Model.StylistId">@Model.StylistFullName</a></h3>
+                            <p class="small">@Model.StylistShortDescription</p>
+                        </div>
+                    </div>
+                    <partial name="_CommentArticlePartial" model="@Model.OrderedComments" />
+                </div>
+            </div>
+            <cache expires-after="@TimeSpan.FromMinutes(GlobalConstants.CacheMinutesRecentArticles)">
+                <vc:recent-articles-side-bar></vc:recent-articles-side-bar>
+            </cache>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/likeArticle.js" asp-append-version="true"></script>
+    <script src="~/js/postComment.js" asp-append-version="true"></script>
+
+    <script>likeArticle();</script>
+    <script>postComment();</script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

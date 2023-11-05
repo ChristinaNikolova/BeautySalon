@@ -1,0 +1,50 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Dashboard.ViewModels;
+@model DashboardViewModel;
+
+@{
+    ViewData["Title"] = "Dashboard - Administration";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministrationPartial" />
+        </div>
+        <div class="col-md-8">
+            @if (Model.IsNewChatMessage)
+            {
+                <div class="alert alert-warning text-center" role="alert"> <a id="alert-new-chat-message" asp-area="" asp-controller="Chats" asp-action="Index">You have new chat messages!</a></div>
+            }
+
+            <h2 class="text-center">Today's Appointments</h2>
+            <div class="offset-md-5"><a asp-area="Administration" asp-controller="Appointments" asp-action="GetHistory">History</a></div>
+            <hr />
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Stylist</th>
+                        <th scope="col">Procedure</th>
+                        <th scope="col">Start</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Appointments.ToList().Count; i++)
+                    {
+                        var appointment = Model.Appointments.ToList()[i];
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td>@appointment.ClientFullName</td>
+                            <td><a asp-area="" asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@appointment.StylistId">@appointment.StylistFullName</a></td>
+                            <td><a asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@appointment.ProcedureId">@appointment.ProcedureName</a></td>
+                            <td>@appointment.StartTime</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

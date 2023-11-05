@@ -1,0 +1,101 @@
+﻿@using BeautySalon.Web.ViewModels.Appoitments.InputModels;
+@model BookAppointmentInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<partial name="_TitlePageSection" />
+<section id="ParentContainer" class="ftco-section contact-section">
+    <div class="container">
+        <div class="row block-9">
+            <vc:users-skin-type-info user-id="@Model.Id"></vc:users-skin-type-info>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 ftco-animate">
+                <h2 class="mb-4">Book an Appointment</h2>
+                <form id="form" asp-controller="Appointments" asp-action="Book" method="post" class="contact-form">
+                    <div class="row theme-color-gold">
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.FirstName"></label>
+                            <input asp-for="@Model.FirstName" readonly type="text" class="form-control" />
+                            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.LastName"></label>
+                            <input asp-for="@Model.LastName" readonly type="text" class="form-control" />
+                            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.Email"></label>
+                            <input asp-for="@Model.Email" readonly type="text" class="form-control" />
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.PhoneNumber"></label>
+                            <input asp-for="@Model.PhoneNumber" readonly type="text" class="form-control" />
+                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label asp-for="@Model.CategoryId"></label>
+                            <select id="category" asp-for="@Model.CategoryId" class="form-control" asp-items="@Model.Categories">
+                                <option selected="selected">Please select beauty category</option>
+                            </select>
+                            <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                        </div>
+                        <div id="parent-stylist" class="col-md-12 form-group">
+                            <label asp-for="@Model.StylistId"></label>
+                            <select id="stylist" asp-for="@Model.StylistId" type="text" class="form-control">
+                            </select>
+                            <span asp-validation-for="@Model.StylistId" class="text-danger"></span>
+                        </div>
+
+                        <div id="smart-search-message" style="display:none">
+                            <span class="smart-search-text">Get procedures only for my skin type! </span><a id="smart-search-button" class="btn btn-primary d-inline px-2 py-2">Search</a>
+                        </div><span id="success-smart-search" class="theme-color-gold" style="display:none"> Success!</span>
+
+                        <div class="col-md-12 form-group">
+                            <label asp-for="@Model.ProcedureId"></label>
+                            <select id="procedure" asp-for="@Model.ProcedureId" type="text" class="form-control"></select>
+                            <span asp-validation-for="@Model.ProcedureId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.Date"></label>
+                            <input id="datepicker" asp-for="@Model.Date" type="text" class="form-control" value="" />
+                            <span asp-validation-for="@Model.Date" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="@Model.Time"></label>
+                            <select id="time" asp-for="@Model.Time" class="form-control">
+                            </select>
+                            <span asp-validation-for="@Model.Time" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label asp-for="@Model.Comment"></label>
+                            <textarea asp-for="@Model.Comment" cols="30" rows="10" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.Comment" class="text-danger"></span>
+                        </div>
+                        <div class="col-mn-6 form-group">
+                            <input id="submit" type="submit" value="Book an Appointment" class="btn btn-primary py-3 px-5">
+                            <input id="clear-appointment-search" value="Clear" class="btn btn-outline-primary py-3 px-5">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="~/js/book.js" asp-append-version="true"></script>
+    <script>book();</script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

@@ -1,0 +1,31 @@
+﻿@using BeautySalon.Web.ViewModels.Quiz.InputModels;
+@model QuizInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Skin Quiz";
+}
+
+<partial name="_TitlePageSection" />
+<form id="form-quiz" method="post"></form>
+<div class="comment-form-wrap pt-5">
+    <h2 id="make-quiz-heading" class="mb-5" align="center" style="display:block">Do the quiz</h2>
+    <div class="bg-light p-4">
+        <partial name="_QuizQuestionsPartial" model="Model.Quiz" />
+        <partial name="_SkinProblemsPartial" model="Model.SkinProblems" />
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/quiz.js" asp-append-version="true"></script>
+    <script>quiz();</script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

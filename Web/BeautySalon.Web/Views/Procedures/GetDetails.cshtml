@@ -1,0 +1,56 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model DetailsProcedureViewModel;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="ftco-section ftco-intro" style="background-image: url(/images/bg_3.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate">
+                    <a class="subheading" asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@Model.CategoryId">Procedures</a>
+                    <h3 class="mb-4">@Model.Name</h3>
+                </div>
+                <p class="ftco-animate"><strong>Description: </strong>@Model.Description</p>
+                <p class="ftco-animate"><strong>Category: </strong>@Model.CategoryName</p>
+                @if (Model.SkinTypeName != null)
+                {
+                    <div>
+                        <p class="ftco-animate show-more-info">
+                            <strong>Skin Type: </strong>@Model.SkinTypeToDisplay
+                        </p>
+                        <p class="show hidden">@Model.SkinTypeDescription</p>
+                    </div>
+                }
+                <p class="ftco-animate"><strong>Price: €</strong>@Model.Price</p>
+                <p class="ftco-animate"><strong>Rating: </strong>@(Model.FormattedRating)/5.00</p>
+                @if (Model.SkinProblems.Any())
+                {
+                    <h4 class="ftco-animate">Perfect for Fighting:</h4>
+                    <ul class="mt-5 do-list">
+                        @foreach (var skinProblem in Model.SkinProblems)
+                        {
+                            <li class="ftco-animate">
+                                <p class="show-more-info"><span class="ion-ios-checkmark-circle mr-3"></span>@skinProblem.Name</p>
+                                <p class="show hidden">@skinProblem.Description</p>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<vc:prodecure-products id="@Model.Id"></vc:prodecure-products>
+<vc:procedure-reviews id="@Model.Id"></vc:procedure-reviews>
+
+@section Scripts{
+    <script src="~/js/showSkinProblemsInfo.js" asp-append-version="true"></script>
+    <script src="~/js/showProcedureProducts.js" asp-append-version="true"></script>
+
+    <script>showSkinProblemsInfo();</script>
+    <script>showProcedureProducts();</script>
+}

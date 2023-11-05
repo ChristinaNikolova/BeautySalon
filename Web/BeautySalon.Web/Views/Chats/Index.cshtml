@@ -1,0 +1,39 @@
+﻿@using BeautySalon.Web.ViewModels.Chats.ViewModels;
+@model IndexViewModel;
+
+@{
+    ViewData["Title"] = "Chat room";
+}
+
+<partial name="_TitlePageSection" />
+
+@if (!this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+{
+    <a asp-area="" asp-controller="Chats" asp-action="StartChat" asp-route-id="@Model.AdminId" class="btn btn-primary p-1 px-3 py-2 mb-4 mt-4 offset-5">
+        Start chat with Admin!
+    </a>
+}
+else
+{<h3 class="text-center">Waiting for answer: </h3>
+    <div class="container">
+        <div class="row no-gutters">
+            @foreach (var client in Model.Users)
+            {
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="offer-deal text-center px-2 px-lg-5">
+                        <div class="img" style="background-image: url(@client.SenderPicture);"></div>
+                        <div class="text mt-4">
+                            <h5 class="mb-4">@client.SenderUsername</h5>
+                            <p><a asp-area="" asp-controller="Chats" asp-action="StartChat" asp-route-id="@client.SenderId" class="btn btn-white px-4 py-3"> Chat with @client.SenderUsername<span class="ion-ios-arrow-round-forward"></span></a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.Users.ToList().Count() == 0)
+            {
+                <p class="offset-5 color-black">There aren't new chat messages!</p>
+            }
+        </div>
+    </div>
+}

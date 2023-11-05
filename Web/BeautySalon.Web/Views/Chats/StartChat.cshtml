@@ -1,0 +1,89 @@
+﻿@using BeautySalon.Web.ViewModels.Chats.ViewModels;
+@model StartChatViewModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+@{
+    ViewData["Title"] = "Chat room";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+                <partial name="~/Areas/Administration/Views/Shared/_NavBarAdministrationPartial.cshtml" />
+            }
+            else
+            {
+                <partial name="_NavBarUserPartial" />
+            }
+        </div>
+        <div class="col-md-9">
+            <div id="test" class="container">
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <h5 class="text-center">Chat with @Model.ReceiverUsername</h5>
+                }
+                else
+                {
+                    <h5 class="text-center">Chat with Admin</h5>
+                }
+
+                <div id="sender-username" class="hidden">@Model.SenderUsername</div>
+                <div id="receiver-username" class="hidden">@Model.ReceiverUsername</div>
+                <div id="group-name" class="hidden">@Model.GroupName</div>
+                <div id="messagesList" style="font-size: 24px;">
+                    @if (Model.ChatMessages.ToList().Count() != 0)
+                    {
+                        foreach (var message in Model.ChatMessages)
+                        {
+                            if (Model.CurrentUserUsername == message.SenderUsername)
+                            {
+                                <div class="media">
+                                    <div class="media-body ml-2">
+                                        <time class="small theme-color-gold">@message.FormattedDate</time>
+                                        <h6 class="mt-0 mb-1">@message.SenderUsername says:</h6><p class="small mb-2 color-black"> @message.Content</p>
+                                    </div><img id="small-pic" src="@message.SenderPicture" class="mr-2 img-fluid" alt="user-pic">
+                                </div>
+                                <hr />
+                            }
+                            else
+                            {
+                                <div class="media">
+                                    <img id="small-pic" src="@message.SenderPicture" class="img-fluid mr-2" alt="user-pic">
+                                    <div class="media-body text-right mr-2">
+                                        <time class="small theme-color-gold">@message.FormattedDate</time>
+                                        <h6 class="mt-0">@message.SenderUsername says:</h6>
+                                        <p class="small color-black">@message.Content</p>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+                        }
+                    }
+                </div>
+                <hr style="height: 5px;" class="bg-primary" />
+                <div class="row">
+                    <div id="message-holder" class="mt-3 d-flex justify-content-start col-md-10">
+                        <textarea id="messageInput" type="text" cols="90" rows="2"  placeholder="Message..."></textarea>
+                    </div>
+                    <button id="sendButton" class="m-4  py-0 btn btn-primary btn-sm col-md-1">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+    <script>chat();</script>
+}

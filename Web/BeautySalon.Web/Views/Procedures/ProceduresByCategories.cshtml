@@ -1,0 +1,24 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model ProceduresByCategoriesViewModel;
+
+@{
+    ViewData["Title"] = "Our Procedures Categories";
+}
+
+<section class="ftco-section ftco-intro custom-margin-identity" style="background-image: url(/images/intro.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6">
+                <div class="heading-section ftco-animate">
+                    <h2 class="mb-4">@ViewData["Title"]</h2>
+                </div>
+                <ul class="mt-5 do-list">
+                    @foreach (var category in Model.ProceduresByCategories)
+                    {
+                        <li class="ftco-animate"><a asp-area="" asp-controller="Procedures" asp-action="GetProceduresByCategory" asp-route-id="@category.Id"><span class="ion-ios-checkmark-circle mr-3"></span>@category.CategoryNameToDisplay</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

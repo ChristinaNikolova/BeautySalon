@@ -1,0 +1,24 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model IEnumerable<ProcedureViewModel>;
+
+@foreach (var procedure in Model)
+{
+    <div class="col-md-4 ftco-animate">
+        <div class="block-7">
+            <div class="text-center">
+                <h3 class="heading-2 my-4 heading-color">@procedure.Name</h3>
+                <span class="price ">€@procedure.FormattedPrice</span>
+                <ul class="pricing-text mb-5">
+                    <li><strong>Category:</strong> @procedure.CategoryName</li>
+                    @if (procedure.SkinTypeName != null)
+                    {
+                        <li><strong>Skin Type:</strong> @procedure.SkinTypeToDisplay</li>
+                    }
+                    <li><strong>Rating: </strong>@procedure.FormattedRating</li>
+                </ul>
+
+                <a class="btn btn-primary d-block px-2 py-4" asp-area="" asp-controller="Procedures" asp-action="GetDetails" asp-route-id="@procedure.Id">Details</a>
+            </div>
+        </div>
+    </div>
+}

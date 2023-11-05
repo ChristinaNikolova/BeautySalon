@@ -1,0 +1,40 @@
+﻿@using BeautySalon.Web.ViewModels.Products.ViewModels;
+@model AllUsersFavouriteProductsViewModel;
+
+@{
+    ViewData["Title"] = "Favourite Products";
+}
+
+<partial name="_UserTitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <h2 class="text-center">Favourite Products</h2>
+                <hr />
+                @foreach (var product in Model.Products)
+                {
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url(@product.ProductPicture);"></a>
+                        <div class="text">
+                            <h3 class="heading"><a asp-area="" asp-controller="Products" asp-action="GetDetails" asp-route-id="@product.ProductId">@product.ProductName</a></h3>
+                            <div class="meta">
+                                <p class="small">@product.ShortDescription</p>
+                                <div><a><span class="fas fa-hashtag theme-color-gold"></span> @product.ProductCategoryName</a></div>
+                                <div><a><span class="far fa-copyright theme-color-gold"></span> @product.ProductBrandName</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Products.ToList().Count() == 0)
+                {
+                    <p class="text-center">You don't have any favourite products yet!</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,41 @@
+﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
+@model AllUsersFavouriteArticlesViewModel;
+
+@{
+    ViewData["Title"] = "Favourite Articles";
+}
+
+<partial name="_UserTitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarUserPartial" />
+        </div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <h2 class="text-center">Favourite Articles</h2>
+                <hr />
+                @foreach (var article in Model.Articles)
+                {
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url(@article.ArticlePicture);"></a>
+                        <div class="text">
+                            <h3 class="heading"><a asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.ArticleId">@article.ArticleTitle</a></h3>
+                            <div class="meta">
+                                <p class="small">@article.ShortContent</p>
+                                <div><a><span class="icon-calendar"></span> @article.FormattedDate</a></div>
+                                <div class="heading"><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@article.ArticleStylistId"><span class="icon-person"></span> @article.StylistFullName</a></div>
+                                <div><a><span class="icon-chat"></span> @article.ArticleCommentsCount</a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Articles.ToList().Count() == 0)
+                {
+                    <p class="text-center">You don't have any favourite articles yet!</p>
+                }
+            </div>
+        </div>
+    </div>
+</section>

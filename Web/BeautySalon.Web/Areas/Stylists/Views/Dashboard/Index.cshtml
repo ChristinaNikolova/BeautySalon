@@ -1,0 +1,64 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Dashboard.ViewModels;
+@model DashboardViewModel;
+
+
+@{
+    ViewData["Title"] = "Dashboard - Stylists";
+}
+
+<partial name="_TitlePageSection" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylistPartial" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Notifications</h2>
+            <section class="ftco-section ftco-section-services bg-light">
+                <div class="container-fluid px-md-5">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-candle"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Index">Appointment's Requests</a>
+                                    </h3>
+                                    <h5>@Model.NewAppointmentRequests</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-beauty-treatment"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Appointments" asp-action="Index">Today's Appointments</a>
+                                    </h3>
+                                    <h5>@Model.AppointmentsForToday</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="services text-center ftco-animate">
+                                <div class="icon d-flex justify-content-center align-items-center">
+                                    <span class="flaticon-stone"></span>
+                                </div>
+                                <div class="text mt-3">
+                                    <h3>
+                                        <a asp-area="Stylists" asp-controller="Questions" asp-action="GetAllForStylist">New Questions</a>
+                                    </h3>
+                                    <h5>@Model.NewQuestions</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

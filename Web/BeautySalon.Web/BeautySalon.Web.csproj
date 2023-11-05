@@ -1,0 +1,345 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-BeautySalon-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+    <ApplicationInsightsResourceId>/subscriptions/f6f8e942-1197-4406-ad14-f94038040eb2/resourceGroups/mybeautysalon/providers/microsoft.insights/components/mybeautysalon</ApplicationInsightsResourceId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Startup.cs~RF2f693dc.TMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\css\css\.DS_Store" />
+    <None Include="wwwroot\fonts\.DS_Store" />
+    <None Include="wwwroot\fonts\flaticon\.DS_Store" />
+    <None Include="wwwroot\fonts\flaticon\font\.DS_Store" />
+    <None Include="wwwroot\fonts\flaticon\font\Flaticon.svg" />
+    <None Include="wwwroot\fonts\flaticon\font\Flaticon.woff2" />
+    <None Include="wwwroot\fonts\flaticon\font\_flaticon.scss" />
+    <None Include="wwwroot\fonts\icomoon\.DS_Store" />
+    <None Include="wwwroot\fonts\icomoon\icomoon.svg" />
+    <None Include="wwwroot\fonts\ionicons\css\_ionicons.scss" />
+    <None Include="wwwroot\fonts\ionicons\fonts\.DS_Store" />
+    <None Include="wwwroot\fonts\ionicons\fonts\ionicons.svg" />
+    <None Include="wwwroot\fonts\ionicons\fonts\ionicons.woff2" />
+    <None Include="wwwroot\fonts\open-iconic\open-iconic.svg" />
+    <None Include="wwwroot\images\.DS_Store" />
+    <None Include="wwwroot\lib\fullcalender\locales\af.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-dz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-kw.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-ly.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-ma.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-sa.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar-tn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ar.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\az.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\bg.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\bs.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ca.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\cs.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\da.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\de.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\el.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-au.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-gb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\en-nz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\es-us.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\es.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\et.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\eu.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fa.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr-ca.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr-ch.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\fr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\gl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\he.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\hu.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\id.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\is.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\it.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ja.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ka.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\kk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ko.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lt.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\lv.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\mk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ms.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nb.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ne.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\nn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pt-br.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\pt.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ro.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ru.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sq.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sr-cyrl.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\sv.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\th.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\tr.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\ug.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\uk.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\uz.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\vi.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\zh-cn.js" />
+    <None Include="wwwroot\lib\fullcalender\locales\zh-tw.js" />
+    <None Include="wwwroot\scss\.DS_Store" />
+    <None Include="wwwroot\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\scss\bootstrap\bootstrap-grid.scss" />
+    <None Include="wwwroot\scss\bootstrap\bootstrap-reboot.scss" />
+    <None Include="wwwroot\scss\bootstrap\bootstrap.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_alert.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_background-variant.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_badge.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_border-radius.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_buttons.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_caret.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_clearfix.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_deprecate.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_float.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_forms.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_gradients.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_grid.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_hover.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_image.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_list-group.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_lists.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_pagination.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_reset-text.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_resize.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_screen-reader.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_size.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_table-row.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_text-hide.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_transition.scss" />
+    <None Include="wwwroot\scss\bootstrap\mixins\_visibility.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_align.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_background.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_borders.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_clearfix.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_display.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_embed.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_flex.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_float.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_overflow.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_position.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_screenreaders.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_shadows.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_sizing.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_spacing.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_stretched-link.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_text.scss" />
+    <None Include="wwwroot\scss\bootstrap\utilities\_visibility.scss" />
+    <None Include="wwwroot\scss\bootstrap\vendor\_rfs.scss" />
+    <None Include="wwwroot\scss\bootstrap\_alert.scss" />
+    <None Include="wwwroot\scss\bootstrap\_badge.scss" />
+    <None Include="wwwroot\scss\bootstrap\_breadcrumb.scss" />
+    <None Include="wwwroot\scss\bootstrap\_button-group.scss" />
+    <None Include="wwwroot\scss\bootstrap\_buttons.scss" />
+    <None Include="wwwroot\scss\bootstrap\_card.scss" />
+    <None Include="wwwroot\scss\bootstrap\_carousel.scss" />
+    <None Include="wwwroot\scss\bootstrap\_close.scss" />
+    <None Include="wwwroot\scss\bootstrap\_code.scss" />
+    <None Include="wwwroot\scss\bootstrap\_custom-forms.scss" />
+    <None Include="wwwroot\scss\bootstrap\_dropdown.scss" />
+    <None Include="wwwroot\scss\bootstrap\_forms.scss" />
+    <None Include="wwwroot\scss\bootstrap\_functions.scss" />
+    <None Include="wwwroot\scss\bootstrap\_grid.scss" />
+    <None Include="wwwroot\scss\bootstrap\_images.scss" />
+    <None Include="wwwroot\scss\bootstrap\_input-group.scss" />
+    <None Include="wwwroot\scss\bootstrap\_jumbotron.scss" />
+    <None Include="wwwroot\scss\bootstrap\_list-group.scss" />
+    <None Include="wwwroot\scss\bootstrap\_media.scss" />
+    <None Include="wwwroot\scss\bootstrap\_mixins.scss" />
+    <None Include="wwwroot\scss\bootstrap\_modal.scss" />
+    <None Include="wwwroot\scss\bootstrap\_nav.scss" />
+    <None Include="wwwroot\scss\bootstrap\_navbar.scss" />
+    <None Include="wwwroot\scss\bootstrap\_pagination.scss" />
+    <None Include="wwwroot\scss\bootstrap\_popover.scss" />
+    <None Include="wwwroot\scss\bootstrap\_print.scss" />
+    <None Include="wwwroot\scss\bootstrap\_progress.scss" />
+    <None Include="wwwroot\scss\bootstrap\_reboot.scss" />
+    <None Include="wwwroot\scss\bootstrap\_root.scss" />
+    <None Include="wwwroot\scss\bootstrap\_spinners.scss" />
+    <None Include="wwwroot\scss\bootstrap\_tables.scss" />
+    <None Include="wwwroot\scss\bootstrap\_toasts.scss" />
+    <None Include="wwwroot\scss\bootstrap\_tooltip.scss" />
+    <None Include="wwwroot\scss\bootstrap\_transitions.scss" />
+    <None Include="wwwroot\scss\bootstrap\_type.scss" />
+    <None Include="wwwroot\scss\bootstrap\_utilities.scss" />
+    <None Include="wwwroot\scss\bootstrap\_variables.scss" />
+    <None Include="wwwroot\scss\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.18" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.18" />
+    <PackageReference Include="HtmlSanitizer" Version="5.0.372" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.ML" Version="1.5.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\BeautySalon.Data\BeautySalon.Data.csproj" />
+    <ProjectReference Include="..\..\Services\BeautySalon.Services.Data\BeautySalon.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\BeautySalon.Services.Mapping\BeautySalon.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\BeautySalon.Services.Messaging\BeautySalon.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\BeautySalon.Services\BeautySalon.Services.csproj" />
+    <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\BeautySalon.Web.ViewModels\BeautySalon.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\favicon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bg_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bg_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bg_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\gallery-6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_5.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\image_6.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\intro.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\loc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\offer-deal-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\offer-deal-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\offer-deal-3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\person_1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\person_2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\person_3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\person_4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\trainer-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\trainer-2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\trainer-3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\images\trainer-4.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\js\libraries\owl.carousel.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\qrcode\qrcode.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\qrcode\qrcode.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\tinymce\tinymce.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MLModels\MLModel.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

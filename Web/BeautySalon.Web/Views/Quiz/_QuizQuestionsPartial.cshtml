@@ -1,0 +1,30 @@
+﻿@using BeautySalon.Web.ViewModels.Quiz.ViewModels;
+@model IEnumerable<QuestionQuizViewModel>;
+
+<section id="parent-element-section">
+    <div class="start-button-quiz">
+        <a id="start-quiz" class="btn btn-primary p-3 px-5 py-4 mr-md-2 justify-content-center quiz">Start quiz</a>
+    </div>
+    @for (var i = 0; i < @Model.ToList().Count(); i++)
+    {
+        <div class="current-question" style="display:none">
+            <div id="question">
+                <div class="question">
+                    <p class="question-wrap">
+                        <h2 align="center">Question #@(i+1): @Model.ToList()[i].Text</h2>
+                    </p>
+                </div>
+                <ol>
+                    @foreach (var answer in @Model.ToList()[i].QuizAnswers)
+                    {
+                        <li class="quiz-answer">
+                            <div class="answer-wrap">
+                                <a class="btn btn-outline-primary answer-quiz">@answer.Text</a>
+                            </div>
+                        </li>
+                    }
+                </ol>
+            </div>
+        </div>
+    }
+</section>

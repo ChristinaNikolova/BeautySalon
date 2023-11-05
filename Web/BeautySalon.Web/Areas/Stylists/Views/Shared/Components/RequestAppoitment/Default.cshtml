@@ -1,0 +1,14 @@
+﻿@using BeautySalon.Web.ViewModels.Appointments.ViewModels;
+@model AllBaseAppoitmentViewModel;
+
+<div class="col-md-12">
+    <hr />
+    @if (Model.Appoitments.Count() != 0)
+    {
+        <partial name="_AppointmentsTablePartial" model="@Model.Appoitments" />
+    }
+    else
+    {
+        <h3 class="offset-1">You don't have any new appointment's requests!</h3>
+    }
+</div>

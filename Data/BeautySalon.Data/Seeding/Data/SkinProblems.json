@@ -1,0 +1,62 @@
+﻿[
+  {
+    "Name": "Tired skin",
+    "Description": "Tired skin is the result of late nights, hours spent in front of a computer, smoking, stress and an unhealthy lifestyle. The skin looks grey and pale and needs a real energy boost to get it back into shape. The right care improves the energy supply to the skin and gives it a fresh and vital look."
+  },
+  {
+    "Name": "Unhealthy skin",
+    "Description": "With unhealthy skin, it is easy to notice patches of different tones all over the face. These patches could appear as blotches of reddened or darkened color. One of the most common signs of unhealthy skin is excessive darkening around the eyes."
+  },
+  {
+    "Name": "Redness",
+    "Description": "From a sunburn to an allergic reaction, there are many things that can cause your skin to become red or irritated. It may be because extra blood rushes to the skin's surface to fight off irritants and encourage healing."
+  },
+  {
+    "Name": "Peeling",
+    "Description": "Peeling skin is unintended damage to and loss of the upper layer of your skin (epidermis). Peeling skin may occur because of direct damage to the skin, such as from sunburn or infection. It may also be a sign of an immune system disorder or other disease."
+  },
+  {
+    "Name": "Enlarged pores",
+    "Description": "Enlarged pores are depressions in the facial skin surface that contain one or more openings to the ducts carrying sweat and oil from their respective eccrine glands and sebaceous glands."
+  },
+  {
+    "Name": "Clogged pores",
+    "Description": "Clogged pores are the result of dead skin cells getting trapped in your skin instead of being shed into the environment. Pores are tiny openings in the skin that release oil and sweat. When pores are clogged, it can result in blackheads, whiteheads, and acne."
+  },
+  {
+    "Name": "Blackheads",
+    "Description": "Blackheads are small bumps that appear on your skin due to clogged hair follicles. These bumps are called blackheads because the surface looks dark or black. Blackheads are a mild type of acne that usually form on the face, but they can also appear on the following body parts: back."
+  },
+  {
+    "Name": "Puffy eyes",
+    "Description": "Periorbital puffiness, also known as puffy eyes, or swelling around the eyes, is the appearance of swelling in the tissues around the eyes, called the orbits. It is almost exclusively caused by fluid buildup around the eyes, or periorbital edema."
+  },
+  {
+    "Name": "Dark eye circles",
+    "Description": "Sleep deprivation can cause your skin to become dull and pale, allowing for dark tissues and blood vessels beneath your skin to show. Lack of sleep can also cause fluid to build underneath your eyes, causing them to appear puffy. As a result, the dark circles you see may actually be shadows cast by your puffy eyelids."
+  },
+  {
+    "Name": "Pigmentation",
+    "Description": "Melanin is the pigment that produces the various shades and colors of human skin, hair, and eyes. Coloration (pigmentation) is determined by the amount of melanin in the skin. Without melanin, the skin would be pale white with shades of pink caused by blood flow through the skin."
+  },
+  {
+    "Name": "Wrinkles",
+    "Description": "Wrinkles are a normal part of the aging process. Fine lines appear first, and then the creases deepen when the skin begins to lose its elasticity."
+  },
+  {
+    "Name": "Fine lines",
+    "Description": "As you age, your epidermis loses its ability to hold on to moisture, which leads to fine lines in the skin's surface. At the same time, fat starts to disappear from the skin's deepest layers, which leads to sagging. Together, these effects create deeper wrinkles, like frown lines and furrows."
+  },
+  {
+    "Name": "Acne",
+    "Description": "Acne is a skin condition that occurs when your hair follicles become plugged with oil and dead skin cells. It causes whiteheads, blackheads or pimples. Acne is most common among teenagers, though it affects people of all ages. Effective acne treatments are available, but acne can be persistent."
+  },
+  {
+    "Name": "Oiliness",
+    "Description": "The main characteristics of oily skin include: Shiny and often has breakouts. Less visible wrinkles. Visible and enlarged looking pores."
+  },
+  {
+    "Name": "Dryness",
+    "Description": "Exposure to dry weather conditions, hot water, and certain chemicals can cause your skin to dry out. Dry skin can also result from underlying medical conditions."
+  }
+]

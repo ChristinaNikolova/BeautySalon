@@ -1,0 +1,43 @@
+﻿@using BeautySalon.Web.ViewModels.Procedures.ViewModels;
+@model AllProceduresByCategoryViewModel;
+
+<div id="procedure-pagination" class="row mt-5" style="display:block">
+    <div class="col text-center">
+        <div class="block-27">
+            <ul>
+                @if (this.Model.CurrentPage == 1)
+                {
+                    <li class="disabled">
+                        <a>&lt;</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-route="procedureCategory" asp-route-id="@Model.CategoryId" asp-route-currentPage="@(this.Model.PreviousPage)">&lt;</a>
+                    </li>
+                }
+
+
+                @for (int i = 1; i <= Model.PagesCount; i++)
+                {
+                    var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+                    <li class="@active">
+                        <a asp-route="procedureCategory" asp-route-id="@Model.CategoryId" asp-route-currentPage="@i">@i</a>
+                    </li>
+                }
+
+                @if (this.Model.CurrentPage == this.Model.PagesCount)
+                {
+                    <li class="disabled"><a>&gt;</a></li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-route="procedureCategory" asp-route-id="@Model.CategoryId" asp-route-currentPage="@(this.Model.NextPage)">&gt;</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

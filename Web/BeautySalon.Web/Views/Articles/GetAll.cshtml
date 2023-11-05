@@ -1,0 +1,55 @@
+﻿@using BeautySalon.Web.ViewModels.Articles.ViewModels;
+@model AllArticlesViewModel;
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<partial name="_TitlePageSection" />
+<section class="ftco-section bg-light pt-3">
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+            <h2 class="mb-1">@ViewData["Title"]</h2>
+            <vc:category-option-bar has-to-add-second-criteria="false"></vc:category-option-bar>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="showResult" class="row d-flex">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end">
+                        <a class="block-20" style="background-image: url('@article.Picture');"></a>
+                        <div class="text p-4 float-right d-block">
+                            <div class="d-flex align-items-center pt-2 mb-4">
+                                <div class="one">
+                                    <span class="day">@article.Day</span>
+                                </div>
+                                <div class="two">
+                                    <span class="yr">@article.Year</span>
+                                    <span class="mos">@article.Month</span>
+                                </div>
+                            </div>
+                            <h3 class="heading mt-2"><a asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.Id">@article.Title</a></h3>
+                            <p class="small">@article.ShortContent</p>
+                            <ul class="subheading article-category d-inline">
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Category: </strong>@article.CategoryName</li>
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Author: </strong><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@article.StylistId">@article.StylistFullName</a></li>
+                                <li class="ftco-animate theme-color-gold small article-category"><strong>Likes: </strong>@article.LikesCount</li>
+                            </ul>
+                            <a class="btn btn-primary d-inline p-1 px-1 py-1 mr-md-1 log" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@article.Id">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <partial name="_ArticlesPaginationPartial" model="@Model" />
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/searchArticles.js" asp-append-version="true"></script>
+    <script>searchArticles();</script>
+}

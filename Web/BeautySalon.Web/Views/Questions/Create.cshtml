@@ -1,0 +1,39 @@
+﻿@using BeautySalon.Web.ViewModels.Questions.InputModels;
+@using Microsoft.Extensions.Options
+@model CreateQuestionInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA
+
+<section class="ftco-section ftco-intro custom-margin-identity stylist-section" style="background-image: url(/images/bg_3.jpg);">
+    <div class="question-form">
+        <h1 class="heading-color"><a asp-controller="Stylists" asp-action="GetDetails" asp-route-id="@Model.StylistId">@Model.Stylist.FirstName @Model.Stylist.LastName</a></h1>
+        <div class="col-md-6 ftco-animate">
+            <form asp-controller="Questions" asp-action="Create" method="post" class="contact-form">
+                <div class="row"></div>
+                <div class="form-group" hidden>
+                    <input asp-for="@Model.StylistId" type="text" class="form-control" value="@Model.StylistId">
+                </div>
+                <div class="form-group">
+                    <input asp-for="@Model.Title" type="text" class="form-control" placeholder="Title">
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <textarea asp-for="@Model.Content" cols="30" rows="7" class="form-control" placeholder="Content"></textarea>
+                    <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+}

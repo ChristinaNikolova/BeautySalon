@@ -1,0 +1,60 @@
+﻿@using BeautySalon.Web.ViewModels.StylistsArea.Articles.ViewModels;
+@model AllArticleStylistAreaViewModel;
+
+@{
+    ViewData["Title"] = "Stylist's dashboard";
+}
+
+<partial name="_TitlePageSection" />
+<partial name="_InfoMessagePartial" />
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarStylistPartial" />
+        </div>
+        <div class="col-md-9">
+            <h2 class="text-center">Articles</h2>
+            <hr />
+            <div class="add-new-article col-md-12">
+                <h4 id="add-new-article-title" class="text-center">Create Article</h4>
+                <div class="text-center">
+                    <a asp-area="Stylists" asp-controller="Articles" asp-action="Create" class="btn btn-primary p-2 px-2 py-2 md-ml-4">Create</a>
+                </div>
+                <hr />
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Comments</th>
+                        <th scope="col">Likes</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Articles.Count(); i++)
+                    {
+                        var currentArticle = Model.Articles.ToList()[i];
+
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td><a asp-area="" asp-controller="Articles" asp-action="GetDetails" asp-route-id="@currentArticle.Id">@currentArticle.Title</a></td>
+                            <td>@currentArticle.CategoryName</td>
+                            <td>@currentArticle.FormattedDate</td>
+                            <td>@currentArticle.CommentsCount</td>
+                            <td>@currentArticle.LikesCount</td>
+                            <td><a asp-area="Stylists" asp-controller="Articles" asp-action="Update" asp-route-id="@currentArticle.Id" class="btn btn-outline-primary p-2 px-2 py-2 ml-md-2 log">Update</a></td>
+                            <td>
+                                <form method="post" asp-area="Stylists" asp-controller="Articles" asp-action="Delete" asp-route-id="@currentArticle.Id"><button type="submit" class="btn btn-outline-danger p-2 px-2 py-2 ml-md-2 log">Delete</button></form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

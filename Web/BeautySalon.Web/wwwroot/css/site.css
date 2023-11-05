@@ -1,0 +1,394 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+li {
+    list-style-type: none;
+}
+
+.quiz-answer {
+    list-style-type: lower-alpha;
+    margin: 10px
+}
+
+.hidden {
+    display: none;
+}
+
+.log {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.custom-margin-identity {
+    margin-top: 80px;
+}
+
+h1, h2, h4 {
+    color: black;
+}
+
+.heading-color {
+    color: #d9bf77;
+    font-weight: bold;
+}
+
+.show {
+    font-size: 16px;
+}
+
+.about-me {
+    font-size: 14px;
+}
+
+.show-more-info:hover {
+    cursor: pointer;
+    color: #d9bf77;
+}
+
+p.show {
+    color: black;
+}
+
+.custom-padding-section {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+div .small {
+    font-size: 14px;
+}
+
+.search-bar {
+    margin-right: 10px;
+}
+
+.theme-color-gold,
+.coach .text h3 a {
+    color: #d9bf77;
+}
+
+.stylist-name {
+    margin-left: 20px;
+}
+
+.stylist-pic {
+    margin-left: 5px;
+}
+
+.stylist-info {
+    margin-left: 20px;
+}
+
+.stylist {
+    margin-bottom: 15px;
+}
+
+.question-form {
+    margin-top: 15px;
+    margin-left: 300px;
+}
+
+.article-category {
+    padding-left: 0px;
+    margin-bottom: 0px
+}
+
+.author-pic {
+    max-width: 150px;
+    margin-top: 15px;
+}
+
+.thin {
+    font-weight: 100;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.thin-heart {
+    margin-right: 0;
+}
+
+#unlikeArticle, #likeArticle:hover {
+    cursor: pointer;
+}
+
+.comment-list li .vcard img {
+    border-radius: 0%;
+    max-height: 60px;
+}
+
+#comment-button {
+    margin-top: 20px;
+}
+
+.comment-form-container {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+}
+
+#content-error {
+    color: red;
+}
+
+.datepicker table tr td.active {
+    background-color: #d9bf77 !important;
+    background-image: none;
+}
+
+.datepicker table tr td.active:hover {
+    background-color: #d9bf77 !important;
+    background-image: none;
+}
+
+#clear-appointment-search {
+    color: gray;
+    margin: 10px
+}
+
+.start-button-quiz {
+    text-align: center;
+}
+
+.answer-quiz:hover {
+    color: white !important;
+}
+
+.offer-deal {
+    padding-top: 0px;
+}
+
+.skin-problems-container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.skin-problems-buttons {
+    margin-top: 30px;
+}
+
+.skin-problems-button {
+    margin: 10px;
+}
+
+.btn.btn-primary {
+    background: #d9bf77 !important;
+    border: 1px solid #d9bf77 !important;
+    color: #fff !important;
+}
+
+.btn.btn-primary:hover {
+    color: gray !important;
+}
+
+.smart-search-text {
+    margin-left: 14px !important;
+}
+
+#smart-search-button {
+    margin-left: 15px;
+}
+
+#client-skin-info {
+    background: #FAFAFA;
+    max-height: 500px;
+    margin-top: 10px;
+    padding-left: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    overflow: hidden;
+    width: 100%;
+    z-index: -10;
+}
+
+@media screen and (max-width: 768px) {
+    #client-skin-info {
+        position: static;
+    }
+}
+
+.client-info-list {
+    line-height: 1.4;
+    color: #000;
+    font-weight: 400;
+}
+
+.client-info {
+    font-weight: 400;
+}
+
+#smart-search-message {
+    margin: 10px;
+}
+
+#success-smart-search {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-left: 10px
+}
+
+.product-name {
+    text-align: center;
+}
+
+.admin-dashboard {
+    margin-left: 300px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #d9bf77;
+}
+
+.administration {
+    margin-bottom: 15px
+}
+
+#add-stylist-button,
+#add-new-stylist-title {
+    margin-left: 20px;
+}
+
+#add-new-stylist-title,
+#add-new-procedure-title {
+    padding-top: 20px;
+}
+
+.add-new-stylist-form,
+.add-new-procedure {
+    background-color: #EFEEF3;
+}
+
+skin-type-name {
+    margin: 20px;
+}
+
+.color-black {
+    color: black;
+}
+
+.color-grey {
+    color: grey;
+}
+
+.radio-choice {
+    margin: 10px;
+}
+
+#calendar {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+div .tooltip-inner {
+    background-color: #d9bf77;
+}
+
+.fc .fc-button-primary {
+    background-color: #d9bf77 !important;
+    color: white
+}
+
+.fc-icon-chevron-right,
+.fc-icon-chevron-left {
+    color: white
+}
+
+.best-procedure {
+    margin-left: 20px
+}
+
+#brand-name:hover {
+    color: #d9bf77;
+    cursor: pointer;
+}
+
+#div-dropdown-menu {
+    top: 60%;
+}
+
+.dropdown-item {
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 10px !important;
+}
+
+#messagesList {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#small-pic {
+    max-width: 9%;
+    max-height: 70px;
+}
+
+#alert-new-chat-message {
+    color: mediumvioletred;
+}
+
+#alert-new-chat-message:hover {
+    color: #d9bf77;
+}
+
+#active:hover,
+#expired:hover {
+    cursor: pointer;
+}

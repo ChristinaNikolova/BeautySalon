@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Articles\ViewModels\UsersFavouriteArticlesViewModel.cs~RF8120bf5.TMP" />
+    <None Remove="StylistsArea\Articles\ViewModels\ArticleStylistAreaViewModel.cs~RF26d1ece3.TMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="5.0.372" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\BeautySalon.Data.Models\BeautySalon.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Services\BeautySalon.Services.Mapping\BeautySalon.Services.Mapping.csproj" />
+    <ProjectReference Include="..\BeautySalon.Web.Infrastructure\BeautySalon.Web.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,47 @@
+﻿@using BeautySalon.Web.ViewModels.Users.ViewModels;
+@model UsersSkinTypeInfoViewModel;
+
+<div id="client-skin-info" class="col-md-4 contact-info ftco-animate bg-light p-4">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <h2 class="h4"> My skin's info</h2>
+            <hr />
+            <div id="skin-type-id" hidden>@Model.SkinTypeId</div>
+        </div>
+        @if (Model.SkinTypeName == null)
+        {
+            <p>We didn't find information about your skin type!</p>
+            <p>Go and do our Skin Quiz.</p>
+        }
+        else
+        {
+            <div class="col-md-12 mb-3">
+                <p class="client-info theme-color-gold"><span>My skin type: </span>@Model.SkinTypeName</p>
+            </div>
+            <div class="col-md-12 mb-3">
+                <p id="sensitive-skin"
+                   class="client-info theme-color-gold"><span>Is my skin sensitive: </span> @Model.SkinSensitive</p>
+            </div>
+            <div class="col-md-12 mb-3">
+                <span class="client-info-list">My skin's problems: </span>
+                @if (@Model.SkinProblemNames.Count() == 0)
+                {
+                    <p>You haven't share skin problems yet!</p>
+                    <p>Go and do our Skin Quiz?</p>
+                }
+                else
+                {
+                    <ul>
+                        @foreach (var skinProblem in Model.SkinProblemNames)
+                        {
+                            <li class="test client-info theme-color-gold flaticon-beauty-treatment"> @skinProblem.Name</li>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+
+

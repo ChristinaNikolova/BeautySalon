@@ -1,0 +1,107 @@
+﻿@using BeautySalon.Web.ViewModels.Administration.Procedures.InputModels;
+@model AddProcedureInputModel;
+@inject IOptions<BeautySalon.Web.SecurityModels.GoogleReCAPTCHA> GoogleReCAPTCHA;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="hero-wrap hero-wrap-2 custom-margin-identity administration" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-3 bread">@ViewData["Title"]</h1>
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a asp-area="Administration" asp-controller="Procedures" asp-action="GetAll">All Procedures</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="custom-margin-identity">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_NavBarAdministrationPartial" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">Create Procedure</h2>
+            <hr />
+            <form asp-area="Administration" asp-controller="Procedures" asp-action="Create" method="post" class="text-center">
+                <div id="category-skin-care-id" hidden>@GlobalConstants.CategorySkinCareId</div>
+                <div asp-validation-summary="All"></div>
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" />
+                        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Price"></label>
+                        <input asp-for="@Model.Price" class="form-control" />
+                        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.CategoryId"></label>
+                        <select id="category" asp-for="@Model.CategoryId" class="form-control col-md-12" asp-items="@Model.Categories">
+                            <option selected>Please select beauty category</option>
+                        </select>
+                        <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+                    </div>
+                    <div id="skin-type" class="form-group col-md-8 hidden">
+                        <label asp-for="@Model.SkinTypeId"></label>
+                        <select id="category" asp-for="@Model.SkinTypeId" class="form-control col-md-12" asp-items="@Model.SkinTypes">
+                            <option selected>Please select skin type</option>
+                        </select>
+                        <span asp-validation-for="@Model.SkinTypeId" class="text-danger"></span>
+                    </div>
+                    <div id="is-sensitive" class="form-group col-md-8 form-check color-black hidden">
+                        <label asp-for="@Model.IsSensitive" class="color-grey"></label><br />
+                        <input asp-for="@Model.IsSensitive" type="radio" value="Yes" /> Yes
+                        <input asp-for="@Model.IsSensitive" type="radio" value="No" /> No
+                        <span asp-validation-for="@Model.IsSensitive" class="text-danger"></span>
+                    </div>
+                    <div id="skin-problem" class="form-group col-md-7 color-black hidden">
+                        <label asp-for="@Model.SkinProblems" class="color-grey"></label>
+                        @for (var i = 0; i < Model.SkinProblems.Count; i++)
+                        {
+                            if (i % 3 == 0)
+                            {
+                                <input type="hidden" asp-for="@Model.SkinProblems[i].Value" /><br />
+                            }
+                            else
+                            {
+                                <input type="hidden" asp-for="@Model.SkinProblems[i].Value" />
+                            }
+
+                            <input class="ml-3" asp-for="SkinProblems[i].Selected" />
+                            @Model.SkinProblems[i].Text
+
+                        }
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label asp-for="@Model.Description"></label>
+                        <textarea asp-for="@Model.Description" rows="15" class="form-control"></textarea>
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <button id="add-procedure-button" type="submit" class="btn btn-outline-primary ml-md-4" value="Create">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.SiteKey"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.SiteKey', { action: 'homepage' }).then(function (token) {
+            });
+        });
+    </script>
+
+    <script src="~/js/showSkinTypeOptions.js" asp-append-version="true"></script>
+    <script>showSkinTypeOptions();</script>
+}
